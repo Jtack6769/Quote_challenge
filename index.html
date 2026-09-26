@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>Quote Challenge</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#030303;color:#ff5252;font:16px system-ui,sans-serif;min-height:100vh}
+main{max-width:680px;margin:auto;padding:22px 20px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{font-size:clamp(25px,6vw,38px);line-height:1;margin:8px 0;text-transform:uppercase;letter-spacing:-1px;color:#ff3434;text-shadow:0 0 22px #f0000055}
+small,.muted{color:#ff9999;font-size:14px}
+nav{display:flex;gap:8px;margin:22px 0}
+button,input,select{font:inherit;min-height:48px;border-radius:14px;border:1px solid #fff19a;padding:12px;color:#9b0909;background:linear-gradient(155deg,#fff9b8 0%,#ffe865 40%,#e2af17 100%);box-shadow:inset 0 2px 0 #fffbd6,0 3px 14px #ffcc0022}
+button{font-weight:800;cursor:pointer;touch-action:manipulation}
+button:active{transform:translateY(1px)}
+button:disabled{opacity:.48;cursor:default}
+input,select{width:100%;font-weight:650}
+input::placeholder{color:#984127}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ff5a5a;outline-offset:3px}
+nav button{flex:1;padding:10px 5px;font-size:14px}
+nav button[aria-pressed=true]{box-shadow:0 0 0 2px #ff3030,inset 0 2px #fff}
+.panel{position:relative;border:1px solid #b82727;border-radius:24px;background:linear-gradient(150deg,#211010,#090909 55%);padding:24px 20px;margin:16px 0;box-shadow:0 0 35px #ef131312}
+.burst{position:absolute;pointer-events:none;width:38px;height:38px;background:linear-gradient(45deg,#ff2b22,#ffde37);clip-path:polygon(50% 0,59% 34%,85% 15%,67% 42%,100% 50%,66% 59%,85% 85%,58% 67%,50% 100%,41% 66%,15% 85%,33% 58%,0 50%,33% 41%,15% 15%,42% 33%);filter:drop-shadow(0 0 8px #ffca00)}
+.b1{top:-16px;left:-13px}
+.b2{top:-17px;right:-12px;transform:rotate(18deg)}
+.b3{bottom:-14px;left:-12px;width:30px;height:30px}
+.b4{bottom:-16px;right:-12px}
+.b5{top:45%;right:-13px;width:22px;height:22px}
+.b6{top:38%;left:-12px;width:22px;height:22px}
+blockquote{font-size:clamp(25px,6vw,36px);line-height:1.28;margin:27px 0;color:#ff5656;font-weight:800}
+label{display:block;margin:14px 0 7px;font-weight:700}
+.row{display:flex;gap:10px;align-items:center}
+.row>*{flex:1;min-width:0}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.score{border:1px solid #6c2929;border-radius:17px;padding:12px;background:#130c0c}
+.score.active{border-color:#ffdb36;background:#221b07}
+.score strong{font-size:32px;display:block;color:#ffe45a}
+.score span{overflow-wrap:anywhere}
+h2{font-size:23px;margin:4px 0 15px}
+.tag{display:inline-block;border:1px solid #914040;padding:5px 9px;border-radius:8px;font-size:14px}
+.wide{width:100%;margin-top:16px}
+.secondary{background:#19100b;color:#ffe570;border-color:#8b7031;box-shadow:inset 0 1px #ad8a3844}
+.feedback{padding:14px;background:#25140b;border:1px solid #7f5223;border-radius:12px;line-height:1.5;margin:16px 0;color:#ffca92}
+.hidden{display:none!important}
+.timer{font-size:48px;font-weight:900;color:#ffe568;text-align:center}
+p{line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{text-align:left;border-bottom:1px solid #522222;padding:10px 4px;overflow-wrap:anywhere}
+progress{width:100%;accent-color:#f8d539;height:7px}
+footer{font-size:13px;line-height:1.5;color:#ff9494;margin-top:22px}
+@media(max-width:360px){
+main{padding:16px 14px}
+.panel{padding:20px 14px}
+.row{flex-wrap:wrap}
+.row>*{flex-basis:45%}
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div>
+<small>TWO PLAYERS · ONE PHONE</small>
+<h1>Quote Challenge</h1>
+</div>
+<span class="tag">DEMO</span>
+</header>
+
+<nav>
+<button id="playTab" aria-pressed="true" onclick="tab('play')">Play</button>
+<button id="dailyTab" aria-pressed="false" onclick="tab('daily')">Daily · 25</button>
+<button id="boardTab" aria-pressed="false" onclick="tab('board')">Top 10</button>
+</nav>
+
+<section id="play">
+<div id="setup" class="panel">
+<i class="burst b1"></i><i class="burst b2"></i>
+<i class="burst b3"></i><i class="burst b4"></i>
+<i class="burst b5"></i><i class="burst b6"></i>
+<h2>Who knows the line?</h2>
+<p>Name the show or movie and the character. Take turns and pass the phone.</p>
+<div class="row">
+<div>
+<label for="p1">Player one</label>
+<input id="p1" value="Captain" maxlength="24">
+</div>
+<div>
+<label for="p2">Player two</label>
+<input id="p2" placeholder="Your challenger" maxlength="24">
+</div>
+</div>
+<div class="row">
+<div>
+<label for="rounds">Turns each</label>
+<select id="rounds">
+<option value="5">5 · quick game</option>
+<option value="10">10 · full demo</option>
+</select>
+</div>
+<div>
+<label for="difficulty">Difficulty</label>
+<select id="difficulty">
+<option>Mixed</option>
+<option>Easy</option>
+<option>Medium</option>
+<option>Hard</option>
+</select>
+</div>
+</div>
+<button class="wide" onclick="start()">LET’S PLAY</button>
+<p class="muted">1 point for the title + 1 for the character. Optional before/after-line bonus +1. “I have it” gives the other player +1 if both answers are right, −1 otherwise.</p>
+</div>
+
+<div id="game" class="hidden">
+<div class="scores" id="scores"></div>
+<section class="panel">
+<i class="burst b1"></i><i class="burst b2"></i>
+<i class="burst b3"></i><i class="burst b4"></i>
+<i class="burst b5"></i><i class="burst b6"></i>
+<div id="meta" class="muted"></div>
+<progress id="progress" value="0" max="10"></progress>
+<div id="quote"></div>
+<div id="answerArea">
+<label for="show">Show or movie</label>
+<input id="show" placeholder="Enter the full title" autocomplete="off">
+<label for="character">Character</label>
+<input id="character" placeholder="Who said it?" autocomplete="off">
+<div id="bonusArea" class="hidden">
+<label for="bonus">Bonus: the line before OR after</label>
+<input id="bonus" placeholder="Optional · 1 extra point">
+</div>
+<div class="row">
+<button class="wide" id="submit" onclick="check()">Lock answers</button>
+<button class="wide secondary" id="claim" onclick="claim()">I have it!</button>
+</div>
+<button id="skip" class="wide secondary" onclick="skip()">Skip · −1 point</button>
+</div>
+<div id="feedback" aria-live="polite"></div>
+<button id="next" class="wide hidden" onclick="next()">Next turn →</button>
+</section>
+<button class="wide secondary" onclick="newGame()">Start a new game</button>
+</div>
+<div id="result" class="panel hidden"></div>
+</section>
+
+<section id="daily" class="panel hidden">
+<i class="burst b1"></i><i class="burst b2"></i>
+<h2>Quote of the day</h2>
+<span class="tag">25 POINTS · ONCE PER DAY</span>
+<blockquote id="dailyQuote"></blockquote>
+<label for="dailyName">Player name</label>
+<input id="dailyName" value="Captain" maxlength="24">
+<label for="dailyShow">Show or movie</label>
+<input id="dailyShow">
+<label for="dailyChar">Character</label>
+<input id="dailyChar">
+<button id="dailyButton" class="wide" onclick="dailyCheck()">Claim today’s 25 points</button>
+<div id="dailyFeedback" aria-live="polite"></div>
+<p class="muted">Both answers must be correct. One attempt per name, per day, on this browser. Daily points add to your lifetime total.</p>
+</section>
+
+<section id="board" class="panel hidden">
+<i class="burst b1"></i><i class="burst b2"></i>
+<h2>Arcade top 10</h2>
+<p class="muted">First winners take the first slots. Latest winning score and lifetime points stay beside each name.</p>
+<div id="leaders"></div>
+<p class="muted">Saved on this browser. Use the same player name to keep your total.</p>
+</section>
+
+<section class="panel" aria-label="Quote backups">
+<h2>Your quote collection</h2>
+<p id="quoteCount"></p>
+<div class="row">
+<button onclick="document.getElementById('backupFile').click()">Import backup</button>
+<button onclick="exportBackup()">Export backup</button>
+</div>
+<input type="file" id="backupFile" accept=".json,application/json" class="hidden" onchange="importBackup(this.files[0])">
+<p id="importStatus" class="muted" role="status">Your 30 saved quotes are included. Import more JSON backups here. Repeated quotes are skipped; scores stay intact.</p>
+<p class="muted">Imported quotes stay in this browser. Export to keep a copy or move them to another phone.</p>
+</section>
+<footer>Playable demo · Expanded quote collection · Local two-player play. Tiebreaker uses a computer-read quote, not an original TV or movie clip. Use your phone keyboard’s microphone to dictate answers.</footer>
+</main>
+
+<script>
+const BASE=[
+['Live long and prosper.','Star Trek','Spock','Easy','TV'],
+['Shut up, Meathead.','All in the Family','Archie Bunker','Hard','Classic TV'],
+["I'm sorry, Dave. I'm afraid I can't do that.",'2001: A Space Odyssey','HAL 9000','Hard','Movie'],
+["I'll be back.",'The Terminator','The Terminator|T-800','Easy','Movie'],
+['To infinity and beyond!','Toy Story','Buzz Lightyear','Easy','Movie'],
+["There's no place like home.",'The Wizard of Oz','Dorothy Gale|Dorothy','Easy','Movie'],
+["You're gonna need a bigger boat.",'Jaws','Martin Brody|Chief Brody|Brody','Easy','Movie'],
+['You talking to me?','Taxi Driver','Travis Bickle','Hard','Movie'],
+['Make it so.','Star Trek: The Next Generation|Star Trek The Next Generation','Jean-Luc Picard|Captain Picard|Picard','Easy','TV'],
+['Please state the nature of the medical emergency.','Star Trek: Voyager|Star Trek Voyager','The Doctor|EMH|Emergency Medical Hologram','Easy','TV'],
+['Resistance is futile.','Star Trek: The Next Generation|Star Trek The Next Generation','The Borg|Borg','Easy','TV'],
+['Dy-no-mite!','Good Times','J.J. Evans|JJ Evans|James Evans Jr','Hard','Classic TV'],
+['Sit on it!','Happy Days','The Fonz|Fonzie|Arthur Fonzarelli','Hard','Classic TV'],
+['Kiss my grits!','Alice','Flo|Florence Jean Castleberry','Hard','Classic TV'],
+['I love it when a plan comes together.','The A-Team|The A Team','Hannibal Smith|John Hannibal Smith|Hannibal','Hard','TV'],
+['Yabba dabba doo!','The Flintstones','Fred Flintstone','Easy','TV'],
+['My precious.','The Lord of the Rings: The Two Towers|The Lord of the Rings The Two Towers|The Two Towers','Gollum|Smeagol','Easy','Movie'],
+['Go ahead, make my day.','Sudden Impact','Harry Callahan|Dirty Harry','Hard','Movie'],
+['Hello. My name is Inigo Montoya.','The Princess Bride','Inigo Montoya','Easy','Movie','You killed my father. Prepare to die.'],
+["I'm gonna make him an offer he can't refuse.",'The Godfather','Vito Corleone|Don Corleone','Hard','Movie']
+];
+
+const SAVED=[
+{q:"Shut up, Meg.",s:"Family Guy",sp:"Peter Griffin",b:"Meg: Dad, can I use the car?",a:"Lois: Peter, you better be nice to her. She won't be your little girl forever.",c:"Comedy",d:"Easy"},
+{q:"If I'm not back in five minutes, just wait longer.",s:"Ace Ventura: Pet Detective",sp:"Ace Ventura",c:"Movies",d:"Medium"},
+{q:"Oh my God, he doesn't flog the dolphin before a big date.",s:"There's Something About Mary",sp:"Dom Woganowski",c:"Movies",d:"Hard"},
+{q:"Boy, when you die at the palace, you really die at the palace.",s:"History of the World, Part I",sp:"Comicus",c:"Movies",d:"Hard"},
+{q:"Stifle yourself, meathead!",s:"All in the Family",sp:"Archie Bunker",c:"Shows",d:"Medium"},
+{q:"Be vewy, vewy quiet. I'm hunting wabbits.",s:"Looney Tunes",sp:"Elmer Fudd",c:"Cartoons",d:"Easy"},
+{q:"This is my urine sample. It's my sister's, and she is pregnant.",s:"Up in Smoke",sp:"Anthony 'Man' Stoner",c:"Movies",d:"Hard"},
+{q:"I am superior, sir, in many ways. But I would gladly give it up to be human.",s:"Star Trek: The Next Generation",sp:"Data",c:"Science Fiction",d:"Medium"},
+{q:"If a man was born October 3rd, 1928, and he's still alive, how old is he?",s:"Phenomenon",sp:"Dr. Bob Niedorf",c:"Movies",d:"Hard"},
+{q:"I'm sorry, Dave. I'm afraid I can't do that.",s:"2001: A Space Odyssey",sp:"HAL 9000",c:"Science Fiction",d:"Medium"},
+{q:"Lots of people go to college for seven years.",s:"Tommy Boy",sp:"Tommy Callahan",c:"Movies",d:"Easy"},
+{q:"Hurry up, Doctor! This baby gots to go winky-tinky!",s:"Paper Moon",sp:"Trixie Delight",c:"Movies",d:"Hard"},
+{q:"And his name ain't Frank, it's Franklin!",s:"Paper Moon",sp:"Moses Pray",c:"Movies",d:"Hard"},
+{q:"Frankly, my dear, I don't give a damn.",s:"Gone with the Wind",sp:"Rhett Butler",c:"Movies",d:"Medium"},
+{q:"Father? I hate that name.",s:"Wagons East",sp:"Little Feather",c:"Movies",d:"Hard"},
+{q:"What could be there for you?",s:"Wagons East",sp:"Belle",c:"Movies",d:"Hard"},
+{q:"Yes, I can see that.",s:"Almost Heroes",sp:"Edwards",c:"Movies",d:"Hard"},
+{q:"I'm a doctor, not a bricklayer!",s:"Star Trek: The Original Series",sp:"Dr. Leonard McCoy",c:"Science Fiction",d:"Medium"},
+{q:"Nothing to eat anyway? Matilda, do you hear me?",s:"Space Truckers",sp:"Keller",c:"Science Fiction",d:"Hard"},
+{q:"Set course, warp six.",s:"Star Trek: The Next Generation",sp:"Captain Jean-Luc Picard",c:"Science Fiction",d:"Medium"},
+{q:"Run, bitch! Run!",s:"Scary Movie",sp:"Shorty Meeks",c:"Movies",d:"Easy"},
+{q:"Missed it by that much.",s:"Get Smart",sp:"Maxwell Smart",c:"Shows",d:"Medium"},
+{q:"This is the big one! I'm coming to join you, Elizabeth!",s:"Sanford and Son",sp:"Fred Sanford",c:"Shows",d:"Easy"},
+{q:"You're gonna need a bigger boat.",s:"Jaws",sp:"Martin Brody",c:"Movies",d:"Easy"},
+{q:"What we're dealing with here is a complete lack of respect for the law.",s:"Smokey and the Bandit",sp:"Sheriff Buford T. Justice",c:"Movies",d:"Medium"},
+{q:"I love it when a plan comes together.",s:"The A-Team",sp:"John 'Hannibal' Smith",c:"Shows",d:"Easy"},
+{q:"Danger, Will Robinson!",s:"Lost in Space",sp:"The Robot",c:"Science Fiction",d:"Easy"},
+{q:"Kiss my grits!",s:"Alice",sp:"Flo Castleberry",c:"Shows",d:"Medium"},
+{q:"Na-nu, na-nu.",s:"Mork & Mindy",sp:"Mork",c:"Shows",d:"Medium"},
+{q:"What in the wide, wide world of sports is going on here?",s:"Blazing Saddles",sp:"Taggart",c:"Movies",d:"Medium"}
+];
+
+const $=id=>document.getElementById(id);
+const norm=s=>s.toLowerCase().normalize('NFD')
+.replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
+const matches=(s,a)=>a.split('|').some(v=>norm(v)===norm(s));
+const quoteKey=q=>norm(q[0])+'|'+norm(q[1].split('|')[0]);
+
+function convertQuote(x){
+ if(!x||typeof x!=='object'||Array.isArray(x))
+  throw Error('Each quote must be an object.');
+ const field=(...keys)=>{
+  for(const k of keys){
+   if(x[k]!==undefined){
+    if(typeof x[k]!=='string')throw Error('Quote fields must be text.');
+    return x[k].trim();
+   }
+  }
+  return '';
+ };
+ const q=field('q','quote','Quote');
+ const s=field('s','source','show','Show');
+ const sp=field('sp','speaker','character','Character');
+ if(!q||!s||!sp)throw Error('Every quote needs a quote, show/movie, and character.');
+ const d=field('d','difficulty','Difficulty')||'Medium';
+ if(!['Easy','Medium','Hard'].includes(d))
+  throw Error('Difficulty must be Easy, Medium, or Hard.');
+ return [q,s,sp,d,field('c','category','Category')||'Imported',
+  field('a','after'),field('b','before')];
+}
+
+function mergedQuotes(rows){
+ const seen=new Set();
+ return rows.filter(q=>{
+  const k=quoteKey(q);
+  if(seen.has(k))return false;
+  seen.add(k);
+  return true;
+ });
+}
+
+let imported=[];
+try{
+ const x=JSON.parse(localStorage.getItem('qcImportedQuotes')||'[]');
+ if(Array.isArray(x))imported=x.map(convertQuote);
+}catch{}
+
+let Q=mergedQuotes([...SAVED.map(convertQuote),...BASE,...imported]);
+
+function quoteCount(){
+ $('quoteCount').textContent=Q.length+' quotes ready to play';
+}
+
+async function importBackup(file){
+ if(!file)return;
+ try{
+  if(file.size>5*1024*1024)
+   throw Error('Please choose a JSON backup under 5 MB.');
+  const data=JSON.parse(await file.text());
+  const rows=Array.isArray(data)?data:data.quotes;
+  if(!Array.isArray(rows)||!rows.length)
+   throw Error('No quotes found. Choose a Quote Challenge JSON backup.');
+  const incoming=rows.map(convertQuote);
+  const next=mergedQuotes([...Q,...incoming]);
+  const added=next.length-Q.length;
+  const serialized=next.map(q=>({
+   q:q[0],s:q[1],sp:q[2],d:q[3],c:q[4],a:q[5]||'',b:q[6]||''
+  }));
+  localStorage.setItem('qcImportedQuotes',JSON.stringify(serialized));
+  Q=next;
+  quoteCount();
+  $('importStatus').textContent=added+' new quotes added; '+
+   (rows.length-added)+' duplicates skipped. Start a new game to use them.';
+ }catch(e){
+  $('importStatus').textContent='Import failed: '+e.message;
+ }
+ $('backupFile').value='';
+}
+
+function exportBackup(){
+ const data=Q.map(q=>({
+  q:q[0],s:q[1],sp:q[2],d:q[3],c:q[4],a:q[5]||'',b:q[6]||''
+ }));
+ const url=URL.createObjectURL(new Blob(
+  [JSON.stringify(data,null,2)],{type:'application/json'}
+ ));
+ const a=document.createElement('a');
+ a.href=url;
+ a.download='Quote_Challenge_Quotes_Backup.json';
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ $('importStatus').textContent=
+  'Quote backup download requested. Check your Downloads folder.';
+}
+
+let db;
+try{
+ db=JSON.parse(localStorage.getItem('qcBlackDemo')||'{}');
+}catch{
+ db={};
+}
+db.players=db.players||{};
+db.winners=db.winners||[];
+db.daily=db.daily||{};
+
+function save(){
+ try{localStorage.setItem('qcBlackDemo',JSON.stringify(db));}catch{}
+}
+
+function person(n){
+ return db.players[n]||(db.players[n]={total:0,wins:0,last:0});
+}
+
+function esc(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+ }[c]));
+}
+
+function tab(t){
+ ['play','daily','board'].forEach(x=>{
+  $(x).classList.toggle('hidden',x!==t);
+  $(x+'Tab').setAttribute('aria-pressed',x===t);
+ });
+ if(t==='board')board();
+}
+
+let names=[],points=[],deck=[],turn=0,total=10;
+let defender=false,locked=false,tie=false,tieIndex=0;
+let tieResults=[],timer=null,deadline=0,ready=[false,false];
+let finished=false;
+
+function start(){
+ let a=$('p1').value.trim()||'Player one';
+ let b=$('p2').value.trim()||'Player two';
+ if(a.toLowerCase()===b.toLowerCase()){
+  alert('Use two different player names.');
+  return;
+ }
+ names=[a,b];
+ points=[0,0];
+ turn=0;
+ total=Number($('rounds').value)*2;
+ let d=$('difficulty').value;
+ let pool=Q.filter(q=>d==='Mixed'||q[3]===d);
+ if(!pool.length){
+  alert('No quotes at that difficulty yet.');
+  return;
+ }
+ deck=[...pool].sort(()=>Math.random()-.5);
+ while(deck.length<total)
+  deck.push(...[...pool].sort(()=>Math.random()-.5));
+ tie=false;
+ finished=false;
+ clearInterval(timer);
+ $('setup').classList.add('hidden');
+ $('result').classList.add('hidden');
+ $('game').classList.remove('hidden');
+ render();
+}
+
+function score(){
+ $('scores').innerHTML=names.map((n,i)=>
+  `<div class="score ${i===(tie?tieIndex:turn%2)?'active':''}">
+   <span>${esc(n)}</span><strong>${points[i]}</strong>
+  </div>`
+ ).join('');
+}
+
+function render(){
+ locked=false;
+ defender=false;
+ score();
+ $('answerArea').classList.remove('hidden');
+ $('next').classList.add('hidden');
+ $('feedback').innerHTML='';
+ ['show','character','bonus'].forEach(x=>$(x).value='');
+ $('submit').disabled=false;
+ $('claim').disabled=false;
+ $('skip').disabled=false;
+ $('claim').classList.remove('hidden');
+ $('skip').classList.remove('hidden');
+ $('bonusArea').classList.toggle('hidden',!(deck[turn][5]||deck[turn][6]));
+ $('meta').textContent=
+  `Turn ${turn+1} of ${total} · ${names[turn%2]} · ${deck[turn][4]} · ${deck[turn][3]}`;
+ $('progress').max=total;
+ $('progress').value=turn;
+ $('quote').innerHTML=`<blockquote>“${esc(deck[turn][0])}”</blockquote>`;
+ $('claim').textContent=`${names[1-turn%2]}: I have it!`;
+}
+
+function claim(){
+ if(locked)return;
+ defender=true;
+ $('claim').disabled=true;
+ $('show').value='';
+ $('character').value='';
+ $('bonus').value='';
+ $('bonusArea').classList.add('hidden');
+ $('meta').textContent=
+  `${names[1-turn%2]} claims this quote · both answers right: +1 · otherwise: −1`;
+ $('skip').disabled=true;
+ $('show').focus();
+}
+
+function check(){
+ if(locked)return;
+ if(tie&&(!deadline||Date.now()>=deadline)){
+  if(deadline)tieCheck(true);
+  return;
+ }
+ if(tie){
+  tieCheck(false);
+  return;
+ }
+ locked=true;
+ const q=deck[turn];
+ const a=matches($('show').value,q[1]);
+ const b=matches($('character').value,
