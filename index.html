@@ -1,0 +1,186 @@
+"<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>Quote Challenge</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#030303;color:#ff5252;font:16px system-ui,sans-serif;min-height:100vh}
+main{max-width:680px;margin:auto;padding:22px 20px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{font-size:clamp(25px,6vw,38px);line-height:1;margin:8px 0;text-transform:uppercase;letter-spacing:-1px;color:#ff3434;text-shadow:0 0 22px #f0000055}
+small,.muted{color:#ff9999;font-size:14px}
+nav{display:flex;gap:8px;margin:22px 0}
+button,input,select{font:inherit;min-height:48px;border-radius:14px;border:1px solid #fff19a;padding:12px;color:#9b0909;background:linear-gradient(155deg,#fff9b8 0%,#ffe865 40%,#e2af17 100%);box-shadow:inset 0 2px 0 #fffbd6,0 3px 14px #ffcc0022}
+button{font-weight:800;cursor:pointer;touch-action:manipulation}
+button:active{transform:translateY(1px)}
+button:disabled{opacity:.48;cursor:default}
+input,select{width:100%;font-weight:650}
+input::placeholder{color:#984127}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ff5a5a;outline-offset:3px}
+nav button{flex:1;padding:10px 5px;font-size:14px}
+nav button[aria-pressed=true]{box-shadow:0 0 0 2px #ff3030,inset 0 2px #fff}
+.panel{position:relative;border:1px solid #b82727;border-radius:24px;background:linear-gradient(150deg,#211010,#090909 55%);padding:24px 20px;margin:16px 0;box-shadow:0 0 35px #ef131312}
+.burst{position:absolute;pointer-events:none;width:38px;height:38px;background:linear-gradient(45deg,#ff2b22,#ffde37);clip-path:polygon(50% 0,59% 34%,85% 15%,67% 42%,100% 50%,66% 59%,85% 85%,58% 67%,50% 100%,41% 66%,15% 85%,33% 58%,0 50%,33% 41%,15% 15%,42% 33%);filter:drop-shadow(0 0 8px #ffca00)}
+.b1{top:-16px;left:-13px}
+.b2{top:-17px;right:-12px;transform:rotate(18deg)}
+.b3{bottom:-14px;left:-12px;width:30px;height:30px}
+.b4{bottom:-16px;right:-12px}
+.b5{top:45%;right:-13px;width:22px;height:22px}
+.b6{top:38%;left:-12px;width:22px;height:22px}
+blockquote{font-size:clamp(25px,6vw,36px);line-height:1.28;margin:27px 0;color:#ff5656;font-weight:800}
+label{display:block;margin:14px 0 7px;font-weight:700}
+.row{display:flex;gap:10px;align-items:center}
+.row>*{flex:1;min-width:0}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.score{border:1px solid #6c2929;border-radius:17px;padding:12px;background:#130c0c}
+.score.active{border-color:#ffdb36;background:#221b07}
+.score strong{font-size:32px;display:block;color:#ffe45a}
+.score span{overflow-wrap:anywhere}
+h2{font-size:23px;margin:4px 0 15px}
+.tag{display:inline-block;border:1px solid #914040;padding:5px 9px;border-radius:8px;font-size:14px}
+.wide{width:100%;margin-top:16px}
+.secondary{background:#19100b;color:#ffe570;border-color:#8b7031;box-shadow:inset 0 1px #ad8a3844}
+.feedback{padding:14px;background:#25140b;border:1px solid #7f5223;border-radius:12px;line-height:1.5;margin:16px 0;color:#ffca92}
+.hidden{display:none!important}
+.timer{font-size:48px;font-weight:900;color:#ffe568;text-align:center}
+p{line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{text-align:left;border-bottom:1px solid #522222;padding:10px 4px;overflow-wrap:anywhere}
+.notice{text-align:center;margin-top:24px}
+progress{width:100%;accent-color:#f8d539;height:7px}
+footer{font-size:13px;line-height:1.5;color:#ff9494;margin-top:22px}
+a{color:#ffe568}
+@media(max-width:360px){
+main{padding:16px 14px}
+.panel{padding:20px 14px}
+.row{flex-wrap:wrap}
+.row>*{flex-basis:45%}
+}
+
+.portrait-mark{width:min(58vw,240px);margin:28px auto 0;pointer-events:none;opacity:.045;overflow:hidden;mask-image:radial-gradient(ellipse at center,black 25%,transparent 72%);-webkit-mask-image:radial-gradient(ellipse at center,black 25%,transparent 72%)}
+.portrait-mark img{display:block;width:100%;height:auto;filter:sepia(1) saturate(1.4) blur(2.5px)}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div>
+<small>TWO PLAYERS Â· ONE PHONE</small>
+<h1>Quote Challenge</h1>
+</div>
+<span class="tag">BETA 3.1 Â· PLAYABLE</span>
+</header>
+
+<nav>
+<button id="playTab" aria-pressed="true" onclick="tab('play')">Play</button>
+<button id="dailyTab" aria-pressed="false" onclick="tab('daily')">Daily Â· 25</button>
+<button id="boardTab" aria-pressed="false" onclick="tab('board')">Top 10</button>
+</nav>
+
+<section id="play">
+<div id="setup" class="panel">
+<i class="burst b1"></i><i class="burst b2"></i>
+<i class="burst b3"></i><i class="burst b4"></i>
+<i class="burst b5"></i><i class="burst b6"></i>
+<h2>Who knows the line?</h2>
+<p>Name the show or movie and the character. Take turns and pass the phone.</p>
+<div class="row">
+<div>
+<label for="p1">Player one</label>
+<input list="profiles" id="p1" value="Captain" maxlength="24">
+</div>
+<div>
+<label for="p2">Player two</label>
+<input list="profiles" id="p2" placeholder="Your challenger" maxlength="24">
+</div>
+</div>
+<div class="row">
+<div>
+<label for="mode">Game rules</label><select id="mode"><option value="new">New Â· 10/2/1 scoring</option><option value="classic">Classic Â· 1+1 scoring</option></select><label for="target">Correct answers to win (new rules)</label><select id="target"><option value="10">10 Â· Easy length</option><option value="25">25 Â· Medium length</option><option value="100">100 Â· Marathon</option></select><label for="rounds">Turns each (Classic)</label>
+<select id="rounds">
+<option value="5">5 Â· quick game</option>
+<option value="10">10 Â· full demo</option>
+</select>
+</div>
+<div>
+<label for="difficulty">Difficulty</label>
+<select id="difficulty">
+<option>Mixed</option>
+<option>Easy</option>
+<option>Medium</option>
+<option>Hard</option>
+</select>
+</div>
+</div>
+<datalist id="profiles"></datalist><button class="wide" onclick="start()">LETâ€™S PLAY</button>
+<p class="muted">New rules: both answers right = 10 points. Pass: receiver earns 2 if right; passer earns 1 if missed. First to the answer target wins. 15 seconds to claim/pass, then 30 seconds to answer. Two-hour limit. Classic retains 1+1 scoring, steals and Skip âˆ’1. Repeated quotes are possible in long games.</p>
+</div>
+
+<div id="game" class="hidden">
+<div class="scores" id="scores"></div>
+<section class="panel">
+<i class="burst b1"></i><i class="burst b2"></i>
+<i class="burst b3"></i><i class="burst b4"></i>
+<i class="burst b5"></i><i class="burst b6"></i>
+<div id="meta" class="muted"></div>
+<progress id="progress" value="0" max="10"></progress>
+<div id="quote"></div>
+<div id="answerArea">
+<label for="show">Show or movie</label>
+<input id="show" placeholder="Enter the full title" autocomplete="off">
+<label for="character">Character</label>
+<input id="character" placeholder="Who said it?" autocomplete="off">
+<div id="bonusArea" class="hidden">
+<label for="bonus">Bonus: the line before OR after</label>
+<input id="bonus" placeholder="Optional Â· 1 extra point">
+</div>
+<div class="row">
+<button class="wide" id="submit" onclick="check()">Lock answers</button>
+<button class="wide secondary" id="claim" onclick="claim()">I have it!</button>
+</div>
+<button id="skip" class="wide secondary" onclick="skip()">Skip Â· âˆ’1 point</button>
+</div>
+<div id="feedback" aria-live="polite"></div>
+<button id="next" class="wide hidden" onclick="next()">Next turn â†’</button>
+</section>
+<button class="wide secondary" onclick="newGame()">Start a new game</button>
+</div>
+<div id="result" class="panel hidden"></div>
+</section>
+
+<section id="daily" class="panel hidden">
+<i class="burst b1"></i><i class="burst b2"></i>
+<h2>Quote of the day</h2>
+<span class="tag">25 POINTS Â· ONCE PER DAY</span>
+<blockquote id="dailyQuote"></blockquote>
+<label for="dailyName">Player name</label>
+<input id="dailyName" value="Captain" maxlength="24">
+<label for="dailyShow">Show or movie</label>
+<input id="dailyShow">
+<label for="dailyChar">Character</label>
+<input id="dailyChar">
+<button id="dailyButton" class="wide" onclick="dailyCheck()">Claim todayâ€™s 25 points</button>
+<div id="dailyFeedback" aria-live="polite"></div>
+<p class="muted">Both answers must be correct. One attempt per name, per day, on this browser. Daily points are separate from completed-game career points.</p>
+</section>
+
+<section id="board" class="panel hidden">
+<i class="burst b1"></i><i class="burst b2"></i>
+<h2>Arcade top 10</h2>
+<p class="muted">First winners take the first slots. First winning score, wins, games and career points stay beside each name. New and Classic results are separate.</p>
+<label for="boardMode">Rules</label><select id="boardMode" onchange="board()"><option value="new">New Â· 10/2/1</option><option value="classic">Classic</option></select><div style="overflow-x:auto" id="leaders"></div>
+<p class="muted">Saved on this browser. Choose a returning name to keep your profile. Daily points are separate from game career points.</p>
+</section>
+
+<section class="panel" aria-label="Quote backups">
+<h2>Your quote collection</h2>
+<p id="quoteCount"></p><details><summary>Add your own quote</summary><label>Quote<input id="customQ"></label><label>Show or movie<input id="customS"></label><label>Character<input id="customC"></label><label>Difficulty<select id="customD"><option>Easy</option><option>Medium</option><option>Hard</option></select></label><button onclick="addCustom()">Save quote</button></details>
+<div class="row"><button onclick="document.getElementById('backupFile').click()">Import backup</button><button onclick="exportBackup()">Export backup</button></div>
+<input type="file" id="backupFile" accept=".json,application/json" class="hidden" onchange="importBackup(this.files[0])">
+<p id="importStatus" class="muted" role="status">Recovered saved quotes are included. Import more JSON backups here. Repeated quotes are skipped; scores stay intact.</p>
+<p class="muted">Imported quotes stay in this browser. Export to keep a copy or move them to another phone.</p>
+</section>
+<section class="panel"><h2>Save everything</h2><button onclick="exportAll()">Export full backup</button> <button onclick="$('fullFile').click()">Restore full backup</button><input id="fullFile" class="hidden" type="file" accept=".json" onchange="restoreAll(this.files[0])"><p id="saveStatus" role="status" class="muted">Full backups include quotes, profiles, completed games and daily points.</p></section><section class="panel"><h2>Recovered audio clips</h2><p class="muted">Listen for fun. These clips do not award points.</p><p>Peter Griffin Â· Who cares</p><audio controls preload="none" style="width:100%" src="data:audio/mpeg;base64,SUQzBAAAAAABAFRYWFgAAAASAAADbWFqb3JfYnJhbmQAZGFzaABUWFhYAAAAEQAAA21pbm9yX3ZlcnNpb24AMABUWFhYAAAAHAAAA2NvbXBhdGlibGVfYnJhbmRzAGlzbzZtcDQxAFRTU0UAAAAPAAADTGF2ZjU3LjgzLjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAACjAAEK7wADBwgLDhATFhgbHCAjJCcrLC8xNDc5PD9AREdIS01QU1VYW11gYWRoaWxvcXR2eXx+gYSFiYyNkJKVmJqdoKKlpqmtrrG0trm7vsHCxsnKzdHS1dfa3d/i5ebq6+7x8/b5+/4AAAAATGF2YzU3LjEwAAAAAAAAAAAAAAAAJANAAAAAAAABCu9+QoJrAAAAAAAAAAAAAAAAAAAAAP/7kGQAD/AAAGkAAAAIAAANIAAAAQAAAaQAAAAgAAA0gAAABExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7kmRAj/AAAGkAAAAIAAANIAAAAQAAAaQAAAAgAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/+5JkQI/wAABpAAAACAAADSAAAAEAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//uSZECP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAEVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV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
