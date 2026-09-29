@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>Quote Challenge · Computer Test</title>
+
+<style>
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  background:#030303;
+  overflow:hidden;
+}
+
+#gameFrame{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+  background:#030303;
+}
+
+#loadNote{
+  position:fixed;
+  inset:0;
+  display:grid;
+  place-items:center;
+  background:#030303;
+  color:#ffe568;
+  font:700 18px system-ui,sans-serif;
+  z-index:3;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loadNote">
+Loading Quote Challenge computer test…
+</div>
+
+<iframe
+  id="gameFrame"
+  title="Quote Challenge computer test"
+  src="./index.html">
+</iframe>
+
+<script>
+(() => {
+
+  const frame = document.getElementById('gameFrame');
+  const note = document.getElementById('loadNote');
+
+  frame.addEventListener('load', () => {
+
+    const w = frame.contentWindow;
+    const d = frame.contentDocument;
+
+    if (!w || !d) return;
+
+    try {
+
+      const $ = id => d.getElementById(id);
+
+      const state = () =>
+        w.eval(
+          '({mode,turn,phase,answerer,forced,locked,finished,names,deck,correct,points})'
+        );
+
+      const expr = code => w.eval(code);
+
+      const headerSmall =
+        d.querySelector('header small');
+
+      if (headerSmall) {
+        headerSmall.textContent =
+          'ONE OR TWO PLAYERS · ONE PHONE';
+      }
+
+      const tag =
+        d.querySelector('header .tag');
+
+      if (tag) {
+        tag.textContent =
+          'BETA 3.5 · COMPUTER TEST';
+      }
+
+      const setup = $('setup');
+
+      const intro =
+        setup &&
+        setup.querySelector('h2 + p');
+
+      if (intro) {
+        intro.textContent =
+          'Play the original two-player game, or challenge the computer on this phone.';
+      }
+
+      const modeRow =
+        d.createElement('div');
+
+      modeRow.className = 'row';
+      modeRow.id = 'computerModeRow';
+
+      modeRow.innerHTML = `
+        <div>
+          <label for="playerMode">
+            Players
+          </label>
+
+          <select id="playerMode">
+            <option value="computer" selected>
+              One player vs Computer
+            </option>
+
+            <option value="two">
+              Two players · one phone
+            </option>
+          </select>
+        </div>
+
+        <div id="computerSkillWrap">
+
+          <label for="computerSkill">
+            Computer skill
+          </label>
+
+          <select id="computerSkill">
+            <option value="mixed" selected>
+              Mixed
+            </option>
+
+            <option value="easy">
+              Easy
+            </option>
+
+            <option value="medium">
+              Medium
+            </option>
+
+            <option value="hard">
+              Hard
+            </option>
+          </select>
+
+        </div>`;
+
+      if (intro) {
+        intro.insertAdjacentElement(
+          'afterend',
+          modeRow
+        );
+      }
+
+      const playerMode =
+        $('playerMode');
+
+      const computerSkill =
+        $('computerSkill');
+
+      const p2 =
+        $('p2');
+
+      const p2Label =
+        p2 &&
+        p2.previousElementSibling;
+
+      let previousP2 =
+        p2 ? p2.value : '';
+
+      let computerMode = true;
+
+      let botTimer = 0;
+
+      let botKey = '';
+
+      function setPlayerMode() {
+
+        computerMode =
+          playerMode.value === 'computer';
+
+        $('computerSkillWrap')
+          .classList
+          .toggle(
+            'hidden',
+            !computerMode
+          );
+
+        if (!p2) return;
+
+        if (computerMode) {
+
+          if (
+            p2.value &&
+            p2.value !== 'Computer'
+          ) {
+            previousP2 =
+              p2.value;
+          }
+
+          p2.value =
+            'Computer';
+
+          p2.disabled =
+            true;
+
+          if (p2Label) {
+            p2Label.textContent =
+              'Opponent';
+          }
+
+        } else {
+
+          p2.disabled =
+            false;
+
+          p2.value =
+            previousP2 || '';
+
+          if (p2Label) {
+            p2Label.textContent =
+              'Player two';
+          }
+        }
+      }
+
+      playerMode.addEventListener(
+        'change',
+        setPlayerMode
+      );
+
+      setPlayerMode();
+
+      function chanceFor(q) {
+
+        const base = {
+
+          easy: .43,
+          mixed: .62,
+          medium: .74,
+          hard: .86
+
+        }[computerSkill.value] || .62;
+
+        const quoteDifficulty =
+          String(
+            (q && q[3]) ||
+            'Medium'
+          ).toLowerCase();
+
+        const adjustment =
+          quoteDifficulty === 'easy'
+            ? .12
+            : quoteDifficulty === 'hard'
+              ? -.16
+              : 0;
+
+        return Math.max(
+          .18,
+          Math.min(
+            .94,
+            base + adjustment
+          )
+        );
+      }
+
+      function answerComputer(q, known) {
+
+        const show =
+          $('show');
+
+        const character =
+          $('character');
+
+        const bonus =
+          $('bonus');
+
+        if (
+          !show ||
+          !character
+        ) return;
+
+        show.value =
+          known
+            ? String(q[1])
+                .split('|')[0]
+            : 'No idea';
+
+        character.value =
+          known
+            ? String(q[2])
+                .split('|')[0]
+            : 'Unknown';
+
+        if (bonus) {
+
+          bonus.value =
+            known && q[5]
+              ? String(q[5])
+                  .split('|')[0]
+              : '';
+        }
+      }
+
+      function computerThinking(text) {
+
+        const meta =
+          $('meta');
+
+        if (meta) {
+          meta.textContent =
+            text;
+        }
+
+        const area =
+          $('answerArea');
+
+        if (area) {
+          area.style.visibility =
+            'hidden';
+        }
+      }
+
+      function showAnswerArea() {
+
+        const area =
+          $('answerArea');
+
+        if (area) {
+          area.style.visibility =
+            '';
+        }
+      }
+
+      function scheduleComputer(
+        delay = 850
+      ) {
+
+        clearTimeout(
+          botTimer
+        );
+
+        if (!computerMode) {
+
+          botKey = '';
+
+          showAnswerArea();
+
+          return;
+        }
+
+        let s;
+
+        try {
+          s = state();
+        } catch {
+          return;
+        }
+
+        if (
+          !s ||
+          s.finished
+        ) return;
+
+        if (
+          s.mode === 'classic'
+        ) {
+
+          const active =
+            s.turn % 2;
+
+          if (
+            active !== 1 ||
+            s.locked ||
+            !$('game') ||
+            $('game')
+              .classList
+              .contains('hidden')
+          ) {
+            return;
+          }
+
+          const key =
+            `classic:${s.turn}`;
+
+          if (
+            botKey === key
+          ) return;
+
+          botKey = key;
+
+          computerThinking(
+            'Computer is thinking…'
+          );
+
+          botTimer =
+            setTimeout(() => {
+
+              let current;
+
+              try {
+
+                current =
+                  state();
+
+              } catch {
+                return;
+              }
+
+              if (
+                !computerMode ||
+                current.finished ||
+                current.locked ||
+                current.turn % 2 !== 1
+              ) {
+                return;
+              }
+
+              const q =
+                current.deck[
+                  current.turn
+                ];
+
+              const known =
+                Math.random() <
+                chanceFor(q);
+
+              answerComputer(
+                q,
+                known
+              );
+
+              showAnswerArea();
+
+              w.check();
+
+            }, delay);
+
+          return;
+        }
+
+        if (
+          s.mode !== 'new' ||
+          s.locked ||
+          !$('game') ||
+          $('game')
+            .classList
+            .contains('hidden')
+        ) {
+          return;
+        }
+
+        const computerActs =
+          (
+            s.phase ===
+              'decision' &&
+            s.turn % 2 === 1
+          )
+          ||
+          (
+            s.phase ===
+              'answer' &&
+            s.answerer === 1
+          );
+
+        if (!computerActs) {
+
+          botKey = '';
+
+          showAnswerArea();
+
+          return;
+        }
+
+        const key =
+          `${s.turn}:${s.phase}:${s.answerer}:${s.forced}`;
+
+        if (
+          botKey === key
+        ) return;
+
+        botKey = key;
+
+        if (
+          s.phase ===
+          'decision'
+        ) {
+
+          computerThinking(
+            'Computer is deciding whether to take the quote…'
+          );
+
+          botTimer =
+            setTimeout(() => {
+
+              let current;
+
+              try {
+
+                current =
+                  state();
+
+              } catch {
+                return;
+              }
+
+              if (
+                !computerMode ||
+                current.finished ||
+                current.locked ||
+                current.phase !==
+                  'decision' ||
+                current.turn % 2 !== 1
+              ) {
+                return;
+              }
+
+              const q =
+                current.deck[
+                  current.turn
+                ];
+
+              const knows =
+                Math.random() <
+                chanceFor(q);
+
+              showAnswerArea();
+
+              if (knows) {
+
+                w.check();
+
+              } else {
+
+                w.claim();
+
+              }
+
+            }, delay);
+
+          return;
+        }
+
+        computerThinking(
+          s.forced
+            ? 'Computer got the passed quote…'
+            : 'Computer is answering…'
+        );
+
+        botTimer =
+          setTimeout(() => {
+
+            let current;
+
+            try {
+
+              current =
+                state();
+
+            } catch {
+              return;
+            }
+
+            if (
+              !computerMode ||
+              current.finished ||
+              current.locked ||
+              current.phase !==
+                'answer' ||
+              current.answerer !== 1
+            ) {
+              return;
+            }
+
+            const q =
+              current.deck[
+                current.turn
+              ];
+
+            const known =
+              Math.random() <
+              chanceFor(q);
+
+            answerComputer(
+              q,
+              known
+            );
+
+            showAnswerArea();
+
+            w.check();
+
+          }, delay);
+      }
+
+      const baseStart =
+        w.start;
+
+      const baseNext =
+        w.next;
+
+      const baseClaim =
+        w.claim;
+
+      const baseCheck =
+        w.check;
+
+      const baseNewGame =
+        w.newGame;
+
+      w.start = () => {
+
+        clearTimeout(
+          botTimer
+        );
+
+        botKey = '';
+
+        setPlayerMode();
+
+        const savedRecords =
+          w.localStorage.getItem(
+            'qcBeta3Records'
+          );
+
+        if (computerMode) {
+
+          p2.disabled =
+            false;
+
+          p2.value =
+            'Computer';
+        }
+
+        try {
+
+          baseStart();
+
+        } finally {
+
+          if (computerMode) {
+            p2.disabled =
+              true;
+          }
+
+          if (computerMode) {
+
+            if (
+              savedRecords ===
+              null
+            ) {
+
+              w.localStorage
+                .removeItem(
+                  'qcBeta3Records'
+                );
+
+            } else {
+
+              w.localStorage
+                .setItem(
+                  'qcBeta3Records',
+                  savedRecords
+                );
+            }
+          }
+        }
+
+        scheduleComputer();
+      };
+
+      w.next = () => {
+
+        baseNext();
+
+        botKey = '';
+
+        scheduleComputer();
+      };
+
+      w.claim = () => {
+
+        baseClaim();
+
+        botKey = '';
+
+        scheduleComputer();
+      };
+
+      w.check = () => {
+
+        baseCheck();
+
+        botKey = '';
+
+        scheduleComputer();
+      };
+
+      w.newGame = () => {
+
+        clearTimeout(
+          botTimer
+        );
+
+        botKey = '';
+
+        showAnswerArea();
+
+        baseNewGame();
+
+        setPlayerMode();
+      };
+
+      if (
+        typeof w.record ===
+        'function'
+      ) {
+
+        w.record = () => {};
+
+      }
+
+      const rules =
+        setup &&
+        setup.querySelector(
+          'p.muted'
+        );
+
+      if (rules) {
+
+        rules.insertAdjacentHTML(
+          'beforeend',
+          '<br><strong>Computer test:</strong> the computer answers automatically on its turns. Test games are not added to permanent game statistics.'
+        );
+      }
+
+      note.style.display =
+        'none';
+
+    } catch (err) {
+
+      note.textContent =
+        'Computer test could not start. Open the regular game instead.';
+
+      console.error(err);
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>
