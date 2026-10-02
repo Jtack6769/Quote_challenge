@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#02050b">
+<title>Quote Challenge · Two Player</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#02050b;--panel:#04070e;--panel2:#071226;--yellow:#ffe341;--yellow2:#ffc928;--blue:#1684ff;--blue2:#003d9e;--ice:#a8d7ff;--muted:#aab9cf;--danger:#ff6666}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% -12rem,#002a78 0,transparent 36rem),linear-gradient(180deg,#02050b,#000);color:var(--yellow);font:16px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:760px;margin:auto;padding:18px 14px 48px}
+a{color:var(--yellow)}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:13px}
+h1{margin:5px 0 2px;font-size:clamp(34px,9vw,58px);line-height:.92;letter-spacing:-2px;text-transform:uppercase;color:var(--yellow);text-shadow:0 0 18px #ffdc0055,0 0 34px #0077ff55}
+.sub{color:var(--ice);font-weight:800;letter-spacing:.08em;font-size:12px}
+.tag{padding:7px 10px;border:1px solid #278dff;border-radius:999px;color:var(--yellow);background:#001333;box-shadow:0 0 18px #087cff55;font-size:12px;white-space:nowrap}
+.back{display:inline-flex;align-items:center;text-decoration:none;font-weight:900;margin:2px 0 10px;padding:10px 13px;border:1px solid #1c7eff;border-radius:12px;background:#031330;box-shadow:0 0 16px #006dff33}
+nav{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:12px 0 18px}
+button,.button,input,select{font:inherit;min-height:48px;border-radius:13px;border:1px solid #2488ff;padding:11px 12px}
+button,.button{font-weight:900;cursor:pointer;color:var(--yellow);background:linear-gradient(150deg,#086fff,#0048b9 52%,#002e78);box-shadow:inset 0 1px 0 #80bfff,0 5px 20px #006dff33;text-align:center;text-decoration:none;touch-action:manipulation}
+button:active,.button:active{transform:translateY(1px)}
+button:disabled{opacity:.45;cursor:default}
+nav button{font-size:13px;padding:8px 4px}
+nav button[aria-pressed=true]{background:linear-gradient(150deg,#ffeb6b,#ffcc24);color:#00235c;border-color:#fff4a1;box-shadow:0 0 18px #ffe00055}
+.secondary{background:#03152e;color:var(--yellow);border-color:#1c79da;box-shadow:none}
+.danger{background:#25080d;color:#ffabab;border-color:#a82a3b;box-shadow:none}
+input,select{width:100%;background:#020914;color:#fff2a3;font-weight:750;outline:none}
+input::placeholder{color:#68809f}
+input:focus,select:focus{box-shadow:0 0 0 3px #087cff55;border-color:#67b3ff}
+label{display:block;margin:12px 0 6px;font-weight:850;color:var(--yellow)}
+.panel{position:relative;margin:14px 0;padding:20px;border:1px solid #126fd2;border-radius:24px;background:linear-gradient(145deg,rgba(6,20,49,.97),rgba(1,5,12,.98) 62%);box-shadow:0 17px 48px #000a,0 0 28px #006dff1f;overflow:visible}
+.panel:before,.panel:after{content:"";position:absolute;width:25px;height:25px;background:linear-gradient(45deg,#ffd92b,#0b7cff);clip-path:polygon(50% 0,60% 36%,86% 14%,68% 42%,100% 50%,66% 60%,84% 86%,58% 68%,50% 100%,41% 67%,14% 85%,33% 58%,0 50%,34% 41%,15% 15%,42% 34%);filter:drop-shadow(0 0 6px #087cff)}
+.panel:before{left:-9px;top:-9px}.panel:after{right:-9px;bottom:-9px;transform:rotate(18deg)}
+h2{margin:1px 0 12px;font-size:24px;text-transform:uppercase;letter-spacing:.03em}
+p{line-height:1.48}.muted{color:var(--muted)}
+.row{display:flex;gap:10px;align-items:center}.row>*{flex:1;min-width:0}
+.wide{width:100%;margin-top:12px}.hidden{display:none!important}
+.countline{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0;color:var(--ice)}
+.countline strong{color:var(--yellow)}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.score{padding:12px;border:1px solid #175da9;border-radius:17px;background:#020b19;color:var(--ice)}.score.active{border-color:#ffe33e;box-shadow:0 0 18px #ffe33e22;background:#071a3b}.score b{display:block;color:var(--yellow);font-size:34px}.score small{color:#74baff}
+.timerrow{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:center}.timer{font-size:46px;font-weight:1000;color:var(--yellow);min-width:65px;text-align:center;text-shadow:0 0 18px #ffd90066}progress{width:100%;height:8px;accent-color:#1887ff}
+blockquote{margin:22px 0;font-size:clamp(25px,6vw,39px);font-weight:900;line-height:1.24;color:var(--yellow);text-shadow:0 0 15px #ffd90020}
+.answergrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:12px}.feedback{margin-top:13px;padding:14px;border:1px solid #1b6ab9;border-radius:14px;background:#021027;color:#d9ecff;line-height:1.45}.good{color:#baffba}.bad{color:#ffb0b0}.answerkey{margin-top:9px;padding:10px;border-radius:10px;background:#000a16;border:1px solid #234b79;color:#fff0a3}
+.portrait{position:absolute;right:13px;top:13px;width:74px;height:83px;border:0;border-radius:20px;padding:0;overflow:hidden;background:transparent;opacity:.11;box-shadow:none;cursor:pointer;filter:drop-shadow(0 0 12px #1684ff66);z-index:2}.portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(1) saturate(.55) contrast(1.1)}.portrait:active{transform:scale(.96);opacity:.17}.portrait.pressed{transform:scale(.95);opacity:.18}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;border-bottom:1px solid #174273;padding:9px 5px}th{color:var(--yellow)}
+details summary{cursor:pointer;font-weight:900;color:var(--yellow)}
+.footer{font-size:12px;color:#7897b8;margin-top:18px;text-align:center}
+@media(max-width:560px){nav{grid-template-columns:1fr 1fr}.row{flex-wrap:wrap}.row>*{flex-basis:44%}.answergrid{grid-template-columns:1fr}.actions{grid-template-columns:1fr 1fr}.actions .skip{grid-column:1/-1}.panel{padding:18px 14px}.portrait{width:60px;height:68px}main{padding:14px 12px 40px}}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="index.html">← MAIN SCREEN</a>
+<header>
+  <div><div class="sub">TWO PLAYERS · ONE PHONE</div><h1>Quote Challenge</h1><div class="sub">PASS THE PHONE · TAKE THE LINE</div></div>
+  <span class="tag">PRE-BETA · LOCAL</span>
+</header>
+<nav>
+  <button id="playTab" aria-pressed="true" onclick="showTab('play')">PLAY</button>
+  <button id="dailyTab" aria-pressed="false" onclick="showTab('daily')">DAILY · 25</button>
+  <button id="boardTab" aria-pressed="false" onclick="showTab('board')">TOP 10</button>
+  <button id="quotesTab" aria-pressed="false" onclick="showTab('quotes')">QUOTES</button>
+</nav>
+<div class="countline"><span><strong id="quoteCountTop">51</strong> quotes ready to play</span><span>New + Classic · 15s / 30s</span></div>
+
+<section id="play">
+  <section id="setup" class="panel">
+    <h2>Who knows the line?</h2>
+    <p>Name the show/movie and character. Claim it, pass it, or take the −1 skip.</p>
+    <div class="row"><div><label for="p1">Player one</label><input id="p1" list="profiles" value="Captain" maxlength="24"></div><div><label for="p2">Player two</label><input id="p2" list="profiles" placeholder="Your challenger" maxlength="24"></div></div><datalist id="profiles"></datalist>
+    <div class="row"><div><label for="mode">Rules</label><select id="mode" onchange="syncMode()"><option value="new">New · 10 / 2 / 1</option><option value="classic">Classic · 1 + 1</option></select></div><div><label for="difficulty">Difficulty</label><select id="difficulty"><option>Mixed</option><option>Easy</option><option>Medium</option><option>Hard</option></select></div></div>
+    <div id="newOptions"><label for="target">Points to win</label><select id="target"><option value="10">10 · quick</option><option value="25">25 · medium</option><option value="100">100 · marathon</option></select></div>
+    <div id="classicOptions" class="hidden"><label for="rounds">Turns each</label><select id="rounds"><option value="5">5 · quick</option><option value="10" selected>10 · full</option></select></div>
+    <button class="wide" onclick="startGame()">LET'S PLAY</button>
+    <p class="muted">New: both answers right = 10. Pass → receiver +2 if right; passer +1 if receiver misses. Skip −1. Classic: 1 point for title + 1 for character, with steals of missed parts. Maximum game time: two hours.</p>
+  </section>
+
+  <section id="game" class="hidden">
+    <div id="scores" class="scores"></div>
+    <section class="panel">
+      <button class="portrait" id="portraitButton" type="button" onclick="portraitTap()" aria-label="Portrait"><img src="portrait.jpg" alt=""></button>
+      <div id="turnMeta" class="muted"></div>
+      <div class="timerrow"><div id="timer" class="timer">15</div><div><progress id="timerBar" max="15" value="15"></progress><div id="phaseText" class="muted">Claim it or pass it.</div></div></div>
+      <blockquote id="quoteText"></blockquote>
+      <div id="claimControls" class="actions"><button onclick="claimQuote()">I HAVE IT!</button><button class="secondary" onclick="passQuote()">PASS →</button><button class="danger skip" onclick="skipQuote()">SKIP · −1</button></div>
+      <div id="answerArea" class="hidden"><div class="answergrid"><div id="showWrap"><label for="showAnswer">Show / Movie</label><input id="showAnswer" autocomplete="off" placeholder="Full title"></div><div id="charWrap"><label for="charAnswer">Character</label><input id="charAnswer" autocomplete="off" placeholder="Who said it?"></div></div><label for="bonusAnswer">Bonus line before / after <span class="muted">(optional)</span></label><input id="bonusAnswer" autocomplete="off" placeholder="Extra line"><button class="wide" onclick="submitAnswer()">LOCK ANSWERS</button></div>
+      <div id="feedback"></div>
+      <div id="postControls" class="hidden"><button id="stealButton" class="wide secondary hidden" onclick="startSteal()">STEAL MISSED PARTS</button><button id="declineSteal" class="wide danger hidden" onclick="declineSteal()">NO STEAL · NEXT TURN</button><button id="bonusButton" class="wide secondary hidden" onclick="approveBonus()">OPPONENT APPROVES BONUS · +1</button><button id="nextButton" class="wide" onclick="nextTurn()">NEXT TURN →</button></div>
+    </section>
+    <button class="wide secondary" onclick="newGame()">START A NEW GAME</button>
+  </section>
+  <section id="result" class="panel hidden"></section>
+</section>
+
+<section id="daily" class="panel hidden">
+  <h2>Quote of the Day</h2><span class="tag">25 POINTS · ONCE PER DAY</span>
+  <blockquote id="dailyQuote"></blockquote>
+  <label for="dailyName">Player name</label><input id="dailyName" value="Captain" maxlength="24">
+  <div class="answergrid"><div><label for="dailyShow">Show / Movie</label><input id="dailyShow"></div><div><label for="dailyChar">Character</label><input id="dailyChar"></div></div>
+  <button id="dailyButton" class="wide" onclick="dailyCheck()">CLAIM TODAY'S 25</button><div id="dailyFeedback"></div><p class="muted">Daily points are separate from career game points.</p>
+</section>
+
+<section id="board" class="panel hidden">
+  <h2>Arcade Top 10</h2><p class="muted">First ten distinct winners keep their slots. New and Classic boards are separate.</p>
+  <label for="boardMode">Rules</label><select id="boardMode" onchange="renderBoard()"><option value="new">New · 10 / 2 / 1</option><option value="classic">Classic · 1 + 1</option></select>
+  <div id="leaderTable" style="overflow-x:auto"></div>
+</section>
+
+<section id="quotes" class="panel hidden">
+  <h2>Your Quote Collection</h2><p><strong id="quoteCount">51</strong> quotes ready to play. Custom additions are saved in this browser and can be exported as JSON.</p>
+  <details><summary>Add your own quote</summary><label for="customQ">Quote</label><input id="customQ" maxlength="180"><label for="customS">Show / Movie</label><input id="customS" maxlength="80"><label for="customC">Character</label><input id="customC" maxlength="80"><label for="customD">Difficulty</label><select id="customD"><option>Easy</option><option>Medium</option><option>Hard</option></select><button class="wide" onclick="addCustom()">SAVE QUOTE</button></details>
+  <div class="row" style="margin-top:14px"><button onclick="QC.downloadJSON(QC.exportQuotes(),'Quote_Challenge_Quotes.json')">EXPORT JSON</button><button onclick="document.getElementById('importFile').click()">IMPORT JSON</button></div><input id="importFile" class="hidden" type="file" accept=".json,application/json" onchange="importQuotesFile(this.files[0])"><p id="quoteStatus" class="muted">Duplicates are skipped automatically.</p>
+  <hr style="border:0;border-top:1px solid #174273;margin:20px 0">
+  <h2>Full Backup</h2><div class="row"><button onclick="QC.downloadJSON(QC.fullBackup(),'Quote_Challenge_Full_Backup.json')">EXPORT EVERYTHING</button><button onclick="document.getElementById('fullFile').click()">RESTORE EVERYTHING</button></div><input id="fullFile" class="hidden" type="file" accept=".json,application/json" onchange="restoreFull(this.files[0])"><p id="backupStatus" class="muted">Full backup includes custom quotes, profiles, completed games, Top 10 data, daily attempts and solo stats.</p>
+</section>
+<p class="footer">Quote Challenge pre-beta demo · local one-phone play · bonus trigger page included separately but not wired into this build.</p>
+</main>
+<script src="quote-core.js"></script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+let state=null,timerId=null;
+
+function portraitTap(){const b=$('portraitButton');b.classList.add('pressed');setTimeout(()=>{b.classList.remove('pressed');location.href='bonus.html?return=two-player.html&from=game'},140)}
+function showTab(tab){if(state&&!state.finished&&!$('game').classList.contains('hidden')&&tab!=='play'){alert('Finish or abandon the current game first.');return}['play','daily','board','quotes'].forEach(x=>{$(x).classList.toggle('hidden',x!==tab);$(x+'Tab').setAttribute('aria-pressed',x===tab)});if(tab==='board')renderBoard();if(tab==='quotes')refreshCounts();if(tab==='daily')renderDaily()}
+function syncMode(){const classic=$('mode').value==='classic';$('newOptions').classList.toggle('hidden',classic);$('classicOptions').classList.toggle('hidden',!classic)}
+function refreshCounts(){const n=QC.allQuotes().length;$('quoteCount').textContent=n;$('quoteCountTop').textContent=n}
+function refreshProfiles(){const L=QC.ledger();$('profiles').innerHTML=L.profiles.map(p=>`<option value="${QC.esc(p.name)}"></option>`).join('')}
+function startGame(){const p1=$('p1').value.trim()||'Captain',p2=$('p2').value.trim();if(!p2){$('p2').focus();return}if(QC.normalize(p1)===QC.normalize(p2)){alert('Use two different player names.');return}state={players:[{name:p1,score:0},{name:p2,score:0}],mode:$('mode').value,difficulty:$('difficulty').value,target:Number($('target').value),rounds:Number($('rounds').value),turn:0,active:0,current:null,last:'',phase:'',answerer:0,passer:null,missed:null,pendingBonus:null,bonusAwarded:false,started:Date.now(),finished:false};$('setup').classList.add('hidden');$('result').classList.add('hidden');$('game').classList.remove('hidden');beginTurn()}
+function stopTimer(){clearInterval(timerId);timerId=null}
+function setTimer(seconds,onExpire){stopTimer();let left=seconds;$('timer').textContent=left;$('timerBar').max=seconds;$('timerBar').value=left;timerId=setInterval(()=>{left--;$('timer').textContent=Math.max(0,left);$('timerBar').value=Math.max(0,left);if(left<=0){stopTimer();onExpire()}},1000)}
+function checkGameEnd(){if(Date.now()-state.started>=7200000){finishGame('Two-hour game limit reached.');return true}if(state.mode==='new'&&state.players.some(p=>p.score>=state.target)){finishGame('Target reached.');return true}if(state.mode==='classic'&&state.turn>=state.rounds*2){finishGame('Classic turns complete.');return true}return false}
+function beginTurn(){if(!state||state.finished||checkGameEnd())return;state.active=state.turn%2;state.answerer=state.active;state.passer=null;state.missed=null;state.pendingBonus=null;state.bonusAwarded=false;state.phase='claim';state.current=QC.randomQuote(state.difficulty,state.last);state.last=state.current.q;$('showAnswer').value=$('charAnswer').value=$('bonusAnswer').value='';$('showWrap').classList.remove('hidden');$('charWrap').classList.remove('hidden');$('answerArea').classList.add('hidden');$('claimControls').classList.remove('hidden');$('postControls').classList.add('hidden');$('stealButton').classList.add('hidden');$('declineSteal').classList.add('hidden');$('bonusButton').classList.add('hidden');$('nextButton').classList.remove('hidden');$('feedback').innerHTML='';$('quoteText').textContent=`“${state.current.q}”`;$('turnMeta').textContent=`${state.players[state.active].name}'s turn · ${state.current.d}`;$('phaseText').textContent='15 seconds: claim it or pass it.';renderScores();setTimer(15,()=>passQuote(true))}
+function renderScores(){if(!state)return;$('scores').innerHTML=state.players.map((p,i)=>`<div class="score ${i===state.active?'active':''}"><span>${QC.esc(p.name)}</span><b>${p.score}</b><small>${i===state.active?'CURRENT TURN':'WAITING'}</small></div>`).join('')}
+function openAnswer(message){$('claimControls').classList.add('hidden');$('answerArea').classList.remove('hidden');$('feedback').innerHTML=`<div class="feedback">${QC.esc(message)}</div>`;$('phaseText').textContent='30 seconds to answer.';setTimer(30,()=>submitAnswer(true));setTimeout(()=>$('showAnswer').focus(),0)}
+function claimQuote(){if(!state||state.phase!=='claim')return;stopTimer();state.phase='answer';state.answerer=state.active;openAnswer(`${state.players[state.answerer].name}: lock both answers.`)}
+function passQuote(auto=false){if(!state||state.phase!=='claim')return;stopTimer();state.phase='pass';state.passer=state.active;state.answerer=1-state.active;openAnswer(auto?`Time! Automatic pass to ${state.players[state.answerer].name}.`:`${state.players[state.active].name} passed to ${state.players[state.answerer].name}.`)}
+function skipQuote(){if(!state||state.phase!=='claim')return;stopTimer();state.players[state.active].score--;reveal(`<span class="bad">${QC.esc(state.players[state.active].name)} skipped: −1.</span>`);resolveTurn()}
+function submitAnswer(fromTimer=false){if(!state||!['answer','pass','steal'].includes(state.phase))return;stopTimer();const showOk=QC.matches($('showAnswer').value,state.current.show),charOk=QC.matches($('charAnswer').value,state.current.char);if(state.phase==='steal'){let gained=0;if(state.missed.show&&showOk)gained++;if(state.missed.char&&charOk)gained++;state.players[state.answerer].score+=gained;reveal(`${QC.esc(state.players[state.answerer].name)} stole <b>${gained}</b> point${gained===1?'':'s'}.`);resolveTurn();return}const a=state.answerer;if(state.mode==='new'){if(state.phase==='pass'){if(showOk&&charOk){state.players[a].score+=2;reveal(`<span class="good">${QC.esc(state.players[a].name)} got both: +2.</span>`)}else{state.players[state.passer].score+=1;reveal(`<span class="bad">${QC.esc(state.players[a].name)} missed. ${QC.esc(state.players[state.passer].name)} gets +1.</span>`)}resolveTurn()}else{if(showOk&&charOk){state.players[a].score+=10;const bonus=$('bonusAnswer').value.trim();if(bonus){state.pendingBonus=a;reveal('<span class="good">Both right: +10.</span><br>Bonus line entered; opponent may approve +1.');resolveTurn(true);$('bonusButton').classList.remove('hidden')}else{reveal('<span class="good">Both right: +10.</span>');resolveTurn()}}else{reveal(`<span class="bad">${fromTimer?'Time expired. ':''}No 10 points — both answers must be right.</span>`);resolveTurn()}}}else{const gained=Number(showOk)+Number(charOk);state.players[a].score+=gained;if(state.phase==='pass'){reveal(`${QC.esc(state.players[a].name)} gets <b>${gained}</b> point${gained===1?'':'s'} on the pass.`);resolveTurn();return}state.missed={show:!showOk,char:!charOk};if(state.missed.show||state.missed.char){$('answerArea').classList.add('hidden');$('feedback').innerHTML=`<div class="feedback">${QC.esc(state.players[a].name)} earned <b>${gained}</b>. ${fromTimer?'Time expired. ':''}${QC.esc(state.players[1-a].name)} may steal the missed part${state.missed.show&&state.missed.char?'s':''}.</div>`;$('postControls').classList.remove('hidden');$('stealButton').classList.remove('hidden');$('declineSteal').classList.remove('hidden');$('nextButton').classList.add('hidden');$('phaseText').textContent='Classic steal available.';$('timer').textContent='—';$('timerBar').value=0;renderScores()}else{reveal('<span class="good">Perfect Classic answer: +2.</span>');resolveTurn()}}}
+function reveal(message){$('answerArea').classList.add('hidden');$('claimControls').classList.add('hidden');$('feedback').innerHTML=`<div class="feedback">${message}<div class="answerkey"><b>Answer:</b> ${QC.esc(state.current.show[0])} · ${QC.esc(state.current.char[0])}</div></div>`;renderScores()}
+function resolveTurn(keepBonus=false){state.phase='resolved';$('postControls').classList.remove('hidden');$('stealButton').classList.add('hidden');$('declineSteal').classList.add('hidden');if(!keepBonus)$('bonusButton').classList.add('hidden');$('nextButton').classList.remove('hidden');$('phaseText').textContent='Turn complete.';$('timer').textContent='✓';$('timerBar').value=0;renderScores()}
+function startSteal(){if(!state||!state.missed)return;state.phase='steal';state.answerer=1-state.active;$('postControls').classList.add('hidden');$('answerArea').classList.remove('hidden');$('bonusAnswer').value='';if(state.missed.show){$('showWrap').classList.remove('hidden');$('showAnswer').value=''}else{$('showWrap').classList.add('hidden');$('showAnswer').value=state.current.show[0]}if(state.missed.char){$('charWrap').classList.remove('hidden');$('charAnswer').value=''}else{$('charWrap').classList.add('hidden');$('charAnswer').value=state.current.char[0]}$('feedback').innerHTML=`<div class="feedback">${QC.esc(state.players[state.answerer].name)}: steal the missed part${state.missed.show&&state.missed.char?'s':''}.</div>`;$('phaseText').textContent='30 seconds for the steal.';setTimer(30,()=>submitAnswer(true));setTimeout(()=>$(state.missed.show?'showAnswer':'charAnswer').focus(),0)}
+function declineSteal(){stopTimer();reveal('Steal declined.');resolveTurn()}
+function approveBonus(){if(state.pendingBonus===null||state.bonusAwarded)return;state.players[state.pendingBonus].score++;state.bonusAwarded=true;$('bonusButton').classList.add('hidden');$('feedback').insertAdjacentHTML('beforeend',`<div class="feedback good">Bonus approved: +1 to ${QC.esc(state.players[state.pendingBonus].name)}.</div>`);renderScores()}
+function nextTurn(){if(!state||state.phase!=='resolved')return;state.turn++;beginTurn()}
+function finishGame(reason){stopTimer();state.finished=true;$('game').classList.add('hidden');const a=state.players[0],b=state.players[1];let winner=null;if(a.score>b.score)winner=0;if(b.score>a.score)winner=1;QC.recordGame({mode:state.mode,players:[a.name,b.name],scores:[a.score,b.score],winner});refreshProfiles();renderBoard();$('result').innerHTML=`<h2>${winner===null?'Tie game!':QC.esc(state.players[winner].name)+' wins!'}</h2><p>${QC.esc(reason)}</p><div class="scores"><div class="score"><span>${QC.esc(a.name)}</span><b>${a.score}</b></div><div class="score"><span>${QC.esc(b.name)}</span><b>${b.score}</b></div></div><button class="wide" onclick="newGame(true)">PLAY AGAIN</button><a class="button wide secondary" href="index.html">MAIN SCREEN</a>`;$('result').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+function newGame(force=false){if(state&&!state.finished&&!force&&!$('game').classList.contains('hidden')&&!confirm('Abandon this unfinished game?'))return;stopTimer();state=null;$('game').classList.add('hidden');$('result').classList.add('hidden');$('setup').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+function renderBoard(){const rows=QC.leaderboard($('boardMode').value);$('leaderTable').innerHTML=rows.length?`<table><thead><tr><th>#</th><th>Player</th><th>First win</th><th>Wins</th><th>Games</th><th>Career</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.slot}</td><td>${QC.esc(r.name)}</td><td>${r.firstScore}</td><td>${r.wins}</td><td>${r.games}</td><td>${r.career}</td></tr>`).join('')}</tbody></table>`:'<p class="muted">The first slot is waiting for a winner.</p>'}
+function renderDaily(){const q=QC.dailyQuote();$('dailyQuote').textContent=`“${q.q}”`;$('dailyFeedback').innerHTML='';$('dailyButton').disabled=false}
+function dailyCheck(){const q=QC.dailyQuote(),name=$('dailyName').value.trim()||'Captain',D=QC.daily(),key=`${QC.dayKey()}|${QC.normalize(name)}`;if(D.attempts[key]){$('dailyFeedback').innerHTML='<div class="feedback">You already tried today. Come back tomorrow.</div>';return}const ok=QC.matches($('dailyShow').value,q.show)&&QC.matches($('dailyChar').value,q.char);D.attempts[key]=true;D.points[name]=(D.points[name]||0)+(ok?25:0);QC.saveDaily(D);$('dailyButton').disabled=true;$('dailyFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?`Correct! +25 daily points for ${QC.esc(name)}.`:`Not this time. ${QC.esc(q.show[0])} · ${QC.esc(q.char[0])}.`}</div>`}
+function addCustom(){try{const r=QC.addCustomQuote({q:$('customQ').value,show:$('customS').value,char:$('customC').value,d:$('customD').value});if(!r.added){$('quoteStatus').textContent=r.reason;return}['customQ','customS','customC'].forEach(id=>$(id).value='');$('quoteStatus').textContent='Quote saved. It is ready for the next game.';refreshCounts()}catch(e){$('quoteStatus').textContent='Could not save: '+e.message}}
+async function importQuotesFile(file){if(!file)return;try{const data=JSON.parse(await file.text());const r=QC.importQuotes(data);$('quoteStatus').textContent=`Imported ${r.added}; skipped ${r.skipped}.`;refreshCounts()}catch(e){$('quoteStatus').textContent='Import failed: '+e.message}$('importFile').value=''}
+async function restoreFull(file){if(!file)return;try{QC.restoreFullBackup(JSON.parse(await file.text()));$('backupStatus').textContent='Full backup restored. Reloading…';setTimeout(()=>location.reload(),300)}catch(e){$('backupStatus').textContent='Restore failed: '+e.message}$('fullFile').value=''}
+refreshCounts();refreshProfiles();syncMode();renderBoard();renderDaily();
+</script>
+</body>
+</html>
