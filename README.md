@@ -4,7 +4,8 @@
 
 That movie you've watched twenty times. That TV character you can hear in your head. That one line you swear you'll never forget.
 
-**Time to put all those hours in front of the screen to work.**
+**Time to put all those hours in front of the screen to work.*
+**Use what you know or what you thought you knew Adventure awaits**
 
 Quote Challenge brings movie and television trivia into a bold, neon-lit arcade atmosphere—with friendly rivalry, familiar voices, and plenty of “I KNOW THIS ONE!” moments.
 
