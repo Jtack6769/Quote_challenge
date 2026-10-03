@@ -1,0 +1,15 @@
+#qc-install-dock{display:flex;justify-content:center;padding:6px 12px 10px}
+#qc-install-button{display:flex;flex-direction:column;align-items:center;gap:3px;width:64px;min-height:64px;padding:3px;border:0;border-radius:10px;background:transparent;color:#ffe143;font:700 11px/1.2 system-ui,sans-serif;cursor:pointer;touch-action:manipulation;letter-spacing:0}
+#qc-install-button[hidden]{display:none}
+#qc-install-button img{display:block;width:48px;height:48px;border-radius:10px;box-shadow:0 0 0 1px #ffda34,0 2px 8px #0008}
+#qc-install-button:focus-visible{outline:3px solid #1684ff;outline-offset:3px}
+#qc-install-button:disabled{opacity:.6;cursor:wait}
+#qc-install-help{position:fixed;inset:0;box-sizing:border-box;width:min(92vw,420px);height:fit-content;max-height:85svh;overflow:auto;margin:auto;padding:24px;border:2px solid #ffe143;border-radius:16px;background:#090d17;color:#fff;font:16px/1.5 system-ui,sans-serif;text-align:left;z-index:10000}
+#qc-install-help::backdrop{background:#000b}
+#qc-install-help h2{margin:0 0 12px;color:#ffe143;font-size:22px}
+#qc-install-help p{margin:0 0 20px}
+#qc-install-help button{padding:10px 20px;min-height:44px;border:0;border-radius:8px;background:#ffe143;color:#090d17;font:700 16px system-ui,sans-serif;cursor:pointer}
+#qc-install-help button:focus-visible{outline:3px solid #1684ff;outline-offset:3px}
+/* Account for the compact install control under the entrance navigation. */
+body:has(.stage) .stage{width:min(100%,1536px,calc((100svh - 202px)*1.5))}
+@media(max-width:600px) and (orientation:portrait){body:has(.stage) .stage{width:100%}}
