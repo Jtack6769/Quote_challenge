@@ -42,13 +42,13 @@ Built for the thrill of recognizing a great line—and the laughter when the ans
 
 Come for the quotes. Stay for the rematch.
 
-## 🛠️ You're part of the beta
+## 🛠️ Help shape the next round
 
-Quote Challenge is a growing independent project, and player feedback helps make it better.
+Quote Challenge is a public independent game, and player feedback helps make it better.
 
 Something look strange? An answer need attention? Found a button that won't behave? Use the in-game bug-report option where available, and include what happened, the page you were on, and your device or browser.
 
-Thanks to everyone playing, testing, and helping this game find its feet. Every good catch helps.
+Thanks to everyone playing and sharing feedback. Every good catch helps.
 
 ---
 
