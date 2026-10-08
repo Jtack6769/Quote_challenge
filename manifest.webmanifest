@@ -1,26 +1,13 @@
 {
-  "id": "./",
   "name": "Quote Challenge",
-  "short_name": "QC",
-  "description": "Use what you know, or what you thought you knew.",
+  "short_name": "Quote Challenge",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#020202",
-  "theme_color": "#020202",
-  "prefer_related_applications": false,
+  "background_color": "#020309",
+  "theme_color": "#071a3b",
   "icons": [
-    {
-      "src": "qc-icons/qc-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "qc-icons/qc-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
+    { "src": "assets/qc-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/qc-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }
