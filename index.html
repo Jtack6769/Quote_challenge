@@ -32,6 +32,37 @@ a{color:inherit}.page{width:min(100%,1120px);margin:auto;padding:clamp(10px,2.5v
 <script>'use strict';
 try{const key='qc_index_unique_device_521',badge=document.getElementById('deviceCounter');if(localStorage.getItem(key))badge.textContent='THIS DEVICE: ALREADY COUNTED';else{localStorage.setItem(key,'1');badge.textContent='THIS DEVICE: COUNTED'}}catch{}
 let installPrompt=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event});
-document.getElementById('addIcon').addEventListener('click',async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else alert('To add the Quote Challenge icon, open your browser menu and choose “Add to Home screen” or “Create shortcut.” This adds an icon to your device.')});
-if('serviceWorker'in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script></body></html>
+t.getElementById('addIcon').addEventListener('click',async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else alert('To add the Quote Challenge icon, open your browser menu and chooript></body></html>
+<script>
+    'use strict';
+    ...
+    let installPrompt=null;
+    window.addEventListener('beforeinstallprompt',event=>{
+      event.preventDefault();
+        installPrompt=event
+        });
+        document.getElementById('addIcon').addEventListener('click',async()=>{
+          if(installPrompt){
+              installPrompt.prompt();
+                  await installPrompt.userChoice;
+                      installPrompt=null
+                        }else alert('To add the Quote Challenge [...]
+                        });
+                        if('serviceWorker'in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+                        </script><script>
+                        'use strict';
+                        ...
+                        let installPrompt=null;
+                        window.addEventListener('beforeinstallprompt',event=>{
+                          event.preventDefault();
+                            installPrompt=event
+                            });
+                            document.getElementById('addIcon').addEventListener('click',async()=>{
+                              if(installPrompt){
+                                  installPrompt.prompt();
+                                      await installPrompt.userChoice;
+                                          installPrompt=null
+                                            }else alert('To add the Quote Challenge [...]
+                                            });
+                                            if('serviceWorker'in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+                                            </script>
