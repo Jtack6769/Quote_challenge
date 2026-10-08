@@ -1,6 +1,41 @@
 'use strict';
-const CACHE = 'quote-challenge-entrance-510-v1';
-const FILES = ['./index.html','./bonus.html','./manifest.webmanifest','./assets/theater-entrance.png','./assets/report-button.png','./assets/squire-of-gothos.jpg','./assets/uhura-journey-to-the-stars.jpg','./assets/qc-192.png','./assets/qc-512.png'];
-self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES))));
-self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))));
-self.addEventListener('fetch', event => event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request))));
+const CACHE = 'quote-challenge-entrance-510-v2';
+const FILES = ['./index.html','./bonus.html','./manifest.webmanifest','./qc-install.js','./qc-install.css','./quote-core-fresh.js','./quote-core.js'];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE).then(cache => cache.addAll(FILES))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys => 
+      Promise.all(keys.map(key => {
+        if (key !== CACHE) {
+          console.log('Deleting old cache:', key);
+          return caches.delete(key);
+        }
+      }))
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    fetch(event.request)
+      .then(response => {
+        if (!response || response.status !== 200 || response.type === 'error') {
+          return caches.match(event.request);
+        }
+        const responseClone = response.clone();
+        caches.open(CACHE).then(cache => {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      })
+      .catch(() => caches.match(event.request))
+  );
+});
