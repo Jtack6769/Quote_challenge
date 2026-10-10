@@ -1,13 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Web Page</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071a3b">
+  <meta name="description" content="Step inside Quote Challenge, the movie theater game.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Quote Challenge — Theater Entrance</title>
+  <style>
+    :root{--blue:#0755bd;--blue2:#031c48;--gold:#ffe34d;--cream:#fff3c6;--ink:#090b12}
+    *{box-sizing:border-box}
+    html{min-height:100%;background:#020309;color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+    body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 50% 0,#132d55 0,#050812 52%,#020309 100%)}
+    a{color:inherit}
+    .shell{width:min(100%,1536px);margin:auto;padding:0 0 18px}
+    .stage{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:#050505;isolation:isolate}
+    .theater{display:block;width:100%;height:100%;object-fit:cover}
+    .marquee{position:absolute;left:21.5%;top:20.5%;width:56%;height:8.3%;display:flex;align-items:center;overflow:hidden;border:clamp(2px,.34vw,5px) solid #ffd844;border-radius:3px;background:linear-gradient(180deg,#1371e5 0%,#0644a6 46%,#042863 100%);box-shadow:0 0 0 2px #062052,0 0 22px #2684ffb8,inset 0 0 15px #3c91ff;pointer-events:none}
+    .marquee:before,.marquee:after{content:"✦  ✦  ✦  ✦  ✦";position:absolute;z-index:2;top:50%;transform:translateY(-50%);color:var(--gold);font-size:clamp(7px,1.05vw,16px);letter-spacing:.35em;text-shadow:0 0 8px #ffd94d}
+    .marquee:before{left:1.2%}.marquee:after{right:1.2%}
+    .marquee-track{display:flex;align-items:center;white-space:nowrap;min-width:max-content;animation:marquee 18s linear infinite;padding-left:100%;font:900 clamp(12px,2.1vw,32px)/1 Georgia,"Times New Roman",serif;letter-spacing:.11em;color:var(--gold);text-shadow:0 2px 0 #5b3600,0 0 10px #ffdf54;padding-right:100%}
+    @keyframes marquee{to{transform:translateX(-100%)}}
+    @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;min-width:100%;justify-content:center;padding:0}.marquee:before,.marquee:after{display:none}}
+    .door{position:absolute;z-index:2;top:39%;height:39%;width:16.8%;border-radius:8px;display:grid;place-items:center;text-decoration:none;color:transparent}
+    .door.one{left:30.2%}.door.two{left:49.3%}
+    .door:focus-visible,.portrait:focus-visible,.report:focus-visible{outline:4px solid white;outline-offset:3px}
+    .portrait{position:absolute;z-index:3;left:23.5%;top:52%;width:5.3%;height:13%;border:0;border-radius:40%;background:transparent;cursor:pointer;touch-action:manipulation}
+    .portrait:focus-visible{outline-color:var(--gold);background:#ffe34d20}
+    .report{position:absolute;z-index:4;right:1.1%;bottom:1.2%;width:clamp(86px,10.4%,158px);filter:drop-shadow(0 0 6px #050505) drop-shadow(0 0 5px #ffd51c);transition:transform .15s}
+    .report:hover{transform:scale(1.06)}.report img{display:block;width:100%;height:auto}
+    .stage-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .controls{display:flex;justify-content:center;align-items:center;gap:clamp(8px,1.3vw,18px);flex-wrap:wrap;padding:14px 12px 10px;background:linear-gradient(180deg,#071a39,#030815);border-top:2px solid #1377ed;box-shadow:0 -4px 24px #0867df40}
+    .control{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:10px 18px;border:2px solid var(--gold);border-radius:9px;background:linear-gradient(180deg,#0a56b7,#06285f);color:var(--cream);text-decoration:none;font-weight:900;letter-spacing:.07em;text-shadow:0 2px #061632;box-shadow:0 4px 0 #04142f,0 0 13px #1784ff62;cursor:pointer}
+    .control:hover{background:linear-gradient(180deg,#1478ed,#073f91);transform:translateY(-1px)}.control:focus-visible{outline:3px solid white;outline-offset:3px}
+    .control svg{width:23px;height:23px;flex:none}.control .sub{display:block;font-size:10px;font-weight:600;letter-spacing:.08em;color:#c8dcff}
+    .install{min-width:195px}.status{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;padding:2px 12px 13px;text-align:center;font-size:12px;color:#d7e3fa}
+    .version{color:#9db8df;letter-spacing:.13em}.counter{border:1px solid #5a83bb;border-radius:999px;background:#081936;padding:5px 11px;color:#ffeb91;font-weight:800}
+    .poster-wall{position:relative;margin:16px 12px 0;padding:24px clamp(14px,4vw,52px) 38px;border:3px solid #805c22;border-radius:14px;background:radial-gradient(ellipse at 50% 0,#28446a 0,#0b1424 58%,#060910 100%);box-shadow:inset 0 0 0 3px #d0a54850,0 14px 35px #000;overflow:hidden}
+    .poster-wall:before{content:"";position:absolute;inset:9px;border:1px solid #e3bd5f55;border-radius:9px;pointer-events:none}
+    .wall-title{position:relative;margin:0 auto 18px;width:max-content;max-width:100%;padding:9px 22px;border:2px solid var(--gold);background:linear-gradient(180deg,#104a99,#061b3b);color:var(--gold);font:900 clamp(16px,2.2vw,27px)/1.2 Georgia,"Times New Roman",serif;text-align:center;letter-spacing:.13em;text-shadow:0 2px 0 #372900}
+    .poster-display{position:relative;display:flex;align-items:flex-start;justify-content:center;gap:clamp(16px,5vw,78px);min-height:370px}
+    .poster-card{position:relative;width:min(31%,310px);margin:0;padding:10px 10px 0;border:7px ridge #d9b354;background:#14100b;box-shadow:0 12px 24px #000c,0 0 14px #e5bd5b48;transform:rotate(-2deg)}
+    .poster-card:nth-child(2){margin-top:30px;transform:rotate(2.4deg)}
+    .poster-card img{display:block;width:100%;height:clamp(245px,39vw,430px);object-fit:contain;background:#080b12}
+    .plaque{position:relative;margin:12px -2px 0;padding:9px 7px 11px;border:2px solid #c59a42;background:linear-gradient(180deg,#152c4b,#08152a);color:#fff0bd;text-align:center;box-shadow:inset 0 0 0 2px #5c4525;font-family:Georgia,"Times New Roman",serif;font-weight:900;line-height:1.2}
+    .plaque strong{display:block;font-size:clamp(12px,1.7vw,19px)}.plaque span{display:block;margin-top:3px;color:var(--gold);font-size:clamp(13px,1.5vw,18px);letter-spacing:.16em}
+    .poster-note{margin:27px auto 0;max-width:760px;text-align:center;color:#d6e2f9;font-size:14px}
+    .poster-note strong{color:#ffe378}
+    .footer-note{text-align:center;padding:16px 10px;color:#96a8c3;font-size:11px}
+    @media(max-width:650px){
+      .shell{padding-bottom:10px}.controls{padding:10px 7px;gap:8px}.control{padding:9px 12px;font-size:13px;min-height:46px}.install{min-width:0}.control .sub{font-size:9px}.status{font-size:11px;gap:8px}.poster-wall{margin:10px 7px 0;padding:20px 10px 25px}.poster-display{gap:14px;min-height:0}.poster-card{width:43%;padding:6px 6px 0;border-width:5px}.poster-card:nth-child(2){margin-top:24px}.poster-card img{height:clamp(210px,58vw,330px)}.plaque{padding:7px 4px 8px}.wall-title{margin-bottom:12px;padding:7px 12px}.poster-note{font-size:12px;padding:0 8px}
+    }
+    @media(max-width:380px){.control{padding:8px;font-size:11px}.report{width:17%}.marquee-track{font-size:11px}}
+  </style>
 </head>
 <body>
-    <h1 id="And i love dancing dancing in the rain">Hello, World!</h1>
-    <p>Edit this code and click Run.</p>
-    <script src="script.js"></script>
+  <main class="shell">
+    <h1 class="stage-title">Quote Challenge theater entrance</h1>
+    <section class="stage" aria-label="Theater entrance">
+      <img class="theater" src="assets/theater-entrance.png" alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
+      <div class="marquee" aria-label="There's no place like home"><span class="marquee-track">THERE’S NO PLACE LIKE HOME&nbsp; ✦ &nbsp;THERE’S NO PLACE LIKE HOME&nbsp; ✦ &nbsp;</span></div>
+      <a class="door one" href="one-player.html" aria-label="Enter One Player"></a>
+      <a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
+      <a class="portrait" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
+      <a class="report" href="mailto:jamest2030@yahoo.com?bcc=jamestackett066@gmail.com&amp;subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><img src="assets/report-button.png" alt="Report a bug"></a>
+    </section>
+    <nav class="controls" aria-label="Quote Challenge options">
+      <a class="control" href="one-player.html"><span>ONE PLAYER</span></a>
+      <a class="control" href="two-player.html"><span>TWO PLAYER</span></a>
+      <button class="control install" id="addIcon" type="button" aria-label="Add a Quote Challenge icon to this device">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="8" fill="#ffe34d" stroke="#fff8c8" stroke-width="2"/><text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="900" fill="#111">QC</text><circle cx="37" cy="37" r="5" fill="#9cff20" stroke="#111" stroke-width="1.5"/><path d="M34 37h6m-3-3v6m-4-5-2-2m10 2 2-2" stroke="#111" stroke-width="1.3" stroke-linecap="round"/></svg>
+        <span>ADD QC ICON<span class="sub">HOME SCREEN / DESKTOP</span></span>
+      </button>
+    </nav>
+    <div class="status"><span class="version">QUOTE CHALLENGE INDEX 5.2.1</span><span class="counter" id="deviceCounter" aria-live="polite">UNIQUE DEVICE: COUNTED</span></div>
+    <section class="poster-wall" aria-labelledby="wallTitle">
+      <h2 class="wall-title" id="wallTitle">SPECIAL FEATURES ON THE WALL</h2>
+      <div class="poster-display">
+        <figure class="poster-card">
+          <img src="assets/squire-of-gothos.jpg" alt="Retro Star Trek poster: Trek to the Past, featuring Captain Kirk and Trelane, the Squire of Gothos.">
+          <figcaption class="plaque"><strong>STAR TREK: “THE SQUIRE OF GOTHOS”</strong><span>1967</span></figcaption>
+        </figure>
+        <figure class="poster-card">
+          <img src="assets/uhura-journey-to-the-stars.jpg" alt="Retro portrait poster of Lieutenant Uhura aboard the Enterprise, inviting viewers to journey to the stars.">
+          <figcaption class="plaque"><strong>STAR TREK: THE ORIGINAL SERIES</strong><span>1966</span></figcaption>
+        </figure>
+      </div>
+      <p class="poster-note">Two special posters for the theater wall—set among the movie title plaques and years already hanging around the entrance.</p>
+    </section>
+    <p class="footer-note">Add an icon to your home screen or desktop for quick access.</p>
+  </main>
+  <script>
+    'use strict';
+    // This marks this browser/device once; the static page does not send tracking data to a server.
+    try {
+      const key = 'qc_index_unique_device_510';
+      const counter = document.getElementById('deviceCounter');
+      if (localStorage.getItem(key)) counter.textContent = 'UNIQUE DEVICE: ALREADY COUNTED';
+      else { localStorage.setItem(key, '1'); counter.textContent = 'UNIQUE DEVICE: FIRST VISIT'; }
+    } catch { document.getElementById('deviceCounter').textContent = 'UNIQUE DEVICE COUNTER'; }
+    let installPrompt = null;
+    window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installPrompt = event; });
+    document.getElementById('addIcon').addEventListener('click', async () => {
+      if (installPrompt) { installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; }
+      else alert('To add the Quote Challenge icon, open your browser menu and choose “Add to Home screen” or “Create shortcut.” This adds an icon to your device.');
+    });
+    if ('serviceWorker' in navigator && location.protocol !== 'file:') window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+  </script>
 </body>
 </html>
