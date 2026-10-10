@@ -1,0 +1,95 @@
+[
+    {
+        "title": "Inception",
+        "type": "Movie",
+        "release_year": 2010,
+        "genres": [
+            "Sci-Fi",
+            "Action",
+            "Thriller"
+        ],
+        "director": "Christopher Nolan",
+        "rating": 8.8
+    },
+    {
+        "title": "Stranger Things",
+        "type": "TV Show",
+        "release_year": 2016,
+        "genres": [
+            "Drama",
+            "Fantasy",
+            "Horror"
+        ],
+        "creator": "The Duffer Brothers",
+        "rating": 8.7
+    },
+    {
+        "title": "The Dark Knight",
+        "type": "Movie",
+        "release_year": 2008,
+        "genres": [
+            "Action",
+            "Crime",
+            "Drama"
+        ],
+        "director": "Christopher Nolan",
+        "rating": 9.0
+    },
+    {
+        "title": "Breaking Bad",
+        "type": "TV Show",
+        "release_year": 2008,
+        "genres": [
+            "Crime",
+            "Drama",
+            "Thriller"
+        ],
+        "creator": "Vince Gilligan",
+        "rating": 9.5
+    },
+    {
+        "title": "Interstellar",
+        "type": "Movie",
+        "release_year": 2014,
+        "genres": [
+            "Adventure",
+            "Drama",
+            "Sci-Fi"
+        ],
+        "director": "Christopher Nolan",
+        "rating": 8.7
+    },
+    {
+        "title": "The Office",
+        "type": "TV Show",
+        "release_year": 2005,
+        "genres": [
+            "Comedy"
+        ],
+        "creator": "Greg Daniels",
+        "rating": 9.0
+    },
+    {
+        "title": "Parasite",
+        "type": "Movie",
+        "release_year": 2019,
+        "genres": [
+            "Drama",
+            "Thriller"
+        ],
+        "director": "Bong Joon Ho",
+        "rating": 8.5
+    },
+    {
+        "title": "The Mandalorian",
+        "type": "TV Show",
+        "release_year": 2019,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Sci-Fi"
+        ],
+        "creator": "Jon Favreau",
+        "rating": 8.7
+    }
+]
