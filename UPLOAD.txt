@@ -1,7 +1,0 @@
-QUOTE CHALLENGE — THEATER ENTRANCE PATCH
-
-Back up your current index.html and bonus.html, then upload these two HTML files to the same folder as one-player.html and two-player.html.
-
-The artwork is embedded. No assets or quote-core.js replacement is needed. Your current quotes and game pages stay as they are.
-
-Two movie titles open leading-man/leading-lady challenges: 10 points each for both correct names. Popcorn gives 5 immediately; the portrait gives 20 immediately. Rewards are collected once per discovery in each browser and stored as entrance bonus points, separately from active games. Shared/global scoring is not included.
