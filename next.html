@@ -1,1 +1,127 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quote Challenge | Coming Next</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #080808;
+  color: #ffd700;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+header {
+  padding: 20px 12px;
+  font-size: clamp(24px, 6vw, 44px);
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 0 0 15px #c00;
+}
+
+.stage {
+  width: min(94vw, 750px);
+  height: min(115vw, 650px);
+  max-height: 75vh;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #d4af37;
+  border-radius: 12px;
+  background: #050505;
+  box-shadow: 0 0 25px #8b0000;
+}
+
+.marquee, .poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.marquee {
+  display: grid;
+  place-content: center;
+  padding: 20px;
+  background: radial-gradient(#360000, #050505 75%);
+  animation: marqueeMove 16s ease-in-out infinite;
+}
+
+.marquee h1 {
+  font-size: clamp(32px, 8vw, 65px);
+  color: #ffd700;
+  text-shadow: 0 0 18px red;
+}
+
+.marquee p {
+  font-size: 22px;
+  color: white;
+}
+
+.poster {
+  object-fit: contain;
+  background: black;
+  animation: posterMove 16s ease-in-out infinite;
+}
+
+@keyframes marqueeMove {
+  0%, 15% { transform: translateX(0); }
+  25%, 65% { transform: translateX(-100%); }
+  75%, 100% { transform: translateX(0); }
+}
+
+@keyframes posterMove {
+  0%, 15% { transform: translateX(100%); }
+  25%, 65% { transform: translateX(0); }
+  75%, 100% { transform: translateX(100%); }
+}
+
+footer {
+  padding: 18px;
+}
+
+a {
+  color: #ffd700;
+  font-size: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+  .poster { animation: none; transform: none; }
+}
+</style>
+</head>
+
+<body>
+
+<header>QUOTE CHALLENGE</header>
+
+<div class="stage">
+
+  <div class="marquee">
+    <h1>QUOTE CHALLENGE</h1>
+    <p>COMING NEXT MONTH!</p>
+  </div>
+
+  <img
+    class="poster"
+    src="next-poster.png"
+    alt="Coming next month movie poster"
+  >
+
+</div>
+
+<footer>
+  <a href="index.html">← Return to Quote Challenge</a>
+</footer>
+
+</body>
+</html>
