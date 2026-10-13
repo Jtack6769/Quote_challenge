@@ -63,7 +63,9 @@
       <a class="door one" href="one-player.html" aria-label="Enter One Player"></a>
       <a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
       <a class="portrait" data-egg="creator" data-points="20" data-label="You found the inventor’s photo!" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
-      <a class="report" href="mailto:jamest2030@yahoo.com?bcc=jamestackett066@gmail.com&amp;subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><span class="bug-icon" aria-hidden="true">🪳</span></a>.qc-banner {
+      <a class="report" href="mailto:jamest2030@yahoo.com?bcc=jamestackett066@gmail.com&amp;subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><span class="bug-icon" aria-hidden="true">🪳</span>
+    </section>
+    .qc-banner
   width: 100%;
   overflow: hidden;
   background: #080808;
@@ -72,31 +74,25 @@
   padding: 12px 0;
   color: #ffda54;
   font: bold 18px Arial, sans-serif;
-}
 .qc-banner-text {
   display: inline-block;
   white-space: nowrap;
   padding-left: 100%;
   animation: qc-scroll 22s linear infinite;
-}
 @keyframes qc-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
-}
-@media (prefers-reduced-motion: reduce) {
+  from { transform: translateX(0);
+  to   { transform: translateX(-100%); 
+@media (prefers-reduced-motion: reduce) 
   .qc-banner-text {
     animation: none;
     padding-left: 0;
     white-space: normal;
     text-align: center;
-  }
-}
 </style>
-<div></div>class="qc-banner">
+<div class="qc-banner">
   <div class="qc-banner-text">"If an interesting monster can't have an interesting hairdo I don't know what this world is coming to." 🎬
   </div>
 </div>
-    </section>
     <p style="text-align:center;padding:14px;color:#ffe34d"><strong>UNDER CONSTRUCTION</strong><br>We’re bringing you great things for the future.</p>
     <nav class="controls" aria-label="Quote Challenge options"><a class="control" href="one-player.html#addForm">ADD QUOTES</a>
       <a class="control" href="one-player.html"><span>ONE PLAYER</span></a>
