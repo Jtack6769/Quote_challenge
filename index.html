@@ -100,13 +100,51 @@
     text-align: center;
   }
 }
+</style> 
+      
+<!-- QUOTE CHALLENGE SCROLLING BANNER -->
+
+<style>
+.qc-banner {
+  width: 100%;
+  overflow: hidden;
+  background: #080808;
+  border: 2px solid #e4b83f;
+  border-radius: 6px;
+  padding: 12px 0;
+  color: #ffda54;
+  font: bold 18px Arial, sans-serif;
+}
+
+.qc-banner-text {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: qc-scroll 22s linear infinite;
+}
+
+@keyframes qc-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qc-banner-text {
+    animation: none;
+    padding-left: 0;
+    white-space: normal;
+    text-align: center;
+  }
+}
 </style>
 
-<div class="construction-banner">
-    <div class="banner-track">
-        <span>🖖 ENJOY STAR TREK // LOGAN'S RUN NEXT MONTH 🪐</span>
-        <span>
+<div class="qc-banner">
+  <div class="qc-banner-text">
+    🎬 QUOTE CHALLENGE • IMMERSE YOURSELF IN STAR TREK AND LOOK FOR EXCITING NEW ADVENTURES! NEXT MONTH WITH LOGAN'S RUN!🎬
+  </div>
 </div>
+      
+
       <br>We’re bringing you great things for the future.your memories matter and nostalgia flows</p>
     <nav class="controls" aria-label="Quote Challenge options"><a class="control" href="one-player.html#addForm">ADD QUOTES</a>
       <a class="control" href="one-player.html"><span>ONE PLAYER</span></a>
