@@ -1,0 +1,9 @@
+QUOTE CHALLENGE 6.0 — GLASS AND NEON PLAY PAGES
+
+Upload one-player.html, two-player.html, bonus.html and all included assets into the existing Quote_challenge repository. Keep your existing index.html and movies_and_shows.json. Assets must be a folder.
+
+Two Players is same-device turn-taking; internet multiplayer is not included. Each selected quote is one turn. Pass scores +2 to the receiver if correct, otherwise +1 to the passer. New mode requires both answers; Classic accepts either answer for a successful pass.
+
+Bonus congratulations closes after 20 seconds or immediately using SHOW THE WALL. The bonus page is a playable green/purple quote round with the recovered Gorn poster; the original alligator artwork was not in the supplied files.
+
+Quote additions, Daily scores and Top 10 are browser-local. This build includes 14 starter quotes and loads compatible records from movies_and_shows.json. It does not overwrite that collection.
