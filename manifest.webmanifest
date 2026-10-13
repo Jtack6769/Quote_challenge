@@ -1,0 +1,15 @@
+{
+  "name": "Quote Challenge",
+  "short_name": "QC",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#071a3b",
+  "theme_color": "#071a3b",
+  "icons": [
+    {
+      "src": "assets/qc-icon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}

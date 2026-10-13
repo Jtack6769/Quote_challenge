@@ -1,9 +1,9 @@
-QUOTE CHALLENGE 6.0 — GLASS AND NEON PLAY PAGES
+QUOTE CHALLENGE 6.0 — FREDDIE & WALL BONUSES
 
-Upload one-player.html, two-player.html, bonus.html and all included assets into the existing Quote_challenge repository. Keep your existing index.html and movies_and_shows.json. Assets must be a folder.
+Upload these four HTML pages, manifest.webmanifest, and the assets folder contents to the existing Quote_challenge repository. Keep your existing movies_and_shows.json and other existing files. Do not delete your repository.
 
-Two Players is same-device turn-taking; internet multiplayer is not included. Each selected quote is one turn. Pass scores +2 to the receiver if correct, otherwise +1 to the passer. New mode requires both answers; Classic accepts either answer for a successful pass.
+Freddie: one picture per page, 25 points once per regular game across all four pictures. The entrance uses his original chair photograph. Creator portrait: 20 points, then Meet the Creator bonus-wall link. Movie title text: 2001 and Jaws award 5, Godfather and Exorcist award 1; Butch Cassidy is decorative. Each title reward is once per regular game. Entrance finds carry to the next regular game in the same tab. Daily scoring stays separate.
 
-Bonus congratulations closes after 20 seconds or immediately using SHOW THE WALL. The bonus page is a playable green/purple quote round with the recovered Gorn poster; the original alligator artwork was not in the supplied files.
+Winning score choices: 5, 10, 25, 100, or all selected quotes. The active player receives a find. Full multiplayer tracking is for later. Current games must be finished before leaving the page.
 
-Quote additions, Daily scores and Top 10 are browser-local. This build includes 14 starter quotes and loads compatible records from movies_and_shows.json. It does not overwrite that collection.
+This package is ready for manual upload; it has not been deployed.
