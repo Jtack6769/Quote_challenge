@@ -1,1 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <title>Quote Challenge · Versus Mode</title>
+  <style>
+    *{box-sizing:border-box}:root{--bg:#030303;--panel:#080604;--red:#ff334d;--gold:#ffe15b;--gold2:#b98b09;--muted:#b9a68e;--good:#baff9f;--bad:#ffaaaa}
+    html{background:var(--bg)}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% -8rem,#001c44 0,transparent 38rem),#030303;color:var(--red);font:16px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}main{max-width:760px;margin:auto;padding:18px 14px 48px}
+    a{color:var(--gold)}
+    .back{display:inline-flex;text-decoration:none;font-weight:900;margin:2px 0 11px;padding:10px 13px;border:1px solid #c9a92f;border-radius:12px;background:#100c03;color:var(--gold);box-shadow:0 0 18px #ffce0033}
+    header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.22em;font-weight:900}h1{margin:5px 0 0;font-size:clamp(38px,10vw,62px);line-height:.92;letter-spacing:-2px;text-transform:uppercase;color:var(--red);text-shadow:0 0 13px #ff001e,0 0 34px #ff2f493c}.tag{white-space:nowrap;color:var(--gold);font-size:12px;border:1px solid #c4a22b;border-radius:999px;padding:7px 10px;background:#130f04;box-shadow:0 0 18px #ffcc0033}
+    .panel{position:relative;margin:16px 0;padding:21px;border:1px solid #b98b18;border-radius:25px;background:linear-gradient(145deg,rgba(4,14,32,0.97),rgba(3,3,3,.99) 62%);box-shadow:0 16px 48px #000b,0 0 28px #ffd40024}.panel:before,.panel:after{content:"";position:absolute;width:34px;height:3px;background:var(--gold);box-shadow:0 0 12px #ffe052}.panel:before{left:18px;top:-2px}.panel:after{right:18px;bottom:-2px}
+    h2{margin:1px 0 12px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)}p{line-height:1.48}.muted{color:var(--muted)}
+    button,.button,input,select{font:inherit;min-height:49px;border-radius:14px;border:1px solid #d7b736;padding:11px 12px}button,.button{font-weight:900;cursor:pointer;color:var(--red);background:linear-gradient(150deg,#fff0a0,#ffd63d 45%,#b9880a);box-shadow:inset 0 1px #fff7ce,0 4px 18px #ffcf002f;text-decoration:none;text-align:center;touch-action:manipulation}button:active,.button:active{transform:translateY(1px)}button:disabled{opacity:.45;cursor:default}.secondary{background:#110d05;color:var(--gold);border-color:#876e27;box-shadow:none}input,select{width:100%;background:#050403;color:#fff4bb;font-weight:750}input::placeholder{color:#77694f}input:focus,select:focus{outline:3px solid #ffcf0033;border-color:#ffe56f}label{display:block;margin:12px 0 6px;font-weight:850;color:var(--red)}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1;min-width:0}.wide{width:100%;margin-top:12px}.hidden{display:none!important}
+    .lobby-box{border:1px dashed #c4a22b;padding:16px;border-radius:16px;background:#060a14;margin-top:14px}
+    .room-code-display{font-size:32px;font-weight:900;color:var(--gold);letter-spacing:4px;text-align:center;background:#02050b;padding:8px;border-radius:10px;border:1px solid #142a52;margin:10px 0;text-shadow:0 0 10px #ffe052}
+    .footer{font-size:12px;color:#75684f;text-align:center;margin-top:18px}
+    @media(max-width:560px){.row{flex-wrap:wrap}.row>*{flex-basis:44%}.panel{padding:18px 14px}main{padding:14px 12px 40px}}
+  </style>
+  <script src="qc-twoplayer.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="back" href="index.html">← MAIN SCREEN</a>
+    <header>
+      <div>
+        <div class="eyebrow">QUOTE CHALLENGE</div>
+        <h1>Versus Mode</h1>
+        <div class="eyebrow">HEAD-TO-HEAD LOBBY</div>
+      </div>
+      <span class="tag">PUBLIC RELEASE · 1V1</span>
+    </header>
+
+    <!-- SETUP & MATCHMAKING PANEL -->
+    <section id="lobbySetup" class="panel">
+      <h2>Host or Join a Lobby</h2>
+      <p class="muted">Connect with another player instantly using a direct room token code. Your username will be shared with your opponent.</p>
+      
+      <div class="row">
+        <div>
+          <label for="p2pUsername">Your Username</label>
+          <input id="p2pUsername" value="Captain" maxlength="24">
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:16px;">
+        <!-- HOST COLUMN -->
+        <div>
+          <button class="wide" onclick="generateHostCode()">HOST A NEW GAME</button>
+          <div id="hostArea" class="lobby-box hidden">
+            <span class="muted">Share this code with your friend:</span>
+            <div id="displayCode" class="room-code-display">------</div>
+            <span class="muted" id="hostStatus">Waiting for connection...</span>
+          </div>
+        </div>
+
+        <!-- JOIN COLUMN -->
+        <div>
+          <button class="wide secondary" onclick="showJoinField()">JOIN A FRIEND</button>
+          <div id="joinArea" class="lobby-box hidden">
+            <label for="enterCode">Enter Room Code</label>
+            <input id="enterCode" placeholder="Paste code here..." autocomplete="off">
+            <button class="wide" style="margin-top:10px;" onclick="connectToHost()">CONNECT & START</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE MULTIPLAYER GAME PANEL (HIDDEN UNTIL CONNECTED) -->
+    <section id="multiplayerGame" class="hidden">
+      <!-- Game layout elements, scores, timer elements, and quote structures will be handled here by the connection engine -->
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2026 Quote Challenge. Bring your favorite cinema memories to life.</p>
+    </footer>
+  </main>
+</body>
+</html>
 
