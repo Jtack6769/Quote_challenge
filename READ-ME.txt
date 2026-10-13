@@ -7,3 +7,12 @@ Freddie: one picture per page, 25 points once per regular game across all four p
 Winning score choices: 5, 10, 25, 100, or all selected quotes. The active player receives a find. Full multiplayer tracking is for later. Current games must be finished before leaving the page.
 
 This package is ready for manual upload; it has not been deployed.
+
+
+BUG REPORT UPDATE
+Upload all HTML pages and assets/bug-report.js along with the other files.
+Tap the cockroach to report a problem. The report contains the last ten game events and current game state.
+Share report attaches a text file through supported device sharing. Choose your email app and send to QcChallenger67@gmail.com.
+If sharing is unavailable, Save text file and attach it manually. Open email includes the report in the email body.
+Ordinary email links cannot automatically attach local files.
+The event trail stays in the current browser tab session. It does not record voice or video.
