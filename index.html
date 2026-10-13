@@ -271,7 +271,7 @@
             maxHints: 3,
             isLoading: false,
 
-            async getHint: function(movieTitle, difficulty = 'medium') {
+            async getHint(movieTitle, difficulty = 'medium') { {
                 if (this.hintsUsed >= this.maxHints) {
                     console.warn('⚠️ Max hints used');
                     return 'No more hints available.';
