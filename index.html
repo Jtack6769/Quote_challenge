@@ -153,9 +153,21 @@
   
   <span class="version" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">QUOTE CHALLENGE 6.0</span>
   
-  <span class="counter" id="deviceCounter" aria-live="polite" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">THIS BROWSER: LOCAL MARKER</span>
-
-</div>
+  <span class="counter" id="deviceCounter" aria-live="polite" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">THIS BROWSER: LOCAL MARKER</span>  const key = 'qc_index_unique_device_510';
+      const counter = document.getElementById('deviceCounter');
+      if (localStorage.getItem(key)) counter.textContent = 'THIS BROWSER: RETURN VISIT';
+      else { localStorage.setItem(key, '1'); counter.textContent = 'THIS BROWSER: FIRST VISIT'; }
+    } catch { document.getElementById('deviceCounter').textContent = 'LOCAL MARKER UNAVAILABLE'; }
+    let installPrompt = null;
+    window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installPrompt = event; });
+    document.getElementById('addIcon').addEventListener('click', async () => {
+      if (installPrompt) { installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; }
+      else alert('To add the Quote Challenge icon, open your browser menu and choose “Add to Home screen” or “Create shortcut.” This adds an icon to your device.');
+    });
+  </script>
+<script src="assets/eggs.js"></script></body>
+</html>
+  
 
 <!-- Posters Section -->
 <section class="poster-wall" aria-labelledby="wallTitle" style="padding: 20px; background-color: #001122; color: #ffffff; font-family: Arial, sans-serif;">
