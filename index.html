@@ -13,7 +13,7 @@
     html{min-height:100%;background:#020309;color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
     body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 50% 0,#132d55 0,#050812 52%,#020309 100%)}
     a{color:inherit}
-    .shell{width:min(100%,1536px);margin:auto;padding:0 0 18px}
+.shell{width:min(100%,1536px);margin:auto;padding:0 0 18px}
     .stage{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:#050505;isolation:isolate}
     .theater{display:block;width:100%;height:100%;object-fit:cover}
     .marquee{position:absolute;left:21.5%;top:20.5%;width:56%;height:8.3%;display:flex;align-items:center;overflow:hidden;border:clamp(2px,.34vw,5px) solid #ffd844;border-radius:3px;background:linear-gradient(180deg,#1371e5 0%,#0644a6 46%,#042863 100%);box-shadow:0 0 0 2px #062052,0 0 22px #2684ffb8,inset 0 0 15px #3c91ff;pointer-events:none}
@@ -59,40 +59,12 @@
     <h1 class="stage-title">Quote Challenge theater entrance</h1>
     <section class="stage" aria-label="Theater entrance">
       <img class="theater" src="assets/theater-entrance.png" alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
-      <div class="marquee" aria-label="There's no place like home"><span class="marquee-track">THERE’S NO PLACE LIKE HOME&nbsp; ✦ &nbsp;THERE’S NO PLACE LIKE HOME&nbsp; ✦ &nbsp;</span></div>
+      <div class="marquee" aria-label="There's no place like home"><span class="marquee-track">NOW RETURN AND GRAB MY WALLET WHICH FALL IS IT?&nbsp; ✦ &nbsp; IT'S THE ONE THAT SAYS BAD M***R&nbsp; ✦ &nbsp;</span></div>
       <a class="door one" href="one-player.html" aria-label="Enter One Player"></a>
       <a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
       <a class="portrait" data-egg="creator" data-points="20" data-label="You found the inventor’s photo!" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
       <a class="report" href="mailto:jamest2030@yahoo.com?bcc=jamestackett066@gmail.com&amp;subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><span class="bug-icon" aria-hidden="true">🪳</span>
     </section>
-    .qc-banner
-  width: 100%;
-  overflow: hidden;
-  background: #080808;
-  border: 2px solid #e4b83f;
-  border-radius: 6px;
-  padding: 12px 0;
-  color: #ffda54;
-  font: bold 18px Arial, sans-serif;
-.qc-banner-text {
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
-  animation: qc-scroll 22s linear infinite;
-@keyframes qc-scroll {
-  from { transform: translateX(0);
-  to   { transform: translateX(-100%); 
-@media (prefers-reduced-motion: reduce) 
-  .qc-banner-text {
-    animation: none;
-    padding-left: 0;
-    white-space: normal;
-    text-align: center;
-</style>
-<div class="qc-banner">
-  <div class="qc-banner-text">"If an interesting monster can't have an interesting hairdo I don't know what this world is coming to." 🎬
-  </div>
-</div>
     <p style="text-align:center;padding:14px;color:#ffe34d"><strong>UNDER CONSTRUCTION</strong><br>We’re bringing you great things for the future.</p>
     <nav class="controls" aria-label="Quote Challenge options"><a class="control" href="one-player.html#addForm">ADD QUOTES</a>
       <a class="control" href="one-player.html"><span>ONE PLAYER</span></a>
