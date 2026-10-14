@@ -67,7 +67,9 @@
     <nav class="controls" aria-label="Quote Challenge options"><a class="control" href="one-player.html#addForm">ADD QUOTES</a>
       <a class="control" href="one-player.html"><span>ONE PLAYER</span></a>
       <a class="control" href="two-player.html"><span>TWO PLAYER</span></a>
-      <button class="control install" id="addIcon" type="button" aria-label="Add a Quote Challenge icon to this device"><!-- Main navigation and stats container -->
+      <button class="control install" id="addIcon" type="button" aria-label="Add a Quote Challenge icon to this device">
+        
+<!-- Main navigation and stats container -->
 <div class="nav-container" style="box-sizing: border-box; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 10px; gap: 10px; background-color: #002244;">
   
   <span style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 1.2;">
@@ -138,50 +140,56 @@
           <figcaption class="plaque"><strong>STAR TREK: THE ORIGINAL SERIES</strong><span>1966</span></figcaption>
         </figure>
       </div>
-      <p class="poster-note">Two special posters for the theater wall—set among the movie title plaques and years already hanging around the entrance.</p>
-    </section>
-    <aside class="wall-trivia" aria-label="Movie years"><button class="movie-plaque" data-egg="movie-1968" data-points="5" data-label="2001: A Space Odyssey">2001: A Space Odyssey<small>1968</small></button><div class="movie-plaque">Butch Cassidy and the Sundance Kid<small>1969</small></div></aside><section class="poster-wall" aria-labelledby="libraryTitle"><h2 class="wall-title" id="libraryTitle">MOVIES, SHOWS &amp; QUOTES</h2><p id="libraryStatus" role="status">Loading the collection…</p><ul id="movieList"></ul></section>
-    <p class="footer-note">Add an icon to your home screen or desktop for quick access.</p>
-  <div class="freddie-hideout"><button class="freddie-egg chair" data-egg="freddie" data-points="25" data-label="You petted Freddie!" aria-label="Pet Freddie"><img src="assets/freddie-chair.jpg" alt="Freddie"></button></div></main>
-  <script>
-    'use strict';
-    async function loadCollection() {
-      const status = document.getElementById('libraryStatus');
-      try {
-        const response = await fetch('./movies_and_shows.json', {cache:'no-store'});
-        if (!response.ok) throw new Error('Collection unavailable');
-        const data = await response.json();
-        const entries = Array.isArray(data) ? data : (data.movies_and_shows || data.quotes || data.items || []);
-        if (!Array.isArray(entries)) throw new Error('Collection format unavailable');
-        const list = document.getElementById('movieList');
-        for (const entry of entries) {
-          if (!entry || typeof entry !== 'object') continue;
-          const row = document.createElement('li');
-          row.style.marginBottom = '12px';
-          const title = entry.title || entry.movie || entry.show || entry.s || 'Untitled';
-          const quote = entry.quote || entry.text || entry.q || '';
-          row.textContent = String(title) + (entry.release_year ? ' (' + entry.release_year + ')' : '') + (entry.type ? ' — ' + entry.type : '') + (quote ? ': “' + String(quote) + '”' : '');
-          list.appendChild(row);
-        }
-        status.textContent = list.children.length ? list.children.length + ' movies, shows or quotes in the collection.' : 'The collection is being prepared.';
-      } catch {
-        status.textContent = 'The collection will appear here when movies_and_shows.json is available. You can still use the player buttons above.';
-      }
-    }
-    loadCollection();
-    // This marks this browser/device once; the static page does not send tracking data to a server.
-    try {
-      const key = 'qc_index_unique_device_510';
-      const counter = document.getElementById('deviceCounter');
-      if (localStorage.getItem(key)) counter.textContent = 'THIS BROWSER: RETURN VISIT';
-      else { localStorage.setItem(key, '1'); counter.textContent = 'THIS BROWSER: FIRST VISIT'; }
-    } catch { document.getElementById('deviceCounter').textContent = 'LOCAL MARKER UNAVAILABLE'; }
-    let installPrompt = null;
-    window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installPrompt = event; });
-    document.getElementById('addIcon').addEventListener('click', async () => {
-      if (installPrompt) { installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; }
-      else alert('To add the Quote Challenge icon, open your browser menu and choose “Add to Home screen” or “Create shortcut.” This adds an icon to your device.');
-    });
-  </script>
-<script src="assets/eggs.js"></script></body>
-</html>
+<!-- Main navigation and stats container -->
+<div class="nav-container" style="box-sizing: border-box; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 10px; gap: 10px; background-color: #002244;">
+  
+  <span style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 1.2;">
+    ADD QC ICON<span class="sub" style="display: block; font-size: 10px; color: #aaaaaa; font-weight: normal;">HOME SCREEN / DESKTOP</span>
+  </span>
+  
+  <a href="next.html" style="display: inline-block !important; width: auto !important; height: auto !important; padding: 8px 16px !important; background: #0066ff; color: #ffeb00; border: 2px solid #ffeb00; border-radius: 8px; font: bold 14px Arial, sans-serif; text-decoration: none; text-align: center; line-height: 1.3; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+    COMING ATTRACTIONS<br>NEXT
+  </a>
+  
+  <span class="version" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">QUOTE CHALLENGE 6.0</span>
+  
+  <span class="counter" id="deviceCounter" aria-live="polite" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">THIS BROWSER: LOCAL MARKER</span>
+
+</div>
+
+<!-- Posters Section -->
+<section class="poster-wall" aria-labelledby="wallTitle" style="padding: 20px; background-color: #001122; color: #ffffff; font-family: Arial, sans-serif;">
+  
+  <h2 class="wall-title" id="wallTitle" style="margin-top: 0; margin-bottom: 20px; font-size: 18px; border-bottom: 1px solid #ffeb00; padding-bottom: 5px; color: #ffeb00;">SPECIAL FEATURES ON THE WALL</h2>
+  
+  <div class="poster-display" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: flex-start;">
+    
+    <!-- Star Trek Poster Card -->
+    <figure class="poster-card" style="margin: 0; padding: 10px; background: #002244; border: 2px solid #ffeb00; border-radius: 8px; width: 200px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.5);">
+      <img src="assets/harry-mudd.png" alt="Star Trek Harry Mudd poster" style="display: block; width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px;">
+      <figcaption class="plaque" style="display: flex; flex-direction: column; font-size: 12px; gap: 4px;">
+        <strong style="color: #ffeb00; font-size: 14px;">HARRY MUDD · STAR TREK</strong>
+        <span style="color: #cccccc;">1967</span>
+      </figcaption>
+    </figure>
+
+    <!-- 2001: A Space Odyssey Poster Card -->
+    <figure class="poster-card" style="margin: 0; padding: 10px; background: #002244; border: 2px solid #ffeb00; border-radius: 8px; width: 200px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.5);">
+      <div style="width: 100%; height: 250px; background-color: #111; display: flex; align-items: center; justify-content: center; border-radius: 4px; margin-bottom: 10px; color: #666; font-size: 12px;">Poster Placeholder</div>
+      <figcaption class="plaque" style="display: flex; flex-direction: column; font-size: 12px; gap: 4px;">
+        <strong style="color: #ffeb00; font-size: 14px;">2001: A SPACE ODYSSEY</strong>
+        <span style="color: #cccccc;">1968</span>
+      </figcaption>
+    </figure>
+
+    <!-- Butch Cassidy and the Sundance Kid Poster Card -->
+    <figure class="poster-card" style="margin: 0; padding: 10px; background: #002244; border: 2px solid #ffeb00; border-radius: 8px; width: 200px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.5);">
+      <div style="width: 100%; height: 250px; background-color: #111; display: flex; align-items: center; justify-content: center; border-radius: 4px; margin-bottom: 10px; color: #666; font-size: 12px;">Poster Placeholder</div>
+      <figcaption class="plaque" style="display: flex; flex-direction: column; font-size: 12px; gap: 4px;">
+        <strong style="color: #ffeb00; font-size: 14px;">BUTCH CASSIDY AND THE SUNDANCE KID</strong>
+        <span style="color: #cccccc;">1969</span>
+      </figcaption>
+    </figure>
+
+  </div>
+</section>
