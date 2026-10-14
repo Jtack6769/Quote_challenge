@@ -9,6 +9,10 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
+- name: Setup Node.js
+  uses: actions/setup-node@v4
+  with:
+    node-version: '22'
 name: "CodeQL Advanced"
 
 on:
