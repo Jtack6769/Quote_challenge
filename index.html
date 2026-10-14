@@ -59,11 +59,11 @@
     <h1 class="stage-title">Quote Challenge theater entrance</h1>
     <section class="stage" aria-label="Theater entrance">
       <img class="theater" src="assets/theater-entrance.png" alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
-      <div class="marquee" aria-label="There's no place like home"><span class="marquee-track">TOTO I HAVE A FEELING WE'RE NOT IN KANSAS ANYMORE&nbsp; ✦ &nbsp;&nbsp; ✦ PUT PUT THEM UP! I'LL FIGHT YOU WITH ONE PAUL TIED BEHIND MY BACK!&nbsp;</span></div>
+      <div class="marquee" aria-label="There's no place like home"><span class="marquee-track">TOTO I HAVE A FEELING WE'RE NOT IN KANSAS ANYMORE&nbsp; ✦ &nbsp;&nbsp; ✦ PUT EM UP? PUT EM UP! I'LL FIGHT YOU WITH ONE PAUL TIED BEHIND MY BACK!&nbsp;</span></div>
       <a class="door one" href="one-player.html" aria-label="Enter One Player"></a>
       <a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
       <a class="portrait" data-egg="creator" data-points="20" data-label="You found the inventor’s photo!" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
-      <a class="report" href="mailto:jamest2030@yahoo.com?bcc=jamestackett066@gmail.com&amp;subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><span class="bug-icon" aria-hidden="true">🪳</span></a>
+      <a class="report" href="mailto:=%20Challenge%20bug%20report" aria-label="Report a bug"><span class="bug-icon" aria-hidden="true">🪳</span></a>
       <!-- QUOTE CHALLENGE SCROLLING BANNER -->
 
 <style>
@@ -98,12 +98,39 @@
     text-align: center;
   }
 }
+
+<style>
+.qc-construction {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #ffb32b, #d66a00, #ff9a00);
+  border-top: 3px solid #ffd34d;
+  border-bottom: 3px solid #ffd34d;
+  box-shadow: 0 0 14px #ff8800;
+  padding: 10px 0;
+  margin: 12px auto;
+  border-radius: 7px;
+}
+.qc-construction-text {
+  display: block;
+  width: max-content;
+  white-space: nowrap;
+  color: #211000;
+  font: bold 19px Arial, sans-serif;
+  text-shadow: 0 1px 1px #ffe08a;
+  animation: qcConstructionScroll 24s linear infinite;
+}
+@keyframes qcConstructionScroll {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
+}
 </style>
 
-<div class="qc-banner">
-  <div class="qc-banner-text">
-    🎬 QUOTE CHALLENGE • IS WORKING HARD • TO BRING YOU EXCITING NEW ADVENTURES! NEXT MONTH LOGAN'S RUN! 🎬
-  </div>
+<div class="qc-construction">
+  <span class="qc-construction-"> 🚧 COOK CHALLENGE IS HARD AT WORK BRINGING YOU THE NEW AND EXCITING ADVENTURES *** COMING SOON! *** LOGAN'S RUN! DON'T MISS IT🚧
+  </span>
+</div>
     </section>
     <p style="text-align:center;padding:14px;color:#ffe34d"><strong>UNDER CONSTRUCTION</strong><br>We’re bringing you great things for yesterday today and tomorrow!!</p>
     <nav class="controls" aria-label="Quote Challenge options"><a class="control" href="one-player.html#addForm">ADD QUOTES</a>
@@ -114,6 +141,7 @@
         <span>ADD QC ICON<span class="sub">HOME SCREEN / DESKTOP</span></span>
       </button>
     </nav>
+    
     <div class="status"><span class="version">QUOTE CHALLENGE 6.0</span><span class="counter" id="deviceCounter" aria-live="polite">THIS BROWSER: LOCAL MARKER</span></div>
     <section class="poster-wall" aria-labelledby="wallTitle">
       <h2 class="wall-title" id="wallTitle">SPECIAL FEATURES ON THE WALL</h2>
