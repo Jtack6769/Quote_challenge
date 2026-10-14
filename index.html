@@ -1,4 +1,21 @@
 <!doctype html>
+
+<script>
+(() => {
+  const LIMIT = 15 * 60 * 1000;
+  const WARNING = 14 * 60 * 1000;
+  const start = Date.now();
+
+  setTimeout(() => {
+    alert("ONE MINUTE LEFT! Wrap it up!");
+  }, WARNING);
+
+  setTimeout(() => {
+    alert("15-MINUTE LIMIT REACHED. Session ended.");
+    window.location.href = "index.html";
+  }, LIMIT);
+})();
+</script>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -58,81 +75,166 @@
   <main class="shell">
     <h1 class="stage-title">Quote Challenge theater entrance</h1>
     <section class="stage" aria-label="Theater entrance">
+      
+<div class="coming-marquee">
+  <div class="marquee-heading">COMING ATTRACTIONS</div>
+  <div class="movie-flipper" id="movieFlipper">
+    <div class="movie-face" id="movieTitle">
+      LOGAN'S RUN
+    </div>
+    <div class="poster-face">
+      <img src="assets/logans-run.jpg"
+           alt="Logan's Run movie poster">
+    </div>
+  </div>
+</div>
+
+<style>
+.coming-marquee {
+  max-width: 500px;
+  margin: 15px auto;
+  text-align: center;
+  perspective: 1000px;
+}
+
+.marquee-heading {
+  background: #080808;
+  color: #ffcc00;
+  border: 3px solid #ff9900;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px orange;
+}
+
+.movie-flipper {
+  position: relative;
+  height: 230px;
+  margin-top: 8px;
+  transform-style: preserve-3d;
+  transition: transform 1.2s ease-in-out;
+}
+
+.movie-flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+.movie-face,
+.poster-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 3px solid gold;
+  border-radius: 10px;
+  background: #090909;
+}
+
+.movie-face {
+  color: #ffcc00;
+  font-size: 28px;
+  font-weight: 900;
+  text-shadow: 0 0 15px orange;
+}
+
+.poster-face {
+  transform: rotateY(180deg);
+  overflow: hidden;
+}
+
+.poster-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+</style>
+
+<script>
+(() => {
+  const titles = [
+    "COMING SOON",
+    "NEXT MONTH",
+    "LOGAN'S RUN"
+  ];
+
+  const title = document.getElementById("movieTitle");
+  const flipper = document.getElementById("movieFlipper");
+
+  if (!title || !flipper) return;
+
+  let step = 0;
+  const totalSteps = titles.length * 2;
+
+  const timer = setInterval(() => {
+    title.textContent = titles[step % titles.length];
+    step++;
+
+    if (step >= totalSteps) {
+      clearInterval(timer);
+      title.textContent = "LOGAN'S RUN";
+
+      setTimeout(() => {
+        flipper.classList.add("flipped");
+      }, 1800);
+    }
+  }, 1200);
+})();
+</script>
+      
+      
       <img class="theater" src="assets/theater-entrance.png" alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
       <div class="marquee" aria-label="There's no place like home"><span class="marquee-track">TOTO I HAVE A FEELING WE'RE NOT IN KANSAS ANYMORE&nbsp; ✦ &nbsp;&nbsp; ✦ PUT EM UP? PUT EM UP! I'LL FIGHT YOU WITH ONE PAUL TIED BEHIND MY BACK!&nbsp;</span></div>
       <a class="door one" href="one-player.html" aria-label="Enter One Player"></a>
       <a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
       <a class="portrait" data-egg="creator" data-points="20" data-label="You found the inventor’s photo!" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
       <a class="report" href="mailto:=%20Challenge%20bug%20report" aria-label="Report a bug"><span class="bug-icon" aria-hidden="true">🪳</span></a>
-     
-<!-- QUOTE CHALLENGE SCROLLING BANNER -->
+      
 <style>
-.qc-banner {
-  width: 100%;
+.qc-marquee {
   overflow: hidden;
-  background: #080808;
-  border: 2px solid #e4b83f;
-  border-radius: 6px;
-  padding: 12px 0;
-  color: #ffda54;
-  font: bold 18px Arial, sans-serif;
-}
-
-.qc-banner-text {
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
-  animation: qc-scroll 22s linear infinite;
-}
-
-@keyframes qc-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .qc-banner-text {
-    animation: none;
-    padding-left: 0;
-    white-space: normal;
-    text-align: center;
-  }
-}
-
-<style>
-.qc-construction {
-  width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-  background: linear-gradient(180deg, #ffb32b, #d66a00, #ff9a00);
-  border-top: 3px solid #ffd34d;
-  border-bottom: 3px solid #ffd34d;
-  box-shadow: 0 0 14px #ff8800;
+  background: repeating-linear-gradient(
+    135deg,
+    #ff8800 0px,
+    #ff8800 22px,
+    #111 22px,
+    #111 44px
+  );
+  border: 3px solid #ffcc00;
+  border-radius: 8px;
   padding: 10px 0;
   margin: 12px auto;
-  border-radius: 7px;
+  width: 100%;
+  box-sizing: border-box;
 }
-.qc-construction-text {
+
+.qc-marquee-text {
   display: block;
   width: max-content;
   white-space: nowrap;
-  color: #211000;
-  font: bold 19px Arial, sans-serif;
-  text-shadow: 0 1px 1px #ffe08a;
-  animation: qcConstructionScroll 24s linear infinite;
+  color: #fff;
+  font: bold 18px Arial, sans-serif;
+  text-shadow: 2px 2px 3px #000,
+              -1px -1px 3px #000;
+  animation: qc-scroll 12s linear infinite;
 }
-@keyframes qcConstructionScroll {
+
+@keyframes qc-scroll {
   from { transform: translateX(100vw); }
   to { transform: translateX(-100%); }
 }
 </style>
-<div class="qc-construction">
-  <span class="qc-construction-"> 🚧 COOK CHALLENGE IS HARD AT WORK BRINGING YOU THE NEW AND EXCITING ADVENTURES *** COMING SOON! *** LOGAN'S RUN! DON'T MISS IT🚧
-  </span>
+
+<div class="qc-marquee">
+  <span class="qc-marquee-text">
+    🚧 QUOTE CHALLENGE IS HARD AT WORK BRINGING YOU ENTERTAINMENT FROM YESTERDAY ⏮️FOR TODAY 📅 AND FOR THE FUTURE ♾️ PLEASE CHECK BACK OFTEN NEXT MONTH 🏃 LOGAN'S RUN 💃🚧
+  </span> 
 </div>
-    </section>
-    <p style="text-align:center;padding:14px;color:#ffe34d"><strong>UNDER CONSTRUCTION</strong><br>We’re bringing you great things for yesterday today and tomorrow!!</p>
-    <nav class="controls" aria-label="Quote Challenge options"><a class="control" href="one-player.html#addForm">ADD QUOTES</a>
+      
+     <nav class="controls" aria-label="Quote Challenge options"><a class="control" href="one-player.html#addForm">ADD QUOTES</a>
       <a class="control" href="one-player.html"><span>ONE PLAYER</span></a>
       <a class="control" href="two-player.html"><span>TWO PLAYER</span></a>
       <button class="control install" id="addIcon" type="button" aria-label="Add a Quote Challenge icon to this device">
