@@ -1,149 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quote Challenge v1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quote Challenge | Coming Next</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#0b1020;color:#f5f7ff;min-height:100vh}
-main{max-width:720px;margin:auto;padding:22px}.card{background:#151d35;border:1px solid #34405f;border-radius:24px;padding:24px;box-shadow:0 16px 50px #0005;margin:14px 0}
-h1{font-size:2.2rem;margin:5px 0}.sub{opacity:.75}.quote{font-size:1.5rem;line-height:1.45;margin:24px 0;padding:22px;border-radius:18px;background:#0e1529}
-button{border:0;border-radius:14px;padding:13px 18px;font-weight:700;font-size:1rem;cursor:pointer;margin:5px}
-.primary{background:#fff;color:#111}.secondary{background:#2a3555;color:#fff}.danger{background:#633444;color:#fff}
-input,select{width:100%;padding:14px;border-radius:12px;border:1px solid #465374;background:#0b1020;color:white;font-size:1rem;margin:6px 0 12px}
-.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1}.score{display:flex;justify-content:space-between;font-weight:700}
-.hidden{display:none}.tag{display:inline-block;background:#2a3555;padding:5px 9px;border-radius:999px;font-size:.8rem;margin-right:5px}
-.small{font-size:.9rem;opacity:.75}.result{font-size:1.2rem;line-height:1.5}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #080808;
+  color: #ffd700;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+header {
+  padding: 20px 12px;
+  font-size: clamp(24px, 6vw, 44px);
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 0 0 15px #c00;
+}
+
+.stage {
+  width: min(94vw, 750px);
+  height: min(115vw, 650px);
+  max-height: 75vh;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #d4af37;
+  border-radius: 12px;
+  background: #050505;
+  box-shadow: 0 0 25px #8b0000;
+}
+
+.marquee, .poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.marquee {
+  display: grid;
+  place-content: center;
+  padding: 20px;
+  background: radial-gradient(#360000, #050505 75%);
+  animation: marqueeMove 16s ease-in-out infinite;
+}
+
+.marquee h1 {
+  font-size: clamp(32px, 8vw, 65px);
+  color: #ffd700;
+  text-shadow: 0 0 18px red;
+}
+
+.marquee p {
+  font-size: 22px;
+  color: white;
+}
+
+.poster {
+  object-fit: contain;
+  background: black;
+  animation: posterMove 16s ease-in-out infinite;
+}
+
+@keyframes marqueeMove {
+  0%, 15% { transform: translateX(0); }
+  25%, 65% { transform: translateX(-100%); }
+  75%, 100% { transform: translateX(0); }
+}
+
+@keyframes posterMove {
+  0%, 15% { transform: translateX(100%); }
+  25%, 65% { transform: translateX(0); }
+  75%, 100% { transform: translateX(100%); }
+}
+
+footer {
+  padding: 18px;
+}
+
+a {
+  color: #ffd700;
+  font-size: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+  .poster { animation: none; transform: none; }
+}
 </style>
 </head>
+
 <body>
-<main>
-<div class="card">
-<h1>🎬 Quote Challenge</h1>
-<div class="sub">Live long & get it done. 🖖</div>
+
+<header>QUOTE CHALLENGE</header>
+
+<div class="stage">
+
+  <div class="marquee">
+    <h1>QUOTE CHALLENGE</h1>
+    <p>COMING NEXT MONTH!</p>
+  </div>
+
+  <img
+    class="poster"
+    src="next-poster.png"
+    alt="Coming next month movie poster"
+  >
+
 </div>
 
-<section id="setup" class="card">
-<h2>Game Setup</h2>
-<label>Player 1<input id="p1" value="Player 1"></label>
-<label>Player 2<input id="p2" value="Player 2"></label>
-<div class="row">
-<label>Rounds<select id="rounds"><option>5</option><option selected>10</option><option>15</option></select></label>
-<label>Difficulty<select id="difficulty"><option>Any</option><option>Easy</option><option>Medium</option><option>Hard</option></select></label>
-</div>
-<label>Category<select id="category"><option>Any</option><option>Movies</option><option>TV</option><option>Sci-Fi</option><option>Comedy</option><option>Action</option></select></label>
-<button class="primary" onclick="startGame()">ENGAGE — START GAME</button>
-</section>
+<footer>
+  <a href="index.html">← Return to Quote Challenge</a>
+</footer>
 
-<section id="game" class="hidden">
-<div class="card">
-<div class="score"><span id="turn"></span><span>Round <b id="roundNo"></b></span></div>
-<div id="quote" class="quote"></div>
-<div class="tag" id="cat"></div><div class="tag" id="diff"></div>
-<h3>What movie or show?</h3>
-<input id="sourceGuess" placeholder="Your answer">
-<h3>What was the line before OR after?</h3>
-<input id="lineGuess" placeholder="Your answer (optional in Casual)">
-<button class="primary" onclick="reveal()">REVEAL ANSWER</button>
-<button class="secondary" onclick="hint()">HINT</button>
-<div id="hintBox" class="small"></div>
-</div>
-<div class="card score"><span id="s1"></span><span id="s2"></span></div>
-</section>
-
-<section id="reveal" class="hidden card">
-<h2 id="resultTitle">Reveal</h2>
-<div class="result" id="answer"></div>
-<button class="primary" onclick="nextRound()">NEXT ROUND</button>
-</section>
-
-<section id="library" class="card">
-<h2>📚 Quote Library</h2>
-<p class="small">Add your own quotes. They are saved in this browser.</p>
-<label>Quote<input id="newQuote"></label>
-<label>Movie / TV Show<input id="newSource"></label>
-<label>Line before<input id="newBefore"></label>
-<label>Line after<input id="newAfter"></label>
-<div class="row">
-<label>Category<input id="newCat" value="Movies"></label>
-<label>Difficulty<select id="newDiff"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></label>
-</div>
-<button class="secondary" onclick="addQuote()">➕ ADD QUOTE</button>
-<button class="secondary" onclick="clearCustom()">Clear my custom quotes</button>
-<div id="libraryCount" class="small"></div>
-</section>
-</main>
-
-<script>
-const builtIn=[
-{q:"I have a feeling we're not in Kansas anymore.",s:"The Wizard of Oz",b:"Toto, I've a feeling we're not in Kansas anymore.",a:"",c:"Movies",d:"Easy"},
-{q:"May the Force be with you.",s:"Star Wars",b:"Remember, the Force will be with you, always.",a:"",c:"Sci-Fi",d:"Easy"},
-{q:"I'm gonna make him an offer he can't refuse.",s:"The Godfather",b:"Leave the gun. Take the cannoli.",a:"",c:"Movies",d:"Easy"},
-{q:"Here's looking at you, kid.",s:"Casablanca",b:"Louis, I think this is the beginning of a beautiful friendship.",a:"",c:"Movies",d:"Medium"},
-{q:"Live long and prosper.",s:"Star Trek",b:"",a:"",c:"Sci-Fi",d:"Easy"},
-{q:"You can't handle the truth!",s:"A Few Good Men",b:"I want the truth!",a:"",c:"Movies",d:"Easy"},
-{q:"There's no place like home.",s:"The Wizard of Oz",b:"",a:"",c:"Movies",d:"Easy"},
-{q:"Roads? Where we're going, we don't need roads.",s:"Back to the Future",b:"",a:"",c:"Movies",d:"Easy"},
-{q:"I'll be back.",s:"The Terminator",b:"",a:"",c:"Action",d:"Easy"},
-{q:"The truth is out there.",s:"The X-Files",b:"",a:"",c:"TV",d:"Easy"},
-{q:"D'oh!",s:"The Simpsons",b:"",a:"",c:"Comedy",d:"Easy"},
-{q:"Beam me up, Scotty.",s:"Star Trek",b:"",a:"",c:"Sci-Fi",d:"Easy"}
-];
-let custom=JSON.parse(localStorage.getItem("quoteCustom")||"[]");
-let pool=[],round=0,current=null,player=0,scores=[0,0],hintUsed=false;
-
-function allQuotes(){return builtIn.concat(custom)}
-function startGame(){
-  round=0;player=0;scores=[0,0];
-  const cat=document.getElementById("category").value,diff=document.getElementById("difficulty").value;
-  pool=allQuotes().filter(x=>(cat==="Any"||x.c===cat)&&(diff==="Any"||x.d===diff));
-  if(!pool.length){alert("No quotes match those filters. Choose Any or add quotes.");return}
-  document.getElementById("setup").classList.add("hidden");document.getElementById("game").classList.remove("hidden");
-  nextRound();
-}
-function nextRound(){
-  if(round>=Number(document.getElementById("rounds").value)){finish();return}
-  round++;hintUsed=false;document.getElementById("hintBox").textContent="";
-  current=pool[Math.floor(Math.random()*pool.length)];
-  document.getElementById("turn").textContent=(player?document.getElementById("p2").value:document.getElementById("p1").value)+" — QUOTER";
-  document.getElementById("roundNo").textContent=round;
-  document.getElementById("quote").textContent=current.q;
-  document.getElementById("cat").textContent=current.c;document.getElementById("diff").textContent=current.d;
-  document.getElementById("sourceGuess").value="";document.getElementById("lineGuess").value="";
-  document.getElementById("game").classList.remove("hidden");document.getElementById("reveal").classList.add("hidden");updateScores();
-}
-function reveal(){
-  const sg=document.getElementById("sourceGuess").value.trim().toLowerCase(),lg=document.getElementById("lineGuess").value.trim().toLowerCase();
-  const source=current.s.toLowerCase();
-  const sourceOK=sg && (source.includes(sg)||sg.includes(source));
-  const lineOK=lg && ((current.b&&current.b.toLowerCase().includes(lg))||(current.a&&current.a.toLowerCase().includes(lg)));
-  let pts=(sourceOK?1:0)+(lineOK?1:0);
-  scores[player]+=pts;
-  document.getElementById("resultTitle").textContent=pts===2?"🏆 2 POINTS!":pts===1?"👍 1 POINT":"No points this round";
-  document.getElementById("answer").innerHTML="<b>Source:</b> "+esc(current.s)+"<br><b>Before:</b> "+esc(current.b||"Not supplied")+"<br><b>After:</b> "+esc(current.a||"Not supplied")+"<br><br><b>"+(sourceOK?"Source correct. ":"Source missed. ")+(lineOK?"Surrounding line correct.":"Surrounding line missed.")+"</b>";
-  document.getElementById("game").classList.add("hidden");document.getElementById("reveal").classList.remove("hidden");updateScores();
-}
-function hint(){
- if(hintUsed)return;
- hintUsed=true;
- document.getElementById("hintBox").textContent="Hint: "+current.s.charAt(0)+"… ("+current.c+", "+current.d+")";
-}
-function updateScores(){document.getElementById("s1").textContent=document.getElementById("p1").value+": "+scores[0];document.getElementById("s2").textContent=document.getElementById("p2").value+": "+scores[1]}
-function finish(){
- document.getElementById("reveal").classList.remove("hidden");document.getElementById("game").classList.add("hidden");
- const winner=scores[0]===scores[1]?"🤝 It's a tie!":scores[0]>scores[1]?document.getElementById("p1").value+" wins!":document.getElementById("p2").value+" wins!";
- document.getElementById("resultTitle").textContent="🚀 GAME OVER";document.getElementById("answer").innerHTML="<b>"+winner+"</b><br><br>"+document.getElementById("p1").value+": "+scores[0]+"<br>"+document.getElementById("p2").value+": "+scores[1];
-}
-function addQuote(){
- const q=document.getElementById("newQuote").value.trim(),s=document.getElementById("newSource").value.trim();
- if(!q||!s){alert("Quote and movie/show are required.");return}
- custom.push({q,s,b:document.getElementById("newBefore").value.trim(),a:document.getElementById("newAfter").value.trim(),c:document.getElementById("newCat").value.trim()||"Movies",d:document.getElementById("newDiff").value});
- localStorage.setItem("quoteCustom",JSON.stringify(custom));["newQuote","newSource","newBefore","newAfter"].forEach(id=>document.getElementById(id).value="");updateLibrary();
-}
-function clearCustom(){if(confirm("Delete your custom quotes?")){custom=[];localStorage.setItem("quoteCustom","[]");updateLibrary()}}
-function updateLibrary(){document.getElementById("libraryCount").textContent=allQuotes().length+" total quotes ("+custom.length+" custom)."}
-function esc(x){return String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-updateLibrary();
-</script>
 </body>
 </html>
