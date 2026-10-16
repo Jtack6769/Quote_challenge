@@ -59,7 +59,7 @@
 </main>
 <script>
 'use strict';
-// Start session timers after the page is parsed.
+/***/ Start session timers after the page is parsed.
 setTimeout(()=>alert('ONE MINUTE LEFT! Wrap it up!'),14*60*1000);
 setTimeout(()=>{alert('15-MINUTE LIMIT REACHED. Session ended.');window.location.href='index.html';},15*60*1000);
 (() => {const titles=['COMING SOON','NEXT MONTH',"LOGAN'S RUN"];const title=document.getElementById('movieTitle');const flipper=document.getElementById('movieFlipper');if(!title||!flipper)return;let step=0;const timer=setInterval(()=>{title.textContent=titles[step%titles.length];step++;if(step>=titles.length*2){clearInterval(timer);title.textContent="LOGAN'S RUN";setTimeout(()=>flipper.classList.add('flipped'),1800)}},1200)})();
