@@ -59,9 +59,6 @@
 </main>
 <script>
 'use strict';
-// Start session timers after the page is parsed.
-setTimeout(()=>alert('ONE MINUTE LEFT! Wrap it up!'),14*60*1000);
-setTimeout(()=>{alert('15-MINUTE LIMIT REACHED. Session ended.');window.location.href='index.html';},15*60*1000);
 (() => {const titles=['COMING SOON','NEXT MONTH',"LOGAN'S RUN"];const title=document.getElementById('movieTitle');const flipper=document.getElementById('movieFlipper');if(!title||!flipper)return;let step=0;const timer=setInterval(()=>{title.textContent=titles[step%titles.length];step++;if(step>=titles.length*2){clearInterval(timer);title.textContent="LOGAN'S RUN";setTimeout(()=>flipper.classList.add('flipped'),1800)}},1200)})();
 async function loadCollection(){const status=document.getElementById('libraryStatus');try{const response=await fetch('./movies_and_shows.json',{cache:'no-store'});if(!response.ok)throw new Error('Collection unavailable');const data=await response.json();const entries=Array.isArray(data)?data:(data.movies_and_shows||data.quotes||[]);if(!Array.isArray(entries))throw new Error('Collection format unavailable');const list=document.getElementById('movieList');for(const entry of entries){if(!entry||typeof entry!=='object')continue;const row=document.createElement('li');row.style.marginBottom='12px';const title=entry.title||entry.movie||entry.show||'Untitled';const quote=entry.quote||entry.text||'';row.textContent=String(title)+(entry.release_year?' ('+entry.release_year+')':'')+(entry.type?' — '+entry.type:'')+(quote?': “'+String(quote)+'”':'');list.appendChild(row)}status.textContent=list.children.length?list.children.length+' movies, shows or quotes in the collection.':'The collection is being prepared.'}catch{status.textContent='The collection will appear here when movies_and_shows.json is available. You can still use the player buttons above.'}}
 loadCollection();
