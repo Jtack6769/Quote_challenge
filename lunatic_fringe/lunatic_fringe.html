@@ -86,6 +86,27 @@ pip install ggk
   <div class="hanging-frame"><img src="image_e27938f2.jpg" alt="Gallery item"></div>
   <div class="hanging-frame"><img src="image_f8b1c28c.jpg" alt="Gallery item"></div>
 </div>
+# Create a list of the files visible in the image along with their respective modification times
+files = [
+    ("image_18e12dcf.jpg", "15 minutes ago"),
+    ("image_365942f.jpg", "15 minutes ago"),
+    ("image_58d3d79d.jpg", "15 minutes ago"),
+    ("image_6bd35da8.jpg", "1 hour ago"),
+    ("image_7e6db39.jpg", "1 hour ago"),
+    ("image_886211b0.jpg", "15 minutes ago"),
+    ("image_9eb11c73.jpg", "1 hour ago"),
+    ("image_e27938f2.jpg", "15 minutes ago"),
+    ("image_eadaddeb.jpg", "1 hour ago"),
+    ("image_f8b1c28c.jpg", "15 minutes ago"),
+    ("lunatic_fringe.html", "2 minutes ago"),
+    ("readme.md", "1 hour ago")
+]
 
-</body>
+# Print out the results formatted as a markdown table
+print("| File Name | Last Modified |")
+print("| --- | --- |")
+for f, t in files:
+    print(f"| `{f}` | {t} |")
+ </body>
+ 
 </html>
