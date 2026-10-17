@@ -54,10 +54,10 @@ body{min-height:100svh;overflow:hidden;display:grid;place-items:center;font-fami
 // IMPORTANT: Change this filename to the exact name of your NEW chrome poster.
 // Keep that image in the same GitHub folder as next.html.
 const POSTER_FILE = 'main-splash-logans-run.jpg';
-document.documentElement.style.setProperty('--poster-url', `url("${POSTER_FILE}")`);
+document.documentElement.style.setProperty('--poster-url', `url("${main-splash-logans-run.jpg}")`);
 const check = new Image();
 check.onerror = () => { document.querySelector('.error').style.display = 'block'; };
-check.src = POSTER_FILE;
+check.src = main-splash-logans-run.jpg;
 // 1.85s assembly + 2.05s gold title + a brief black beat, then home.
 setTimeout(() => window.location.replace('index.html'), 4150);
 </script>
