@@ -1,121 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#071a3b">
-<meta name="description" content="Step inside Quote Challenge, the movie theater game.">
-<link rel="manifest" href="manifest.webmanifest">
-<title>Quote Challenge — Theater Entrance</title>
-<style>
-:root{--blue:#0755bd;--blue2:#031c48;--gold:#ffe34d;--cream:#fff3c6;--ink:#090b12}
-*{box-sizing:border-box}html{min-height:100%;background:#020309;color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,sans-serif}body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 50% 0,#132d55 0,#050812 52%,#020309 100%)}a{color:inherit}
-.shell{width:min(100%,1536px);margin:auto;padding:0 0 18px}.stage{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:#050505;isolation:isolate}.theater{display:block;width:100%;height:100%;object-fit:cover}
-.marquee{position:absolute;z-index:2;left:21.5%;top:20.5%;width:56%;height:8.3%;display:flex;align-items:center;overflow:hidden;border:clamp(2px,.34vw,5px) solid #ffd844;border-radius:3px;background:linear-gradient(180deg,#1371e5 0%,#0644a6 46%,#042863 100%);box-shadow:0 0 0 2px #062052,0 0 22px #2684ffb8,inset 0 0 15px #3c91ff;pointer-events:none}
-.marquee:before,.marquee:after{content:"✦  ✦  ✦  ✦  ✦";position:absolute;z-index:2;top:50%;transform:translateY(-50%);color:var(--gold);font-size:clamp(7px,1.05vw,16px);letter-spacing:.35em;text-shadow:0 0 8px #ffd94d}.marquee:before{left:1.2%}.marquee:after{right:1.2%}
-.marquee-track{display:flex;align-items:center;white-space:nowrap;min-width:max-content;animation:marquee 33s linear infinite;padding-left:100%;font:900 clamp(12px,2.1vw,32px)/1 Georgia,"Times New Roman",serif;letter-spacing:.11em;color:var(--gold);text-shadow:0 2px 0 #5b3600,0 0 10px #ffdf54;padding-right:100%}@keyframes marquee{to{transform:translateX(-100%)}}
-.door{position:absolute;z-index:3;top:39%;height:39%;width:16.8%;border-radius:8px;display:grid;place-items:center;text-decoration:none;color:transparent}.door.one{left:30.2%}.door.two{left:49.3%}.door:focus-visible,.portrait:focus-visible,.report:focus-visible{outline:4px solid gold;outline-offset:3px}
-.portrait{position:absolute;z-index:4;left:23.5%;top:52%;width:5.3%;height:13%;border:0;border-radius:40%;background:transparent;cursor:pointer;touch-action:manipulation}.portrait:focus-visible{outline-color:var(--gold);background:#ffe34d20}
-.report{position:absolute;z-index:5;right:1.1%;bottom:1.2%;display:grid;place-items:center;min-width:55px;min-height:48px;padding:7px 12px;border:2px solid var(--gold);border-radius:12px;background:#081936;color:var(--cream);font-size:24px;text-decoration:none;filter:drop-shadow(0 0 6px #050505) drop-shadow(0 0 5px #ffd51c);transition:transform .7.5s}.report:hover{transform:scale(1.06)}
-.stage-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.controls{display:flex;justify-content:center;align-items:center;gap:clamp(8px,1.3vw,18px);flex-wrap:wrap;padding:14px 12px 10px;background:linear-gradient(180deg,#071a39,#030815);border-top:2px solid #1377ed;box-shadow:0 -4px 24px #0867df40}.control{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:10px 18px;border:2px solid var(--gold);border-radius:9px;background:linear-gradient(180deg,#0a56b7,#06285f);color:var(--cream);text-decoration:none;font-weight:900;letter-spacing:.07em;text-shadow:0 2px #061632;box-shadow:0 4px 0 #04142f,0 0 13px #1784ff62;cursor:pointer}.control:hover{background:linear-gradient(180deg,#1478ed,#073f91);transform:translateY(-1px)}.control:focus-visible{outline:3px solid white;outline-offset:3px}.control svg{width:23px;height:23px;flex:none}.control .sub{display:block;font-size:10px;font-weight:600;letter-spacing:.08em;color:#c8dcff}.install{min-width:195px}
-.status{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;padding:2px 12px 13px;text-align:center;font-size:12px;color:#d7e3fa}.version{color:#9db8df;letter-spacing:.13em}.counter{border:1px solid #5a83bb;border-radius:999px;background:#081936;padding:5px 11px;color:#ffeb91;font-weight:800}
-.qc-marquee{overflow:hidden;background:repeating-linear-gradient(135deg,#ff8800 0px,#ff8800 22px,#111 22px,#111 44px);border:3px solid #ffcc00;border-radius:8px;padding:10px 0;margin:12px auto;width:calc(100% - 24px)}.qc-marquee-text{display:block;width:max-content;white-space:nowrap;color:white;font:bold 18px Arial,sans-serif;text-shadow:2px 2px 3px #000,-1px -1px 3px #000;animation:qc-scroll 16s linear infinite}@keyframes qc-scroll{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
-.coming-marquee{max-width:500px;margin:15px auto;text-align:center;perspective:1000px}.marquee-heading{background:#080808;color:#ffcc00;border:3px solid #ff9900;padding:10px;font-size:22px;font-weight:bold;letter-spacing:2px;text-shadow:0 0 12px orange}.movie-flipper{position:relative;height:230px;margin-top:8px;transform-style:preserve-3d;transition:transform 3.0 ease-in-out}.movie-flipper.flipped{transform:rotateY(180deg)}.movie-face,.poster-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:3px solid gold;border-radius:10px;background:#090909}.movie-face{color:#ffcc00;font-size:28px;font-weight:900;text-shadow:0 0 15px orange}.poster-face{transform:rotateY(180deg);overflow:hidden}.poster-face img{width:100%;height:100%;object-fit:contain}
-.next-wrap{text-align:center;margin:18px auto 24px}.next-button{display:inline-block;background:#0066ff;color:#ffeb00;padding:14px 28px;border:3px solid #ffeb00;border-radius:10px;font-weight:900;font-size:20px;text-align:center;text-decoration:none;line-height:1.5;position:relative;z-index:10;box-shadow:0 0 14px #1478ed}.next-button span{display:block}.next-button:focus-visible{outline:3px solid white;outline-offset:4px}
-.poster-wall{position:relative;margin:16px 12px 0;padding:24px clamp(14px,4vw,52px) 38px;border:3px solid #805c22;border-radius:14px;background:radial-gradient(ellipse at 50% 0,#28446a 0,#0b1424 58%,#060910 100%);box-shadow:inset 0 0 0 3px #d0a54850,0 14px 35px #000;overflow:hidden}.poster-wall:before{content:"";position:absolute;inset:9px;border:1px solid #e3bd5f55;border-radius:9px;pointer-events:none}.wall-title{position:relative;margin:0 auto 18px;width:max-content;max-width:100%;padding:9px 22px;border:2px solid var(--gold);background:linear-gradient(180deg,#104a99,#061b3b);color:var(--gold);font:900 clamp(16px,2.2vw,27px)/1.2 Georgia,"Times New Roman",serif;text-align:center;letter-spacing:.13em;text-shadow:0 2px 0 #372900}.poster-display{position:relative;display:flex;align-items:flex-start;justify-content:center;gap:clamp(16px,5vw,78px);min-height:370px}.poster-card{position:relative;width:min(31%,310px);margin:0;padding:10px 10px 0;border:7px ridge #d9b354;background:#14100b;box-shadow:0 12px 24px #000c,0 0 14px #e5bd5b48;transform:rotate(-2deg)}.poster-card:nth-child(2){margin-top:30px;transform:rotate(2.4deg)}.poster-card img{display:block;width:100%;height:clamp(245px,39vw,430px);object-fit:contain;background:#080b12}.plaque{position:relative;margin:12px -2px 0;padding:9px 7px 11px;border:2px solid #c59a42;background:linear-gradient(180deg,#152c4b,#08152a);color:#fff0bd;text-align:center;box-shadow:inset 0 0 0 2px #5c4525;font-family:Georgia,"Times New Roman",serif;font-weight:900;line-height:1.2}.plaque strong{display:block;font-size:clamp(12px,1.7vw,19px)}.plaque span{display:block;margin-top:3px;color:var(--gold);font-size:clamp(13px,1.5vw,18px);letter-spacing:.16em}.poster-note{margin:27px auto 0;max-width:760px;text-align:center;color:#d6e2f9;font-size:14px}.poster-note strong{color:#ffe378}.footer-note{text-align:center;padding:16px10px;color:#96a8c3;font-size:11px }}
-@media(max-width:650px){.shell{padding-bottom:10px}.controls{padding:10px 7px;gap:8px}.control{padding:9px 12px;font-size:13px;min-height:46px}.install{min-width:0}.control .sub{font-size:9px}.status{font-size:11px;gap:8px}.poster-wall{margin:10px 7px 0;padding:20px 10px 25px}.poster-display{gap:14px;min-height:0}.poster-card{width:43%;padding:6px 6px 0;border-width:5px}.poster-card:nth-child(2){margin-top:24px}.poster-card img{height:clamp(210px,58vw,330px)}.plaque{padding:7px 4px 8px}.wall-title{margin-bottom:12px;padding:7px 12px}.poster-note{font-size:12px;padding:0 8px}.marquee-heading{font-size:18px}.movie-flipper{height:200px}}
-@media(max-width:380px){.control{padding:8px;font-size:11px}.marquee-track{font-size:11px}}
-@media(prefers-reduced-motion:reduce){.marquee-track,.qc-marquee-text{animation:none}.marquee-track{min-width:100%;justify-content:center;padding:0}.marquee:before,.marquee:after{display:none}.movie-flipper{transition:none}}
-</style>
-<link rel="stylesheet" href="assets/eggs.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Poster Flip Card</title>
+    <style>
+        /* Base page layout centering the card */
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* 1. THE CONTAINER: Defines the size of your card and turns on 3D perspective */
+        .card-container {
+            width: 300px;
+            height: 450px;
+            perspective: 1000px; /* Gives the flip a 3D depth effect */
+        }
+
+        /* 2. THE FLIPPER: This is the actual box that spins around when hovered */
+        .movie-flipper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d; /* Tells child elements to exist in 3D space */
+            transition: transform 0.6s ease; /* Controls how fast and smooth the spin is */
+        }
+
+        /* Trigger the spin when you hover over the container */
+        .card-container:hover .movie-flipper {
+            transform: rotateY(180deg);
+        }
+
+        /* 3. THE FACES: Shared styles for both the front and back sides */
+        .movie-face, .poster-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Hides the back side of a card when it's facing away */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* FRONT FACE: The Text Side */
+        .movie-face {
+            background-color: #1f1f1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 2px solid #333;
+        }
+
+        /* BACK FACE: The Image Side */
+        .poster-face {
+            background-color: #000;
+            transform: rotateY(180deg); /* Pre-flips the back image so it looks right when spun */
+        }
+
+        /* Make sure the image stretches perfectly to fill its side */
+        .poster-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
-<main class="shell">
-<h1 class="stage-title">Quote Challenge theater entrance</h1>
-<section class="stage" aria-label="Theater entrance">
-<img class="theater" src="theater.png.png" alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
-<div class="marquee" aria-label="Theater marquee"><span class="marquee-track">"TO BOLDLY GO WHERE NO MAN HAS GONE BEFORE" James T Kirk.&nbsp; ✦ &nbsp;&nbsp; ✦RISK IS OUR BUSINESS THAT'S WHAT THIS STARSHIP IS ALL ABOUT! James T Kirk&nbsp;</span></div>
-<a class="door one" href="one-player.to boldly go where no man has gone before."" aria-label="Enter One Player"></a>
-<a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
-<a class="portrait" data-egg="creator" data-points="20" data-label="You found the inventor’s photo!" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
-<a class="report" href="mailto:qcchallenger67@gmail.com?subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><span aria-hidden="true">🪳</span></a>
-</section>
-<div class="qc-marquee"><span class="qc-marquee-text">🚧 QUOTE CHALLENGE IS HARD AT WORK BRINGING YOU ENTERTAINMENT FROM YESTERDAY ⏮️ FOR TODAY 📅 AND FOR THE FUTURE ♾️ PLEASE CHECK BACK OFTEN NEXT MONTH 🏃 LOGAN'S RUN 💃 🚧</span></div>
-<nav class="controls" aria-label="Quote Challenge options">
-<a class="control" href="one-player.html#addForm">ADD QUOTES</a>
-<a class="control" href="one-player.html">ONE PLAYER</a>
-<a class="control" href="two-player.html">TWO PLAYER</a>
-<button class="control install" id="addIcon" type="button" aria-label="Add a Quote Challenge icon to this device"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="8" fill="#ffe34d" stroke="#fff8c8" stroke-width="2"/><text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="900" fill="#111">QC</text><circle cx="37" cy="37" r="5" fill="#9cff20" stroke="#111" stroke-width="1.5"/><path d="M34 37h6m-3-3v6m-4-5-2-2m10 2 2-2" stroke="#111" stroke-width="1.3" stroke-linecap="round"/></svg><span>ADD QC ICON<span class="sub">HOME SCREEN / DESKTOP</span></span></button>
-</nav>
-  <div class="status">
-  <span class="version">QUOTE CHALLENGE 6.3</span>
-  <span class="counter" id="deviceCounter" aria-live="polite">
-    THIS BROWSER: LOCAL MARKER
-  </span>
-</div>
 
-<div class="coming-marquee">
-  <div class="marquee-heading">COMING ATTRACTIONS</div>
-  <div class="movie-flipper" id="movieFlipper">
-    <div class="movie-face" id="movieTitle">COMING SOON</div>
-    <div class="poster-face">
-      <img src="poster.png" alt="Logan's Run movie poster">
+    <!-- Wrapped in a container so the hover mechanism triggers correctly -->
+    <div class="card-container">
+        
+        <!-- This matches the exact code structure from your image -->
+        <div class="movie-flipper" id="movieFlipper">
+            
+            <!-- Front of the card -->
+            <div class="movie-face" id="movieTitle">
+                COMING SOON
+            </div>
+            
+            <!-- Back of the card -->
+            <div class="poster-face">
+                <!-- Replace 'https://picsum.photos' with your actual 'poster.png' path later -->
+                <img src="https://picsum.photos" alt="Logan's Run poster">
+            </div>
+
+        </div>
+
     </div>
-  </div>
-</div>
 
-<div class="next-wrap">
-  <a href="next.html" class="next-button">
-    DARE TO ADVENTURE
-    <span>NEXT</span>
-  </a>
-</div>
-
-<section class="poster-wall" aria-labelledby="wallTitle">
-  <h2 class="wall-title" id="wallTitle">
-    SPECIAL FEATURES ON THE WALL
-  </h2>
-
-  <div class="poster-display">
-    <figure class="poster-card">
-      <img src="assets/harry-mudd.png" alt="Star Trek Harry Mudd poster">
-      <figcaption class="plaque">
-        <strong>HARRY MUDD · STAR TREK</strong>
-        <span>1967</span>
-      </figcaption>
-    </figure>
-
-    <figure class="poster-card">
-      <img src="assets/uhura.jpg" alt="Lieutenant Uhura Star Trek poster">
-      <figcaption class="plaque">
-        <strong>STAR TREK: THE ORIGINAL SERIES</strong>
-        <span>1966</span>
-      </figcaption>
-    </figure>
-  </div>
-
-  <p class="poster-note">
-    Two special posters for the theater wall, set among the movie
-    title plaques and years already hanging around the entrance.
-  </p>
-</section>
-<aside class="wall-trivia" aria-label="Movie years"><button class="movie-plaque" data-egg="movie-1968" data-points="5" data-label="2001: A Space Odyssey">2001: A Space Odyssey<small>1968</small></button><div class="movie-plaque">Butch Cassidy and the Sundance Kid<small>1969</small></div></aside>
-<section class="poster-wall" aria-labelledby="libraryTitle"><h2 class="wall-title" id="libraryTitle">MOVIES, SHOWS &amp; QUOTES</h2><p id="libraryStatus" role="status">Loading the collection…</p><ul id="movieList"></ul></section>
-<p class="footer-note">Add an icon to your home screen or desktop for quick access.</p>
-<div class="freddie-hideout"><button class="freddie-egg chair" data-egg="freddie" data-points="25" data-label="You petted Freddie!" aria-label="Pet Freddie"><img src="assets/freddie-chair.jpg" alt="Freddie"></button></div>
-</main>
-<script>
-'use strict';
-// Start session timers after the page is parsed.
-setTimeout(()=>alert('ONE MINUTE LEFT! Wrap it up!'),14*60*1000);
-setTimeout(()=>{alert('15-MINUTE LIMIT REACHED. Session ended.');window.location.href='index.html';},15*60*1000);
-(() => {const titles=['COMING SOON','NEXT MONTH',"LOGAN'S RUN"];const title=document.getElementById('movieTitle');const flipper=document.getElementById('movieFlipper');if(!title||!flipper)return;let step=0;const timer=setInterval(()=>{title.textContent=titles[step%titles.length];step++;if(step>=titles.length*2){clearInterval(timer);title.textContent="LOGAN'S RUN";setTimeout(()=>flipper.classList.add('flipped'),1800)}},1200)})();
-async function loadCollection(){const status=document.getElementById('libraryStatus');try{const response=await fetch('./movies_and_shows.json',{cache:'no-store'});if(!response.ok)throw new Error('Collection unavailable');const data=await response.json();const entries=Array.isArray(data)?data:(data.movies_and_shows||data.quotes||[]);if(!Array.isArray(entries))throw new Error('Collection format unavailable');const list=document.getElementById('movieList');for(const entry of entries){if(!entry||typeof entry!=='object')continue;const row=document.createElement('li');row.style.marginBottom='12px';const title=entry.title||entry.movie||entry.show||'Untitled';const quote=entry.quote||entry.text||'';row.textContent=String(title)+(entry.release_year?' ('+entry.release_year+')':'')+(entry.type?' — '+entry.type:'')+(quote?': “'+String(quote)+'”':'');list.appendChild(row)}status.textContent=list.children.length?list.children.length+' movies, shows or quotes in the collection.':'The collection is being prepared.'}catch{status.textContent='The collection will appear here when movies_and_shows.json is available. You can still use the player buttons above.'}}
-loadCollection();
-try{const key='qc_index_unique_device_510';const counter=document.getElementById('deviceCounter');if(localStorage.getItem(key))counter.textContent='THIS BROWSER: RETURN VISIT';else{localStorage.setItem(key,'1');counter.textContent='THIS BROWSER: FIRST VISIT'}}catch{document.getElementById('deviceCounter').textContent='LOCAL MARKER UNAVAILABLE'}
-let installPrompt=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event});document.getElementById('addIcon').addEventListener('click',async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else alert('To add the Quote Challenge icon, open your browser menu and choose “Add to Home screen” or “Create shortcut.” This adds an icon to your device.')});
-</script>
-<script src="assets/eggs.js"></script>
 </body>
 </html>
