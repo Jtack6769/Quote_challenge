@@ -1,141 +1,30 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quote Challenge | Coming Next</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071a3b">
+<title>Coming Next | Quote Challenge</title>
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: #080808;
-  color: #ffd700;
-  font-family: Georgia, serif;
-  text-align: center;
-}
-
-header {
-  padding: 20px 12px;
-  font-size: clamp(24px, 6vw, 44px);
-  font-weight: bold;
-  color: #ffd700;
-  text-shadow: 0 0 15px #c00;
-}
-
-.stage {
-  width: min(94vw, 750px);
-  height: min(115vw, 650px);
-  max-height: 75vh;
-  margin: 20px auto;
-  position: relative;
-  overflow: hidden;
-  border: 3px solid #d4af37;
-  border-radius: 12px;
-  background: #050505;
-  box-shadow: 0 0 25px #8b0000;
-}
-
-.marquee, .poster {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.marquee {
-  display: grid;
-  place-content: center;
-  padding: 20px;
-  background: radial-gradient(#360000, #050505 75%);
-  animation: marqueeMove 16s ease-in-out infinite;
-}
-
-.marquee h1 {
-  font-size: clamp(32px, 8vw, 65px);
-  color: #ffd700;
-  text-shadow: 0 0 18px red;
-}
-
-.marquee p {
-  font-size: 22px;
-  color: white;
-}
-
-.poster {
-  object-fit: contain;
-  background: black;
-  animation: posterMove 16s ease-in-out infinite;
-}
-
-@keyframes marqueeMove {
-  0%, 15% { transform: translateX(0); }
-  25%, 65% { transform: translateX(-100%); }
-  75%, 100% { transform: translateX(0); }
-}
-
-@keyframes posterMove {
-  0%, 15% { transform: translateX(100%); }
-  25%, 65% { transform: translateX(0); }
-  75%, 100% { transform: translateX(100%); }
-}
-
-footer {
-  padding: 18px;
-}
-
-a {
-  color: #ffd700;
-  font-size: 18px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee, .poster {
-    animation: none;
-  }
-
-  .marquee {
-    display: none;
-  }
-
-  .poster {
-    transform: none;
-  }
-}
+*{box-sizing:border-box}html{background:#030611;color:#ffe34d;font-family:Georgia,serif}body{margin:0;min-height:100svh;display:grid;place-items:center;background:radial-gradient(ellipse at top,#16365f,#030611 70%)}main{width:min(94vw,650px);padding:28px 12px;text-align:center}h1{font-size:clamp(22px,5vw,38px);letter-spacing:.12em;text-shadow:0 0 18px #e9a831;margin:0 0 20px}.frame{width:min(100%,440px);aspect-ratio:2/3;position:relative;margin:auto;border:7px ridge #e4bd60;border-radius:7px;background:#0a0b10;box-shadow:0 0 22px #dba73b66;overflow:hidden;animation:frame-glow 1s ease-out 2.6s both}.tile{position:absolute;width:50%;height:50%;background-image:url('poster.png');background-size:200% 200%;background-repeat:no-repeat;opacity:0;animation:arrive 1s cubic-bezier(.16,.8,.2,1) forwards}.tile:nth-child(1){left:0;top:0;background-position:left top;--x:-130%;--y:-100%;animation-delay:.45s}.tile:nth-child(2){right:0;top:0;background-position:right top;--x:130%;--y:-100%;animation-delay:.85s}.tile:nth-child(3){left:0;bottom:0;background-position:left bottom;--x:-130%;--y:100%;animation-delay:1.25s}.tile:nth-child(4){right:0;bottom:0;background-position:right bottom;--x:130%;--y:100%;animation-delay:1.65s}.frame.depart .tile{animation:depart .85s cubic-bezier(.65,0,.85,.3) forwards;opacity:1}.frame.depart .tile:nth-child(1){--x:-180%;--y:-170%}.frame.depart .tile:nth-child(2){--x:180%;--y:-170%}.frame.depart .tile:nth-child(3){--x:-180%;--y:170%}.frame.depart .tile:nth-child(4){--x:180%;--y:170%}@keyframes depart{from{opacity:1;transform:translate(0,0) scale(1)}to{opacity:0;transform:translate(var(--x),var(--y)) rotate(12deg) scale(.8)}}.final-title{position:absolute;inset:0;display:grid;place-content:center;gap:14px;padding:15px;opacity:0;transform:scale(.8);color:#ffe34d;text-shadow:0 0 14px #ffb800,0 0 32px #ff9900;font-size:clamp(32px,8vw,66px);font-weight:900;letter-spacing:.06em}.final-title small{font:800 clamp(13px,3vw,21px) system-ui,sans-serif;color:#fff3c6;letter-spacing:.13em}.frame.depart .final-title{animation:final-reveal 1s ease .55s forwards}@keyframes final-reveal{to{opacity:1;transform:scale(1)}}@keyframes arrive{from{opacity:0;transform:translate(var(--x),var(--y)) scale(.85)}to{opacity:1;transform:translate(0,0) scale(1)}}@keyframes frame-glow{from{box-shadow:0 0 22px #dba73b66}50%{box-shadow:0 0 48px #ffe34d}to{box-shadow:0 0 22px #dba73b66}}.caption{opacity:0;animation:reveal .8s ease 2.6s forwards;font-size:clamp(24px,6vw,42px);margin:18px 0 6px;letter-spacing:.14em}.sub{opacity:0;animation:reveal .8s ease 2.9s forwards;color:#fff3c6;margin:0 0 22px}@keyframes reveal{to{opacity:1}}a{display:inline-block;border:2px solid #ffe34d;border-radius:8px;padding:12px 22px;color:#fff3c6;text-decoration:none;background:#083b85;font:700 15px system-ui,sans-serif}a:focus-visible{outline:3px solid white;outline-offset:3px}@media(prefers-reduced-motion:reduce){.tile,.caption,.sub,.frame{animation:none;opacity:1;transform:none}.frame.depart .tile{display:none}.frame.depart .final-title{animation:none;opacity:1;transform:none}}
 </style>
 </head>
-
 <body>
-
-<header>QUOTE CHALLENGE</header>
-
-<div class="stage">
-
-  <div class="marquee">
-    <h1>COMING NEXT MONTH</h1>
-    <p>LOGAN'S RUN</p>
-  </div>
-
-  <img
-    class="poster"
-    src="main-splash-logans-run.jpg"
-    alt="Logan's Run splash">
-
+<main>
+<h1>COMING NEXT MONTH</h1>
+<div class="frame" role="img" aria-label="Logan's Run movie poster revealed in four pieces">
+<div class="final-title" aria-hidden="true">LOGAN'S RUN<small>COMING NEXT MONTH</small></div>
+<div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
 </div>
+<h2 class="caption">LOGAN'S RUN</h2>
+<p class="sub">The next featured attraction</p>
 
-<footer>
-  <img
-    class="poster"
-    src="main-splash-logans-run.jpg"
-    alt="Logan's Run splash">
-
-</div>
-  
-  <a href="index.html">← Return to Quote Challenge</a>
-</footer>
-
+</main>
+<script>
+// Assemble for 2.7 seconds, display for 8 seconds, then reveal the title.
+setTimeout(()=>document.querySelector('.frame').classList.add('depart'),10700);
+// Keep the final title visible for four seconds before returning home.
+setTimeout(()=>window.location.replace('index.html'),14700);
+</script>
 </body>
 </html>
