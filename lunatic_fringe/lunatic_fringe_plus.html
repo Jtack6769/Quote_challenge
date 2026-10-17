@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gallery Wall</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    min-height: 100vh;
+    color: #eee;
+    font-family: Georgia, serif;
+    background-color: #1a1512;
+    background-image:
+      linear-gradient(335deg, #110d0b 23px, transparent 23px),
+      linear-gradient(155deg, #1d1815 23px, transparent 23px),
+      linear-gradient(335deg, #110d0b 23px, transparent 23px),
+      linear-gradient(155deg, #1d1815 23px, transparent 23px),
+      linear-gradient(90deg, #0d0a08 10px, transparent 10px),
+      linear-gradient(#0d0a08 10px, transparent 10px);
+    background-size: 58px 58px, 58px 58px, 58px 58px, 58px 58px, 29px 29px, 29px 29px;
+    background-position: 0 2px, 4px 35px, 29px 31px, 34px 6px, 0 0;
+    box-shadow: inset 0 0 200px rgba(0,0,0,.85);
+  }
+  .wall-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hanging-frame {
+    position: relative;
+    padding: 12px 12px 14px;
+    background: #111;
+    border: 8px ridge #4a3b2c;
+    border-radius: 4px;
+    box-shadow: 0 25px 35px rgba(0,0,0,.9), 0 5px 15px rgba(0,0,0,.7);
+    transform: rotate(var(--angle, 0deg));
+    transition: transform .3s ease;
+    max-width: 100%;
+    cursor: zoom-in;
+  }
+  .hanging-frame:nth-child(odd) { --angle: -1.5deg; }
+  .hanging-frame:nth-child(even) { --angle: 1.8deg; }
+  .hanging-frame:nth-child(3n) { --angle: -.7deg; }
+  .hanging-frame:hover, .hanging-frame:focus-visible {
+    transform: rotate(0) scale(1.03);
+    z-index: 10;
+  }
+  .hanging-frame:focus-visible { outline: 3px solid #f5c76c; outline-offset: 7px; }
+  .hanging-frame img {
+    display: block;
+    width: 260px;
+    max-width: 100%;
+    height: auto;
+    min-height: 180px;
+    object-fit: contain;
+    border: 1px solid #050505;
+    background: #000;
+  }
+  .missing-label { display: none; padding: 15px; max-width: 260px; font: 14px/1.5 system-ui,sans-serif; overflow-wrap: anywhere; }
+  .hanging-frame.missing { cursor: default; }
+  .hanging-frame.missing .missing-label { display: block; }
+  .hanging-frame.missing img { display: none; }
+  dialog.viewer {
+    border: 8px ridge #4a3b2c;
+    border-radius: 5px;
+    background: #101010;
+    color: white;
+    padding: 15px;
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+    box-shadow: 0 20px 50px #000;
+  }
+  dialog.viewer::backdrop { background: rgba(0,0,0,.9); }
+  .viewer img { display: block; max-width: min(88vw, 1100px); max-height: 76vh; object-fit: contain; }
+  .viewer .close {
+    display: block;
+    margin: 0 0 12px auto;
+    padding: 7px 12px;
+    background: #292019;
+    border: 1px solid #9f8868;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  @media (max-width: 600px) {
+    body { padding: 28px 16px; }
+    .wall-gallery { gap: 28px; }
+    .hanging-frame img { width: min(260px, 72vw); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hanging-frame { transition: none; }
+  }
+</style>
+</head>
+<body>
+<main class="wall-gallery" aria-label="Framed picture gallery">
+  <!-- Keep these six JPG files beside this HTML file, with matching lowercase names. -->
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="image_18e12dcf.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 2"><img src="image_365942f.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 3"><img src="image_58d3d79d.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 4"><img src="image_886211b0.jpg" alt="Gallery picture 4" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="image_e27938f2.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="image_f8b1c28c.jpg" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
+</main>
+<dialog class="viewer" aria-label="Enlarged gallery picture">
+  <button class="close" type="button" aria-label="Close enlarged picture">Close ×</button>
+  <img alt="Enlarged gallery picture">
+</dialog>
+<script>
+  const viewer = document.querySelector('.viewer');
+  const enlargedImage = viewer.querySelector('img');
+  const closeButton = viewer.querySelector('.close');
+  let lastFrame = null;
+  document.querySelectorAll('.hanging-frame').forEach(frame => {
+    const photo = frame.querySelector('img');
+    const showMissing = () => {
+      frame.classList.add('missing');
+      frame.querySelector('.missing-label').textContent = 'Picture not found: ' + photo.getAttribute('src');
+      frame.removeAttribute('role');
+      frame.removeAttribute('tabindex');
+      frame.removeAttribute('aria-label');
+    };
+    photo.addEventListener('error', showMissing);
+    if (photo.complete && photo.naturalWidth === 0) showMissing();
+    const open = () => {
+      if (frame.classList.contains('missing')) return;
+      lastFrame = frame;
+      enlargedImage.src = photo.src;
+      enlargedImage.alt = photo.alt;
+      viewer.showModal();
+      closeButton.focus();
+    };
+    frame.addEventListener('click', open);
+    frame.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+  closeButton.addEventListener('click', () => viewer.close());
+  viewer.addEventListener('click', e => { if (e.target === viewer) viewer.close(); });
+  viewer.addEventListener('close', () => { enlargedImage.removeAttribute('src'); if (lastFrame) lastFrame.focus(); });
+</script>
+</body>
+</html>
