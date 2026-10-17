@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -48,16 +49,16 @@ body{min-height:100svh;overflow:hidden;display:grid;place-items:center;font-fami
   <div class="gold-reveal" aria-label="Logan's Run. Next month.">
     <h1>LOGAN'S RUN</h1><p>NEXT MONTH</p>
   </div>
-  <p class="error" role="status">1main-splash-logans-run.jpg.</p>
+  <p class="error" role="status">Poster image not found. Check the filename in next.html.</p>
 </main>
 <script>
-// IMPORTANT: Change this filename to the exact name of your NEW chrome poster.
+// Chrome Logan's Run poster filename supplied by the creator.
 // Keep that image in the same GitHub folder as next.html.
 const POSTER_FILE = 'main-splash-logans-run.jpg';
-document.documentElement.style.setProperty('--poster-url', `url("${main-splash-logans-run.jpg}")`);
+document.documentElement.style.setProperty('--poster-url', `url("${POSTER_FILE}")`);
 const check = new Image();
 check.onerror = () => { document.querySelector('.error').style.display = 'block'; };
-check.src = main-splash-logans-run.jpg;
+check.src = POSTER_FILE;
 // 1.85s assembly + 2.05s gold title + a brief black beat, then home.
 setTimeout(() => window.location.replace('index.html'), 4150);
 </script>
