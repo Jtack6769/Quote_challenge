@@ -1,4 +1,4 @@
-QUOTE CHALLENGE THEATER ENTRANCE — INDEX 5.1.10
+QUOTE CHALLENGE THEATER ENTRANCE — INDEX 6.5 / previously 5.10.1
 
 Upload the contents of this folder to the root of the GitHub Pages site.
 Keep the existing one-player.html and two-player.html files in that same root.
