@@ -1,5 +1,5 @@
 QUOTE CHALLENGE 6.0 — FREDDIE & WALL BONUSES
-
+<span style="color:red;">***** FILES NO LONGER RELEVANT ***** ♥️🍒</span>
 Upload these four HTML pages, manifest.webmanifest, and the assets folder contents to the existing Quote_challenge repository. Keep your existing movies_and_shows.json and other existing files. Do not delete your repository.
 
 Freddie: one picture per page, 25 points once per regular game across all four pictures. The entrance uses his original chair photograph. Creator portrait: 20 points, then Meet the Creator bonus-wall link. Movie title text: 2001 and Jaws award 5, Godfather and Exorcist award 1; Butch Cassidy is decorative. Each title reward is once per regular game. Entrance finds carry to the next regular game in the same tab. Daily scoring stays separate.
