@@ -1,4 +1,4 @@
-QUOTE CHALLENGE 6.0 — FREDDIE & WALL BONUSES
+QUOTE CHALLENGE 6.5— FREDDIE & WALL BONUSES
 <span style="color:red;">***** FILES NO LONGER RELEVANT ***** ♥️🍒</span>
 <span style="color:red;">***** FILES NO LONGER RELEVANT ***** ♥️🍒</span>
 Upload these four HTML pages, manifest.webmanifest, and the assets folder contents to the existing Quote_challenge repository. Keep your existing movies_and_shows.json and other existing files. Do not delete your repository.
