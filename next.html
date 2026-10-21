@@ -47,14 +47,14 @@ body{min-height:100svh;overflow:hidden;display:grid;place-items:center;font-fami
     <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
   </div>
   <div class="gold-reveal" aria-label="Logan's Run. Next month.">
-    <h1>LOGAN'S RUN</h1><p>NEXT MONTH</p>
+    <h1>THE PRINCESS BRIDE</h1><p>JANUARY 2027</p>
   </div>
   <p class="error" role="status">Poster image not found. Check the filename in next.html.</p>
 </main>
 <script>
 // Chrome Logan's Run poster filename supplied by the creator.
 // Keep that image in the same GitHub folder as next.html.
-const POSTER_FILE = 'main-splash-logans-run.jpg';
+const POSTER_FILE = 'IMG_20261020_201219.jpg';
 document.documentElement.style.setProperty('--poster-url', `url("${POSTER_FILE}")`);
 const check = new Image();
 check.onerror = () => { document.querySelector('.error').style.display = 'block'; };
