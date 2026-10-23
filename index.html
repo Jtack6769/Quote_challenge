@@ -29,40 +29,16 @@
 @media(prefers-reduced-motion:reduce){.marquee-track,.qc-marquee-text{animation:none}.marquee-track{min-width:100%;justify-content:center;padding:0}.marquee:before,.marquee:after{display:none}.movie-flipper{transition:none}}
 </style>
 <link rel="stylesheet" href="assets/eggs.css">
+<style id="qc-suggestion-position-fix">
+.stage .theater-suggestions-wrapper{position:absolute;z-index:7;left:43.3%;top:62%;bottom:auto;width:5.4%;transform:translateX(-50%);text-align:center}
+.stage .suggestion-box-art{display:block;width:100%;height:auto;border:0;padding:0;background:transparent;cursor:pointer;filter:none}
+.stage .suggestion-box-art img{width:100%;height:auto;display:block;mix-blend-mode:multiply}
+.stage .suggestion-card{position:absolute;bottom:110%;left:50%;width:min(310px,75vw);min-width:220px;transform:translateX(-50%);z-index:20}
+.stage .suggestion-card.hidden{display:none;pointer-events:none}
+.stage .suggestion-box-art:focus-visible{outline:3px solid gold}
+</style>
 </head>
   <!-- ========================================== -->
-<!-- 1. THE IMMERSIVE SUGGESTION BOX INTERACTION -->
-<!-- ========================================== -->
-<div class="theater-suggestions-wrapper">
-  <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
-  <!-- Your suggestion form, text area, and buttons go here -->
-  </div>
-  
-  <!-- The interactive bronze asset box -->
-  <img src="IMG_20261018_110913.jpg" alt="Suggestion Box" class="suggestion-box-art" onclick="toggleSuggestionCard()">
-  
-  <!-- The pop-up suggestion card form -->
-  <!-- Change "YOUR_ENDPOINT_HERE" tomorrow when you set up your free Formspree ID -->
-  <form id="suggestionCard" action="https://formspree.io" method="POST" class="suggestion-card hidden">
-    <form action="https://formspree.io" method="POST">
-      
-    <div class="card-header">
-      <h3>Submit Theater Suggestion</h3>
-      <button type="button" class="close-card-btn" onclick="toggleSuggestionCard()">×</button>
-    </div>
-    
-    <div class="card-body">
-      <textarea name="player_suggestion" placeholder="Type your suggestion here..." required></textarea>
-    </div>
-    
-    <div class="card-footer">
-      <button type="submit" class="submit-card-btn">Drop Into Box</button>
-    </div>
-    
-  </form>
-</div>
-
-<!-- ========================================== -->
 <!-- 2. STYLING (MATCHED TO YOUR THEATER THEME) -->
 <!-- ========================================== -->
 <style>
@@ -183,10 +159,24 @@
 <!-- 3. THE TRIGGER ENGINE (JAVASCRIPT)        -->
 <!-- ========================================== -->
 <script>
-function toggleSuggestionCard() {
-  const card = document.getElementById('suggestionCard');
-  card.classList.toggle('hidden');
+function toggleSuggestionCard(force) {
+  const card=document.getElementById('suggestionCard');
+  const open=typeof force==='boolean'?force:card.classList.contains('hidden');
+  card.classList.toggle('hidden',!open);
+  document.getElementById('suggestionTrigger').setAttribute('aria-expanded',String(open));
+  if(open) document.getElementById('suggestionText').focus();
 }
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('suggestionTrigger').addEventListener('click',()=>toggleSuggestionCard());
+  document.getElementById('closeSuggestion').addEventListener('click',()=>toggleSuggestionCard(false));
+  document.getElementById('suggestionForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const msg=document.getElementById('suggestionText').value.trim();
+    if(!msg)return;
+    window.location.href='mailto:QcChallenger67@gmail.com?subject='+encodeURIComponent('Quote Challenge theater suggestion')+'&body='+encodeURIComponent(msg);
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleSuggestionCard(false)});
+});
 </script>
   
 <body>
@@ -195,6 +185,12 @@ function toggleSuggestionCard() {
 <section class="stage" aria-label="Theater entrance">
 <img class="theater" src="final-theater-entrance.png" alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
 <div class="marquee" aria-label="Theater marquee"><span class="marquee-track">WELCOME TO QUOTE CHALLENGE 6.5&nbsp; ✦ &nbsp;&nbsp  ✦ REMEMBER TO LOVE YOUR NEIGHBOR AS YOU DO YOURSELF&nbsp;</span></div>
+<div class="theater-suggestions-wrapper">
+<button class="suggestion-box-art" type="button" id="suggestionTrigger" aria-haspopup="dialog" aria-controls="suggestionCard" aria-expanded="false"><img src="IMG_20261018_110913.jpg" alt="Suggestion box"></button>
+<div id="suggestionCard" class="suggestion-card hidden" role="dialog" aria-modal="false" aria-label="Submit theater suggestion">
+<div class="card-header"><h3>Submit Theater Suggestion</h3><button type="button" class="close-card-btn" id="closeSuggestion" aria-label="Close">×</button></div>
+<form id="suggestionForm"><div class="card-body"><textarea id="suggestionText" name="player_suggestion" placeholder="Type your suggestion here..." required></textarea></div><div class="card-footer"><button type="submit" class="submit-card-btn">Send Suggestion</button></div></form>
+</div></div>
 <a class="door one" href="one-player.html" aria-label="Enter One Player"></a>
 <a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
 <a class="portrait" data-egg="creator" data-points="20" data-label="You found the inventor’s photo!" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
