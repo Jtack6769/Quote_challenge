@@ -1,4 +1,6 @@
 <!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#071a3b">
@@ -213,7 +215,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script>
 'use strict';
 // Start session timers after the page is parsed.
-setTimeout(()=>alert('TWENTY MINUTES LEFT! back your shit up BACK!! it up!'),14*60*1000);
-setTimeout(()=>{alert('60-MINUTE LIMIT REACHED. Session ended.');window.location.href='index.html';},15*60*1000);
+setTimeout(()=>alert('ONE MINUTE LEFT! Wrap it up!'),14*60*1000);
+setTimeout(()=>{alert('15-MINUTE LIMIT REACHED. Session ended.');window.location.href='index.html';},15*60*1000);
 (() => {const titles=['COMING SOON','NEXT MONTH',"LOGAN'S RUN"];const title=document.getElementById('movieTitle');const flipper=document.getElementById('movieFlipper');if(!title||!flipper)return;let step=0;const timer=setInterval(()=>{title.textContent=titles[step%titles.length];step++;if(step>=titles.length*2){clearInterval(timer);title.textContent="LOGAN'S RUN";setTimeout(()=>flipper.classList.add('flipped'),1800)}},1200)})();
 async function loadCollection(){const status=document.getElementById('libraryStatus');try{const respons
