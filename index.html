@@ -1,59 +1,212 @@
-9<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#071a3b">
-<meta name="description" content="Step inside Quote Challenge, the movie theater game.">
+<meta name="description" content="Step inside 💠 playing the ultimate game Quote Challenge!">
 <link rel="manifest" href="manifest.webmanifest">
 <title>Quote Challenge — Theater Entrance</title>
 <style>
 :root{--blue:#0755bd;--blue2:#031c48;--gold:#ffe34d;--cream:#fff3c6;--ink:#090b12}
 *{box-sizing:border-box}html{min-height:100%;background:#020309;color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,sans-serif}body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 50% 0,#132d55 0,#050812 52%,#020309 100%)}a{color:inherit}
-.shell{width:min(100%,1536px);margin:auto;padding:0 0 18px}.stage{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:#050505;isolation:isolate}.theater{display:block;width:100%;height:100%;object-fit:cover}
-.marquee{position:absolute;z-index:2;left:21.5%;top:20.5%;width:56%;height:8.3%;display:flex;align-items:center;overflow:hidden;border:clamp(2px,.34vw,5px) solid #ffd844;border-radius:3px;background:linear-gradient(180deg,#1371e5 0%,#0644a6 46%,#042863 100%);box-shadow:0 0 0 2px #062052,0 0 22px #2684ffb8,inset 0 0 15px #3c91ff;pointer-events:none}
+.shell{width:min(100%,1536px);margin:auto;padding:0 0 18px}.stage{position:relative;width:100%;aspect-ratio:3/2;overflow-x:hidden;background:#050505;isolation:isolate}.theater{display:block;width:100%;height:100%;object-fit:cover}
+.marquee{position:absolute;z-index:2;left:21.5%;top:20.5%;width:56%;height:4.3%;display:flex;align-items:center;overflow:hidden;border:clamp(2px,.34vw,5px) solid #ffd844;border-radius:3px;background:linear-gradient(180deg,#1371e5 0%,#0644a6 46%,#042863 100%);box-shadow:0 0 0 2px #062052,0 0 22px #2684ffb8,inset 0 0 15px #3c91ff;pointer-events:none}
 .marquee:before,.marquee:after{content:"✦  ✦  ✦  ✦  ✦";position:absolute;z-index:2;top:50%;transform:translateY(-50%);color:var(--gold);font-size:clamp(7px,1.05vw,16px);letter-spacing:.35em;text-shadow:0 0 8px #ffd94d}.marquee:before{left:1.2%}.marquee:after{right:1.2%}
-.marquee-track{display:flex;align-items:center;white-space:nowrap;min-width:max-content;animation:marquee 33s linear infinite;padding-left:100%;font:900 clamp(12px,2.1vw,32px)/1 Georgia,"Times New Roman",serif;letter-spacing:.11em;color:var(--gold);text-shadow:0 2px 0 #5b3600,0 0 10px #ffdf54;padding-right:100%}@keyframes marquee{to{transform:translateX(-100%)}}
-.door{position:absolute;z-index:3;top:39%;height:39%;width:16.8%;border-radius:8px;display:grid;place-items:center;text-decoration:none;color:transparent}.door.one{left:30.2%}.door.two{left:49.3%}.door:focus-visible,.portrait:focus-visible,.report:focus-visible{outline:4px solid gold;outline-offset:3px}
+.marquee-track{display:flex;align-items:center;white-space:nowrap;min-width:max-content;animation:marquee 42s linear infinite;padding-left:100%;font:900 clamp(12px,2.1vw,32px)/1 Georgia,"Times New Roman",serif;letter-spacing:.11em;color:var(--gold);text-shadow:0 2px 0 #5b3600,0 0 10px #ffdf54;padding-right:100%}@keyframes marquee{to{transform:translateX(-100%)}}
+.door{position:absolute;z-index:3;top:39%;height:39%;width:4.2%;border-radius:16px;display:grid;place-items:center;text-decoration:none;color:transparent}.door.one{left:30.2%}.door.two{left:49.3%}.door:focus-visible,.portrait:focus-visible,.report:focus-visible{outline:4px solid gold;outline-offset:3px}
 .portrait{position:absolute;z-index:4;left:23.5%;top:52%;width:5.3%;height:13%;border:0;border-radius:40%;background:transparent;cursor:pointer;touch-action:manipulation}.portrait:focus-visible{outline-color:var(--gold);background:#ffe34d20}
-.report{position:absolute;z-index:5;right:1.1%;bottom:1.2%;display:grid;place-items:center;min-width:55px;min-height:48px;padding:7px 12px;border:2px solid var(--gold);border-radiu1s:12px;bacsizekground:#081936;color:var(--cream);font-:24px;text-decoration:none;filter:drop-shadow(0 0 6px #050505) drop-shadow(0 0 5px #ffd51c);transition:transform .7.5s}.report:hover{transform:scale(1.06)}
+.report{position:absolute;z-index:5;right:1.1%;bottom:1.2%;display:grid;place-items:center;min-width:55px;min-height:48px;padding:7px 12px;border:2px solid var(--gold);border-radius:12px;background:#081936;color:var(--cream);font-size:24px;text-decoration:none;filter:drop-shadow(0 0 6px #050505) drop-shadow(0 0 5px #ffd51c);transition:transform .15s}.report:hover{transform:scale(1.06)}
 .stage-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .controls{display:flex;justify-content:center;align-items:center;gap:clamp(8px,1.3vw,18px);flex-wrap:wrap;padding:14px 12px 10px;background:linear-gradient(180deg,#071a39,#030815);border-top:2px solid #1377ed;box-shadow:0 -4px 24px #0867df40}.control{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:10px 18px;border:2px solid var(--gold);border-radius:9px;background:linear-gradient(180deg,#0a56b7,#06285f);color:var(--cream);text-decoration:none;font-weight:900;letter-spacing:.07em;text-shadow:0 2px #061632;box-shadow:0 4px 0 #04142f,0 0 13px #1784ff62;cursor:pointer}.control:hover{background:linear-gradient(180deg,#1478ed,#073f91);transform:translateY(-1px)}.control:focus-visible{outline:3px solid white;outline-offset:3px}.control svg{width:23px;height:23px;flex:none}.control .sub{display:block;font-size:10px;font-weight:600;letter-spacing:.08em;color:#c8dcff}.install{min-width:195px}
 .status{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;padding:2px 12px 13px;text-align:center;font-size:12px;color:#d7e3fa}.version{color:#9db8df;letter-spacing:.13em}.counter{border:1px solid #5a83bb;border-radius:999px;background:#081936;padding:5px 11px;color:#ffeb91;font-weight:800}
-.qc-marquee{overflow:hidden;background:repeating-linear-gradient(135deg,#ff8800 0px,#ff8800 22px,#111 22px,#111 44px);border:3px solid #ffcc00;border-radius:8px;padding:10px 0;margin:12px auto;width:calc(100% - 24px)}.qc-marquee-text{display:block;width:max-content;white-space:nowrap;color:white;font:bold 18px Arial,sans-serif;text-shadow:2px 2px 3px #000,-1px -1px 3px #000;animation:qc-scroll 26s linear infinite}@keyframes qc-scroll{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+.qc-marquee{overflow:hidden;background:repeating-linear-gradient(135deg,#ff8800 0px,#ff8800 22px,#111 22px,#111 44px);border:3px solid #ffcc00;border-radius:8px;padding:10px 0;margin:12px auto;width:calc(100% - 24px)}.qc-marquee-text{display:block;width:max-content;white-space:nowrap;color:white;font:bold 18px Arial,sans-serif;text-shadow:2px 2px 3px #000,-1px -1px 3px #000;animation:qc-scroll 16s linear infinite}@keyframes qc-scroll{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
 .coming-marquee{max-width:500px;margin:15px auto;text-align:center;perspective:1000px}.marquee-heading{background:#080808;color:#ffcc00;border:3px solid #ff9900;padding:10px;font-size:22px;font-weight:bold;letter-spacing:2px;text-shadow:0 0 12px orange}.movie-flipper{position:relative;height:230px;margin-top:8px;transform-style:preserve-3d;transition:transform 1.2s ease-in-out}.movie-flipper.flipped{transform:rotateY(180deg)}.movie-face,.poster-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:3px solid gold;border-radius:10px;background:#090909}.movie-face{color:#ffcc00;font-size:28px;font-weight:900;text-shadow:0 0 15px orange}.poster-face{transform:rotateY(180deg);overflow:hidden}.poster-face img{width:100%;height:100%;object-fit:contain}
 .next-wrap{text-align:center;margin:18px auto 24px}.next-button{display:inline-block;background:#0066ff;color:#ffeb00;padding:14px 28px;border:3px solid #ffeb00;border-radius:10px;font-weight:900;font-size:20px;text-align:center;text-decoration:none;line-height:1.5;position:relative;z-index:10;box-shadow:0 0 14px #1478ed}.next-button span{display:block}.next-button:focus-visible{outline:3px solid white;outline-offset:4px}
-.poster-wall{position:relative;margin:16px 12px 0;padding:24px clamp(14px,4vw,52px) 38px;border:3px solidarity are#805c22;border-radius:14px;background:radial-gradient(ellipse at 50% 0,#28446a 0,#0b1424 58%,#060910 100%);box-shadow:inset 0 0 0 3px #d0a54850,0 14px 35px #000;overflow:hidden}.poster-wall:before{content:"";position:absolute;inset:9px;border:1px solid #e3bd5f55;border-radius:9px;pointer-events:none}.wall-title{position:relative;margin:0 auto 18px;width:max-content;max-width:100%;padding:9px 22px;border:2px solid var(--gold);background:linear-gradient(180deg,#104a99,#061b3b);color:var(--gold);font:900 clamp(16px,2.2vw,27px)/1.2 Georgia,"Times New Roman",serif;text-align:center;letter-spacing:.13em;text-shadow:0 2px 0 #372900}.poster-display{position:relative;display:flex;align-items:flex-start;justify-content:center;gap:clamp(16px,5vw,78px);min-height:370px}.poster-card{position:relative;width:min(31%,310px);margin:0;padding:10px 10px 0;border:7px ridge #d9b354;background:#14100b;box-shadow:0 12px 24px #000c,0 0 14px #e5bd5b48;transform:rotate(-2deg)}.poster-card:nth-child(2){margin-top:30px;transform:rotate(2.4deg)}.poster-card img{display:block;width:100%;height:clamp(245px,39vw,430px);object-fit:contain;background:#080b12}.plaque{position:relative;margin:12px -2px 0;padding:9px 7px 11px;border:2px solid #c59a42;background:linear-gradient(180deg,#152c4b,#08152a);color:#fff0bd;text-align:center;box-shadow:inset 0 0 0 2px #5c4525;font-family:Georgia,"Times New Roman",serif;font-weight:900;line-height:1.2}.plaque strong{display:block;font-size:clamp(12px,1.7vw,19px)}.plaque span{display:block;margin-top:3px;color:var(--gold);font-size:clamp(13px,1.5vw,18px);letter-spacing:.16em}.poster-note{margin:27px auto 0;max-width:760px;text-align:center;color:#d6e2f9;font-size:14px}.poster-note strong{color:#ffe378}.footer-note{text-align:center;padding:16px10px;color:#96a8c3;font-size:11px }}
+.poster-wall{position:relative;margin:16px 12px 0;padding:24px clamp(14px,4vw,52px) 38px;border:3px solid #805c22;border-radius:14px;background:radial-gradient(ellipse at 50% 0,#28446a 0,#0b1424 58%,#060910 100%);box-shadow:inset 0 0 0 3px #d0a54850,0 14px 35px #000;overflow:hidden}.poster-wall:before{content:"";position:absolute;inset:9px;border:1px solid #e3bd5f55;border-radius:9px;pointer-events:none}.wall-title{position:relative;margin:0 auto 18px;width:max-content;max-width:100%;padding:9px 22px;border:2px solid var(--gold);background:linear-gradient(180deg,#104a99,#061b3b);color:var(--gold);font:900 clamp(16px,2.2vw,27px)/1.2 Georgia,"Times New Roman",serif;text-align:center;letter-spacing:.13em;text-shadow:0 2px 0 #372900}.poster-display{position:relative;display:flex;align-items:flex-start;justify-content:center;gap:clamp(16px,5vw,78px);min-height:370px}.poster-card{position:relative;width:min(31%,310px);margin:0;padding:10px 10px 0;border:7px ridge #d9b354;background:#14100b;box-shadow:0 12px 24px #000c,0 0 14px #e5bd5b48;transform:rotate(-2deg)}.poster-card:nth-child(2){margin-top:30px;transform:rotate(2.4deg)}.poster-card img{display:block;width:100%;height:clamp(245px,39vw,430px);object-fit:contain;background:#080b12}.plaque{position:relative;margin:12px -2px 0;padding:9px 7px 11px;border:2px solid #c59a42;background:linear-gradient(180deg,#152c4b,#08152a);color:#fff0bd;text-align:center;box-shadow:inset 0 0 0 2px #5c4525;font-family:Georgia,"Times New Roman",serif;font-weight:900;line-height:1.2}.plaque strong{display:block;font-size:clamp(12px,1.7vw,19px)}.plaque span{display:block;margin-top:3px;color:var(--gold);font-size:clamp(13px,1.5vw,18px);letter-spacing:.16em}.poster-note{margin:27px auto 0;max-width:760px;text-align:center;color:#d6e2f9;font-size:14px}.poster-note strong{color:#ffe378}.footer-note{text-align:center;padding:16px 10px;color:#96a8c3;font-size:11px}
 @media(max-width:650px){.shell{padding-bottom:10px}.controls{padding:10px 7px;gap:8px}.control{padding:9px 12px;font-size:13px;min-height:46px}.install{min-width:0}.control .sub{font-size:9px}.status{font-size:11px;gap:8px}.poster-wall{margin:10px 7px 0;padding:20px 10px 25px}.poster-display{gap:14px;min-height:0}.poster-card{width:43%;padding:6px 6px 0;border-width:5px}.poster-card:nth-child(2){margin-top:24px}.poster-card img{height:clamp(210px,58vw,330px)}.plaque{padding:7px 4px 8px}.wall-title{margin-bottom:12px;padding:7px 12px}.poster-note{font-size:12px;padding:0 8px}.marquee-heading{font-size:18px}.movie-flipper{height:200px}}
 @media(max-width:380px){.control{padding:8px;font-size:11px}.marquee-track{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.marquee-track,.qc-marquee-text{animation:none}.marquee-track{min-width:100%;justify-content:center;padding:0}.marquee:before,.marquee:after{display:none}.movie-flipper{transition:none}}
 </style>
 <link rel="stylesheet" href="assets/eggs.css">
+<style id="qc-suggestion-position-fix">
+.stage .theater-suggestions-wrapper{position:absolute;z-index:7;left:43.3%;top:62%;bottom:auto;width:5.4%;transform:translateX(-50%);text-align:center}
+.stage .suggestion-box-art{display:block;width:100%;height:auto;border:0;padding:0;background:transparent;cursor:pointer;filter:none}
+.stage .suggestion-box-art img{width:100%;height:auto;display:block;mix-blend-mode:multiply}
+.stage .suggestion-card{position:absolute;bottom:110%;left:50%;width:min(310px,75vw);min-width:220px;transform:translateX(-50%);z-index:20}
+.stage .suggestion-card.hidden{display:none;pointer-events:none}
+.stage .suggestion-box-art:focus-visible{outline:3px solid gold}
+</style>
 </head>
+  <!-- ========================================== -->
+<!-- 2. STYLING (MATCHED TO YOUR THEATER THEME) -->
+<!-- ========================================== -->
+<style>
+/* Position the box perfectly right in the center "crack" between the doors */
+.theater-suggestions-wrapper {
+  position: absolute;
+  z-index: 4;          /* Aligns with your portrait layer depth */
+  bottom: 1.2%;        /* Matches the exact bottom line from your code */
+  left: 50%;           /* Centers it precisely between left (0%) and door two (49.3%) */
+  transform: translateX(-50%);
+  width: 14%;          /* Clean layout width scaling for the bronze asset */
+  text-align: center;
+}
+
+/* The actual bronze box art interaction styling */
+.suggestion-box-art {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.6));
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* A gold glow on hover matching your focus-visible styles */
+.suggestion-box-art:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 6px #ffe34d) drop-shadow(0 0 5px #ffe34d);
+}
+
+/* The card overlay styled to match your dark/gold theater theme */
+.suggestion-card {
+  position: absolute;
+  bottom: 115%; /* Spawns neatly right above the bronze box */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  background: #081936; /* Your exact deep blue canvas color */
+  border: 2px solid #ffe34d; /* Your exact gold accent color */
+  border-radius: 12px; /* Matches your code's 12px border-radius standard */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+  padding: 14px;
+  text-align: left;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Invisible state when closed */
+.suggestion-card.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(15px);
+  pointer-events: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-header h3 {
+  margin: 0;
+  color: #ffe34d; /* Gold header text */
+  font-size: 14px;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.close-card-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #ffe34d;
+  padding: 0;
+  line-height: 1;
+}
+
+.card-body textarea {
+  width: 100%;
+  height: 80px;
+  background: #040d1c; /* Even deeper blue for text contrast */
+  color: #ffffff;
+  border: 1px solid rgba(255, 227, 77, 0.4);
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+  resize: none;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.card-body textarea:focus {
+  border-color: #ffe34d;
+}
+
+.submit-card-btn {
+  width: 100%;
+  background: #ffe34d; /* Solid gold button */
+  color: #081936; /* Dark blue text */
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.submit-card-btn:hover {
+  background: #fff; /* Turns clean white on hover */
+}
+</style>
+
+<!-- ========================================== -->
+<!-- 3. THE TRIGGER ENGINE (JAVASCRIPT)        -->
+<!-- ========================================== -->
+<script>
+function toggleSuggestionCard(force) {
+  const card=document.getElementById('suggestionCard');
+  const open=typeof force==='boolean'?force:card.classList.contains('hidden');
+  card.classList.toggle('hidden',!open);
+  document.getElementById('suggestionTrigger').setAttribute('aria-expanded',String(open));
+  if(open) document.getElementById('suggestionText').focus();
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('suggestionTrigger').addEventListener('click',()=>toggleSuggestionCard());
+  document.getElementById('closeSuggestion').addEventListener('click',()=>toggleSuggestionCard(false));
+  document.getElementById('suggestionForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const msg=document.getElementById('suggestionText').value.trim();
+    if(!msg)return;
+    window.location.href='mailto:QcChallenger67@gmail.com?subject='+encodeURIComponent('Quote Challenge theater suggestion')+'&body='+encodeURIComponent(msg);
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleSuggestionCard(false)});
+});
+</script>
+  
 <body>
 <main class="shell">
 <h1 class="stage-title">Quote Challenge theater entrance</h1>
 <section class="stage" aria-label="Theater entrance">
-<img class="theater" src="theater.png.png alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
-<div class="marquee" aria-label="Theater marquee"><span class="marquee-track">TOTO I HAVE A FEELING WE'RE NOT IN KANSAS ANYMORE&nbsp; ✦ &nbsp;&nbsp; ✦ PUT EM UP? PUT EM UP! I'LL FIGHT YOU WITH ONE PAUL TIED BEHIND MY BACK!&nbsp;</span></div>
+<img class="theater" src="final-theater-entrance.png" alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
+<div class="marquee" aria-label="Theater marquee"><span class="marquee-track">WELCOME TO QUOTE CHALLENGE 6.5&nbsp; ✦ &nbsp;&nbsp  ✦ REMEMBER TO LOVE YOUR NEIGHBOR AS YOU DO YOURSELF&nbsp;</span></div>
+<div class="theater-suggestions-wrapper">
+<button class="suggestion-box-art" type="button" id="suggestionTrigger" aria-haspopup="dialog" aria-controls="suggestionCard" aria-expanded="false"><img src="IMG_20261018_110913.jpg" alt="Suggestion box"></button>
+<div id="suggestionCard" class="suggestion-card hidden" role="dialog" aria-modal="false" aria-label="Submit theater suggestion">
+<div class="card-header"><h3>Submit Theater Suggestion</h3><button type="button" class="close-card-btn" id="closeSuggestion" aria-label="Close">×</button></div>
+<form id="suggestionForm"><div class="card-body"><textarea id="suggestionText" name="player_suggestion" placeholder="Type your suggestion here..." required></textarea></div><div class="card-footer"><button type="submit" class="submit-card-btn">Send Suggestion</button></div></form>
+</div></div>
 <a class="door one" href="one-player.html" aria-label="Enter One Player"></a>
 <a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
 <a class="portrait" data-egg="creator" data-points="20" data-label="You found the inventor’s photo!" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
-<a class="report" href="mailto:qcchallenger67@gmail.com?subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><span aria-hidden="true">🪳</span></a>
+<a class="report" href="mailto:QcChallenger67@gmail.com?subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><span aria-hidden="true">🪳</span></a>
 </section>
-<div class="qc-marquee"><span class="qc-marquee-text">🚧 QUOTE CHALLENGE IS HARD AT WORK BRINGING YOU ENTERTAINMENT FROM YESTERDAY ⏮️ FOR TODAY 📅 AND FOR THE FUTURE ♾️ PLEASE CHECK BACK OFTEN NEXT MONTH 🏃 LOGAN'S RUN 💃 🚧</span></div>
+<div class="qc-marquee"><span class="qc-marquee-text">🚧 QUOTE CHALLENGE IS HARD AT WORK BRINGING YOU ENTERTAINMENT FROM YESTERDAY ⏮️ TODAY 📅 AND THE FUTURE ♾️ PLEASE CHECK BACK OFTEN *** NEXT MONTH *** 🏃 LOGAN'S RUN 💃 🚧</span></div>
 <nav class="controls" aria-label="Quote Challenge options">
-<a class="control" href="one-player.html#addForm">ADD QUOTES</a>
+<a class="control" href="one-óplayer.html#addForm">ADD QUOTES</a>
 <a class="control" href="one-player.html">ONE PLAYER</a>
 <a class="control" href="two-player.html">TWO PLAYER</a>
-<button class="control install" id="addIcon" type="button" aria-label="Add a Quote Challenge icon to this device"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="8" fill="#ffe34d" stroke="#fff8c8" stroke-width="2"/><text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="900" fill="#111">QC</text><circle cx="37" cy="37" r="5" fill="#9cff20" stroke="#111" stroke-width="1.5"/><path d="M34 37h6m-3-3v6m-4-5-2-2m10 2 2-2" stroke="#111" stroke-width="1.3" stroke-</button><a href="https://"linecap="round"/></svg><span>ADD QC ICON<span class="sub">HOME SCREEN / DESKTOP</span></span>" style="text-decoration: none;">
-    <img src="🥷" alt="Description" style="border: none;">
-</a>
+<button class="control install" id="addIcon" type="button" aria-label="Add a Quote Challenge icon to this device"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="8" fill="#ffe34d" stroke="#fff8c8" stroke-width="2"/><text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="900" fill="#111">QC</text><circle cx="37" cy="37" r="5" fill="#9cff20" stroke="#111" stroke-width="1.5"/><path d="M34 37h6m-3-3v6m-4-5-2-2m10 2 2-2" stroke="#111" stroke-width="1.3" stroke-linecap="round"/></svg><span>ADD QC ICON<span class="sub">HOME SCREEN / DESKTOP</span></span></button>
 </nav>
-<div class="status"><span class="version">QUOTE CHALLENGE 6.3</span><span class="counter" id="deviceCounter" aria-live="polite">THIS BROWSER: LOCAL MARKER</span></div>
-<div class="coming-marquee"><div class="marquee-heading">COMING ATTRACTIONS</div><div class="movie-flipper" id="movieFlipper"><div class="movie-face" id="movieTitle">COMING SOON</div><div class="poster-face"><img src="poster.png" alt="Logan's Run movie poster"></div></div></div>
-<div class="next-wrap"><a href="next.html" class="next-button">CERTAIN ADVENTURE AHEAD<span>NEXT</span></a></div>
-<section class="loganrun.jpg" aria-labelledby="wallTitle"><h2 class="wall-title" id="wallTitle">SPECIAL FEATURES ON THE WALL</h2><div class="poster-display"><figure class="poster-card"><img src="assets/harry-mudd.png" alt="Star Trek Harry Mudd poster"><figcaption class="plaque"><strong>HARRY MUDD · STAR TREK</strong><span>1967</span></figcaption></figure><figure class="poster-card"><img src="assets/uhura.jpg" alt="Retro portrait poster of Lieutenant Uhura aboard the Enterprise, inviting viewers to journey to the stars."><figcaption class="plaque"><strong>STAR TREK: THE ORIGINAL SERIES</strong><span>1966</span></figcaption></figure></div><p class="poster-note">Two special posters for the theater wall, set among the movie title plaques and years already hanging around the entrance.</p></section>
+<div class="status"><span class="version">QUOTE CHALLENGE 6.5</span><span class="counter" id="deviceCounter" aria-live="polite">THIS BROWSER: LOCAL MARKER</span></div>
+<div class="coming-marquee"><div class="marquee-heading">COMING IN DECEMBER</div><div class="movie-flipper" id="movieFlipper"><div class="movie-face" id="movieTitle">LOGAN'S RUN</div><div class="poster-face"><img src="poster.png" alt="Logan's Run movie poster"></div></div></div>
+<div class="next-wrap"><a href="next.html" class="next-button">NOSTALGIC JOURNEY<span>THROUGH HERE 👇</span></a></div>
+<section class="poster-wall" aria-labelledby="wallTitle"><h2 class="wall-title" id="wallTitle">SPECIAL FEATURES ON THE WALL</h2><div class="poster-display"><figure class="poster-card"><img src="assets/harry-mudd.png" alt="Star Trek Harry Mudd poster"><figcaption class="plaque"><strong>HARRY MUDD · STAR TREK</strong><span>1967</span></figcaption></figure><figure class="poster-card"><img src="assets/uhura.jpg" alt="Retro portrait poster of Lieutenant Uhura aboard the Enterprise, inviting viewers to journey to the stars."><figcaption class="plaque"><strong>STAR TREK: THE ORIGINAL SERIES</strong><span>1966</span></figcaption></figure></div><p class="poster-note">Two special posters for the theater wall, set among the movie title plaques and years already hanging around the entrance.</p></section>
 <aside class="wall-trivia" aria-label="Movie years"><button class="movie-plaque" data-egg="movie-1968" data-points="5" data-label="2001: A Space Odyssey">2001: A Space Odyssey<small>1968</small></button><div class="movie-plaque">Butch Cassidy and the Sundance Kid<small>1969</small></div></aside>
 <section class="poster-wall" aria-labelledby="libraryTitle"><h2 class="wall-title" id="libraryTitle">MOVIES, SHOWS &amp; QUOTES</h2><p id="libraryStatus" role="status">Loading the collection…</p><ul id="movieList"></ul></section>
 <p class="footer-note">Add an icon to your home screen or desktop for quick access.</p>
@@ -65,77 +218,4 @@
 setTimeout(()=>alert('ONE MINUTE LEFT! Wrap it up!'),14*60*1000);
 setTimeout(()=>{alert('15-MINUTE LIMIT REACHED. Session ended.');window.location.href='index.html';},15*60*1000);
 (() => {const titles=['COMING SOON','NEXT MONTH',"LOGAN'S RUN"];const title=document.getElementById('movieTitle');const flipper=document.getElementById('movieFlipper');if(!title||!flipper)return;let step=0;const timer=setInterval(()=>{title.textContent=titles[step%titles.length];step++;if(step>=titles.length*2){clearInterval(timer);title.textContent="LOGAN'S RUN";setTimeout(()=>flipper.classList.add('flipped'),1800)}},1200)})();
-async function loadCollection(){const status=document.getElementById('libraryStatus');try{const response=await fetch('./movies_and_shows.json',{cache:'no-store'});if(!response.ok)throw new Error('Collection unavailable');const data=await response.json();const entries=Array.isArray(data)?data:(data.movies_and_shows||data.quotes||[]);if(!Array.isArray(entries))throw new Error('Collection format unavailable');const list=document.getElementById('movieList');for(const entry of entries){if(!entry||typeof entry!=='object')continue;const row=document.createElement('li');row.style.marginBottom='12px';const title=entry.title||entry.movie||entry.show||'Untitled';const quote=entry.quote||entry.text||'';row.textContent=String(title)+(entry.release_year?' ('+entry.release_year+')':'')+(entry.type?' — '+entry.type:'')+(quote?': “'+String(quote)+'”':'');list.appendChild(row)}status.textContent=list.children.length?list.children.length+' movies, shows or quotes in the collection.':'The collection is being prepared.'}catch{status.textContent='The collection will appear here when movies_and_shows.json is available. You can still use the player buttons above.'}}
-loadCollection();
-try{const key='qc_index_unique_device_510';const counter=document.getElementById('deviceCounter');if(localStorage.getItem(key))counter.textContent='THIS BROWSER: RETURN VISIT';else{localStorage.setItem(key,'1');counter.textContent='THIS BROWSER: FIRST VISIT'}}catch{document.getElementById('deviceCounter').textContent='LOCAL MARKER UNAVAILABLE'}
-let installPrompt=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event});document.getElementById('addIcon').addEventListener('click',async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else alert('To add the Quote Challenge icon, open your browser menu and choose “Add to Home screen” or “Create shortcut.” This adds an icon to your device.')});
-</script>
-<script src="assets/eggs.js"></script>
-</body>
-  </html>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#000000">
-<title>Next Month | Quote Challenge</title>
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;background:#000;color:#ffdc69}
-body{min-height:100svh;overflow:hidden;display:grid;place-items:center;font-family:Georgia,'Times New Roman',serif}
-.stage{position:relative;width:100vw;height:100svh;display:grid;place-items:center;overflow:hidden;background:#000;isolation:isolate}
-.poster{position:absolute;width:min(75vw,340px,calc(77svh * .67));aspect-ratio:2/3;filter:drop-shadow(0 0 15px #f3b82c65);opacity:0;animation:show-frame .01s linear .12s forwards}
-@keyframes show-frame{to{opacity:1}}
-.tile{position:absolute;width:50%;height:50%;background-image:var(--poster-url);background-size:200% 200%;background-repeat:no-repeat;opacity:0;transform:translate(var(--tx),var(--ty)) scale(.92);will-change:transform,opacity}
-.tile:nth-child(1){top:0;left:0;background-position:left top;--tx:-160%;--ty:-120%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .14s forwards}
-.tile:nth-child(2){top:0;right:0;background-position:right top;--tx:170%;--ty:-105%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .48s forwards}
-.tile:nth-child(3){bottom:0;left:0;background-position:left bottom;--tx:-145%;--ty:135%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .82s forwards}
-.tile:nth-child(4){bottom:0;right:0;background-position:right bottom;transform:none;animation:fade-in .46s ease 1.25s forwards}
-@keyframes fly-in{to{opacity:1;transform:translate(0,0) scale(1)}}
-@keyframes fade-in{to{opacity:1}}
-/* Fourth piece arrives, then the complete image snaps out of sight. */
-.poster{animation:show-frame .01s linear .12s forwards,poster-pop .13s steps(1,end) 1.78s forwards}
-@keyframes poster-pop{to{opacity:0;visibility:hidden}}
-.gold-reveal{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;opacity:0;transform:scale(.86);animation:gold-burst 2.05s ease 1.85s forwards}
-.gold-reveal h1{margin:0;font-weight:900;line-height:1.05;letter-spacing:.075em;font-size:clamp(35px,9vw,88px);color:#ffd64e;text-shadow:0 1px 0 #fff1a3,0 3px 0 #9b5c00,0 0 14px #ffc300,0 0 35px #f6a800}
-.gold-reveal p{margin:18px 0 0;font:900 clamp(17px,4.6vw,35px)/1.1 system-ui,sans-serif;letter-spacing:.24em;color:#ffe89a;text-shadow:0 0 18px #ffbd16}
-.gold-reveal::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,#ffd34855 0%,#ffc52b12 27%,transparent 62%);opacity:0;animation:light-pulse 2.05s ease 1.85s forwards}
-@keyframes gold-burst{
-  0%{opacity:0;transform:scale(.86);filter:brightness(1)}
-  12%{opacity:1;transform:scale(1.04);filter:brightness(2.4)}
-  30%{opacity:1;transform:scale(1);filter:brightness(1)}
-  53%{opacity:1;transform:scale(1.04);filter:brightness(2.6)}
-  70%{opacity:1;transform:scale(1);filter:brightness(1.15)}
-  87%{opacity:1;transform:scale(1.06);filter:brightness(3)}
-  100%{opacity:0;transform:scale(1.2);filter:brightness(4)}
-}
-@keyframes light-pulse{0%,25%,43%,66%,80%,100%{opacity:0}12%,53%,87%{opacity:1}}
-.error{position:absolute;bottom:16px;left:12px;right:12px;text-align:center;color:#fff;font:14px system-ui,sans-serif;display:none}
-@media(prefers-reduced-motion:reduce){.poster,.tile,.gold-reveal,.gold-reveal::after{animation:none!important}.poster{opacity:0}.gold-reveal{opacity:1;transform:none;filter:none}}
-</style>
-</head>
-<body>
-<main class="stage" aria-label="Next month's movie teaser">
-  <div class="poster" aria-label="Logan's Run poster assembling in four pieces">
-    <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
-  </div>
-  <div class="gold-reveal" aria-label="Logan's Run. Next month.">
-    <h1>THE PRINCESS BRIDE</h1><p>JANUARY 2027</p>
-  </div>
-  <p class="error" role="status">Poster image not found. Check the filename in next.html.</p>
-</main>
-<script>
-// Chrome Logan's Run poster filename supplied by the creator.
-// Keep that image in the same GitHub folder as next.html.
-const POSTER_FILE = 'IMG_20261020_201219.jpg';
-document.documentElement.style.setProperty('--poster-url', `url("${POSTER_FILE}")`);
-const check = new Image();
-check.onerror = () => { document.querySelector('.error').style.display = 'block'; };
-check.src = POSTER_FILE;
-// 1.85s assembly + 2.05s gold title + a brief black beat, then home.
-setTimeout(() => window.location.replace('index.html'), 4150);
-</script>
-</body>
-</html>
-
+async function loadCollection(){const status=document.getElementById('libraryStatus');try{const respons
