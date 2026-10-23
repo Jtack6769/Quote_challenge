@@ -11,9 +11,9 @@
 :root{--blue:#0755bd;--blue2:#031c48;--gold:#ffe34d;--cream:#fff3c6;--ink:#090b12}
 *{box-sizing:border-box}html{min-height:100%;background:#020309;color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,sans-serif}body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 50% 0,#132d55 0,#050812 52%,#020309 100%)}a{color:inherit}
 .shell{width:min(100%,1536px);margin:auto;padding:0 0 18px}.stage{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:#050505;isolation:isolate}.theater{display:block;width:100%;height:100%;object-fit:cover}
-.marquee{position:absolute;z-index:2;left:21.5%;top:20.5%;width:56%;height:8.3%;display:flex;align-items:center;overflow:hidden;border:clamp(2px,.34vw,5px) solid #ffd844;border-radius:3px;background:linear-gradient(180deg,#1371e5 0%,#0644a6 46%,#042863 100%);box-shadow:0 0 0 2px #062052,0 0 22px #2684ffb8,inset 0 0 15px #3c91ff;pointer-events:none}
+.marquee{position:absolute;z-index:2;left:21.5%;top:20.5%;width:56%;height:4.3%;display:flex;align-items:center;overflow:hidden;border:clamp(2px,.34vw,5px) solid #ffd844;border-radius:3px;background:linear-gradient(180deg,#1371e5 0%,#0644a6 46%,#042863 100%);box-shadow:0 0 0 2px #062052,0 0 22px #2684ffb8,inset 0 0 15px #3c91ff;pointer-events:none}
 .marquee:before,.marquee:after{content:"✦  ✦  ✦  ✦  ✦";position:absolute;z-index:2;top:50%;transform:translateY(-50%);color:var(--gold);font-size:clamp(7px,1.05vw,16px);letter-spacing:.35em;text-shadow:0 0 8px #ffd94d}.marquee:before{left:1.2%}.marquee:after{right:1.2%}
-.marquee-track{display:flex;align-items:center;white-space:nowrap;min-width:max-content;animation:marquee 11s linear infinite;padding-left:100%;font:900 clamp(12px,2.1vw,32px)/1 Georgia,"Times New Roman",serif;letter-spacing:.11em;color:var(--gold);text-shadow:0 2px 0 #5b3600,0 0 10px #ffdf54;padding-right:100%}@keyframes marquee{to{transform:translateX(-100%)}}
+.marquee-track{display:flex;align-items:center;white-space:nowrap;min-width:max-content;animation:marquee 33s linear infinite;padding-left:100%;font:900 clamp(12px,2.1vw,32px)/1 Georgia,"Times New Roman",serif;letter-spacing:.11em;color:var(--gold);text-shadow:0 2px 0 #5b3600,0 0 10px #ffdf54;padding-right:100%}@keyframes marquee{to{transform:translateX(-100%)}}
 .door{position:absolute;z-index:3;top:39%;height:39%;width:16.8%;border-radius:8px;display:grid;place-items:center;text-decoration:none;color:transparent}.door.one{left:30.2%}.door.two{left:49.3%}.door:focus-visible,.portrait:focus-visible,.report:focus-visible{outline:4px solid gold;outline-offset:3px}
 .portrait{position:absolute;z-index:4;left:23.5%;top:52%;width:5.3%;height:13%;border:0;border-radius:40%;background:transparent;cursor:pointer;touch-action:manipulation}.portrait:focus-visible{outline-color:var(--gold);background:#ffe34d20}
 .report{position:absolute;z-index:5;right:1.1%;bottom:1.2%;display:grid;place-items:center;min-width:55px;min-height:48px;padding:7px 12px;border:2px solid var(--gold);border-radius:12px;background:#081936;color:var(--cream);font-size:24px;text-decoration:none;filter:drop-shadow(0 0 6px #050505) drop-shadow(0 0 5px #ffd51c);transition:transform .15s}.report:hover{transform:scale(1.06)}
@@ -31,43 +31,158 @@
 <link rel="stylesheet" href="assets/eggs.css">
 </head>
 <body>
-<main class="shell">
-<h1 class="stage-title">Quote Challenge theater entrance</h1>
-<section class="stage" aria-label="Theater entrance">
-<img class="theater" src="assets/theater-entrance.png" alt="A grand movie theater entrance with red carpet, two player doors, movie posters, and a shadowed hidden portrait.">
-<div class="marquee" aria-label="Theater marquee"><span class="marquee-track">TOTO I HAVE A FEELING WE'RE NOT IN KANSAS ANYMORE&nbsp; ✦ &nbsp;&nbsp; ✦ PUT EM UP? PUT EM UP! I'LL FIGHT YOU WITH ONE PAUL TIED BEHIND MY BACK!&nbsp;</span></div>
-<a class="door one" href="one-player.html" aria-label="Enter One Player"></a>
-<a class="door two" href="two-player.html" aria-label="Enter Two Players"></a>
-<a class="portrait" data-egg="creator" data-points="20" data-label="You found the inventor’s photo!" href="bonus.html?egg=portrait" aria-label="A hidden portrait of the creator. Find it for a bonus."></a>
-<a class="report" href="mailto:QcChallenger67@gmail.com?subject=Quote%20Challenge%20bug%20report" aria-label="Report a bug"><span aria-hidden="true">🪳</span></a>
-</section>
-<div class="qc-marquee"><span class="qc-marquee-text">🚧 QUOTE CHALLENGE IS HARD AT WORK BRINGING YOU ENTERTAINMENT FROM YESTERDAY ⏮️ FOR TODAY 📅 AND FOR THE FUTURE ♾️ PLEASE CHECK BACK OFTEN NEXT MONTH 🏃 LOGAN'S RUN 💃 🚧</span></div>
-<nav class="controls" aria-label="Quote Challenge options">
-<a class="control" href="one-player.html#addForm">ADD QUOTES</a>
-<a class="control" href="one-player.html">ONE PLAYER</a>
-<a class="control" href="two-player.html">TWO PLAYER</a>
-<button class="control install" id="addIcon" type="button" aria-label="Add a Quote Challenge icon to this device"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="8" fill="#ffe34d" stroke="#fff8c8" stroke-width="2"/><text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="900" fill="#111">QC</text><circle cx="37" cy="37" r="5" fill="#9cff20" stroke="#111" stroke-width="1.5"/><path d="M34 37h6m-3-3v6m-4-5-2-2m10 2 2-2" stroke="#111" stroke-width="1.3" stroke-linecap="round"/></svg><span>ADD QC ICON<span class="sub">HOME SCREEN / DESKTOP</span></span></button>
-</nav>
-<div class="status"><span class="version">QUOTE CHALLENGE 6.3</span><span class="counter" id="deviceCounter" aria-live="polite">THIS BROWSER: LOCAL MARKER</span></div>
-<div class="coming-marquee"><div class="marquee-heading">COMING ATTRACTIONS</div><div class="movie-flipper" id="movieFlipper"><div class="movie-face" id="movieTitle">COMING SOON</div><div class="poster-face"><img src="assets/logans-run.jpg" alt="Logan's Run movie poster"></div></div></div>
-<div class="next-wrap"><a href="next.html" class="next-button">DARE TO ADVENTURE<span>NEXT</span></a></div>
-<section class="poster-wall" aria-labelledby="wallTitle"><h2 class="wall-title" id="wallTitle">SPECIAL FEATURES ON THE WALL</h2><div class="poster-display"><figure class="poster-card"><img src="assets/harry-mudd.png" alt="Star Trek Harry Mudd poster"><figcaption class="plaque"><strong>HARRY MUDD · STAR TREK</strong><span>1967</span></figcaption></figure><figure class="poster-card"><img src="assets/uhura.jpg" alt="Retro portrait poster of Lieutenant Uhura aboard the Enterprise, inviting viewers to journey to the stars."><figcaption class="plaque"><strong>STAR TREK: THE ORIGINAL SERIES</strong><span>1966</span></figcaption></figure></div><p class="poster-note">Two special posters for the theater wall, set among the movie title plaques and years already hanging around the entrance.</p></section>
-<aside class="wall-trivia" aria-label="Movie years"><button class="movie-plaque" data-egg="movie-1968" data-points="5" data-label="2001: A Space Odyssey">2001: A Space Odyssey<small>1968</small></button><div class="movie-plaque">Butch Cassidy and the Sundance Kid<small>1969</small></div></aside>
-<section class="poster-wall" aria-labelledby="libraryTitle"><h2 class="wall-title" id="libraryTitle">MOVIES, SHOWS &amp; QUOTES</h2><p id="libraryStatus" role="status">Loading the collection…</p><ul id="movieList"></ul></section>
-<p class="footer-note">Add an icon to your home screen or desktop for quick access.</p>
-<div class="freddie-hideout"><button class="freddie-egg chair" data-egg="freddie" data-points="25" data-label="You petted Freddie!" aria-label="Pet Freddie"><img src="assets/freddie-chair.jpg" alt="Freddie"></button></div>
-</main>
-<script>
-'use strict';
-// Start session timers after the page is parsed.
-setTimeout(()=>alert('ONE MINUTE LEFT! Wrap it up!'),14*60*1000);
-setTimeout(()=>{alert('15-MINUTE LIMIT REACHED. Session ended.');window.location.href='index.html';},15*60*1000);
-(() => {const titles=['COMING SOON','NEXT MONTH',"LOGAN'S RUN"];const title=document.getElementById('movieTitle');const flipper=document.getElementById('movieFlipper');if(!title||!flipper)return;let step=0;const timer=setInterval(()=>{title.textContent=titles[step%titles.length];step++;if(step>=titles.length*2){clearInterval(timer);title.textContent="LOGAN'S RUN";setTimeout(()=>flipper.classList.add('flipped'),1800)}},1200)})();
-async function loadCollection(){const status=document.getElementById('libraryStatus');try{const response=await fetch('./movies_and_shows.json',{cache:'no-store'});if(!response.ok)throw new Error('Collection unavailable');const data=await response.json();const entries=Array.isArray(data)?data:(data.movies_and_shows||data.quotes||[]);if(!Array.isArray(entries))throw new Error('Collection format unavailable');const list=document.getElementById('movieList');for(const entry of entries){if(!entry||typeof entry!=='object')continue;const row=document.createElement('li');row.style.marginBottom='12px';const title=entry.title||entry.movie||entry.show||'Untitled';const quote=entry.quote||entry.text||'';row.textContent=String(title)+(entry.release_year?' ('+entry.release_year+')':'')+(entry.type?' — '+entry.type:'')+(quote?': “'+String(quote)+'”':'');list.appendChild(row)}status.textContent=list.children.length?list.children.length+' movies, shows or quotes in the collection.':'The collection is being prepared.'}catch{status.textContent='The collection will appear here when movies_and_shows.json is available. You can still use the player buttons above.'}}
-loadCollection();
-try{const key='qc_index_unique_device_510';const counter=document.getElementById('deviceCounter');if(localStorage.getItem(key))counter.textContent='THIS BROWSER: RETURN VISIT';else{localStorage.setItem(key,'1');counter.textContent='THIS BROWSER: FIRST VISIT'}}catch{document.getElementById('deviceCounter').textContent='LOCAL MARKER UNAVAILABLE'}
-let installPrompt=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event});document.getElementById('addIcon').addEventListener('click',async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else alert('To add the Quote Challenge icon, open your browser menu and choose “Add to Home screen” or “Create shortcut.” This adds an icon to your device.')});
-</script>
-<script src="assets/eggs.js"></script>
+  "ornate brass stand with a suggestion box attached and a light switch at the base to turn the light on at night and off during the day it's just firmly and snugly between the two doors leading to one player and two player people can click this and immediately send in a suggestion to the Creator"
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Quote Challenge 6.5 | Star Trek: The Original Series</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #100d12; color: #fff; font-family: Georgia, serif; transition: background 0.5s ease; }
+    body.lights-off { background: #020103; }
+    body.lights-off .gallery-container { opacity: 0.15; filter: blur(2px); pointer-events: none; transition: all 0.6s ease; }
+    body.lights-off .switch-footer { background: rgba(0,0,0,0.9); }
+    body.lights-off .antique-toggle { filter: drop-shadow(0 0 12px #f3ce67) brightness(2.5); }
+    .marquee-area { padding: 24px 16px 12px; background: radial-gradient(ellipse at 50% 0%, #401018, #09080d 75%); }
+    .wrap { width: min(750px, 100%); margin: auto; }
+    .label { text-align: center; color: #e9c680; letter-spacing: .12em; font: 13px system-ui; margin-bottom: 14px; }
+    .stage { position: relative; overflow: hidden; aspect-ratio: 3.4/1; min-height: 220px; border: 9px ridge #ad7930; box-shadow: 0 0 0 3px #ffe2a0, 0 0 30px #bd6c16, inset 0 0 30px #000; background: #150f19; margin-bottom: 30px; }
+    .bulbs { position: absolute; inset: 0; pointer-events: none; z-index: 3; border: 12px dotted #ffe4a2; filter: drop-shadow(0 0 6px #f7ac29); }
+    .track { height: 100%; display: flex; width: 300%; transform: translateX(-33.333%); transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
+    .panel { flex: 0 0 33.333%; height: 100%; display: grid; place-items: center; position: relative; overflow-x: hidden; }
+    .poster-left { background: linear-gradient(135deg, #1c352d, #081410 60%, #2e441a); }
+    .title { background: radial-gradient(ellipse, #42131a, #120b14 70%); }
+    .poster-right { background: linear-gradient(135deg, #1a2844, #0a101c 60%, #48212a); }
+    .panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #080b13; }
+    .poster-copy { position: relative; text-align: center; padding: 15px; text-shadow: 0 3px 10px #000, 0 0 15px #000; z-index: 2; }
+    .poster-copy strong { display: block; font-size: clamp(22px, 5vw, 55px); color: #ffdc91; line-height: 1.1; }
+    .poster-copy span { font: clamp(11px, 1.8vw, 18px) system-ui; color: #fff; display: block; margin-bottom: 4px; }
+    .poster-copy em { display: block; font-size: clamp(12px, 2.2vw, 24px); margin-top: 6px; color: #d9efff; font-style: normal; font-weight: bold; }
+    .title h1 { margin: 0; text-align: center; font-size: clamp(34px, 7vw, 75px); line-height: 1.05; letter-spacing: .04em; color: #f3ce67; text-shadow: 0 2px #4a2206, 0 0 14px #f43d26, 0 0 36px #b50c20; }
+    .title small { font: clamp(10px, 1.6vw, 19px) system-ui; letter-spacing: .2em; color: #fff0c0; }
+    .gallery-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; transition: all 0.5s ease; }
+    .hanging-frame { background: #1a141f; border: 4px ridge #ad7930; border-radius: 4px; overflow-x: hidden; aspect-ratio: 2/3; cursor: pointer; position: relative; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
+    .hanging-frame:hover, .hanging-frame:focus { transform: translateY(-4px); box-shadow: 0 12px 24px #bd6c16; outline: none; }
+    .hanging-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hanging-frame.missing { border-color: #5a1818; cursor: default; display: flex; align-items: center; justify-content: center; padding: 15px; text-align: center; }
+    .hanging-frame.missing:hover { transform: none; box-shadow: none; }
+    .hanging-frame.missing img { display: none; }
+    .missing-label { font: 12px system-ui; color: #ff9999; word-break: break-all; }
+    .switch-footer { padding: 30px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0,0,0,0.3); margin-top: 40px; border-top: 1px dashed rgba(173, 121, 48, 0.3); transition: background 0.5s; }
+    .antique-toggle-container { position: relative; width: 120px; height: 120px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+    .antique-toggle { width: 100%; height: 100%; object-fit: contain; transition: transform 0.15s ease, filter 0.3s; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6)); }
+    .antique-toggle-container:active .antique-toggle { transform: scale(0.94); }
+    .switch-caption { font: 11px system-ui; color: #ad7930; letter-spacing: 0.15em; margin-top: 8px; text-transform: uppercase; }
+    .viewer { border: 6px ridge #ad7930; background: #08050a; color: #fff; padding: 0; max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.8); overflow: hidden; }
+    .viewer::backdrop { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(4px); }
+    .viewer img { display: block; max-width: 100%; max-height: 80vh; object-fit: contain; margin: 0 auto; }
+    .viewer .close { position: absolute; top: 12px; right: 12px; background: #ad792f; color: #100b0d; border: 0; padding: 6px 12px; font: bold 14px system-ui; border-radius: 4px; cursor: pointer; z-index: 10; }
+    .viewer .close:hover { background: #ffe2a0; }
+  </style>
+</head>
+<body>
+
+  <section class="marquee-area">
+    <div class="wrap">
+      <div class="label" id="marquee-banner-text"></div>
+      <div class="stage">
+        <div class="bulbs"></div>
+        <div class="track" id="marquee-track">
+          <section class="panel poster-left" id="panel-left"></section>
+          <section class="panel title" id="panel-center"></section>
+          <section class="panel poster-right" id="panel-right"></section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="gallery-container" id="puzzle-gallery"></main>
+
+  <footer class="switch-footer">
+    <div class="antique-toggle-container" id="secret-switch" role="button" aria-label="Master Room Light Switch" tabindex="0">
+      <img id="switch-asset-img" src="" class="antique-toggle" alt="Antique Toggle Switch Base">
+    </div>
+    <div class="switch-caption">Master Toggle</div>
+  </footer>
+
+  <dialog class="viewer" aria-label="Enlarged gallery picture">
+    <button class="close" type="button" aria-label="Close picture">Close ×</button>
+    <img alt="gallery picture">
+  </dialog>
+
+  <script>
+    const GAME_CONFIG = {
+      bannerMarqueeText: "QUOTE CHALLENGE 6.5 | ENJOY STAR TREK: THE ORIGINAL SERIES THINGS CHANGE MONTHLY NEXT MONTH LOGAN'S RUN JANUARY 2027 THE PRINCESS BRIDE I'LL CHECK BACK OFTEN TO SEE WHO WAS ON THE LEADERBOARDS UNWRAPPED FOUND SECRETS TO THE GAME",
+      slideHoldDuration: 6000,
+      switchEscapeClicksRequired: 3, // Number of clicks required to access the suggestion box
+      escapeRedirectDestinationUrl: "mailto: QcChallenger67@gmail.com", // URL of your suggestion box page
+      switchImageFileAssetPath: "image_6.png", // Filename of your antique toggle switch image
+      panels: {
+        left: { image: "", span: "UPCOMING JANUARY 2027 SELECTION", strong: "THE PRINCESS BRIDE", em: "INCONCEIVABLE CINEMA TRIVIA" },
+        center: { titleMain: "QUOTE<br>CHALLENGE", titleSub: "THE MOVIE QUOTE GAME" },
+        right: { image: "trek-crew.jpg", span: "EXCITING NEW ADVENTURES NEXT MONTH", strong: "LOGAN'S RUN", em: "ESCAPE THE DOME" } // Filename of your Star Trek crew image
+      },
+      galleryImages: [
+        { src: "image_0.png", alt: "Dragon vs. News Anchor" }, // Filename of your media room image
+        { src: "image_1.png", alt: "Witch on broomstick" }, // Filename of your witch image
+        { src: "image_2.png", alt: "Alternative witch view" }, // Filename of your alternative witch image
+        { src: "image_3.png", alt: "Princess Bride book cover" }, // Filename of your Princess Bride book cover
+        { src: "image_4.png", alt: "No Entry sign" }, // Filename of your No Entry sign image
+        { src: "image_5.png", alt: "Robot No Entry signs" } // Filename of your robot signs image
+      ]
+    };
+
+    document.getElementById('marquee-banner-text').textContent = GAME_CONFIG.bannerMarqueeText;
+    document.getElementById('switch-asset-img').src = GAME_CONFIG.switchImageFileAssetPath;
+
+    const pLeft = document.getElementById('panel-left');
+    if(GAME_CONFIG.panels.center.image) center.innerHTML+=IMG_20261018_110913.jpg"<img src="${GAME_CONFIG.panels.center.image}" alt="IMG_20261018_110913.jpg">`;
+    pLeft.innerHTML += `<div class="poster-copy"><span>${GAME_CONFIG.panels.left.span}</span><strong>${GAME_CONFIG.panels.left.strong}</strong><em>${GAME_CONFIG.panels.left.em}</em></div>`;
+
+    const pCenter = document.getElementById('panel-center');
+    pCenter.innerHTML = `<div class="poster-copy title"><h1>${GAME_CONFIG.panels.center.titleMain}</h1><small>${GAME_CONFIG.panels.center.titleSub}</small></div>`;
+
+    const pRight = document.getElementById('panel-right');
+    if(GAME_CONFIG.panels.right.image) pRight.innerHTML += `<img src="${GAME_CONFIG.panels.right.image}" alt="">`;
+    pRight.innerHTML += `<div class="poster-copy"><span>${GAME_CONFIG.panels.right.span}</span><strong>${GAME_CONFIG.panels.right.strong}</strong><em>${GAME_CONFIG.panels.right.em}</em></div>`;
+
+    const gallery = document.getElementById('puzzle-gallery');
+    GAME_CONFIG.galleryImages.forEach((item, index) => {
+      const frame = document.createElement('div');
+      frame.className = 'hanging-frame';
+      frame.tabIndex = 0;
+      frame.innerHTML = `<img src="${item.src}" alt="${item.alt}">`;
+      gallery.appendChild(frame);
+    });
+
+    const viewer = document.querySelector('viewer') || document.querySelector('dialog');
+    const viewerImg = viewer.querySelector('img');
+    const closeBtn = viewer.querySelector('.close');
+
+    document.querySelectorAll('.hanging-frame img').forEach(img => {
+      img.addEventListener('click', () => {
+        viewerImg.src = img.src;
+        viewerImg.alt = img.alt;
+        viewer.showModal();
+      });
+    });
+
+    closeBtn.addEventListener('click', () => viewer.close());
+
+    let escapeCount = 0;
+    document.getElementById('secret-switch').addEventListener('click', () => {
+      document.body.classList.toggle('lights-off');
+      escapeCount++; // Increment the click counter
+      if (escapeCount >= GAME_CONFIG.switchEscapeClicksRequired) { // Check if the required clicks have been made
+        window.location.href = GAME_CONFIG.escapeRedirectDestinationUrl; // Redirect to the suggestion box page
+      }
+    });
+  </script>
 </body>
 </html>
+```
+<main class="shell">
+<h1 class="stage-title">Quote 
