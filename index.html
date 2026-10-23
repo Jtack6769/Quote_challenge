@@ -50,7 +50,7 @@
 </nav>
 <div class="status"><span class="version">QUOTE CHALLENGE 6.5</span><span class="counter" id="deviceCounter" aria-live="polite">THIS BROWSER: LOCAL MARKER</span></div>
 <div class="coming-marquee"><div class="marquee-heading">COMING IN DECEMBER</div><div class="movie-flipper" id="movieFlipper"><div class="movie-face" id="movieTitle">LOGAN'S RUN</div><div class="poster-face"><img src="poster.png" alt="Logan's Run movie poster"></div></div></div>
-<div class="next-wrap"><a href="next.html" class="next-button">NOSTALGIC JOURNEY<span>OPEN SESAME IN HERE</span></a></div>
+<div class="next-wrap"><a href="next.html" class="next-button">NOSTALGIC JOURNEY<span>THROUGH HERE 👇</span></a></div>
 <section class="poster-wall" aria-labelledby="wallTitle"><h2 class="wall-title" id="wallTitle">SPECIAL FEATURES ON THE WALL</h2><div class="poster-display"><figure class="poster-card"><img src="assets/harry-mudd.png" alt="Star Trek Harry Mudd poster"><figcaption class="plaque"><strong>HARRY MUDD · STAR TREK</strong><span>1967</span></figcaption></figure><figure class="poster-card"><img src="assets/uhura.jpg" alt="Retro portrait poster of Lieutenant Uhura aboard the Enterprise, inviting viewers to journey to the stars."><figcaption class="plaque"><strong>STAR TREK: THE ORIGINAL SERIES</strong><span>1966</span></figcaption></figure></div><p class="poster-note">Two special posters for the theater wall, set among the movie title plaques and years already hanging around the entrance.</p></section>
 <aside class="wall-trivia" aria-label="Movie years"><button class="movie-plaque" data-egg="movie-1968" data-points="5" data-label="2001: A Space Odyssey">2001: A Space Odyssey<small>1968</small></button><div class="movie-plaque">Butch Cassidy and the Sundance Kid<small>1969</small></div></aside>
 <section class="poster-wall" aria-labelledby="libraryTitle"><h2 class="wall-title" id="libraryTitle">MOVIES, SHOWS &amp; QUOTES</h2><p id="libraryStatus" role="status">Loading the collection…</p><ul id="movieList"></ul></section>
@@ -200,8 +200,7 @@ let installPrompt=null;window.addEventListener('beforeinstallprompt',event=>{eve
     if (photo.complete && photo.naturalWidth === 0) showMissing();
     const open = () => {https how 
       if (frame.classList.contains('missing')) return;
-      lastFrame = frame;
-  enlargedImage.src="CL85106.jpg"
+      lastFrame = frame;"IMG_20260917_144733543~2.jpg"
       enlargedImage.alt ="😎👋🫡🦈"
       viewer.showModal();
       closeButton.focus();
@@ -236,9 +235,9 @@ let installPrompt=null;window.addEventListener('beforeinstallprompt',event=>{eve
     box-shadow: inset 0 0 200px rgba(0,0,0,.85);
 
     /* Paste them right here at the bottom of the body styles */
-    touch-action: none;
-    overscroll-behavior: none;
-    overflow: hidden;
+    touch-action: pan-y pan-x;
+    overscroll-behavior: pan-y;
+    overflow-x; hidden;
     }
   body {
     background-image: url('gemini_remix_20261022_233612.jpg');
