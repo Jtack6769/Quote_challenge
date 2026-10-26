@@ -19,51 +19,7 @@
 </div></div>
   
 </body>
-      frame.classList.add('missing');
-      frame.querySelector('.missing-label').textContent = 'Picture not found: ' + photo.getAttribute('src');
-      frame.removeAttribute('role');
-      frame.removeAttribute('tabindex');
-      frame.removeAttribute('aria-label');
-
-    photo.addEventListener('error', showMissing);
-    if (photo.complete && photo.naturalWidth === 0) showMissing();
-    const open = () => { 
-      if (frame.classList.contains('missing')) return;
-      lastFrame = frame;
-      enlargedImage.src = photo.src;
-      enlargedImage.alt = photo.alt;
-      viewer.showModal();
-      closeButton.focus();
-    };
-    frame.addEventListener('click', open);
-    frame.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-    });
-  closeButton.addEventListener('click', () => viewer.close());
-  viewer.addEventListener('click', e => { if (e.target === viewer) viewer.close(); });
-  viewer.addEventListener('close', () => { enlargedImage.removeAttribute('src'); if (lastFrame) lastFrame.focus(); });
-</scr
-    .image-container {
-        display: inline-block;
-        cursor: pointer;
-        user-select: none;
-        -webkit-user-select: none; /* For Safari */
-        transition: transform 0.05s ease-out; 
-    }
-
-    /* This forces the browser to make the light/square background transparent */
-    .image-container img {
-    display: block;
-    border-radius: 50%;
-    mix-blend-mode: normal;
-    }
-
-    /* The push-down animation */
-    .flipped {
-        transform: scale(0.95) translate(-4px, 4px) rotate(-4deg);
-    }
-</style>
-<style>
+      </style>
     .image-container {
         display: inline-block;
         cursor: pointer;
@@ -96,23 +52,21 @@
 
     imageContainer.addEventListener('mousedown', () => {
         imageContainer.classList.add('flipped');
+    }
     });
 
     imageContainer.addEventListener('mouseup', () => {
-        imageContainer.classList.remove('flipped');
-        
+        imageContainer.classList.remove('flipped');   
         clickCount++;
-
         if (clickCount === 3) {
             // Opens in the same tab smoothly
             window.location.href = 'https://jtack6769.github.io/Quote_challenge/'; 
             clickCount = 0; 
         }
     });
-
     imageContainer.addEventListener('mouseleave', () => {
         imageContainer.classList.remove('flipped'); }); </script>
            </section>
            </body>
-</html>
+  </style>
 
