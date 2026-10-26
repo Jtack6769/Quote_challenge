@@ -11,62 +11,13 @@
 <body>
 <div class="marquee running" aria-label="Animated Quote Challenge marquee featuring two movie posters">
   <div class="rail">
-    <section class="panel poster"><img src="poster-right.jpg" alt="Right-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">RIGHT POSTER</div></section>
+    <section class="panel poster"><img src="image_da1d6cb.jpg" alt="Right-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">RIGHT POSTER</div></section>
     <section class="panel center"><div class="text"><h1>QUOTE<br>CHALLENGE</h1><p>THE MOVIE QUOTE GAME</p></div><div class="sweep top-sweep"></div><div class="sweep bottom-sweep"></div></section>
-    <section class="panel poster"><img src="poster-left.jpg" alt="Left-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">LEFT POSTER</div></section>
+    <section class="panel poster"><img src="trek-crew.jpg" alt="Left-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">LEFT POSTER</div></section>
   </div>
   <div class="gold-edge"></div>
 </div></div>
   
 </body>
       </style>
-    .image-container {
-        display: inline-block;
-        cursor: pointer;
-        user-select: none;
-        -webkit-user-select: none; /* For Safari */
-        transition: transform 0.05s ease-out; 
-    }
-    /* This cleanly cuts the image into a perfect circle, cutting off the square edges */
-    .image-container img {
-        display: block;
-        border-radius: 75%;
-     mix-blend-mode: normal;
-    }
-
-    /* The push-down animation */
-    .flipped {
-        transform: scale(0.95) translate(-4px, 4px) rotate(-4deg);
-    }
-</style>
-
-<!-- Your hidden easter egg vintage switch -->
-<div class="image-container" id="flipImageContainer">
-    <!-- Replace 'your-image.png' with your actual switch filename -->
-    <img id="myImage" src="image_486ebf86.jpg" alt="" width="70">
-</div>
-
-<script>
-    let clickCount = 0;
-    const imageContainer = document.getElementById('flipImageContainer');
-
-    imageContainer.addEventListener('mousedown', () => {
-        imageContainer.classList.add('flipped');
-    }
-    });
-
-    imageContainer.addEventListener('mouseup', () => {
-        imageContainer.classList.remove('flipped');   
-        clickCount++;
-        if (clickCount === 3) {
-            // Opens in the same tab smoothly
-            window.location.href = 'https://jtack6769.github.io/Quote_challenge/'; 
-            clickCount = 0; 
-        }
-    });
-    imageContainer.addEventListener('mouseleave', () => {
-        imageContainer.classList.remove('flipped'); }); </script>
-           </section>
-           </body>
-  </style>
-
+   
