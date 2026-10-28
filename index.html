@@ -2,27 +2,111 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quote Challenge Marquee</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Quote Challenge | Theater 6.9.1-2</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;background:transparent;font-family:Georgia,'Times New Roman',serif}body{padding:12px;overflow:hidden}.marquee{position:relative;width:100%;height:clamp(180px,28vw,310px);overflow:hidden;clip-path:polygon(0 12px,12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px));border:4px solid #f6d678;box-shadow:inset 0 0 0 3px #633909, inset 0 0 0 8px #d49a31,0 0 18px #9b4813;background:#090609}.marquee:before{content:"";position:absolute;inset:8px;border:2px solid #f8da7c;pointer-events:none;z-index:10;box-shadow:inset 0 0 12px #d48b2b}.rail{position:absolute;inset:0;display:flex;width:300%;transform:translateX(-33.333333%);will-change:transform}.panel{width:33.333333%;height:100%;position:relative;display:grid;place-items:center;overflow:hidden}.center{background:radial-gradient(ellipse at center,#3d1117 0%,#14080c 68%,#080508 100%)}.center .text{position:relative;text-align:center;z-index:2;padding:10px 28px}.center h1{margin:0;color:#ff2929;font-size:clamp(32px,7.5vw,91px);line-height:.99;letter-spacing:.035em;-webkit-text-stroke:1px #f8d88a;text-shadow:0 2px 0 #4e2104,0 0 6px #ff4734,0 0 17px #ed001c,0 0 32px #c6001c}.center p{margin:12px 0 0;font:600 clamp(9px,1.5vw,17px) system-ui,sans-serif;letter-spacing:.22em;color:#f8d99c}.center .sweep{position:absolute;left:0;right:0;height:75%;z-index:3;pointer-events:none;opacity:0}.top-sweep{top:0;background:linear-gradient(to bottom,rgba(255,238,171,.68),rgba(255,36,24,.23),transparent);transform:translateY(-110%)}.bottom-sweep{bottom:0;background:linear-gradient(to top,rgba(255,223,131,.65),rgba(255,36,24,.19),transparent);transform:translateY(110%)}.poster{background:#101019}.poster img{width:100%;height:100%;object-fit:cover;display:block}.poster .placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#e8bd67;font-size:clamp(18px,4vw,43px);letter-spacing:.07em;padding:20px;background:radial-gradient(ellipse,#352018,#100c16)}.poster img:not([src]),.poster img[src=""]{display:none}.poster img[src]:not([src=""])+.placeholder{display:none}.bright-gold-edge{position:absolute;inset:0;pointer-events:none;z-index:9;box-shadow:inset 0 0 0 8px #ad782c,inset 0 0 0 11px #f7d989,inset 0 0 25px #080300}.marquee.running .rail{animation:travel 20s ease-in-out infinite}.marquee.running .top-sweep{animation:topLight 20s linear infinite}.marquee.running .bottom-sweep{animation:bottomLight 20s linear infinite}@keyframes travel{0%,25%{transform:translateX(-33.333333%)}35%,46%{transform:translateX(-66.666667%)}56%,65%{transform:translateX(-33.333333%)}75%,86%{transform:translateX(0)}96%,100%{transform:translateX(-33.333333%)}}@keyframes topLight{0%{opacity:0;transform:translateY(-110%)}1%{opacity:1}6%{opacity:.9;transform:translateY(0)}8%{opacity:0;transform:translateY(120%)}100%{opacity:0}}@keyframes bottomLight{0%,6%{opacity:0;transform:translateY(110%)}7%{opacity:1}11%{opacity:.9;transform:translateY(0)}13%{opacity:0;transform:translateY(-120%)}100%{opacity:0}}@media(prefers-reduced-motion:reduce){.marquee.running .rail,.marquee.running .top-sweep,.marquee.running .bottom-sweep{animation:none}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#03050b;color:#fff;font-family:system-ui,Arial,sans-serif}
+.theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('theater-691-2.png') center/100% 100% no-repeat;overflow:hidden}
+/* Overlay precisely on the artwork's existing illuminated marquee */
+.marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
+.marquee-track{white-space:nowrap;display:inline-block;width:max-content;animation:roll 40s linear infinite;color:#ffd15a;font-weight:800;font-size:clamp(9px,2.15vw,34px);letter-spacing:.06em;text-shadow:0 0 8px #d58b1a}
+@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.suggestions{position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
+.suggestions:focus-visible{outline:3px solid #fff08a;outline-offset:3px}
+.suggestions:hover{box-shadow:0 0 15px 4px #ffe08388}
+.dialog-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
+.dialog-backdrop.open{display:flex}
+.dialog{width:min(440px,100%);padding:24px;border:2px solid #d6a54e;border-radius:12px;background:#101b30;box-shadow:0 0 30px #e6a73a55}
+.dialog h2{margin:0 0 16px;color:#ffdf84}.dialog label{display:block;margin:12px 0 5px}.dialog select,.dialog textarea{width:100%;padding:10px;background:#f8f4eb;color:#151515;border-radius:5px;border:0;font:inherit}.dialog textarea{min-height:120px;resize:vertical}.buttons{display:flex;gap:12px;justify-content:flex-end;margin-top:16px}.buttons button{padding:10px 16px;cursor:pointer;border:0;border-radius:5px;font-weight:700}.send{background:#e4b45b;color:#17100b}
+.help{font-size:12px;color:#d9d9d9;margin-top:12px}
+@media(max-width:600px){.marquee-track{font-size:clamp(7px,2.1vw,13px)}.marquee{border-width:1px}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation-duration:35s}}
 </style>
 </head>
 <body>
-<div class="marquee running" aria-label="Animated Quote Challenge marquee featuring two movie posters">
-  <div class="rail">
-    <section class="panel poster"><img src="image_da1d6cb.jpg" alt="Right-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">RIGHT POSTER</div></section>
-    <section class="panel center"><div class="text"><h1>QUOTE<br>CHALLENGE</h1><p>THE MOVIE QUOTE GAME</p></div><div class="sweep top-sweep"></div><div class="sweep bottom-sweep"></div></section>
-    <section class="panel poster"><img src="trek-crew.jpg" alt="Left-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">LEFT POSTER</div></section>
-  </div>
-  <div class="radiant-gold-edge"></div>
-</div></div>
-  </body>
-Beam me up Scotty 😎 Walter Koenig 😎
-  QUOTE CHALLENGE WILL BE BACK ON 11-1-2027!
-      </style>
-   <!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
+<main class="theater" aria-label="Quote Challenge theater entrance">
+  <div class="marquee" aria-label="Scrolling theater announcements"><div class="marquee-track" id="marqueeTrack"></div></div>
+  <button class="suggestions" id="openSuggestions" aria-label="Open suggestions and bug report form" title="Suggestions and bug reports"></button>
+</main>
+<div class="dialog-backdrop" id="backdrop">
+  <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+    <h2 id="dialogTitle">Quote Challenge Suggestions</h2>
+    <form id="suggestionForm">
+      <label for="subject">What would you like to send?</label>
+      <select id="subject"><option>Idea / Suggestion</option><option>Bug Report</option></select>
+      <label for="message">Your message</label>
+      <textarea id="message" required placeholder="Tell us what you found or what you'd like to see..."></textarea>
+      <div class="buttons"><button type="button" id="closeSuggestions">Cancel</button><button class="send" type="submit">Open Email</button></div>
+    </form>
+    <p class="help">Opens your email app with the subject and message filled in. No message is sent until you send it from your email app.</p>
+  </section>
+</div>
+<script>
+// EDIT THIS LINE to change the rolling marquee message.
+const marqueeMessage = 'CHOOSE YOUR ENTRANCE  ★  WELCOME TO QUOTE CHALLENGE  ★  YOU SHALL NOT PAASSS!!! ★ The Lord of the Rings: The Fellowship of the Ring ★  YOUR MEMORIES YOUR JOURNEY OUR FUN!!★  ';
+const track=document.getElementById('marqueeTrack');
+const text=marqueeMessage.repeat(3);
+track.textContent=text+text;
+const backdrop=document.getElementById('backdrop');
+const openBtn=document.getElementById('openSuggestions');
+function closeDialog(){backdrop.classList.remove('open');openBtn.focus()}
+openBtn.addEventListener('click',()=>{backdrop.classList.add('open');document.getElementById('subject').focus()});
+document.getElementById('closeSuggestions').addEventListener('click',closeDialog);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeDialog()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))closeDialog()});
+document.getElementById('suggestionForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const subject='Quote Challenge - '+document.getElementById('subject').value;
+ const message=document.getElementById('message').value;
+window.location.href='mailto:qcchallenger67@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(message);
+});
+</script>
+</body>
+ <!doctype html>
+
+<!-- QUOTE CHALLENGE SCROLLING BANNER -->
+
+<style>
+.qc-banner {
+  width: 100%;
+  overflow: hidden;
+  background: #dark blue;
+  border: 2px solid #clear;
+  border-radius: 6px;
+  padding: 12px 0;
+  color: #transparent;
+  font: bold 18px Arial, sans-serif;
+}
+
+.qc-banner-text {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: qc-scroll 22s linear infinite;
+}
+
+@keyframes qc-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qc-banner-text {
+    animation: none;
+    padding-left: 0;
+    white-space: normal;
+    text-align: center;
+  }
+}
+</style>
+<div class="qc-banner">
+  <div class="qc-banner-text">
+    🎬 QUOTE CHALLENGE • 💙 UNDER CONSTRUCTION • WE ARE WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 💙 🎬
+  </div> 
+</html>
+</style>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -34,7 +118,7 @@ Beam me up Scotty 😎 Walter Koenig 😎
     margin: 0;
     padding: 40px 20px;
     min-height: 100vh;
-    color: #eee;
+    color: #transparent;
     font-family: Georgia, serif;
     background-color: #1a1512;
     background-image:
@@ -61,7 +145,7 @@ Beam me up Scotty 😎 Walter Koenig 😎
     position: relative;
     padding: 12px 12px 14px;
     background: #111;
-    border: 8px ridge #4a3b2c;
+    border: 8px ridge #transparent;
     border-radius: 4px;
     box-shadow: 0 25px 35px rgba(0,0,0,.9), 0 5px 15px rgba(0,0,0,.7);
     transform: rotate(var(--angle, 0deg));
@@ -84,7 +168,7 @@ Beam me up Scotty 😎 Walter Koenig 😎
     height: auto;
     min-height: 180px;
     object-fit: contain;
-    border: 1px solid #050505;
+    border: 1px solid #transsparent;
     background: #000;
   }
   .missing-label { display: none; padding: 15px; max-width: 260px; font: 14px/1.5 system-ui,sans-serif; overflow-wrap: anywhere; }
@@ -92,9 +176,9 @@ Beam me up Scotty 😎 Walter Koenig 😎
   .hanging-frame.missing .missing-label { display: block; }
   .hanging-frame.missing img { display: none; }
   dialog.viewer {
-    border: 8px ridge #4a3b2c;
+    border: 8px ridge #transparent;
     border-radius: 5px;
-    background: #101010;
+    background: #transparent;
     color: white;
     padding: 15px;
     width: max-content;
@@ -109,7 +193,7 @@ Beam me up Scotty 😎 Walter Koenig 😎
     margin: 0 0 12px auto;
     padding: 7px 12px;
     background: #292019;
-    border: 1px solid #9f8868;
+    border: 1px solid #transparent;
     color: #fff;
     font-size: 17px;
     cursor: pointer;
@@ -127,15 +211,15 @@ Beam me up Scotty 😎 Walter Koenig 😎
 <body>
 <main class="wall-gallery" aria-label="Framed picture gallery">
   <!-- Keep these six JPG files beside this HTML file, with matching lowercase names. -->
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="image_18e12dcf.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 2"><img src="image_365942f.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 3"><img src="image_58d3d79d.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 4"><img src="image_886211b0.jpg" alt="Gallery picture 4" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="image_e27938f2.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="image_f8b1c28c.jpg" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="trek-crew.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 2"><img src="CL85106.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 3"><img src="IMG_20260909_203401795_HDR.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 4"><img src="harry-mudd.png" alt="Gallery picture 4" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="IMG_20260913_064817432~2.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="gemini_remix_20261009_202400.jpg" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
 </main>
 <dialog class="viewer" aria-label="Enlarged gallery picture">
-  <button class="close" type="button" aria-label="Close enlarged picture">Close ×</button>
+  <button class="close" type="button" aria-label="Close enlarged picture">Beam me up ×</button>
   <img alt="Enlarged gallery picture">
 </dialog>
 <script>
@@ -172,4 +256,28 @@ Beam me up Scotty 😎 Walter Koenig 😎
   viewer.addEventListener('close', () => { enlargedImage.removeAttribute('src'); if (lastFrame) lastFrame.focus(); });
 </script>
 </body>
-</html>
+  </html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quote Challenge Marquee</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:transparent;font-family:Georgia,'Times New Roman',serif}body{padding:12px;overflow:hidden}.marquee{position:relative;width:100%;height:clamp(180px,28vw,310px);overflow:hidden;clip-path:polygon(0 12px,12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px));border:4px solid #f6d678;box-shadow:inset 0 0 0 3px #633909, inset 0 0 0 8px #d49a31,0 0 18px #9b4813;background:#090609}.marquee:before{content:"";position:absolute;inset:8px;border:2px solid #f8da7c;pointer-events:none;z-index:10;box-shadow:inset 0 0 12px #d48b2b}.rail{position:absolute;inset:0;display:flex;width:300%;transform:translateX(-33.333333%);will-change:transform}.panel{width:33.333333%;height:100%;position:relative;display:grid;place-items:center;overflow:hidden}.center{background:radial-gradient(ellipse at center,#3d1117 0%,#14080c 68%,#080508 100%)}.center .text{position:relative;text-align:center;z-index:2;padding:10px 28px}.center h1{margin:0;color:#ff2929;font-size:clamp(32px,7.5vw,91px);line-height:.99;letter-spacing:.035em;-webkit-text-stroke:1px #f8d88a;text-shadow:0 2px 0 #4e2104,0 0 6px #ff4734,0 0 17px #ed001c,0 0 32px #c6001c}.center p{margin:12px 0 0;font:600 clamp(9px,1.5vw,17px) system-ui,sans-serif;letter-spacing:.22em;color:#f8d99c}.center .sweep{position:absolute;left:0;right:0;height:75%;z-index:3;pointer-events:none;opacity:0}.top-sweep{top:0;background:linear-gradient(to bottom,rgba(255,238,171,.68),rgba(255,36,24,.23),transparent);transform:translateY(-110%)}.bottom-sweep{bottom:0;background:linear-gradient(to top,rgba(255,223,131,.65),rgba(255,36,24,.19),transparent);transform:translateY(110%)}.poster{background:#101019}.poster img{width:100%;height:100%;object-fit:cover;display:block}.poster .placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#e8bd67;font-size:clamp(18px,4vw,43px);letter-spacing:.07em;padding:20px;background:radial-gradient(ellipse,#352018,#100c16)}.poster img:not([src]),.poster img[src=""]{display:none}.poster img[src]:not([src=""])+.placeholder{display:none}.bright-gold-edge{position:absolute;inset:0;pointer-events:none;z-index:9;box-shadow:inset 0 0 0 8px #ad782c,inset 0 0 0 11px #f7d989,inset 0 0 25px #080300}.marquee.running .rail{animation:travel 20s ease-in-out infinite}.marquee.running .top-sweep{animation:topLight 20s linear infinite}.marquee.running .bottom-sweep{animation:bottomLight 20s linear infinite}@keyframes travel{0%,25%{transform:translateX(-33.333333%)}35%,46%{transform:translateX(-66.666667%)}56%,65%{transform:translateX(-33.333333%)}75%,86%{transform:translateX(0)}96%,100%{transform:translateX(-33.333333%)}}@keyframes topLight{0%{opacity:0;transform:translateY(-110%)}1%{opacity:1}6%{opacity:.9;transform:translateY(0)}8%{opacity:0;transform:translateY(120%)}100%{opacity:0}}@keyframes bottomLight{0%,6%{opacity:0;transform:translateY(110%)}7%{opacity:1}11%{opacity:.9;transform:translateY(0)}13%{opacity:0;transform:translateY(-120%)}100%{opacity:0}}@media(prefers-reduced-motion:reduce){.marquee.running .rail,.marquee.running .top-sweep,.marquee.running .bottom-sweep{animation:none}}
+</style>
+</head>
+<body>
+<div class="marquee running" aria-label="Animated Quote Challenge marquee featuring two movie posters">
+  <div class="rail">
+    <section class="panel poster"><img src="image_da1d6cb.jpg" alt="Right-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">RIGHT POSTER</div></section>
+    <section class="panel center"><div class="text"><h1>QUOTE<br>CHALLENGE</h1><p>THE MOVIE QUOTE GAME</p></div><div class="sweep top-sweep"></div><div class="sweep bottom-sweep"></div></section>
+    <section class="panel poster"><img src="trek-crew.jpg" alt="Left-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">LEFT POSTER</div></section>
+  </div>
+  <div class="radiant-gold-edge"></div>
+</div></div>
+  </body>
+Beam me up Scotty 😎 Walter Koenig 😎
+  QUOTE CHALLENGE WILL BE BACK ON 11-1-2027!
+      </style>
+   
