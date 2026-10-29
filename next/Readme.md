@@ -1,3 +1,3 @@
 WELCOME TO BUILD 6.5 QUOTE CHALLENGE 
 
-nothing to see here Lewis we're just trying to make this shit work and sometimes it does sometimes it doesn't when it doesn't I blame the AI maple you don't know who Maple is to figure it out and check back with me seriously if you really want to check back what's up QC Challenger 67@gmail.com have fun
+nothing to see here Lewis we're just trying to make this shit work and sometimes it does sometimes it doesn't when it doesn't I blame the AI maple you don't know who Maple is to figure it out and check back with me seriously if you really want to check back what's up QCChallenger67@gmail.com have fun
