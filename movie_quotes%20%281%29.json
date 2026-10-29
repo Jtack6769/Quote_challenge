@@ -1,6 +1,5 @@
-[
-  {
-    "q": "They're not killers, they're just hungry!",
+{
+  "q": "They're not killers, they're just hungry!",
     "s": "Critters",
     "sp": "Charlie McFadden",
     "b": "The local sheriff points his flashlight down into the dark, blood-splattered barn.",
@@ -363,10 +362,6 @@
     "c": "Movies",
     "d": "Easy"
   }
-]
-
-
-[
   {
     "q": "Do, or do not. There is no try.",
     "s": "Star Wars: The Empire Strikes Back",
