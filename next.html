@@ -2,64 +2,216 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#000000">
-<title>Next Month | Quote Challenge</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Quote Challenge | Theater 6.9.1-2</title>
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;background:#000;color:#ffdc69}
-body{min-height:100svh;overflow:hidden;display:grid;place-items:center;font-family:Georgia,'Times New Roman',serif}
-.stage{position:relative;width:100vw;height:100svh;display:grid;place-items:center;overflow:hidden;background:#000;isolation:isolate}
-.poster{position:absolute;width:min(75vw,340px,calc(77svh * .67));aspect-ratio:2/3;filter:drop-shadow(0 0 15px #f3b82c65);opacity:0;animation:show-frame .01s linear .12s forwards}
-@keyframes show-frame{to{opacity:1}}
-.tile{position:absolute;width:50%;height:50%;background-image:var(--poster-url);background-size:200% 200%;background-repeat:no-repeat;opacity:0;transform:translate(var(--tx),var(--ty)) scale(.92);will-change:transform,opacity}
-.tile:nth-child(1){top:0;left:0;background-position:left top;--tx:-160%;--ty:-120%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .14s forwards}
-.tile:nth-child(2){top:0;right:0;background-position:right top;--tx:170%;--ty:-105%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .48s forwards}
-.tile:nth-child(3){bottom:0;left:0;background-position:left bottom;--tx:-145%;--ty:135%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .82s forwards}
-.tile:nth-child(4){bottom:0;right:0;background-position:right bottom;transform:none;animation:fade-in .46s ease 1.25s forwards}
-@keyframes fly-in{to{opacity:1;transform:translate(0,0) scale(1)}}
-@keyframes fade-in{to{opacity:1}}
-/* Fourth piece arrives, then the complete image snaps out of sight. */
-.poster{animation:show-frame .01s linear .12s forwards,poster-pop .13s steps(1,end) 1.78s forwards}
-@keyframes poster-pop{to{opacity:0;visibility:hidden}}
-.gold-reveal{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;opacity:0;transform:scale(.86);animation:gold-burst 2.05s ease 1.85s forwards}
-.gold-reveal h1{margin:0;font-weight:900;line-height:1.05;letter-spacing:.075em;font-size:clamp(35px,9vw,88px);color:#ffd64e;text-shadow:0 1px 0 #fff1a3,0 3px 0 #9b5c00,0 0 14px #ffc300,0 0 35px #f6a800}
-.gold-reveal p{margin:18px 0 0;font:900 clamp(17px,4.6vw,35px)/1.1 system-ui,sans-serif;letter-spacing:.24em;color:#ffe89a;text-shadow:0 0 18px #ffbd16}
-.gold-reveal::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,#ffd34855 0%,#ffc52b12 27%,transparent 62%);opacity:0;animation:light-pulse 2.05s ease 1.85s forwards}
-@keyframes gold-burst{
-  0%{opacity:0;transform:scale(.86);filter:brightness(1)}
-  12%{opacity:1;transform:scale(1.04);filter:brightness(2.4)}
-  30%{opacity:1;transform:scale(1);filter:brightness(1)}
-  53%{opacity:1;transform:scale(1.04);filter:brightness(2.6)}
-  70%{opacity:1;transform:scale(1);filter:brightness(1.15)}
-  87%{opacity:1;transform:scale(1.06);filter:brightness(3)}
-  100%{opacity:0;transform:scale(1.2);filter:brightness(4)}
-}
-@keyframes light-pulse{0%,25%,43%,66%,80%,100%{opacity:0}12%,53%,87%{opacity:1}}
-.error{position:absolute;bottom:16px;left:12px;right:12px;text-align:center;color:#fff;font:14px system-ui,sans-serif;display:none}
-@media(prefers-reduced-motion:reduce){.poster,.tile,.gold-reveal,.gold-reveal::after{animation:none!important}.poster{opacity:0}.gold-reveal{opacity:1;transform:none;filter:none}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#03050b;color:#fff;font-family:system-ui,Arial,sans-serif}
+.theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('theater-691-2.png') center/100% 100% no-repeat;overflow:hidden}
+/* Overlay precisely on the artwork's existing illuminated marquee */
+.marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
+
+.suggestions{position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
+.suggestions:focus-visible{outline:3px solid #fff08a;outline-offset:3px}
+.suggestions:hover{box-shadow:0 0 15px 4px #ffe08388}
+.dialog-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
+.dialog-backdrop.open{display:flex}
+.dialog{width:min(440px,100%);padding:24px;border:2px solid #d6a54e;border-radius:12px;background:#101b30;box-shadow:0 0 30px #e6a73a55}
+.dialog h2{margin:0 0 16px;color:#ffdf84}.dialog label{display:block;margin:12px 0 5px}.dialog textarea{width:100%;padding:10px;background:#f8f4eb;color:#151515;border-radius:5px;border:0;font:inherit}.dialog textarea{min-height:120px;resize:vertical}
+/* Four clearly separated message controls */
+.message-types,.buttons{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.message-types button,.buttons button{flex:1;min-width:110px;padding:10px 12px;cursor:pointer;border:1px solid #d6a54e;border-radius:5px;font-weight:700;background:#26344c;color:#ffdf84}
+.message-types button[aria-pressed="true"]{background:#e4b45b;color:#17100b;border-color:#ffdf84}
+.buttons{justify-content:flex-end;margin-top:16px}.buttons .send{background:#e4b45b;color:#17100b}
+.message-types button:focus-visible,.buttons button:focus-visible{outline:3px solid #fff08a;outline-offset:2px}
+.help{font-size:12px;color:#d9d9d9;margin-top:12px}
+@media(max-width:600px){.marquee-track{font-size:clamp(7px,2.1vw,13px)}.marquee{border-width:1px}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation-duration:22.5s}}
+/* QUOTE CHALLENGE SCROLLING BANNER */
+.qc-banner{width:100%;overflow:hidden;background:transparent;border:2px solid transparent;border-radius:6px;padding:12px 0;color:inherit;font:bold 18px Arial,sans-serif}
+.qc-banner-text{display:inline-block;white-space:nowrap;padding-left:100%;animation:qc-scroll 45s linear infinite}
+@keyframes qc-scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.qc-banner-text{animation:none;padding-left:0;white-space:normal;text-align:center}}
+/* Gallery Wall */
+body{padding:0;font-family:system-ui,Arial,sans-serif}
+.gallery-area{padding:40px 20px;color:inherit;font-family:Georgia,serif;background-color:#1a1512;background-image:linear-gradient(335deg,#110d0b 23px,transparent 23px),linear-gradient(155deg,#1d1815 23px,transparent 23px),linear-gradient(335deg,#110d0b 23px,transparent 23px),linear-gradient(155deg,#1d1815 23px,transparent 23px),linear-gradient(90deg,#0d0a08 10px,transparent 10px),linear-gradient(#0d0a08 10px,transparent 10px);background-size:58px 58px,58px 58px,58px 58px,58px 58px,29px 29px,29px 29px;background-position:0 2px,4px 35px,29px 31px,34px 6px,0 0;box-shadow:inset 0 0 200px rgba(0,0,0,.85)}
+.wall-gallery{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:40px;max-width:1200px;margin:0 auto}
+.hanging-frame{position:relative;padding:12px 12px 14px;background:#111;border:8px ridge transparent;border-radius:4px;box-shadow:0 25px 35px rgba(0,0,0,.9),0 5px 15px rgba(0,0,0,.7);transform:rotate(var(--angle,0deg));transition:transform .3s ease;max-width:100%;cursor:zoom-in}
+.hanging-frame:nth-child(odd){--angle:-1.5deg}.hanging-frame:nth-child(even){--angle:1.8deg}.hanging-frame:nth-child(3n){--angle:-.7deg}
+.hanging-frame:hover,.hanging-frame:focus-visible{transform:rotate(0) scale(1.03);z-index:10}.hanging-frame:focus-visible{outline:3px solid #f5c76c;outline-offset:7px}
+.hanging-frame img{display:block;width:260px;max-width:100%;height:auto;min-height:180px;object-fit:contain;border:1px solid transparent;background:#000}
+.missing-label{display:none;padding:15px;max-width:260px;font:14px/1.5 system-ui,sans-serif;overflow-wrap:anywhere}.hanging-frame.missing{cursor:default}.hanging-frame.missing .missing-label{display:block}.hanging-frame.missing img{display:none}
+dialog.viewer{border:8px ridge transparent;border-radius:5px;background:transparent;color:white;padding:15px;width:max-content;max-width:calc(100vw - 24px);max-height:calc(100vh - 24px);box-shadow:0 20px 50px #000}
+dialog.viewer::backdrop{background:rgba(0,0,0,.9)}.viewer img{display:block;max-width:min(88vw,1100px);max-height:76vh;object-fit:contain}
+.viewer .close{display:block;margin:0 0 12px auto;padding:7px 12px;background:#292019;border:1px solid transparent;color:#fff;font-size:17px;cursor:pointer}
+@media(max-width:600px){.gallery-area{padding:28px 16px}.wall-gallery{gap:28px}.hanging-frame img{width:min(260px,72vw)}}
+@media(prefers-reduced-motion:reduce){.hanging-frame{transition:none}}
+/* Invisible picture frames: photographs and enlargement still work. */
+.hanging-frame{padding:0;background:transparent;border:0;box-shadow:none;border-radius:0;transform:none}
+.hanging-frame:hover,.hanging-frame:focus-visible{transform:none}
+.hanging-frame img{border:0;background:transparent}
+
+/* Frame-free gallery: no visible frames, including hover and enlarged view. */
+.hanging-frame{padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important}
+.hanging-frame:hover,.hanging-frame:focus-visible{transform:none!important;box-shadow:none!important;outline:none!important}
+.hanging-frame img{border:0!important;background:transparent!important}
+dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;padding:0!important}
+.viewer img{border:0!important;box-shadow:none!important;background:transparent!important}
+
+/* Top marquee: angled color waves and subtle heat shimmer */
+
+.marquee{isolation:isolate;display:grid;place-items:center;background:radial-gradient(ellipse at center,#17356d,#07132e 75%);box-shadow:0 0 24px #e5b84955,inset 0 0 20px #000}
+/* Very subtle, continuously drifting road-heat shimmer behind the lettering. */
+.marquee::after{content:"";position:absolute;inset:-28%;z-index:0;pointer-events:none;opacity:.27;background:repeating-linear-gradient(101deg,transparent 0 30px,#ffc76a12 37px,transparent 51px 82px),radial-gradient(ellipse at 38% 65%,#ff8b301f,transparent 53%),radial-gradient(ellipse at 72% 38%,#a74bff20,transparent 55%);filter:blur(11px);animation:heatDrift 8s ease-in-out infinite alternate;transform-origin:center}
+@keyframes heatDrift{0%{transform:translate(-1.5%,2%) skewX(-2deg) scale(1.02);filter:blur(12px)}50%{transform:translate(1%,-1.5%) skewX(2deg) scale(1.06);filter:blur(8px)}100%{transform:translate(-.5%,1%) skewX(-1deg) scale(1.03);filter:blur(13px)}}
+.marquee::before{content:"";position:absolute;inset:5px;border:1px solid #ffe5a588;border-radius:9px;pointer-events:none;z-index:5}
+.wave-message{position:relative;z-index:2;text-align:center;padding:0 6px;font-size:clamp(9px,2.5vw,39px);font-weight:bold;letter-spacing:.015em;color:#ff3030;text-shadow:0 2px 2px #300000,0 0 5px #ff8a00,0 0 13px #ff6500,0 0 23px #ff4500;opacity:1;transition:opacity .12s}
+.wave-message.hide{opacity:0}
+.wave{position:absolute;z-index:3;top:-12%;height:124%;width:85%;pointer-events:none;opacity:0;filter:drop-shadow(0 0 14px #48caffaa);background:linear-gradient(90deg,transparent 0%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
+/* Right-moving wave has a / leading edge; left-moving wave has a \ leading edge. */
+.wave.run-right{clip-path:polygon(0 0,100% 0,67% 100%,0 100%);animation:sweepRight 2.2s ease-in-out both}
+.wave.run-left{clip-path:polygon(0 0,100% 0,100% 100%,33% 100%);animation:sweepLeft 2.2s ease-in-out both;background:linear-gradient(270deg,transparent 0%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
+@keyframes sweepRight{0%{left:0;transform:translateX(-110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{left:100%;transform:translateX(5%);opacity:0}}
+@keyframes sweepLeft{0%{right:0;transform:translateX(110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{right:100%;transform:translateX(-5%);opacity:0}}
+@media(prefers-reduced-motion:reduce){.wave{display:none}.wave-message{transition:none}.marquee::after{animation:none}}
+
+/* Interactive theater entrances and hidden bonuses */
+.door-link{position:absolute;display:block;top:43.3%;height:43.8%;z-index:2;cursor:pointer;border-radius:5px}
+.door-one{left:32.5%;width:14.4%}.door-two{left:52.9%;width:13.8%}
+.door-link:focus-visible{outline:3px solid #fff39b;outline-offset:2px}
+.freddy{position:absolute;left:44.5%;bottom:6.4%;width:8.3%;height:18%;z-index:3;cursor:pointer;background:none;border:0;padding:0}
+.freddy img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 5px 3px #0009)}
+.freddy .standing{opacity:0}.freddy:hover .standing,.freddy:focus-visible .standing,.freddy:active .standing{opacity:1}
+.freddy:hover .sitting,.freddy:focus-visible .sitting,.freddy:active .sitting{opacity:0}
+.secret-portrait{position:absolute;left:18.7%;top:37.8%;width:4.2%;height:10.6%;z-index:2;opacity:.48;filter:brightness(.58) sepia(.4);border:0;background:transparent;padding:0;cursor:pointer;transform:rotate(-5deg)}
+.secret-portrait img{width:100%;height:100%;object-fit:cover}.secret-portrait:focus-visible{outline:2px solid #fff}
+.robot-glow{position:absolute;left:60.15%;top:80.5%;width:2.15%;height:2.5%;z-index:3;pointer-events:auto;cursor:pointer;border-radius:50%;background:transparent}
+.robot-glow::after{content:'';position:absolute;inset:-35%;border-radius:50%;opacity:0;transition:opacity .2s;background:radial-gradient(ellipse,#a7faffbb 5%,#00eaff77 33%,transparent 72%);filter:blur(4px)}
+.robot-glow:hover::after,.robot-glow:focus-visible::after{opacity:1}
+@media(prefers-reduced-motion:reduce){.robot-glow::after{transition:none}}
 </style>
 </head>
 <body>
-<main class="stage" aria-label="Next month's movie teaser">
-  <div class="poster" aria-label="Logan's Run poster assembling in four pieces">
-    <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
-  </div>
-  <div class="gold-reveal" aria-label="Logan's Run. Next month.">
-    <h1>LOGAN'S RUN</h1><p>NEXT MONTH</p>
-  </div>
-  <p class="error" role="status">Poster image not found. Check the filename in next.html.</p>
+<main class="theater" aria-label="Quote Challenge theater entrance">
+  <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
+
+  <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="One Player"></a>
+  <a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="Two Players"></a>
+  <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
+  <button class="freddy" type="button" aria-label="Freddy the dog, hover to see him stand" title="Freddy"><img class="sitting" src="freddy-sitting.png" alt=""><img class="standing" src="freddy-standing.png" alt=""></button>
+  <span class="robot-glow" tabindex="0" role="img" aria-label="Robot with glowing eyes on hover"></span>
+  <button class="suggestions" id="openSuggestions" aria-label="Open suggestions and bug report form" title="Suggestions and bug reports"></button>
 </main>
+<div class="dialog-backdrop" id="backdrop">
+  <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+    <h2 id="dialogTitle">Quote Challenge Suggestions</h2>
+    <form id="suggestionForm">
+      <label>What would you like to send?</label>
+      <div class="message-types" role="group" aria-label="Message type">
+        <button type="button" id="typeBug" aria-pressed="false">Bug Report</button>
+        <button type="button" id="typeSuggestion" aria-pressed="true">Suggestions</button>
+      </div>
+      <input type="hidden" id="subject" value="Suggestions">
+      <label for="message">Your message</label>
+      <textarea id="message" required placeholder="Tell us what you found or what you'd like to see..."></textarea>
+      <div class="buttons"><button class="send" type="submit">Send</button><button type="button" id="closeSuggestions">Close</button></div>
+    </form>
+    <p class="help">Opens your email app with the subject and message filled in. No message is sent until you send it from your email app.</p>
+  </section>
+</div>
+<div class="qc-banner"><div class="qc-banner-text">🎬 QUOTE CHALLENGE • 💙 UNDER CONSTRUCTION • WE ARE WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 💙 🎬</div></div>
+<section class="gallery-area">
+<main class="wall-gallery" aria-label="Framed picture gallery">
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="trek-crew.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 2"><img src="CL85106.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 3"><img src="IMG_20260909_203401795_HDR.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 4"><img src="harry-mudd.png" alt="Gallery picture 4" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="IMG_20260913_064817432~2.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="anniversary.png" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
+</main>
+</section>
+<dialog class="viewer" aria-label="Enlarged gallery picture">
+  <button class="close" type="button" aria-label="Close enlarged picture">Beam me up ×</button>
+  <img alt="Enlarged gallery picture">
+</dialog>
 <script>
-// Chrome Logan's Run poster filename supplied by the creator.
-// Keep that image in the same GitHub folder as next.html.
-const POSTER_FILE = 'main-splash-logans-run.jpg';
-document.documentElement.style.setProperty('--poster-url', `url("${POSTER_FILE}")`);
-const check = new Image();
-check.onerror = () => { document.querySelector('.error').style.display = 'block'; };
-check.src = POSTER_FILE;
-// 1.85s assembly + 2.05s gold title + a brief black beat, then home.
-setTimeout(() => window.location.replace('index.html'), 4150);
+// EDIT THESE THREE TEXT VALUES to change the top marquee messages.
+
+const slides=[
+  {text:'WELCOME TO QUOTE CHALLENGE',direction:'right',hold:4000},
+  {text:'ADVENTURE AWAITS THE BRAVE',direction:'left',hold:4000},
+  {text:'BY JTACK6769 DREAMONG UP FUN FOR YOU!',direction:'right',hold:7000}
+];
+const waveMessage=document.getElementById('waveMessage');
+const wave=document.getElementById('wave');
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function start(){
+  let index=0;
+  while(true){
+    const slide=slides[index];
+    wave.className='wave';
+    void wave.offsetWidth;
+    wave.classList.add(slide.direction==='right'?'run-right':'run-left');
+    await sleep(900);
+    waveMessage.classList.add('hide');
+    await sleep(150);
+    waveMessage.textContent=slide.text;
+    waveMessage.classList.remove('hide');
+    await sleep(1150);
+    await sleep(slide.hold);
+    index=(index+1)%slides.length;
+  }
+}
+start();
+
+
+
+const backdrop=document.getElementById('backdrop');
+const openBtn=document.getElementById('openSuggestions');
+const typeBug=document.getElementById('typeBug');
+const typeSuggestion=document.getElementById('typeSuggestion');
+function chooseType(type){
+  const bug=type==='Bug Report';
+  document.getElementById('subject').value=type;
+  typeBug.setAttribute('aria-pressed',String(bug));
+  typeSuggestion.setAttribute('aria-pressed',String(!bug));
+}
+typeBug.addEventListener('click',()=>chooseType('Bug Report'));
+typeSuggestion.addEventListener('click',()=>chooseType('Suggestions'));
+function closeDialog(){backdrop.classList.remove('open');openBtn.focus()}
+openBtn.addEventListener('click',()=>{backdrop.classList.add('open');typeSuggestion.focus()});
+document.getElementById('closeSuggestions').addEventListener('click',closeDialog);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeDialog()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))closeDialog()});
+document.getElementById('suggestionForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const subject='Quote Challenge - '+document.getElementById('subject').value;
+ const message=document.getElementById('message').value;
+ window.location.href='mailto:qcchallenger67@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(message);
+});
+const viewer=document.querySelector('.viewer');
+const enlargedImage=viewer.querySelector('img');
+const closeButton=viewer.querySelector('.close');
+let lastFrame=null;
+document.querySelectorAll('.hanging-frame').forEach(frame=>{
+ const photo=frame.querySelector('img');
+ const showMissing=()=>{
+  frame.classList.add('missing');
+  frame.querySelector('.missing-label').textContent='Picture not found: '+photo.getAttribute('src');
+  frame.removeAttribute('role');frame.removeAttribute('tabindex');frame.removeAttribute('aria-label');
+ };
+ photo.addEventListener('error',showMissing);
+ if(photo.complete&&photo.naturalWidth===0)showMissing();
+ const open=()=>{
+  if(frame.classList.contains('missing'))return;
+  lastFrame=frame;enlargedImage.src=photo.src;enlargedImage.alt=photo.alt;
+  viewer.showModal();closeButton.focus();
+ };
+ frame.addEventListener('click',open);
+ frame.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+});
+closeButton.addEventListener('click',()=>viewer.close());
+viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
+viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
 </script>
 </body>
 </html>
