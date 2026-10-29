@@ -6,7 +6,7 @@
     "a": "A tiny, rolling ball of fur and razor-sharp teeth darts across the wooden floorboards.",
     "c": "Movies",
     "d": "Hard"
-  },
+  }
   {
     "q": "Greetings, Starfighter! You have been recruited by the Star League to defend the Frontier against Xur and the Ko-Dan Armada.",
     "s": "The Last Starfighter",
@@ -15,7 +15,7 @@
     "a": "The sleek, futuristic sports car doors slide upward, revealing an alien cockpit.",
     "c": "Movies",
     "d": "Medium"
-  },
+  }
   {
     "q": "Bidi-bidi-bidi! What's cooking, Buck?",
     "s": "Buck Rogers in the 25th Century",
@@ -24,7 +24,7 @@
     "a": "The tiny silver robot waddles over with a high-tech metal tray of glowing cubes.",
     "c": "Movies",
     "d": "Hard"
-  },
+  }
   {
     "q": "Mega-damage! This is going to leave a mark!",
     "s": "Exosquad",
@@ -33,7 +33,7 @@
     "a": "His robotic e-frame stumbles backward, venting gray steam from the hydraulic legs.",
     "c": "Animation",
     "d": "Hard"
-  },
+  }
   {
     "q": "Prepare the lava cannons! We bury the surface world tonight!",
     "s": "Inhumanoids",
@@ -42,7 +42,7 @@
     "a": "The Earth Corps squad locks their heavy cybernetic armor suits to seal the breach.",
     "c": "Animation",
     "d": "Hard"
-  },
+  }
   {
     "q": "Hey, toxic waste is good for you! It builds character!",
     "s": "The Toxic Avenger",
@@ -51,7 +51,7 @@
     "a": "He lands directly in the glowing green vat behind the health club facility.",
     "c": "Movies",
     "d": "Medium"
-  },
+  }
   {
     "q": "I'm a dynamic, super-charged, crime-fighting machine!",
     "s": "The Tick: The Animated Series",
