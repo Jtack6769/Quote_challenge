@@ -121,7 +121,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 <main class="theater" aria-label="Quote Challenge theater entrance">
   <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
   <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="ADMIT ONE"></a>
-  <a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
+<a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
   <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
   <button class="freddy" type="button" aria-label="Freddy the dog, hover to see him stand" title="Freddy"><img class="sitting" src="freddy-sitting.png" alt=""><img class="standing" src="freddy-standing.png" alt=""></button>
   <span class="robot-glow" tabindex="0" role="img" aria-label="Robot with glowing eyes on hover"></span>
@@ -334,5 +334,15 @@ pumpkin.style.cssText =
 }
 @media (prefers-reduced-motion: reduce) {
   .flip-inner { animation: none; }
+    }
+    .door-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffd76a;
+  font-weight:bold;
+  font-size:clamp(8px,1.5vw,22px);
+  text-shadow:0 2px 5px #000,0 0 8px #000;
+  text-decoration:none;
     }
 <style>
