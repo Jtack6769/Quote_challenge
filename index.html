@@ -1,16 +1,14 @@
 <!doctype html>
 <html lang="en">
-  <a https://github.com/users/Jtack6769/achievements/quickdraw </a>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Quote Challenge | Theater 6.9.1-2</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#03050b;color:#fff;font-family:system-ui,Arial,sans-serif}
-.theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('file_0000000080e481f58d422bda7e04e7fb.png') center/100% 100% no-repeat;overflow:hidden}
+.theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('file_00000000ef1c81f5822c514fb25c6b2f.png') center/100% 100% no-repeat;overflow:hidden}
 /* Overlay precisely on the artwork's existing illuminated marquee */
 .marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
-
 .suggestions{position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
 .suggestions:focus-visible{outline:3px solid #fff08a;outline-offset:3px}
 .suggestions:hover{box-shadow:0 0 15px 4px #ffe08388}
@@ -26,15 +24,15 @@
 .message-types button:focus-visible,.buttons button:focus-visible{outline:3px solid #fff08a;outline-offset:2px}
 .help{font-size:12px;color:#d9d9d9;margin-top:12px}
 @media(max-width:600px){.marquee-track{font-size:clamp(7px,2.1vw,13px)}.marquee{border-width:1px}}
-@media(prefers-reduced-motion:reduce){.marquee-track{animation-duration:24s}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation-duration:22.5s}}
 /* QUOTE CHALLENGE SCROLLING BANNER */
-.qc-banner{width:100%;overflow:hidden;background:solid-blue;border:2px solid transparent;border-radius:6px;padding:12px 0;color:inherit;font:bold 18px Arial,sans-serif}
+.qc-banner{width:100%;overflow:hidden;background:transparent;border:2px solid transparent;border-radius:6px;padding:12px 0;color:inherit;font:bold 18px Arial,sans-serif}
 .qc-banner-text{display:inline-block;white-space:nowrap;padding-left:100%;animation:qc-scroll 45s linear infinite}
 @keyframes qc-scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 @media(prefers-reduced-motion:reduce){.qc-banner-text{animation:none;padding-left:0;white-space:normal;text-align:center}}
 /* Gallery Wall */
 body{padding:0;font-family:system-ui,Arial,sans-serif}
-  .gallery-area{padding:40px 20px;color:inherit;font-family:Georgia,serif;background-color:#1a1512;background-image:linear-gradient(335deg,#110d0b 23px,transparent 23px),linear-gradient(155deg,#1d1815 23px,transparent 23px),linear-gradient(335deg,#110d0b 23px,transparent 23px),linear-gradient(155deg,#1d1815 23px,transparent 23px),linear-gradient(90deg,#0d0a08 10px,transparent 10px),linear-gradient(#0d0a08 10px,transparent 10px);background-size:58px 58px,58px 58px,58px 58px,58px 58px,29px 29px,29px 29px;background-position:0 2px,4px 35px,29px 31px,34px 6px,0 0;box-shadow:inset 0 0 200px rgba(0,0,0,.85)}
+.gallery-area{padding:40px 20px;color:inherit;font-family:Georgia,serif;background-color:#1a1512;background-image:linear-gradient(335deg,#110d0b 23px,transparent 23px),linear-gradient(155deg,#1d1815 23px,transparent 23px),linear-gradient(335deg,#110d0b 23px,transparent 23px),linear-gradient(155deg,#1d1815 23px,transparent 23px),linear-gradient(90deg,#0d0a08 10px,transparent 10px),linear-gradient(#0d0a08 10px,transparent 10px);background-size:58px 58px,58px 58px,58px 58px,58px 58px,29px 29px,29px 29px;background-position:0 2px,4px 35px,29px 31px,34px 6px,0 0;box-shadow:inset 0 0 200px rgba(0,0,0,.85)}
 .wall-gallery{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:40px;max-width:1200px;margin:0 auto}
 .hanging-frame{position:relative;padding:12px 12px 14px;background:#111;border:8px ridge transparent;border-radius:4px;box-shadow:0 25px 35px rgba(0,0,0,.9),0 5px 15px rgba(0,0,0,.7);transform:rotate(var(--angle,0deg));transition:transform .3s ease;max-width:100%;cursor:zoom-in}
 .hanging-frame:nth-child(odd){--angle:-1.5deg}.hanging-frame:nth-child(even){--angle:1.8deg}.hanging-frame:nth-child(3n){--angle:-.7deg}
@@ -50,16 +48,13 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}.viewer img{display:block;max-
 .hanging-frame{padding:0;background:transparent;border:0;box-shadow:none;border-radius:0;transform:none}
 .hanging-frame:hover,.hanging-frame:focus-visible{transform:none}
 .hanging-frame img{border:0;background:transparent}
-
 /* Frame-free gallery: no visible frames, including hover and enlarged view. */
 .hanging-frame{padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important}
 .hanging-frame:hover,.hanging-frame:focus-visible{transform:none!important;box-shadow:none!important;outline:none!important}
 .hanging-frame img{border:0!important;background:transparent!important}
 dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;padding:0!important}
 .viewer img{border:0!important;box-shadow:none!important;background:transparent!important}
-
 /* Top marquee: angled color waves and subtle heat shimmer */
-
 .marquee{isolation:isolate;display:grid;place-items:center;background:radial-gradient(ellipse at center,#17356d,#07132e 75%);box-shadow:0 0 24px #e5b84955,inset 0 0 20px #000}
 /* Very subtle, continuously drifting road-heat shimmer behind the lettering. */
 .marquee::after{content:"";position:absolute;inset:-28%;z-index:0;pointer-events:none;opacity:.27;background:repeating-linear-gradient(101deg,transparent 0 30px,#ffc76a12 37px,transparent 51px 82px),radial-gradient(ellipse at 38% 65%,#ff8b301f,transparent 53%),radial-gradient(ellipse at 72% 38%,#a74bff20,transparent 55%);filter:blur(11px);animation:heatDrift 8s ease-in-out infinite alternate;transform-origin:center}
@@ -74,7 +69,6 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 @keyframes sweepRight{0%{left:0;transform:translateX(-110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{left:100%;transform:translateX(5%);opacity:0}}
 @keyframes sweepLeft{0%{right:0;transform:translateX(110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{right:100%;transform:translateX(-5%);opacity:0}}
 @media(prefers-reduced-motion:reduce){.wave{display:none}.wave-message{transition:none}.marquee::after{animation:none}}
-
 /* Interactive theater entrances and hidden bonuses */
 .door-link{position:absolute;display:block;top:43.3%;height:43.8%;z-index:2;cursor:pointer;border-radius:5px}
 .door-one{left:32.5%;width:14.4%}.door-two{left:52.9%;width:13.8%}
@@ -89,14 +83,30 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 .robot-glow::after{content:'';position:absolute;inset:-35%;border-radius:50%;opacity:0;transition:opacity .2s;background:radial-gradient(ellipse,#a7faffbb 5%,#00eaff77 33%,transparent 72%);filter:blur(4px)}
 .robot-glow:hover::after,.robot-glow:focus-visible::after{opacity:1}
 @media(prefers-reduced-motion:reduce){.robot-glow::after{transition:none}}
+/* QUOTE CHALLENGE - GALLERY WALLPAPER */
+.gallery-area {
+    background-color: #080c18;
+    background-image: url('gemini_remix_20261022_233612.jpg');
+    background-position: top left;
+    background-size: 400px auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+  }
+.coming-link {
+  display: block;
+  width: fit-content;
+  margin: 15px auto;
+  font-size: 24px;
+  color: gold;
+  text-decoration: none;
+  }
 </style>
 </head>
 <body>
 <main class="theater" aria-label="Quote Challenge theater entrance">
   <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
-
-  <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="One Player"></a>
-  <a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="Two Players"></a>
+  <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="ADMIT ONE"></a>
+  <a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
   <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
   <button class="freddy" type="button" aria-label="Freddy the dog, hover to see him stand" title="Freddy"><img class="sitting" src="freddy-sitting.png" alt=""><img class="standing" src="freddy-standing.png" alt=""></button>
   <span class="robot-glow" tabindex="0" role="img" aria-label="Robot with glowing eyes on hover"></span>
@@ -119,17 +129,16 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
     <p class="help">Opens your email app with the subject and message filled in. No message is sent until you send it from your email app.</p>
   </section>
 </div>
-<div class="qc-banner"><div class="qc-banner-text">🎬 QUOTE CHALLENGE • 💙 UNDER CONSTRUCTION • WE ARE WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 💙 🎬</div></div>
+<div class="qc-banner"><div class="qc-banner-text"> 📽️ QUOTE CHALLENGE 🎦 • 📽️ UNDER CONSTRUCTION • WE ARE WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 🎦 </div></div>
+<a class="coming-link" href="next.html">FILMED ON LOCATION NEAR YOU</a>
 <section class="gallery-area">
 <main class="wall-gallery" aria-label="Framed picture gallery">
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="gemini_remix_20261029_104039.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="trek-crew.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
   <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 2"><img src="CL85106.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 3"><img src="CL85106.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 4"><img src="CL85106.jpg" alt="Gallery picture 4" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="IMG_20260909_203401795_HDR.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="harry-mudd.png" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 7"><img src="IMG_20260913_064817432~2.jpg" alt="Gallery picture 7" loading="lazy"><span class="missing-label"></span></div>
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 8"><img src="anniversary.png" alt="Gallery picture 8" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 3"><img src="IMG_20260909_203401795_HDR.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 4"><img src="harry-mudd.png" alt="Gallery picture 4" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="IMG_20260913_064817432~2.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="gemini_remix_20261009_202400.jpg" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
 </main>
 </section>
 <dialog class="viewer" aria-label="Enlarged gallery picture">
@@ -138,11 +147,10 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 </dialog>
 <script>
 // EDIT THESE THREE TEXT VALUES to change the top marquee messages.
-
 const slides=[
   {text:'WELCOME TO QUOTE CHALLENGE',direction:'right',hold:4000},
-  {text:'ADVENTURE AWAITS THE BRAVE',direction:'left',hold:4000},
-  {text:'JTACK6769 DREAMING UP FUN FOR YOU!',direction:'right',hold:7000}
+  {text:'WE WAS YOU A HAPPY HOLIDAY SEASON',direction:'left',hold:4000},
+  {text:'QC IS ALWAYS DREAMING UP FUN FOR YOU!',direction:'right',hold:7000}
 ];
 const waveMessage=document.getElementById('waveMessage');
 const wave=document.getElementById('wave');
@@ -165,7 +173,6 @@ async function start(){
   }
 }
 start();
-
 const backdrop=document.getElementById('backdrop');
 const openBtn=document.getElementById('openSuggestions');
 const typeBug=document.getElementById('typeBug');
@@ -214,5 +221,43 @@ closeButton.addEventListener('click',()=>viewer.close());
 viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
 viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
 </script>
+    
+<script>
+const pumpkin = document.createElement("img");
+
+pumpkin.src = "gemini_remix_20261030_162736.jpg";
+pumpkin.alt = "Enter the Lunatic_fringe";
+pumpkin.title = "Dare to enter?";
+
+pumpkin.style.cssText = `
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 160px;
+  max-width: 30vw;
+  height: auto;
+  cursor: pointer;
+  z-index: 9999;
+  border: none;
+  transition: transform 0.3s ease;
+`;
+
+pumpkin.addEventListener("mouseenter", () => {
+  pumpkin.style.transform = "scale(1.15)";
+});
+
+pumpkin.addEventListener("mouseleave", () => {
+  pumpkin.style.transform = "scale(1)";
+});
+
+pumpkin.addEventListener("click", () => {
+  window.location.href = "lunatic_fringe/lunatic_fringe.html";
+});
+
+document.body.appendChild(pumpkin);
+</script>
+    
 </body>
-  </html>
+          
+ </html>
+ https://github.com/users/Jtack6769/achievements/quickdraw
