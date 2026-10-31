@@ -69,6 +69,12 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 @keyframes sweepRight{0%{left:0;transform:translateX(-110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{left:100%;transform:translateX(5%);opacity:0}}
 @keyframes sweepLeft{0%{right:0;transform:translateX(110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{right:100%;transform:translateX(-5%);opacity:0}}
 @media(prefers-reduced-motion:reduce){.wave{display:none}.wave-message{transition:none}.marquee::after{animation:none}}
+    <a href="next.html" class="flip-sign" aria-label="Open coming attractions">
+  <span class="flip-inner">
+    <span class="flip-front">COMING NEXT MONTH</span>
+    <span class="flip-back">COMING ATTRACTIONS</span>
+  </span>
+</a>
 /* Interactive theater entrances and hidden bonuses */
 .door-link{position:absolute;display:block;top:43.3%;height:43.8%;z-index:2;cursor:pointer;border-radius:5px}
 .door-one{left:32.5%;width:14.4%}.door-two{left:52.9%;width:13.8%}
@@ -266,3 +272,49 @@ pumpkin.style.cssText = `
 
 pumpkin.addEventListener("mouseenter", () => {
   pumpkin.s
+<head>
+<body>
+
+.flip-sign {
+  position: absolute;
+  left: 75%;
+  top: 35%;
+  width: 15%;
+  height: 12%;
+  perspective: 800px;
+  text-decoration: none;
+  z-index: 2;
+}
+.flip-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: signFlip 8s linear infinite;
+}
+.flip-front, .flip-back {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  text-align: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: #231509;
+  color: #ffd15a;
+  border: 2px solid #ffd15a;
+  font: bold clamp(8px, 1.1vw, 18px) Georgia, serif;
+}
+.flip-back { transform: rotateY(180deg); }
+.flip-sign:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+@keyframes signFlip {
+  0%, 40% { transform: rotateY(0deg); }
+  50%, 90% { transform: rotateY(180deg); }
+  100% { transform: rotateY(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner { animation: none; }
+    }
+<style>
