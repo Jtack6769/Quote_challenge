@@ -1,1 +1,221 @@
+[
+  {
+    "id": "quotes 31",
+    "difficulty": "Easy",
+    "quote": "This quitting thing, it's a hard habit to break once you start.",
+    "franchise": "The Bad News Bears",
+    "context": "Coach Morris Buttermaker lecturing the team about sticking through a tough season"
+  },
+  {
+    "id": "quotes 32",
+    "difficulty": "Easy",
+    "quote": "We're not just a team, we're a business venture. And right now, business is bad.",
+    "franchise": "First & Ten",
+    "context": "Diane Barrow addressing the California Bulls roster about their poor regular season performance"
+  },
+  {
+    "id": "quotes 33",
+    "difficulty": "Medium",
+    "quote": "It's not that I'm afraid of dying. It's just that I don't want to be there when it happens.",
+    "franchise": "The Whole Nine Yards",
+    "context": "Oz Oseransky panicking over his proximity to notorious hitmen"
+  },
+  {
+    "id": "quotes 34",
+    "difficulty": "Medium",
+    "quote": "Hey, Buttermaker! You can take your apology and your trophy and shove 'em straight up your ass!",
+    "franchise": "The Bad News Bears",
+    "context": "Tanner Boyle defiantly throwing his second-place trophy back at the league organizers"
+  },
+  {
+    "id": "quotes 35",
+    "difficulty": "Hard",
+    "quote": "The contract says you play until the whistle blows, not until your ego feels bruised by a defensive line.",
+    "franchise": "First & Ten",
+    "context": "The Bulls front office laying down the financial reality of the league to a complaining star player"
+  },
+  {
+    "id": "quotes 36",
+    "difficulty": "Super Hard",
+    "quote": "You only need one thing in this game to survive: a short memory for the losses and a long appetite for the wins.",
+    "franchise": "1980s Sports Trivia Culture",
+    "context": "The quintessential locker room speech archetype reflecting the gritty competitive style of '80s sports cinema"
+  }
+]
+[
+  {
+    "id": "quotes 19",
+    "difficulty": "Easy",
+    "quote": "I'm tired, boss. Tired of being on the road, lonely as a sparrow in the rain.",
+    "franchise": "The Green Mile",
+    "context": "John Coffey explaining his deep, empathetic exhaustion to Paul Edgecomb before his execution"
+  },
+  {
+    "id": "quotes 20",
+    "difficulty": "Easy",
+    "quote": "He killed them with their love. That's how it is every day, all over the world.",
+    "franchise": "The Green Mile",
+    "context": "John Coffey explaining the tragic reality of the crime he was falsely accused of committing"
+  },
+  {
+    "id": "quotes 21",
+    "difficulty": "Medium",
+    "quote": "If there is no random universe, and everything is determined, then what's the point of going to work? What's the point of breathing?",
+    "franchise": "Knowing",
+    "context": "Professor John Koestler debating determinism vs. randomness with his astrophysics students"
+  },
+  {
+    "id": "quotes 22",
+    "difficulty": "Medium",
+    "quote": "You can't hide from it, John. The numbers are real, and they are telling us exactly when it's going to end.",
+    "franchise": "Knowing",
+    "context": "A frantic warning regarding the prophetic solar flare sequence discovered in the time capsule document"
+  },
+  {
+    "id": "quotes 23",
+    "difficulty": "Hard",
+    "quote": "On the day of my judgment, when I stand before God, and He asks me why did I kill one of his true miracles, what am I gonna say? That it was my job?",
+    "franchise": "The Green Mile",
+    "context": "Paul Edgecomb wrestling with the moral weight of executing John Coffey"
+  },
+  {
+    "id": "quotes 24",
+    "difficulty": "Super Hard",
+    "quote": "The numbers are a warning, but not just to me or any random group. They're a warning to everyone.",
+    "franchise": "Knowing",
+    "context": "John frantically explaining the final coordinate calculation before the global cataclysm strikes"
+  }
+]
+[
+  {
+    "id": "quotes 25",
+    "difficulty": "Easy",
+    "quote": "I'll be back.",
+    "franchise": "The Terminator",
+    "context": "The T-800 delivering his iconic promise to the police station desk sergeant before driving through the front door"
+  },
+  {
+    "id": "quotes 26",
+    "difficulty": "Easy",
+    "quote": "It's Halloween, everyone's entitled to one good scare.",
+    "franchise": "Halloween",
+    "context": "Brackett reassuring Laurie Strode as they talk on the sidewalk on <ActionDropdown variant="calendar" date="2027-10-31" query="Add Halloween movie night to my calendar">Halloween night</ActionDropdown>"
+  },
+  {
+    "id": "quotes 27",
+    "difficulty": "Medium",
+    "quote": "You know, it's dangerous for you to be out here in the frozen foods section. Because you could melt all this stuff.",
+    "franchise": "My Blue Heaven",
+    "context": "Vinnie Antonelli smoothly flirting with a woman at the local supermarket"
+  },
+  {
+    "id": "quotes 28",
+    "difficulty": "Medium",
+    "quote": "Man's got a right to protect his property and his life, and we ain't fixing to let no one take that away.",
+    "franchise": "Open Range",
+    "context": "Boss Spearman laying down the law of the free range to the corrupt town sheriff"
+  },
+  {
+    "id": "quotes 29",
+    "difficulty": "Hard",
+    "quote": "If you're going to alienate your friends, at least do it for a good reason, not because you think the biology teacher is a giant squid.",
+    "franchise": "The Faculty",
+    "context": "Casey being mocked by his classmates before they realize the alien infection is completely real"
+  },
+  {
+    "id": "quotes 30",
+    "difficulty": "Super Hard",
+    "quote": "Welcome to Valkenvania! You're in a lot of trouble now, city slickers.",
+    "franchise": "Nothing but Trouble",
+    "context": "The unhinged, 106-year-old Judge Alvin Valkenheiser sentencing the lost travelers in his bizarre, trap-filled courthouse"
+  }
+]
+[
+  {
+    "id": "quotes 1",
+    "difficulty": "Easy",
+    "quote": "What's up, doc?",
+    "franchise": "Looney Tunes",
+    "context": "Bugs Bunny's legendary catchphrase while casually munching on a carrot"
+  },
+  {
+    "id": "quotes 2",
+    "difficulty": "Easy",
+    "quote": "Sufferin' succotash!",
+    "franchise": "Looney Tunes",
+    "context": "Sylvester the Cat exclaiming his deep frustration whenever Tweety Bird escapes"
+  },
+  {
+    "id": "quotes 3",
+    "difficulty": "Medium",
+    "quote": "You're despicable!",
+    "franchise": "Looney Tunes",
+    "context": "Daffy Duck spitting back at Bugs Bunny after being thoroughly outsmarted during rabbit season"
+  },
+  {
+    "id": "quotes 4",
+    "difficulty": "Medium",
+    "quote": "I tawt I taw a puddy tat! ... I did! I did taw a puddy tat!",
+    "franchise": "Looney Tunes",
+    "context": "Tweety Bird spotting Sylvester lurking nearby from inside his birdcage"
+  },
+  {
+    "id": "quotes 5",
+    "difficulty": "Hard",
+    "quote": "Welcome to the Space Jam. Here's your chance, do your dance, at the Space Jam.",
+    "franchise": "Looney Tunes",
+    "context": "The iconic theme song lyrics introducing the high-stakes cosmic basketball game"
+  },
+  {
+    "id": "quotes 6",
+    "difficulty": "Super Hard",
+    "quote": "According to the contract, 'The party of the first part shall be known as the party of the first part.' It's simple legal terminology, Mac.",
+    "franchise": "Looney Tunes",
+    "context": "Daffy Duck attempting to act as a high-powered entertainment lawyer to secure a better contract"
+  }
+]
+[
+  {
+    "id": "quotes 1",
+    "difficulty": "Easy",
+    "quote": "What's up, doc?",
+    "franchise": "Looney Tunes",
+    "context": "Bugs Bunny's legendary catchphrase while casually munching on a carrot"
+  },
+  {
+    "id": "quotes 2",
+    "difficulty": "Easy",
+    "quote": "Sufferin' succotash!",
+    "franchise": "Looney Tunes",
+    "context": "Sylvester the Cat exclaiming his deep frustration whenever Tweety Bird escapes"
+  },
+  {
+    "id": "quotes 3",
+    "difficulty": "Medium",
+    "quote": "You're despicable!",
+    "franchise": "Looney Tunes",
+    "context": "Daffy Duck spitting back at Bugs Bunny after being thoroughly outsmarted during rabbit season"
+  },
+  {
+    "id": "quotes 4",
+    "difficulty": "Medium",
+    "quote": "I tawt I taw a puddy tat! ... I did! I did taw a puddy tat!",
+    "franchise": "Looney Tunes",
+    "context": "Tweety Bird spotting Sylvester lurking nearby from inside his birdcage"
+  },
+  {
+    "id": "quotes 5",
+    "difficulty": "Hard",
+    "quote": "Welcome to the Space Jam. Here's your chance, do your dance, at the Space Jam.",
+    "franchise": "Looney Tunes",
+    "context": "The iconic theme song lyrics introducing the high-stakes cosmic basketball game"
+  },
+  {
+    "id": "quotes 6",
+    "difficulty": "Super Hard",
+    "quote": "According to the contract, 'The party of the first part shall be known as the party of the first part.' It's simple legal terminology, Mac.",
+    "franchise": "Looney Tunes",
+    "context": "Daffy Duck attempting to act as a high-powered entertainment lawyer to secure a better contract"
+  }
+]
 
