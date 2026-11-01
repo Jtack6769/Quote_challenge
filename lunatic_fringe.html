@@ -70,5 +70,33 @@ document.getElementById('sound-switch').addEventListener('click',async()=>{
  catch(error){console.error('Sound failed:',error);status.textContent='Sound unavailable. Check petergriffinstarwars.mp3 in this folder.';}
 });
 </script>
-</body>
+ // Configuration: Number of back-clicks to intercept
+const totalBlocks = 4; 
+let blocksTriggered = 0;
+
+function preventBack() {
+    // Push a dummy state into the history loop
+    window.history.pushState({ blockActive: true }, "", window.location.href);
+}
+
+// 1. Initialize the trap immediately on load
+preventBack();
+
+// 2. Re-push the state every time the user tries to go back
+window.addEventListener('popstate', function (event) {
+    blocksTriggered++;
+
+    if (blocksTriggered < totalBlocks) {
+        // Keep pushing the state to stay on the current page
+        preventBack();
+        console.log(`Back button blocked ${blocksTriggered} time(s).`);
+    } else {
+        console.log("Block limit reached. Allowing user to go back.");
+        // Let the default back action happen on the next click
+        window.history.back(); 
+    }
+});
+    </script>  
+    </totalBlocks> 4 
+ </body>  
 </html>
