@@ -69,12 +69,6 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 @keyframes sweepRight{0%{left:0;transform:translateX(-110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{left:100%;transform:translateX(5%);opacity:0}}
 @keyframes sweepLeft{0%{right:0;transform:translateX(110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{right:100%;transform:translateX(-5%);opacity:0}}
 @media(prefers-reduced-motion:reduce){.wave{display:none}.wave-message{transition:none}.marquee::after{animation:none}}
-    <a href="next.html" class="flip-sign" aria-label="Open coming attractions">
-  <span class="flip-inner">
-    <span class="flip-front">COMING NEXT MONTH</span>
-    <span class="flip-back">COMING ATTRACTIONS</span>
-  </span>
-</a>
 /* Interactive theater entrances and hidden bonuses */
 .door-link{position:absolute;display:block;top:43.3%;height:43.8%;z-index:2;cursor:pointer;border-radius:5px}
 .door-one{left:32.5%;width:14.4%}.door-two{left:52.9%;width:13.8%}
@@ -82,6 +76,46 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 .freddy{position:absolute;left:44.5%;bottom:6.4%;width:8.3%;height:18%;z-index:3;cursor:pointer;background:none;border:0;padding:0}
 .freddy img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 5px 3px #0009)}
 .freddy .standing{opacity:0}.freddy:hover .standing,.freddy:focus-visible .standing,.freddy:active .standing{opacity:1}
+.freddy:hover .sitting,.freddy:focus-visible .sitting,.freddy:active .sitting{opacity:0}
+.secret-portrait{position:absolute;left:18.7%;top:37.8%;width:4.2%;height:10.6%;z-index:2;opacity:.48;filter:brightness(.58) sepia(.4);border:0;background:transparent;padding:0;cursor:pointer;transform:rotate(-5deg)}
+.secret-portrait img{width:100%;height:100%;object-fit:cover}.secret-portrait:focus-visible{outline:2px solid #fff}
+.robot-glow{position:absolute;left:60.15%;top:80.5%;width:2.15%;height:2.5%;z-index:3;pointer-events:auto;cursor:pointer;border-radius:50%;background:transparent}
+.robot-glow::after{content:'';position:absolute;inset:-35%;border-radius:50%;opacity:0;transition:opacity .2s;background:radial-gradient(ellipse,#a7faffbb 5%,#00eaff77 33%,transparent 72%);filter:blur(4px)}
+.robot-glow:hover::after,.robot-glow:focus-visible::after{opacity:1}
+@media(prefers-reduced-motion:reduce){.robot-glow::after{transition:none}}
+/* QUOTE CHALLENGE - GALLERY WALLPAPER */
+.gallery-area {
+    background-color: #080c18;
+    background-image: url('gemini_remix_20261022_233612.jpg');
+    background-position: top left;
+    background-size: 400px auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+  }
+.coming-link {
+  display: block;
+  width: fit-content;
+  margin: 15px auto;
+  font-size: 18px;
+  color: red;
+  text-decoration: none
+}
+    .link {
+  display: block;
+  width: fit-content;
+  margin: 14px auto;
+  font-size: 17px;
+  color: yellow;
+  text-decoration: none
+    </style>
+</head>
+<body>
+<main class="theater" aria-label="Quote Challenge theater entrance">
+  <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
+  <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="ADMIT ONE"></a>
+  <a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
+  <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
+  <button class="freddy" type="button" aria-standing,.freddy:focus-visible .standing,.freddy:active .standing{opacity:1}
 .freddy:hover .sitting,.freddy:focus-visible .sitting,.freddy:active .sitting{opacity:0}
 .secret-portrait{position:absolute;left:18.7%;top:37.8%;width:4.2%;height:10.6%;z-index:2;opacity:.48;filter:brightness(.58) sepia(.4);border:0;background:transparent;padding:0;cursor:pointer;transform:rotate(-5deg)}
 .secret-portrait img{width:100%;height:100%;object-fit:cover}.secret-portrait:focus-visible{outline:2px solid #fff}
