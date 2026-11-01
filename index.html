@@ -120,8 +120,8 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 <body>
 <main class="theater" aria-label="Quote Challenge theater entrance">
   <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
-  <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="ADMIT ONE"></a>
-<a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
+  <a class="door-link door-one= "href="one-player.html" aria-label="Enter one-player game" title="ADMIT ONE"></a>
+<a class="door-link door-two= "href="two-player.html" aria-label="Enter two-player gam I'Me" title="ADMIT TWO"></a>
   <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
   <button class="freddy" type="button" aria-label="Freddy the dog, hover to see him stand" title="Freddy"><img class="sitting" src="freddy-sitting.png" alt=""><img class="standing" src="freddy-standing.png" alt=""></button>
   <span class="robot-glow" tabindex="0" role="img" aria-label="Robot with glowing eyes on hover"></span>
@@ -144,12 +144,13 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
     <p class="help">Opens your email app with the subject and message filled in. No message is sent until you send it from your email app.</p>
   </section>
 </div>
-<div class="qc-banner"><div class="qc-banner-text"> 📽️ QUOTE CHALLENGE 🎦 • 📽️ UNDER CONSTRUCTION • WE ARE WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 🎦 </div></div>
+<div class="qc-banner"><div class="qc-banner-text"> 📽️ QUOTE CHALLENGE 7.0 WE ARE READY TO SET SOME RECORDS ! 🎦 • 📽️ UNDER MINOR TOUCH UPS • WE ARE WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 🎦 </div></div>
 <div class="coming-attractions">
-<h1> <a class="coming-link" href="next.html">COMING TO A THEATER
+<h1> <a class="coming-link" href="next.html"COMING TO A THEATER
 NEAR YOU.
-12/1/2026</a></h1>
+12-1-2026;a></h1>
 </div>
+</body>
 
 <section class="gallery-area">
 <main class="wall-gallery" aria-label="Framed picture gallery">
@@ -176,9 +177,9 @@ NEAR YOU.
 <script>
 // EDIT THESE THREE TEXT VALUES to change the top marquee messages.
 const slides=[
-  {text:'WELCOME TO QUOTE CHALLENGE',direction:'right',hold:4000},
-  {text:'WE WISH YOU A HAPPY HOLIDAY SEASON',direction:'left',hold:4000},
-  {text:'QC IS ALWAYS DREAMING UP FUN FOR YOU!',direction:'right',hold:7000}
+  {text:'WELCOME TO QUOTE CHALLENGE 7.0 IT'S A NEW DAY!',direction:'right',hold:4000},
+  {text:'THE QUOTES ARE OVERFLOWING AND WE WISH YOU A HAPPY HOLIDAY SEASON',direction:'left',hold:4000},
+  {text:'QC IS ALWAYS DREAMING UP FUN FOR YOU SO TUNE UP YOUR MIND AND ENJOY THE TRIP DOWN MEMORY LANE!',direction:'right',hold:7000}
 ];
 const waveMessage=document.getElementById('waveMessage');
 const wave=document.getElementById('wave');
@@ -288,11 +289,13 @@ pumpkin.style.cssText =
   transition: transform 0.3s ease;
     {
 <HTML>
-`;pumpkin.addEventListener("mouseenter", () => {
-  pumpkin.s
-  <head>
-<body>
+const pumpkin = document.getElementById("pumpkin");
 
+pumpkin.addEventListener("mouseenter", () => {
+  // Example: change background color or scale on hover
+  pumpkin.style.transform = "scale(1.1)"; 
+});
+    
 .flip-sign {
   position: absolute;
   left: 75%;
