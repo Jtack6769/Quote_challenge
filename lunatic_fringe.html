@@ -45,7 +45,45 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}.viewer img{display:block;max-
 <div id="sound-status" role="status" aria-live="polite"></div>
 </section>
 <dialog class="viewer" aria-label="Enlarged gallery picture"><button class="close" type="button" aria-label="Close enlarged picture">Close ×</button><img alt="Enlarged gallery picture"></dialog>
-<script>
+</script>
+ // Configuration: Number of back-clicks to block before letting them go
+const maxBackClicks = 4; 
+let backClicksCount = 0;
+
+// Function to keep forcing the browser to stay on this page
+function freezeHistory() {
+    window.history.pushState({ lunatic_Fringe: true }, "", window.location.href);
+}
+
+// 1. Lock it in immediately when the room loads
+freezeHistory();
+
+// 2. Intercept the browser's native back arrow
+window.addEventListener('popstate', function (event) {
+    backClicksCount++;
+
+    if (backClicksCount < maxBackClicks) 5 {
+        // Re-trap them on the current page
+        freezeHistory();
+        
+        // --- OPTIONAL TRICKSTER TOUCH ---
+        // You could trigger a visual flash or play a sound here 
+        // every time they hit the browser's back button!
+        console.log(`Browser back button blocked ${backClicksCount} time(s).`);
+    } else {
+        // On the 4th click, the trap releases and they go back natively
+        console.log("Trap released.");
+        window.history.back(); 
+    }
+});
+<!-- The Exit Button -->
+<button id="lunatic-exit-btn" class="wild-button">EXIT THE FRINGE 🚀</button>
+
+<!-- Invisible Audio Elements (Replace with your actual audio file links) -->
+<audio id="homer-sound" src="path_to_homer_sound.mp3" preload="auto"></audio>
+<audio id="peter-sound" src="path_to_peter_sound.mp3" preload="auto"></audio>
+     
+ <script>
 const viewer=document.querySelector('.viewer');
 const enlargedImage=viewer.querySelector('img');
 const closeButton=viewer.querySelector('.close');
@@ -69,34 +107,5 @@ document.getElementById('sound-switch').addEventListener('click',async()=>{
  try{surpriseSound.pause();surpriseSound.currentTime=0;await surpriseSound.play();}
  catch(error){console.error('Sound failed:',error);status.textContent='Sound unavailable. Check petergriffinstarwars.mp3 in this folder.';}
 });
-</script>
- // Configuration: Number of back-clicks to intercept
-const totalBlocks = 4; 
-let blocksTriggered = 0;
-
-function preventBack() {
-    // Push a dummy state into the history loop
-    window.history.pushState({ blockActive: true }, "", window.location.href);
-}
-
-// 1. Initialize the trap immediately on load
-preventBack();
-
-// 2. Re-push the state every time the user tries to go back
-window.addEventListener('popstate', function (event) {
-    blocksTriggered++;
-
-    if (blocksTriggered < totalBlocks) {
-        // Keep pushing the state to stay on the current page
-        preventBack();
-        console.log(`Back button blocked ${blocksTriggered} time(s).`);
-    } else {
-        console.log("Block limit reached. Allowing user to go back.");
-        // Let the default back action happen on the next click
-        window.history.back(); 
-    }
-});
-    </script>  
-    </totalBlocks> 4 
  </body>  
 </html>
