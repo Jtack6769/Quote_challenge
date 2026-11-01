@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quote Challenge | Angled Wave Test v4</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#080b19;color:#fff;font-family:Georgia,serif;padding:18px}
+.demo{width:min(100%,1100px)}
+.caption{text-align:center;color:#c9b976;font:14px system-ui,sans-serif;margin-bottom:14px}
+.marquee{position:relative;isolation:isolate;overflow:hidden;min-height:110px;display:grid;place-items:center;border:3px solid #e6b84d;border-radius:14px;background:radial-gradient(ellipse at center,#17356d,#07132e 75%);box-shadow:0 0 24px #e5b84955,inset 0 0 20px #000}
+/* Very subtle, continuously drifting road-heat shimmer behind the lettering. */
+.marquee::after{content:"";position:absolute;inset:-28%;z-index:0;pointer-events:none;opacity:.27;background:repeating-linear-gradient(101deg,transparent 0 30px,#ffc76a12 37px,transparent 51px 82px),radial-gradient(ellipse at 38% 65%,#ff8b301f,transparent 53%),radial-gradient(ellipse at 72% 38%,#a74bff20,transparent 55%);filter:blur(11px);animation:heatDrift 8s ease-in-out infinite alternate;transform-origin:center}
+@keyframes heatDrift{0%{transform:translate(-1.5%,2%) skewX(-2deg) scale(1.02);filter:blur(12px)}50%{transform:translate(1%,-1.5%) skewX(2deg) scale(1.06);filter:blur(8px)}100%{transform:translate(-.5%,1%) skewX(-1deg) scale(1.03);filter:blur(13px)}}
+.marquee::before{content:"";position:absolute;inset:5px;border:1px solid #ffe5a588;border-radius:9px;pointer-events:none;z-index:5}
+.message{position:relative;z-index:2;text-align:center;padding:20px 22px;font-size:clamp(27px,5.7vw,62px);font-weight:bold;letter-spacing:.065em;color:#ff3030;text-shadow:0 2px 2px #300000,0 0 5px #ff8a00,0 0 13px #ff6500,0 0 23px #ff4500;opacity:1;transition:opacity .12s}
+.message.hide{opacity:0}
+.wave{position:absolute;z-index:3;top:-12%;height:124%;width:85%;pointer-events:none;opacity:0;filter:drop-shadow(0 0 14px #48caffaa);background:linear-gradient(90deg,transparent 0%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
+/* Right-moving wave has a / leading edge; left-moving wave has a \ leading edge. */
+.wave.run-right{clip-path:polygon(0 0,100% 0,67% 100%,0 100%);animation:sweepRight 2.2s ease-in-out both}
+.wave.run-left{clip-path:polygon(0 0,100% 0,100% 100%,33% 100%);animation:sweepLeft 2.2s ease-in-out both;background:linear-gradient(270deg,transparent 0%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
+@keyframes sweepRight{0%{left:0;transform:translateX(-110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{left:100%;transform:translateX(5%);opacity:0}}
+@keyframes sweepLeft{0%{right:0;transform:translateX(110%);opacity:0}12%{opacity:1}85%{opacity:1}100%{right:100%;transform:translateX(-5%);opacity:0}}
+@media(prefers-reduced-motion:reduce){.wave{display:none}.message{transition:none}.marquee::after{animation:none}}
+</style>
+</head>
+<body>
+<div class="demo">
+<div class="caption">QUOTE CHALLENGE · ANGLED WAVE MARQUEE · VERSION 4</div>
+<div class="marquee" aria-label="Animated Quote Challenge welcome messages">
+<div class="message" id="message">WELCOME TO QUOTE CHALLENGE</div>
+<div class="wave" id="wave" aria-hidden="true"></div>
+</div>
+</div>
+<script>
+const slides=[
+  {text:'WELCOME TO QUOTE CHALLENGE',direction:'right',hold:4000},
+  {text:'ADVENTURE AWAITS',direction:'left',hold:4000},
+  {text:'BY JTAC6769',direction:'right',hold:7000}
+];
+const message=document.getElementById('message');
+const wave=document.getElementById('wave');
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function start(){
+  let index=0;
+  while(true){
+    const slide=slides[index];
+    wave.className='wave';
+    void wave.offsetWidth;
+    wave.classList.add(slide.direction==='right'?'run-right':'run-left');
+    await sleep(900);
+    message.classList.add('hide');
+    await sleep(150);
+    message.textContent=slide.text;
+    message.classList.remove('hide');
+    await sleep(1150);
+    await sleep(slide.hold);
+    index=(index+1)%slides.length;
+  }
+}
+start();
+</script>
+</body>
+</html>
