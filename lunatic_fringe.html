@@ -62,20 +62,25 @@ document.querySelectorAll('.hanging-frame').forEach(frame=>{
 closeButton.addEventListener('click',()=>viewer.close());
 viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close();});
 viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus();});
-const surpriseSound=new Audio('petergriffinstarwars.mp3');
-document.getElementById('sound-switch').addEventListener('click',async()=>{
- const status=document.getElementById('sound-status');
- status.textContent='';
- try{surpriseSound.pause();surpriseSound.currentTime=0;await surpriseSound.play();}
- catch(error){console.error('Sound failed:',error);status.textContent='Sound unavailable. Check petergriffinstarwars.mp3 in this folder.';}
+const surpriseSound = new Audio('petergriffinstarwars.mp3');
+const soundSwitch = document.getElementById('sound-switch');
+const status = document.getElementById('sound-status');
+
+soundSwitch.addEventListener('click', async () => {
+  status.textContent = '';
+
+  if (!surpriseSound.paused && !surpriseSound.ended) {
+    surpriseSound.pause();
+    surpriseSound.currentTime = 0;
+    status.textContent = 'Sound stopped.';
+    return;
+  }
+
+  try {
+    surpriseSound.currentTime = 0;
+    await surpriseSound.play();
+  } catch (error) {
+    console.error('Sound failed:', error);
+    status.textContent = 'Sound unavailable. Check petergriffinstarwars.mp3 in this folder.';
+  }
 });
-</style>
-</script>
-</head>
-</body>
- <a href="fastrounde.html">
-  <img src="secret-portrait.png" alt="Open Fastrounde">
- </a>
-</html>
-
-
