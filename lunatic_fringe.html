@@ -25,13 +25,13 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}.viewer img{display:block;max-
 .exit-switch{width:112px;height:135px;border:7px ridge #880808;border-radius:8px;background:linear-gradient(140deg,#340b0b,#080808);box-shadow:0 12px 25px #000,0 0 16px #880808;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;color:#f0c2b6;font:700 17px Georgia,serif}
 .exit-switch .lever{display:block;width:34px;height:55px;border:4px ridge #999;background:linear-gradient(90deg,#333,#ddd 50%,#555);border-radius:6px;box-shadow:0 3px 8px #000;transition:transform .15s}
 .exit-switch:active .lever{transform:translateY(6px)}.exit-switch:focus-visible{outline:3px solid #f5c76c;outline-offset:5px}
-#sound-status{min-height:1.5em;color:#f0b9a9;font:14px system-ui,sans-serif}
+#sound-status{min-height:1.5em;color:#f0b9a9;font:17px system-ui,sans-serif}
 @media(max-width:600px){body{padding:28px 16px}.fringe-banner{margin:-28px -16px 26px}.wall-gallery{gap:28px}.hanging-frame img{width:min(260px,72vw)}}
 @media(prefers-reduced-motion:reduce){.hanging-frame,.exit-switch .lever{transition:none}}
 </style>
 </head>
 <body>
-<header class="fringe-banner">WELCOME TO THE DARK SIDE!? I SEEN SOME LIGHT SOMEWHERE? 😕</header>
+<header class="fringe-banner">WELCOME TO THE DARK SIDE!? I SEEN A LIGHT SWITCH SOMEWHERE? 😕</header>
 <main class="wall-gallery" aria-label="Framed picture gallery">
 <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="gemini_remix_20261021_234409.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
 <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 2"><img src="gemini_remix_20261021_232243.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label"></span></div>
@@ -72,3 +72,6 @@ document.getElementById('sound-switch').addEventListener('click',async()=>{
 </script>
 </body>
 </html>
+<!-- Opens the new page directly in the same browser window -->
+<a href="fastrounde.html">Go to About Page</a>
+
