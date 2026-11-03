@@ -250,6 +250,44 @@ closeButton.addEventListener('click',()=>viewer.close());
 viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
 viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
 </script>
+    <script>
+const pumpkin = document.createElement("img");
+
+pumpkin.src = "secret-portrait.png";
+pumpkin.alt = "Enter the Lunatic_fringe";
+pumpkin.title = "Dare to enter?";
+
+pumpkin.style.cssText = `
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 160px;
+  max-width: 30vw;
+  height: auto;
+  cursor: pointer;
+  z-index: 9999;
+  border: none;
+  transition: transform 0.3s ease;
+`;
+
+pumpkin.addEventListener("mouseenter", () => {
+  pumpkin.style.transform = "scale(1.15)";
+});
+
+pumpkin.addEventListener("mouseleave", () => {
+  pumpkin.style.transform = "scale(1)";
+});
+
+pumpkin.addEventListener("click", () => {
+  window.location.href = "lunatic_fringe/lunatic_fringe.html";
+});
+
+document.body.appendChild(pumpkin);
+</script>
+    
+</body>
+</html>
+
     
 <script>
 const creatos = document.createElement("img");
