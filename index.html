@@ -254,7 +254,7 @@ viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(las
 <script>
 const pumpkin = document.createElement("img");
 
-pumpkin.src = "psecret-portrait.png";
+pumpkin.src = "gemini_remix_20261030_162736.jpg";
 pumpkin.alt = "Enter the Lunatic_fringe";
 pumpkin.title = "Dare to enter?";
 
@@ -267,7 +267,24 @@ pumpkin.style.cssText = `
   height: auto;
   cursor: pointer;
   z-index: 9999;
-  border: transparent;
-  transition: .transform 0.3s ease'; in';
+  border: none;
+  transition: transform 0.3s ease;
+`;
 
-pumpkin.addEventListener("mouseenter", () => 
+pumpkin.addEventListener("mouseenter", () => {
+  pumpkin.style.transform = "scale(1.15)";
+});
+
+pumpkin.addEventListener("mouseleave", () => {
+  pumpkin.style.transform = "scale(1)";
+});
+
+pumpkin.addEventListener("click", () => {
+  window.location.href = "lunatic_fringe/lunatic_fringe.html";
+});
+
+document.body.appendChild(pumpkin);
+</script>
+    
+</body>
+</html>
