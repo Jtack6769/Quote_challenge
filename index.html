@@ -267,7 +267,7 @@ pumpkin.style.cssText = `
   cursor: pointer;
   z-index: 9999;
   border: none;
-  transition: transform 0.3s ease;
+  transition: left 0.4s ease, top 0.4s ease, transform 0.3s ease;
 `;
 
 pumpkin.addEventListener("mouseenter", () => {
@@ -278,17 +278,41 @@ pumpkin.addEventListener("mouseleave", () => {
   pumpkin.style.transform = "scale(1)";
 });
 
-pumpkin.addEventListener("click", () => {
-  window.location.href = "https://github.com/Jtack6769/Quote_challenge/blob/main/lunatic_fringe.html";
-});
-
 document.body.appendChild(pumpkin);
-</script>
-    
-</body>
-</html>
 
-</script> 
-</body>
-             <p> Thank you all for coming</p>
-</html>
+// Keep its starting position at the bottom-right, then use top/left
+// coordinates so the poster can animate smoothly between corners.
+const startingPosition = pumpkin.getBoundingClientRect();
+pumpkin.style.left = `${startingPosition.left}px`;
+pumpkin.style.top = `${startingPosition.top}px`;
+pumpkin.style.right = "auto";
+pumpkin.style.bottom = "auto";
+
+let clickCount = 0;
+
+pumpkin.addEventListener("click", () => {
+  clickCount++;
+
+  const width = pumpkin.getBoundingClientRect().width;
+  const height = pumpkin.getBoundingClientRect().height;
+  const right = window.innerWidth - width - 20;
+  const bottom = window.innerHeight - height - 20;
+
+  const positions = [
+    { left: 20, top: bottom }, // click 1: bottom-left
+    { left: 20, top: 20 },     // click 2: top-left
+    { left: right, top: 20 },  // click 3: top-right
+    { left: right, top: bottom } // click 4: bottom-right
+  ];
+
+  const nextPosition = positions[clickCount - 1];
+  pumpkin.style.left = `${nextPosition.left}px`;
+  pumpkin.style.top = `${nextPosition.top}px`;
+
+  if (clickCount === positions.length) {
+    setTimeout(() => {
+      window.location.href = "lunatic_fringe.html";
+    }, 450);
+  }
+});
+    </script>
