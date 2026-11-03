@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<base href="https://jtack6769.github.io/Quote_challenge/">
 <title>Quote Challenge | Theater 7.0</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#03050b;color:#fff;font-family:system-ui,Arial,sans-serif}
 .theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('file_00000000ef1c81f5822c514fb25c6b2f.png') center/100% 100% no-repeat;overflow:hidden}
 /* Overlay precisely on the artwork's existing illuminated marquee */
 .marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
-.suggestions{position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
+.suggestions{z-index:4;position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
 .suggestions:focus-visible{outline:3px solid #fff08a;outline-offset:3px}
 .suggestions:hover{box-shadow:0 0 15px 4px #ffe08388}
 .dialog-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
@@ -124,6 +125,10 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 .entrance-options :focus-visible{outline:3px solid #fff08a;outline-offset:3px}
 .dialog-backdrop{z-index:100}
 body{overflow-wrap:break-word}
+.dialog-backdrop{overflow-y:auto}.dialog{max-height:calc(100dvh - 32px);overflow-y:auto}
+.hanging-frame:focus-visible{outline:3px solid #fff08a!important;outline-offset:5px}
+.theater-controls{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;padding:14px}
+.theater-controls a,.theater-controls button{padding:10px 16px;border:1px solid #cda455;border-radius:6px;background:#101b30;color:#ffdf84;font:700 16px system-ui;text-decoration:none;cursor:pointer}
 </style>
 </head>
 <body>
@@ -136,6 +141,10 @@ body{overflow-wrap:break-word}
   <span class="robot-glow" tabindex="0" role="img" aria-label="Robot with glowing eyes on hover"></span>
   <button class="suggestions" id="openSuggestions" aria-label="Open suggestions and bug report form" title="Suggestions and bug reports"></button>
 </main>
+<nav class="theater-controls" aria-label="Theater controls">
+<a href="one-player.html">One player</a><a href="two-player.html">Two players</a>
+<button type="button" id="suggestionsLink">Suggestions / report a bug</button>
+</nav>
 <div class="dialog-backdrop" id="backdrop">
   <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
     <h2 id="dialogTitle">Quote Challenge Suggestions</h2>
@@ -224,69 +233,4 @@ function chooseType(type){
 }
 document.getElementById('typeComplaint').addEventListener('click',()=>chooseType('Complaint'));
 typeBug.addEventListener('click',()=>chooseType('Bug Report'));
-typeSuggestion.addEventListener('click',()=>chooseType('Suggestions'));
-let formOpener=openBtn;
-function closeDialog(){backdrop.classList.remove('open');formOpener.focus()}
-openBtn.addEventListener('click',()=>{formOpener=openBtn;document.getElementById('dialogTitle').textContent='Quote Challenge Suggestions';chooseType('Suggestions');backdrop.classList.add('open');typeSuggestion.focus()});
-document.getElementById('closeSuggestions').addEventListener('click',closeDialog);
-backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeDialog()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))closeDialog()});
-document.getElementById('suggestionForm').addEventListener('submit',e=>{
- e.preventDefault();
- const subject='Quote Challenge - '+document.getElementById('subject').value;
- const message=document.getElementById('message').value;
- window.location.href='mailto:qcchallenger67@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(message);
-});
-const viewer=document.querySelector('.viewer');
-const enlargedImage=viewer.querySelector('img');
-const closeButton=viewer.querySelector('.close');
-let lastFrame=null;
-document.querySelectorAll('.hanging-frame').forEach(frame=>{
- const photo=frame.querySelector('img');
- const showMissing=()=>{
-  frame.classList.add('missing');
-  frame.querySelector('.missing-label').textContent='Picture not found: '+photo.getAttribute('src');
-  frame.removeAttribute('role');frame.removeAttribute('tabindex');frame.removeAttribute('aria-label');
- };
- photo.addEventListener('error',showMissing);
- if(photo.complete&&photo.naturalWidth===0)showMissing();
- const open=()=>{
-  if(frame.classList.contains('missing'))return;
-  lastFrame=frame;enlargedImage.src=photo.src;enlargedImage.alt=photo.alt;
-  viewer.showModal();closeButton.focus();
- };
- frame.addEventListener('click',open);
- frame.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
-});
-closeButton.addEventListener('click',()=>viewer.close());
-viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
-viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
-</script>
-
-<button class="portrait-entry" id="portraitEntry" type="button" aria-haspopup="dialog" aria-controls="entranceMenu">
-  <img src="Screenshot_20261103-143516_Messages~2.jpg" alt="Captain Jtack freaking out" loading="lazy">
-  <span>Feeling a little crazy?<br>Tap for Lunatic Fringe or the complaint form</span>
-</button>
-<dialog class="entrance-menu" id="entranceMenu" aria-labelledby="entranceTitle">
-  <h2 id="entranceTitle">Where would you like to go?</h2>
-  <div class="entrance-options">
-    <a href="lunatic_fringe.html">Enter the Lunatic Fringe</a>
-    <button type="button" id="openComplaint">Open the complaint form</button>
-    <button type="button" id="closeEntrance">Go back</button>
-  </div>
-</dialog>
-<script>
-const portraitEntry=document.getElementById('portraitEntry');
-const entranceMenu=document.getElementById('entranceMenu');
-portraitEntry.addEventListener('click',()=>entranceMenu.showModal());
-document.getElementById('closeEntrance').addEventListener('click',()=>entranceMenu.close());
-entranceMenu.addEventListener('click',e=>{if(e.target===entranceMenu){const r=entranceMenu.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)entranceMenu.close()}});
-entranceMenu.addEventListener('close',()=>{if(!backdrop.classList.contains('open'))portraitEntry.focus()});
-document.getElementById('openComplaint').addEventListener('click',()=>{
- entranceMenu.close();formOpener=portraitEntry;chooseType('Complaint');
- document.getElementById('dialogTitle').textContent='Quote Challenge Complaint Form';
- backdrop.classList.add('open');document.getElementById('message').focus();
-});
-</script>
-</body>
-</html>
+typeSuggestion.addEventListene
