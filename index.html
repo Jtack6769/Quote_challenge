@@ -57,7 +57,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 /* Top marquee: angled color waves and subtle heat shimmer */
 .marquee{isolation:isolate;display:grid;place-items:center;background:radial-gradient(ellipse at center,#17356d,#07132e 75%);box-shadow:0 0 24px #e5b84955,inset 0 0 20px #000}
 /* Very subtle, continuously drifting road-heat shimmer behind the lettering. */
-.marquee::after{content:"";position:absolute;inset:-28%;z-index:0;pointer-events:none;opacity:.27;background:repeating-linear-gradient(101deg,transparent 0 30px,#ffc76a12 37px,transparent 51px 82px),radial-gradient(ellipse at 38% 65%,#ff8b301f,transparent 53%),radial-gradient(ellipse at 72% 38%,#a74bff20,transparent 55%);filter:blur(11px);animation:heatDrift 8s ease-in-out infinite alternate;transform-origin:center}
+.marquee::after{content:"";position:absolute;inset:-28%;z-index:0;pointer-events:none;opacity:.27;background:repeating-linear-gradient(101deg,transparent 0 30px,#ff007f 37px,transparent 51px 82px),radial-gradient(ellipse at 38% 65%,#ff8b301f,transparent 53%),radial-gradient(ellipse at 72% 38%,#a74bff20,transparent 55%);filter:blur(11px);animation:heatDrift 8s ease-in-out infinite alternate;transform-origin:center}
 @keyframes heatDrift{0%{transform:translate(-1.5%,2%) skewX(-2deg) scale(1.02);filter:blur(12px)}50%{transform:translate(1%,-1.5%) skewX(2deg) scale(1.06);filter:blur(8px)}100%{transform:translate(-.5%,1%) skewX(-1deg) scale(1.03);filter:blur(13px)}}
 .marquee::before{content:"";position:absolute;inset:5px;border:1px solid #ffe5a588;border-radius:9px;pointer-events:none;z-index:5}
 .wave-message{position:relative;z-index:2;text-align:center;padding:0 6px;font-size:clamp(4.5px,2.5vw,39px);font-weight:bold;letter-spacing:.015em;color:#ffff00;text-shadow:0 2px 2px #ff007f,0 0 5px #ff8a00,0 0 13px #ff6500,0 0 23px #ff4500;opacity:1;transition:opacity .12s}
@@ -97,8 +97,8 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
   width: fit-content;
   margin: 15px auto;
   font-size: 18px;
-  color: ff007f;
-  text-decoration: glow 
+  color: 880808;
+  text-decoration: none
 }
     .link {
   display: block;
