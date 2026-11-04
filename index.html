@@ -26,8 +26,8 @@
 @media(max-width:600px){.marquee-track{font-size:clamp(7px,2.1vw,13px)}.marquee{border-width:1px}}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation-duration:24s}}
 /* QUOTE CHALLENGE SCROLLING BANNER */
-.qc-banner{width:100%;overflow:hidden;background:transparent;border:2px solid transparent;border-radius:6px;padding:12px 0;color:inherit;font:bold 18px Arial,sans-serif}
-.qc-banner-text{display:inline-block;white-space:nowrap;padding-left:100%;animation:qc-scroll 33s linear infinite}
+.qc-banner{width:100%;overflow:hidden;background:clear;border:2px solid transparent;border-radius:6px;padding:12px 0;color:inherit;font:bold 18px Arial,sans-serif}
+.qc-banner-text{display:inline-block;white-space:nowrap;padding-left:100%;animation:qc-scroll 43s linear infinite}
 @keyframes qc-scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 @media(prefers-reduced-motion:reduce){.qc-banner-text{animation:none;padding-left:0;orange-space:normal;text-align:center}}
 /* Gallery Wall */
@@ -62,7 +62,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 .marquee::before{content:"";position:absolute;inset:5px;border:1px solid #ffe5a588;border-radius:9px;pointer-events:none;z-index:5}
 .wave-message{position:relative;z-index:2;text-align:center;padding:0 6px;font-size:clamp(4.5px,2.5vw,39px);font-weight:bold;letter-spacing:.015em;color:#ffff00;text-shadow:0 2px 2px #ff007f,0 0 5px #ff8a00,0 0 13px #ff6500,0 0 23px #ff4500;opacity:1;transition:opacity .12s}
 .wave-message.hide{opacity:0}
-.wave{position:absolute;z-index:3;top:-12%;height:124%;width:85%;pointer-events:none;opacity:0;filter:drop-shadow(0 0 14px #48caffaa);background:linear-gradient(90deg,transparent 0%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
+.wave{position:absolute;z-index:3;top:-12%;height:124%;width:85%;pointer-events:none;opacity:0;filter:drop-shadow(0 0 14px #48caffaa);background:linear-gradient(90deg,transparent 100%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
 /* Right-moving wave has a / leading edge; left-moving wave has a \ leading edge. */
 .wave.run-right{clip-path:polygon(0 0,100% 0,67% 100%,0 100%);animation:sweepRight 2.2s ease-in-out both}
 .wave.run-left{clip-path:polygon(0 0,100% 0,100% 100%,33% 100%);animation:sweepLeft 2.2s ease-in-out both;background:linear-gradient(270deg,transparent 0%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
@@ -85,7 +85,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 @media(prefers-reduced-motion:reduce){.robot-glow::after{transition:none}}
 /* QUOTE CHALLENGE - GALLERY WALLPAPER */
 .gallery-area {
-    background-color: #080c18;
+    background-color: transparent;
     background-image: url('gemini_remix_20261022_233612.jpg');
     background-position: top left;
     background-size: 400px auto;
@@ -97,7 +97,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
   width: fit-content;
   margin: 15px auto;
   font-size: 18px;
-  color: 880808;
+  color: pink;
   text-decoration: none
 }
     .link {
@@ -105,15 +105,15 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
   width: fit-content;
   margin: 14px auto;
   font-size: 17px;
-  color: purple;
+  color: pink;
   text-decoration: none
     </style>
 </head>
 <body>
 <main class="theater" aria-label="Quote Challenge theater entrance">
   <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
-  <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="ADMIT ONE"></a>
-  <a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
+  <a class="door-link door-one" href="one-player.html" aria-label="Enter Admit One game" title="ADMIT ONE"></a>
+  <a class="door-link door-two" href="two-player.html" aria-label="Enter Amit Two game" title="ADMIT TWO"></a>
   <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
   <button class="freddy" type="button" aria-label="Freddy the dog, hover to see him stand" title="Freddy"><img class="sitting" src="freddy-sitting.png" alt=""><img class="standing" src="freddy-standing.png" alt=""></button>
   <span class="robot-glow" tabindex="0" role="img" aria-label="Robot with glowing eyes on hover"></span>
@@ -251,8 +251,7 @@ viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
 viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
 </script>
 <section class="halloween-callout" aria-label="Halloween invitation">
-  <p>The Summer has passed a
-  Autumn is here time settle in for good movies and games with friends and family! enjoy.</p>
+  <p>The Summer has passed and Autumn is here time settle in for good movies and games with friends and family! enjoy.</p>
 </section>
 <a class="pumpkin-link" href="lunatic_fringe.html" aria-label="Secret poster — enter the Lunatic Fringe" title="Secret Poster">
   <img src="secret-portrait.png" alt="Secret poster — enter the Lunatic Fringe">
@@ -272,7 +271,7 @@ viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(las
       text-align: center;
       font-family: system-ui, sans-serif;
       background: #101827;
-      color: #f8fafc;
+      color: #ff007f;
     }
 
     #time {
@@ -322,5 +321,10 @@ viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(las
 </body>
 </html>
 </body>
+    <form action="https://www.google.com/search" method="GET">
+    <input type="search" name="q" placeholder="Search Google..." required>
+    <button type="submit">Google Search</button>
+    </form>
+    
 </html>
     
