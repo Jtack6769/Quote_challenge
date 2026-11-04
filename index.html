@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-12">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Quote Challenge | Theater 7.0</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#03050b;color:#fff;font-family:system-ui,Arial,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#03050b;color:#purple;font-family:system-ui,Arial,sans-serif}
 .theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('file_00000000ef1c81f5822c514fb25c6b2f.png') center/100% 100% no-repeat;overflow:hidden}
 /* Overlay precisely on the artwork's existing illuminated marquee */
-.marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
+.marquee{position:absolute;left:24.2%;top:44.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
 .suggestions{position:absolute;left:47.3%;top:64.5%;width:5.5%;height:14.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
 .suggestions:focus-visible{outline:3px solid #fff08a;outline-offset:3px}
 .suggestions:hover{box-shadow:0 0 15px 4px #ffe08388}
@@ -18,13 +18,13 @@
 .dialog h2{margin:0 0 16px;color:#ffdf84}.dialog label{display:block;margin:12px 0 5px}.dialog textarea{width:100%;padding:10px;background:#f8f4eb;color:#151515;border-radius:5px;border:0;font:inherit}.dialog textarea{min-height:120px;resize:vertical}
 /* Four clearly separated message controls */
 .message-types,.buttons{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
-.message-types button,.buttons button{flex:1;min-width:110px;padding:10px 12px;cursor:pointer;border:1px solid #d6a54e;border-radius:5px;font-weight:700;background:#26344c;color:#ffdf84}
-.message-types button[aria-pressed="true"]{background:#e4b45b;color:#17100b;border-color:#ffdf84}
+.message-types button,.buttons button{flex:1;min-width:110px;padding:10px 12px;cursor:pointer;border:1px solid #d6a54e;border-radius:5px;font-weight:700;background:#26344c;color:#880912}
+.message-types button[aria-pressed="true"]{background:#e4b45b;color:#17132b;border-color:#ffea84}
 .buttons{justify-content:flex-end;margin-top:16px}.buttons .send{background:#e4b45b;color:#17100b}
 .message-types button:focus-visible,.buttons button:focus-visible{outline:3px solid #fff08a;outline-offset:2px}
-.help{font-size:12px;color:#d9d9d9;margin-top:12px}
+.help{font-size:12px;color:#d9e1a49;margin-top:12px}
 @media(max-width:600px){.marquee-track{font-size:clamp(7px,2.1vw,13px)}.marquee{border-width:1px}}
-@media(prefers-reduced-motion:reduce){.marquee-track{animation-duration:22.5s}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation-duration:35s}}
 /* QUOTE CHALLENGE SCROLLING BANNER */
 .qc-banner{width:100%;overflow:hidden;background:transparent;border:2px solid transparent;border-radius:6px;padding:12px 0;color:inherit;font:bold 18px Arial,sans-serif}
 .qc-banner-text{display:inline-block;white-space:nowrap;padding-left:100%;animation:qc-scroll 45s linear infinite}
@@ -60,7 +60,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 .marquee::after{content:"";position:absolute;inset:-28%;z-index:0;pointer-events:none;opacity:.27;background:repeating-linear-gradient(101deg,transparent 0 30px,#ffc76a12 37px,transparent 51px 82px),radial-gradient(ellipse at 38% 65%,#ff8b301f,transparent 53%),radial-gradient(ellipse at 72% 38%,#a74bff20,transparent 55%);filter:blur(11px);animation:heatDrift 8s ease-in-out infinite alternate;transform-origin:center}
 @keyframes heatDrift{0%{transform:translate(-1.5%,2%) skewX(-2deg) scale(1.02);filter:blur(12px)}50%{transform:translate(1%,-1.5%) skewX(2deg) scale(1.06);filter:blur(8px)}100%{transform:translate(-.5%,1%) skewX(-1deg) scale(1.03);filter:blur(13px)}}
 .marquee::before{content:"";position:absolute;inset:5px;border:1px solid #ffe5a588;border-radius:9px;pointer-events:none;z-index:5}
-.wave-message{position:relative;z-index:2;text-align:center;padding:0 6px;font-size:clamp(9px,2.5vw,39px);font-weight:bold;letter-spacing:.015em;color:#ff3030;text-shadow:0 2px 2px #300000,0 0 5px #ff8a00,0 0 13px #ff6500,0 0 23px #ff4500;opacity:1;transition:opacity .12s}
+.wave-message{position:relative;z-index:2;text-align:center;padding:0 6px;font-size:clamp(4.5px,2.5vw,39px);font-weight:bold;letter-spacing:.015em;color:#ffff00;text-shadow:0 2px 2px #ff007f,0 0 5px #ff8a00,0 0 13px #ff6500,0 0 23px #ff4500;opacity:1;transition:opacity .12s}
 .wave-message.hide{opacity:0}
 .wave{position:absolute;z-index:3;top:-12%;height:124%;width:85%;pointer-events:none;opacity:0;filter:drop-shadow(0 0 14px #48caffaa);background:linear-gradient(90deg,transparent 0%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
 /* Right-moving wave has a / leading edge; left-moving wave has a \ leading edge. */
@@ -97,15 +97,15 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
   width: fit-content;
   margin: 15px auto;
   font-size: 18px;
-  color: red;
-  text-decoration: none
+  color: ff007f;
+  text-decoration: glow 
 }
     .link {
   display: block;
   width: fit-content;
   margin: 14px auto;
   font-size: 17px;
-  color: yellow;
+  color: purple;
   text-decoration: none
     </style>
 </head>
