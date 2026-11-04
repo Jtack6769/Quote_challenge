@@ -234,6 +234,17 @@ document.querySelectorAll('.hanging-frame').forEach(frame=>{
  const showMissing=()=>{
   frame.classList.add('missing');
   frame.querySelector('.missing-label').textContent='Picture not found: '+photo.getAttribute('src');
+  window.location.href='mailto:qcchallenger67@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(message);
+});
+const viewer=document.querySelector('.viewer');
+const enlargedImage=viewer.querySelector('img');
+const closeButton=viewer.querySelector('.close');
+let lastFrame=null;
+document.querySelectorAll('.hanging-frame').forEach(frame=>{
+ const photo=frame.querySelector('img');
+ const showMissing=()=>{
+  frame.classList.add('missing');
+  frame.querySelector('.missing-label').textContent='Picture not found: '+photo.getAttribute('src');
   frame.removeAttribute('role');frame.removeAttribute('tabindex');frame.removeAttribute('aria-label');
  };
  photo.addEventListener('error',showMissing);
@@ -251,11 +262,14 @@ viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
 viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
 </script>
 <section class="halloween-callout" aria-label="Halloween invitation">
-  <p>The Summer has passed and Autumn is here time settle in for good movies and games with friends and family! enjoy.</p>
+
 </section>
-<a class="pumpkin-link" href="lunatic_fringe.html" aria-label="Secret poster — enter the Lunatic Fringe" title="Secret Poster">
+<a class="pumpkin-link" href="https://jtack6769.github.io/qcevent/lunatic_fringe/lunatic_fringe.html" aria-label="Secret poster — enter the Lunatic Fringe" title="Secret Poster">
   <img src="secret-portrait.png" alt="Secret poster — enter the Lunatic Fringe">
 </a>
+</body>
+</html>
+
         <!doctype html>
 <html lang="en">
 <head>
