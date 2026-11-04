@@ -25,70 +25,6 @@
 .help{font-size:12px;color:#d9e1a49;margin-top:12px}
 @media(max-width:600px){.marquee-track{font-size:clamp(7px,2.1vw,13px)}.marquee{border-width:1px}}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation-duration:24s}}
-    <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Local Clock</title>
-  <style>
-    body {
-      min-height: 100vh;
-      margin: 0;
-      display: grid;
-      place-content: center;
-      text-align: center;
-      font-family: system-ui, sans-serif;
-      background: #101827;
-      color: #f8fafc;
-    }
-
-    #time {
-      font-size: clamp(3rem, 12vw, 7rem);
-      font-variant-numeric: tabular-nums;
-    }
-
-    #date {
-      margin-top: 0.5rem;
-      font-size: clamp(1.1rem, 4vw, 1.75rem);
-      color: #cbd5e1;
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <div id="time" aria-live="off"></div>
-    <div id="date"></div>
-  </main>
-
-  <script>
-    const timeElement = document.querySelector("#time");
-    const dateElement = document.querySelector("#date");
-
-    const timeFormatter = new Intl.DateTimeFormat(undefined, {
-      hour: "numeric",
-      minute: "2-digit",
-      second: "2-digit"
-    });
-
-    const dateFormatter = new Intl.DateTimeFormat(undefined, {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    });
-
-    function updateClock() {
-      const now = new Date();
-      timeElement.textContent = timeFormatter.format(now);
-      dateElement.textContent = dateFormatter.format(now);
-    }
-
-    updateClock();
-    setInterval(updateClock, 1000);
-  </script>
-</body>
-</html>
 /* QUOTE CHALLENGE SCROLLING BANNER */
 .qc-banner{width:100%;overflow:hidden;background:transparent;border:2px solid transparent;border-radius:6px;padding:12px 0;color:inherit;font:bold 18px Arial,sans-serif}
 .qc-banner-text{display:inline-block;white-space:nowrap;padding-left:100%;animation:qc-scroll 33s linear infinite}
@@ -318,9 +254,73 @@ viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(las
   <p>The Summer has passed a
   Autumn is here time settle in for good movies and games with friends and family! enjoy.</p>
 </section>
-<a class="pumpkin-link" href="https://jtack6769.github.io/qcevent/lunatic_fringe/lunatic_fringe.html" aria-label="Secret poster — enter the Lunatic Fringe" title="Secret Poster">
+<a class="pumpkin-link" href="lunatic_fringe.html" aria-label="Secret poster — enter the Lunatic Fringe" title="Secret Poster">
   <img src="secret-portrait.png" alt="Secret poster — enter the Lunatic Fringe">
 </a>
+        <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Clock</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      font-family: system-ui, sans-serif;
+      background: #101827;
+      color: #f8fafc;
+    }
+
+    #time {
+      font-size: clamp(3rem, 12vw, 7rem);
+      font-variant-numeric: tabular-nums;
+    }
+
+    #date {
+      margin-top: 0.5rem;
+      font-size: clamp(1.1rem, 4vw, 1.75rem);
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div id="time" aria-live="off"></div>
+    <div id="date"></div>
+  </main>
+
+  <script>
+    const timeElement = document.querySelector("#time");
+    const dateElement = document.querySelector("#date");
+
+    const timeFormatter = new Intl.DateTimeFormat(undefined, {
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+
+    const dateFormatter = new Intl.DateTimeFormat(undefined, {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+
+    function updateClock() {
+      const now = new Date();
+      timeElement.textContent = timeFormatter.format(now);
+      dateElement.textContent = dateFormatter.format(now);
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
 </body>
 </html>
     
