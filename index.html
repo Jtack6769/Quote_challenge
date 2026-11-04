@@ -8,8 +8,8 @@
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#03050b;color:#fff;font-family:system-ui,Arial,sans-serif}
 .theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('file_00000000ef1c81f5822c514fb25c6b2f.png') center/100% 100% no-repeat;overflow:hidden}
 /* Overlay precisely on the artwork's existing illuminated marquee */
-.marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:12.5%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
-.suggestions{position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
+.marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
+.suggestions{position:absolute;left:47.3%;top:64.5%;width:5.5%;height:14.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
 .suggestions:focus-visible{outline:3px solid #fff08a;outline-offset:3px}
 .suggestions:hover{box-shadow:0 0 15px 4px #ffe08388}
 .dialog-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
@@ -60,7 +60,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 .marquee::after{content:"";position:absolute;inset:-28%;z-index:0;pointer-events:none;opacity:.27;background:repeating-linear-gradient(101deg,transparent 0 30px,#ffc76a12 37px,transparent 51px 82px),radial-gradient(ellipse at 38% 65%,#ff8b301f,transparent 53%),radial-gradient(ellipse at 72% 38%,#a74bff20,transparent 55%);filter:blur(11px);animation:heatDrift 8s ease-in-out infinite alternate;transform-origin:center}
 @keyframes heatDrift{0%{transform:translate(-1.5%,2%) skewX(-2deg) scale(1.02);filter:blur(12px)}50%{transform:translate(1%,-1.5%) skewX(2deg) scale(1.06);filter:blur(8px)}100%{transform:translate(-.5%,1%) skewX(-1deg) scale(1.03);filter:blur(13px)}}
 .marquee::before{content:"";position:absolute;inset:5px;border:1px solid #ffe5a588;border-radius:9px;pointer-events:none;z-index:5}
-.wave-message{position:relative;z-index:2;text-align:center;padding:0 8px;font-size:clamp(10px,2.8vw,42px);font-weight:bold;letter-spacing:.015em;color:#fff5b8;text-shadow:0 2px 2px #241000,0 0 6px #fff08a,0 0 14px #ffb52e,0 0 25px #ff8a00;opacity:1;transition:opacity .12s}
+.wave-message{position:relative;z-index:2;text-align:center;padding:0 6px;font-size:clamp(9px,2.5vw,39px);font-weight:bold;letter-spacing:.015em;color:#ff3030;text-shadow:0 2px 2px #300000,0 0 5px #ff8a00,0 0 13px #ff6500,0 0 23px #ff4500;opacity:1;transition:opacity .12s}
 .wave-message.hide{opacity:0}
 .wave{position:absolute;z-index:3;top:-12%;height:124%;width:85%;pointer-events:none;opacity:0;filter:drop-shadow(0 0 14px #48caffaa);background:linear-gradient(90deg,transparent 0%,#7130e6c9 16%,#ec366ae8 36%,#ffc444f5 59%,#2cbbffee 82%,transparent 100%)}
 /* Right-moving wave has a / leading edge; left-moving wave has a \ leading edge. */
@@ -106,24 +106,14 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
   margin: 14px auto;
   font-size: 17px;
   color: yellow;
-  text-decoration: none;
-}
-.coming-attractions{font-family:'Brush Script MT',cursive;text-align:center}
-.float-left{float:left;margin:0 15px 15px 0}
-.halloween-callout{max-width:1000px;margin:32px auto;padding:20px;color:#fff;text-align:center;font:20px/1.5 system-ui,Arial,sans-serif}
-.halloween-callout strong{color:#d22;text-shadow:0 0 12px #f60}
-.pumpkin-link{position:fixed;right:20px;bottom:20px;z-index:20;display:block;width:160px;max-width:30vw;transition:transform .3s ease}
-.pumpkin-link:hover,.pumpkin-link:focus-visible{transform:scale(1.1)}
-.pumpkin-link img{display:block;width:100%;height:auto;border:0}
-.pumpkin-link:focus-visible{outline:3px solid #ffb347;outline-offset:4px}
-@media(prefers-reduced-motion:reduce){.pumpkin-link{transition:none}}
-</style>
+  text-decoration: none
+    </style>
 </head>
 <body>
 <main class="theater" aria-label="Quote Challenge theater entrance">
   <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
   <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="ADMIT ONE"></a>
-<a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
+  <a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
   <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
   <button class="freddy" type="button" aria-label="Freddy the dog, hover to see him stand" title="Freddy"><img class="sitting" src="freddy-sitting.png" alt=""><img class="standing" src="freddy-standing.png" alt=""></button>
   <span class="robot-glow" tabindex="0" role="img" aria-label="Robot with glowing eyes on hover"></span>
@@ -146,17 +136,26 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
     <p class="help">Opens your email app with the subject and message filled in. No message is sent until you send it from your email app.</p>
   </section>
 </div>
-<div class="qc-banner"><div class="qc-banner-text"> 📽️ QUOTE CHALLENGE 7.0 WE ARE READY TO SET SOME RECORDS! 🎦 • 📽️ UNDER MINOR TOUCH UPS • WE ARE WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 🎦 </div></div>
-<div class="coming-attractions">
+<div class="qc-banner"><div class="qc-banner-text"> 📽️ QUOTE CHALLENGE 🎦 • 📽️ UNDER CONSTRUCTION • WE ARE WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 🎦 </div></div>
+    <!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: 'Brush Script MT', cursive;
+}
+</style>
+</head>
+<body>
 <h1> <a class="coming-link" href="next.html">COMING TO A THEATER
 NEAR YOU.
-12-1-2026</a></h1>
-</div>
-
+12/1/2026</a></h1>
+</body>
+</html>
 <section class="gallery-area">
 <main class="wall-gallery" aria-label="Framed picture gallery">
-    One of these days you'll be escaping from me!
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="ElvisDead_EscapeNY_gic_web_3_1080x.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
+    Hey Freddie sit. good boy.
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="freddie-sofa.png" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
     <h3><a class="link" 
             href="https://github.com/users/Jtack6769/achievements/quickdraw">Launch Achievements</a></h3>
     Just so you all know it's a lot of fun describing posters to the AI to get these fantastic posters!
@@ -168,7 +167,7 @@ NEAR YOU.
     The Captain that started it all simply (Kirk)
   <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="IMG_20260913_064817432~2.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
     But this guy! you know!✌️
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="secret-portrait.png" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="IMG_20261007_172813.png" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
 </main>
 </section>
 <dialog class="viewer" aria-label="Enlarged gallery picture">
@@ -178,9 +177,9 @@ NEAR YOU.
 <script>
 // EDIT THESE THREE TEXT VALUES to change the top marquee messages.
 const slides=[
-  {text:"WELCOME TO QUOTE CHALLENGE 7.0 IT'S A NEW DAY!",direction:'right',hold:4000},
-  {text:'THE QUOTES ARE OVERFLOWING AND WE WISH YOU A HAPPY HOLIDAY SEASON',direction:'left',hold:4000},
-  {text:'QC IS ALWAYS DREAMING UP FUN FOR YOU SO TUNE UP YOUR MIND AND ENJOY THE TRIP DOWN MEMORY LANE!',direction:'right',hold:7000}
+  {text:'WELCOME TO QUOTE CHALLENGE',direction:'right',hold:4000},
+  {text:'WE WISH YOU A HAPPY HOLIDAY SEASON',direction:'left',hold:4000},
+  {text:'QC IS ALWAYS DREAMING UP FUN FOR YOU!',direction:'right',hold:7000}
 ];
 const waveMessage=document.getElementById('waveMessage');
 const wave=document.getElementById('wave');
@@ -244,4 +243,32 @@ document.querySelectorAll('.hanging-frame').forEach(frame=>{
   lastFrame=frame;enlargedImage.src=photo.src;enlargedImage.alt=photo.alt;
   viewer.showModal();closeButton.focus();
  };
- frame.addEventListene
+ frame.addEventListener('click',open);
+ frame.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+});
+closeButton.addEventListener('click',()=>viewer.close());
+viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
+viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
+</script>
+    
+<script>
+const pumpkin = document.createElement("img");
+
+pumpkin.src = "gemini_remix_20261030_162736.jpg";
+pumpkin.alt = "Enter the Lunatic_fringe";
+pumpkin.title = "Dare to enter?";
+
+pumpkin.style.cssText = `
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 160px;
+  max-width: 30vw;
+  height: auto;
+  cursor: pointer;
+  z-index: 9999;
+  border: none;
+  transition: transform 0.3s ease;
+`;
+
+pumpkin.addEventListener("mouseenter", () => 
