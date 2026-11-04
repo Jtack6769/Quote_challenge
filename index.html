@@ -249,44 +249,14 @@ document.querySelectorAll('.hanging-frame').forEach(frame=>{
 closeButton.addEventListener('click',()=>viewer.close());
 viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
 viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
-
-<script>
-const pumpkin = document.createElement("img");
-
-pumpkin.src = "secret-poster.jpg";
-pumpkin.alt = "Enter the Lunatic_fringe";
-pumpkin.title = "Dare to enter?";
-
-pumpkin.style.cssText = `
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 160px;
-  max-width: 30vw;
-  height: auto;
-  cursor: pointer;
-  z-index: 9999;
-  border: none;
-  transition: transform 0.3s ease;
-`;
-
-pumpkin.addEventListener("mouseenter", () => {
-  pumpkin.style.transform = "scale(1.15)";
-});
-
-pumpkin.addEventListener("mouseleave", () => {
-  pumpkin.style.transform = "scale(1)";
-});
-
-pumpkin.addEventListener("click", () => {
-  window.location.href = "lunatic_fringe/lunatic_fringe.html";
-});
-
-document.body.appendChild(pumpkin);
 </script>
-    
+<section class="halloween-callout" aria-label="Halloween invitation">
+  <p>The Summer has passed a
+  Autumn is here time settle in for good movies and games with friends and family! enjoy.</p>
+</section>
+<a class="pumpkin-link" href="https://jtack6769.github.io/qcevent/lunatic_fringe/lunatic_fringe.html" aria-label="Secret poster — enter the Lunatic Fringe" title="Secret Poster">
+  <img src="secret-portrait.png" alt="Secret poster — enter the Lunatic Fringe">
+</a>
 </body>
 </html>
-    
-</script>
     
