@@ -83,3 +83,8 @@ function qcAddEggPoints(points,label){game.score+=points;game.scores[game.turn]=
 if(game.score>=76&&!game.bonusUnlocked){game.bonusUnlocked=true;const a=document.createElement('a');a.href='bonus.html?egg=score';a.className='home';a.textContent='BONUS ROUND UNLOCKED';$('game').append(a)}qcCheckTarget();}
 window.qcAwardEgg=(id,points,label)=>{if(!game)return null;if(game.done)return 'Start another game to collect more bonuses.';if(game.mode==='daily')return 'Wall bonuses count in regular games. Finish your Daily Quote first.';if(game.eggClaims.includes(id))return 'You already found this bonus in this game.';game.eggClaims.push(id);qcAddEggPoints(points,label);return '+'+points+' · '+label};
 </script><script src="assets/eggs.js"></script></body></html>
+
+<a class="home" href="https://jtack6769.github.io/Quote_challenge/">
+  ← THEATER ENTRANCE
+</a>
+
