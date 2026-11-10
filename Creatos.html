@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#880808">
+<title>Meet Creatos</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:24px;background:linear-gradient(135deg,#170909,#06080f 58%,#280b0b);color:#fff;font:16px/1.5 system-ui,Arial,sans-serif}.page{width:min(1000px,100%);margin:0 auto}.top{display:flex;justify-content:space-between;align-items:center;gap:16px}.top a{color:#ffe08b}.card{margin:26px 0;padding:clamp(18px,4vw,36px);border:1px solid #d6a54e99;border-radius:16px;background:#110d0dec;box-shadow:0 18px 50px #0009}.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,360px);gap:28px;align-items:center}.hero img{display:block;width:100%;max-height:420px;object-fit:cover;border:3px solid #e6b84d;border-radius:12px}.clock{display:inline-block;padding:16px 20px;border:1px solid #e6b84d;border-radius:10px;background:#080808;color:#80ffe4;font:700 clamp(1.5rem,5vw,3rem)/1.2 ui-monospace,monospace;letter-spacing:.04em}.ampm{font-size:.5em;color:#fff707}.video{width:100%;max-height:70vh;background:#000;border-radius:10px}.home{display:inline-block;margin-top:10px;padding:10px 14px;border:1px solid #e6b84d;border-radius:8px;color:#ffe08b;text-decoration:none}.home:focus-visible{outline:3px solid white;outline-offset:3px}@media(max-width:650px){body{padding:14px}.hero{grid-template-columns:1fr}.hero img{max-height:300px}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="top"><a class="home" href="index.html">← Theater entrance</a><span>Quote Challenge</span></div>
+  <section class="card hero">
+    <div><p>WELCOME TO THE ROOM YOU HAD TO FIND!</p><h1>MEET CREATOS</h1><p>THE MIND BLENDER.</p><div class="clock" role="timer" aria-label="Your local time"><time id="time-display">--:--:--</time> <span id="ampm-display" class="ampm">--</span></div></div>
+    <img src="creatos.jpg" alt="Creatos featured image">
+  </section>
+  <section class="card"><h2>A little something to watch</h2><video class="video" controls preload="metadata" playsinline poster="creatos.jpg"><source src="20261105_191529-CINEMATIC.mp4" type="video/mp4">
+    watch</h3><video class="video" controls preload="metadata" playsinline poster="creatos.jpg"><source src="https://youtu.be/p4HvgE94i7s?si=rLGlqWr3GhcCo0Nt"
+                                            
+</video>
+<script>
+'use strict';function updateClock(){const now=new Date();document.getElementById('time-display').textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(now).replace(/\s?(AM|PM)$/i,'');document.getElementById('ampm-display').textContent=new Intl.DateTimeFormat(undefined,{hour:'numeric',hour12:true}).format(now).replace(/^.*\s/,'')}updateClock();window.setInterval(updateClock,1000);
+</script>
+</body>
+</html>
