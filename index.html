@@ -249,7 +249,7 @@ function updateClock() {
       hour12: true
     }).format(now).replace(/^.*\s/, '');
 }
-
+<script>
 updateClock();
 window.setInterval(updateClock, 1000);
 </script>wave.classList.add(slide.direction==='right'?'run-right':'run-left');
@@ -303,8 +303,8 @@ document.querySelectorAll('.hanging-frame').forEach(frame=>{
  frame.addEventListener('click',()=>enlarge(frame));
  frame.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();enlarge(frame);}});
 });
-    </video>
-<script>
+ <script>   
+ </video>
 'use strict';function updateClock(){const now=new Date();document.getElementById('time-display').textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(now).replace(/\s?(AM|PM)$/i,'');document.getElementById('ampm-display').textContent=new Intl.DateTimeFormat(undefined,{hour:'numeric',hour12:true}).format(now).replace(/^.*\s/,'')}updateClock();window.setInterval(updateClock,1000);
 </script>
 viewer.querySelector('.close').addEventListener('click',()=>viewer.close());
