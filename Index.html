@@ -284,6 +284,28 @@ document.getElementById('closeEntrance').addEventListener('click',()=>entranceMe
 document.getElementById('complaintEntry').addEventListener('click',()=>{entranceMenu.close();chooseType('Complaint');openSuggestions();});
 entranceMenu.addEventListener('click',event=>{if(event.target===entranceMenu)entranceMenu.close();});
 </script>
+    <script>
+'use strict';
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('time-display').textContent =
+    new Intl.DateTimeFormat(undefined, {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    }).format(now).replace(/\s?(AM|PM)$/i, '');
+
+</script>    new Intl.DateTimeFormat(undefined, {
+      hour: 'numeric',
+      hour12: true
+    }).format(now).replace(/^.*\s/, '');
+}
+
+updateClock();
+window.setInterval(updateClock, 1000);
+</script>z-
 <script>
 (function(){
   function updateClocks(){
