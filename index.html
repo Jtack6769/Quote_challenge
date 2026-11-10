@@ -10,7 +10,30 @@
 .theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('file_00000000ef1c81f5822c514fb25c6b2f.png') center/100% 100% no-repeat;overflow:hidden}
 /* Overlay precisely on the artwork's existing illuminated marquee */
 .marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
-.suggestions{z-index:4;position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
+.suggestions{
+    <script>
+'use strict';
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('time-display').textContent =
+    new Intl.DateTimeFormat(undefined, {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    }).format(now).replace(/\s?(AM|PM)$/i, '');
+
+  document.getElementById('ampm-display').textContent =
+    new Intl.DateTimeFormat(undefined, {
+      hour: 'numeric',
+      hour12: true
+    }).format(now).replace(/^.*\s/, '');
+}
+
+updateClock();
+window.setInterval(updateClock, 1000);
+</script>z-index:4;position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
 .suggestions:focus-visible{outline:3px solid #fff08a;outline-offset:3px}
 .suggestions:hover{box-shadow:0 0 15px 4px #ffe08388}
 .dialog-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
@@ -207,7 +230,29 @@ async function start(){
     const slide=slides[index];
     wave.className='wave';
     void wave.offsetWidth;
-    wave.classList.add(slide.direction==='right'?'run-right':'run-left');
+    <script>
+'use strict';
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('time-display').textContent =
+    new Intl.DateTimeFormat(undefined, {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    }).format(now).replace(/\s?(AM|PM)$/i, '');
+
+  document.getElementById('ampm-display').textContent =
+    new Intl.DateTimeFormat(undefined, {
+      hour: 'numeric',
+      hour12: true
+    }).format(now).replace(/^.*\s/, '');
+}
+
+updateClock();
+window.setInterval(updateClock, 1000);
+</script>wave.classList.add(slide.direction==='right'?'run-right':'run-left');
     await sleep(900);
     waveMessage.classList.add('hide');
     await sleep(150);
