@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quote Challenge Marquee</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:transparent;font-family:Georgia,'Times New Roman',serif}body{padding:12px;overflow:hidden}.marquee{position:relative;width:100%;height:clamp(180px,28vw,310px);overflow:hidden;clip-path:polygon(0 12px,12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px));border:4px solid #f6d678;box-shadow:inset 0 0 0 3px #633909, inset 0 0 0 8px #d49a31,0 0 18px #9b4813;background:#090609}.marquee:before{content:"";position:absolute;inset:8px;border:2px solid #f8da7c;pointer-events:none;z-index:10;box-shadow:inset 0 0 12px #d48b2b}.rail{position:absolute;inset:0;display:flex;width:300%;transform:translateX(-33.333333%);will-change:transform}.panel{width:33.333333%;height:100%;position:relative;display:grid;place-items:center;overflow:hidden}.center{background:radial-gradient(ellipse at center,#3d1117 0%,#14080c 68%,#080508 100%)}.center .text{position:relative;text-align:center;z-index:2;padding:10px 28px}.center h1{margin:0;color:#ff2929;font-size:clamp(32px,7.5vw,91px);line-height:.99;letter-spacing:.035em;-webkit-text-stroke:1px #f8d88a;text-shadow:0 2px 0 #4e2104,0 0 6px #ff4734,0 0 17px #ed001c,0 0 32px #c6001c}.center p{margin:12px 0 0;font:600 clamp(9px,1.5vw,17px) system-ui,sans-serif;letter-spacing:.22em;color:#f8d99c}.center .sweep{position:absolute;left:0;right:0;height:36%;z-index:3;pointer-events:none;opacity:0}.top-sweep{top:0;background:linear-gradient(to bottom,rgba(255,238,171,.68),rgba(255,36,24,.23),transparent);transform:translateY(-110%)}.bottom-sweep{bottom:0;background:linear-gradient(to top,rgba(255,223,131,.65),rgba(255,36,24,.19),transparent);transform:translateY(110%)}.poster{background:#101019}.poster img{width:100%;height:100%;object-fit:cover;display:block}.poster .placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#e8bd67;font-size:clamp(18px,4vw,43px);letter-spacing:.07em;padding:20px;background:radial-gradient(ellipse,#352018,#100c16)}.poster img:not([src]),.poster img[src=""]{display:none}.poster img[src]:not([src=""])+.placeholder{display:none}.gold-edge{position:absolute;inset:0;pointer-events:none;z-index:9;box-shadow:inset 0 0 0 8px #ad782c,inset 0 0 0 11px #f7d989,inset 0 0 25px #080300}.marquee.running .rail{animation:travel 24s ease-in-out infinite}.marquee.running .top-sweep{animation:topLight 24s linear infinite}.marquee.running .bottom-sweep{animation:bottomLight 24s linear infinite}@keyframes travel{0%,25%{transform:translateX(-33.333333%)}35%,46%{transform:translateX(-66.666667%)}56%,65%{transform:translateX(-33.333333%)}75%,86%{transform:translateX(0)}96%,100%{transform:translateX(-33.333333%)}}@keyframes topLight{0%{opacity:0;transform:translateY(-110%)}1%{opacity:1}6%{opacity:.9;transform:translateY(0)}8%{opacity:0;transform:translateY(120%)}100%{opacity:0}}@keyframes bottomLight{0%,6%{opacity:0;transform:translateY(110%)}7%{opacity:1}11%{opacity:.9;transform:translateY(0)}13%{opacity:0;transform:translateY(-120%)}100%{opacity:0}}@media(prefers-reduced-motion:reduce){.marquee.running .rail,.marquee.running .top-sweep,.marquee.running .bottom-sweep{animation:none}}
+</style>
+</head>
+<body>
+<div class="marquee running" aria-label="Animated Quote Challenge marquee featuring two movie posters">
+  <div class="rail">
+    <section class="panel poster"><img src="poster-right.jpg" alt="Right-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">RIGHT POSTER</div></section>
+    <section class="panel center"><div class="text"><h1>QUOTE<br>CHALLENGE</h1><p>THE MOVIE QUOTE GAME</p></div><div class="sweep top-sweep"></div><div class="sweep bottom-sweep"></div></section>
+    <section class="panel poster"><img src="poster-left.jpg" alt="Left-side movie poster" onerror="this.removeAttribute('src')"><div class="placeholder">LEFT POSTER</div></section>
+  </div>
+  <div class="gold-edge"></div>
+</div>
+</body>
+</html>

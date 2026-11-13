@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#880808">
+<title>Next Month | Quote Challenge</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:#000;color:#ffdc69}
+body{min-height:100svh;overflow:hidden;display:grid;place-items:center;font-family:Georgia,'Times New Roman',serif}
+.stage{position:relative;width:100vw;height:100svh;display:grid;place-items:center;overflow:hidden;background:#000;isolation:isolate}
+.poster{position:absolute;width:min(75vw,340px,calc(77svh * .67));aspect-ratio:2/3;filter:drop-shadow(0 0 15px #f3b82c65);opacity:0;animation:show-frame .01s linear .12s forwards}
+@keyframes show-frame{to{opacity:1}}
+.tile{position:absolute;width:50%;height:50%;background-image:var(--poster-url);background-size:200% 200%;background-repeat:no-repeat;opacity:0;transform:translate(var(--tx),var(--ty)) scale(.92);will-change:transform,opacity}
+.tile:nth-child(1){top:0;left:0;background-position:left top;--tx:-160%;--ty:-120%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .14s forwards}
+.tile:nth-child(2){top:0;right:0;background-position:right top;--tx:170%;--ty:-105%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .48s forwards}
+.tile:nth-child(3){bottom:0;left:0;background-position:left bottom;--tx:-145%;--ty:135%;animation:fly-in .48s cubic-bezier(.16,.86,.24,1.02) .82s forwards}
+.tile:nth-child(4){bottom:0;right:0;background-position:right bottom;transform:none;animation:fade-in .46s ease 1.25s forwards}
+@keyframes fly-in{to{opacity:1;transform:translate(0,0) scale(1)}}
+@keyframes fade-in{to{opacity:1}}
+/* Fourth piece arrives, then the complete image snaps out of sight. */
+.poster{animation:show-frame .01s linear .12s forwards,poster-pop .13s steps(1,end) 1.78s forwards}
+@keyframes poster-pop{to{opacity:0;visibility:hidden}}
+.gold-reveal{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;opacity:0;transform:scale(.86);animation:gold-burst 2.05s ease 1.85s forwards}
+.gold-reveal h1{margin:0;font-weight:900;line-height:1.05;letter-spacing:.075em;font-size:clamp(35px,9vw,88px);color:#ffd64e;text-shadow:0 1px 0 #fff1a3,0 3px 0 #9b5c00,0 0 14px #ffc300,0 0 35px #f6a800}
+.gold-reveal p{margin:18px 0 0;font:900 clamp(17px,4.6vw,35px)/1.1 system-ui,sans-serif;letter-spacing:.24em;color:#ffe89a;text-shadow:0 0 18px #ffbd16}
+.gold-reveal::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,#ffd34855 0%,#ffc52b12 27%,transparent 62%);opacity:0;animation:light-pulse 2.05s ease 1.85s forwards}
+@keyframes gold-burst{
+  0%{opacity:0;transform:scale(.86);filter:brightness(1)}
+  12%{opacity:1;transform:scale(1.04);filter:brightness(2.4)}
+  30%{opacity:1;transform:scale(1);filter:brightness(1)}
+  53%{opacity:1;transform:scale(1.04);filter:brightness(2.6)}
+  70%{opacity:1;transform:scale(1);filter:brightness(1.15)}
+  87%{opacity:1;transform:scale(1.06);filter:brightness(3)}
+  100%{opacity:0;transform:scale(1.2);filter:brightness(4)}
+}
+@keyframes light-pulse{0%,25%,43%,66%,80%,100%{opacity:0}12%,53%,87%{opacity:1}}
+.error{position:absolute;bottom:16px;left:12px;right:12px;text-align:center;color:#fff;font:14px system-ui,sans-serif;display:none}
+@media(prefers-reduced-motion:reduce){.poster,.tile,.gold-reveal,.gold-reveal::after{animation:none!important}.poster{opacity:0}.gold-reveal{opacity:1;transform:none;filter:none}}
+</style>
+</head>
+<body>
+<main class="stage" aria-label="Next month's movie teaser">
+  <div class="poster" aria-label="Logan's Run poster assembling in four pieces">
+    <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+  </div>
+  <div class="gold-reveal" aria-label="Logan's Run. Next month.">
+    <h1>LOGAN'S RUN</h1><p>NEXT MONTH</p>
+  </div>
+  <p class="error" role="status">Poster image not found. Check the filename in next.html.</p>
+</main>
+<script>
+// Chrome Logan's Run poster filename supplied by the creator.
+// Keep that image in the same GitHub folder as next.html.
+const POSTER_FILE = 'loganrun.jpg';
+document.documentElement.style.setProperty('--poster-url', `url("${loganrun.jpg}")`);
+const check = new Image();
+check.onerror = () => { document.querySelector('.error').style.display = 'block'; };
+check.src = POSTER_FILE;
+// 1.85s assembly + 2.05s gold title + a brief black beat, then home.
+setTimeout(() => window.location.replace('index.html'), 4150);
+</script>
+</body>
+</html>
