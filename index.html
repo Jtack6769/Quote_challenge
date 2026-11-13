@@ -108,6 +108,15 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
   color: pink;
   text-decoration: none;
 }
+.restored-marquee{padding:0;border:0;display:block;background:#090609;mask-image:none}
+.creator-photo{margin:0;display:flex;flex-direction:column;align-items:center}
+.creator-photo .creator-tag{width:min(340px,80vw);height:auto;min-height:0;margin-bottom:8px}
+.creator-photo .hanging-frame{display:block}
+/* Keep the theater full width and its restored banner readable. */
+.theater{width:100%}
+.marquee{z-index:4}
+.qc-banner{color:#ffdf84;background:transparent}
+#time,#date{text-align:center}
 /* Compact the strip between the theater and gallery. */
 .qc-banner{padding:4px 0;line-height:1.15}
 .coming-heading{margin:0;padding:4px 12px 10px;text-align:center;line-height:1.2}
@@ -116,7 +125,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 </head>
 <body>
 <main class="theater" aria-label="Quote Challenge theater entrance">
-  <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
+  <iframe class="marquee restored-marquee" src="qc-marquee.html" title="Quote Challenge animated marquee"></iframe>
   <a class="door-link door-one" href="one-player.html" aria-label="Enter Admit One game" title="ADMIT ONE"></a>
   <a class="door-link door-two" href="two-player.html" aria-label="Enter Amit Two game" title="ADMIT TWO"></a>
   <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
@@ -160,7 +169,7 @@ NEAR YOU.
 <section class="gallery-area">
 <main class="wall-gallery" aria-label="Framed picture gallery">
     Baem ip Scotty this dudes smart!
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="james1973.png" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
+  <figure class="creator-photo"><img class="creator-tag" src="qc-name-tag.png" alt="Quote Challenge — By: QC Challenger"><div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="james1973.png" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div></figure>
     <h3><a class="link" 
             href="https://github.com/users/Jtack6769/achievements/quickdraw">Launch Achievements</a></h3>
     I love the way we can have these fantastic posters made!
@@ -206,7 +215,7 @@ async function start(){
     index=(index+1)%slides.length;
   }
 }
-start();
+if(waveMessage&&wave)start();
 const backdrop=document.getElementById('backdrop');
 const openBtn=document.getElementById('openSuggestions');
 const typeBug=document.getElementById('typeBug');
@@ -229,17 +238,6 @@ document.getElementById('suggestionForm').addEventListener('submit',e=>{
  const subject='Quote Challenge - '+document.getElementById('subject').value;
  const message=document.getElementById('message').value;
  window.location.href='mailto:qcchallenger67@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(message);
-});
-const viewer=document.querySelector('.viewer');
-const enlargedImage=viewer.querySelector('img');
-const closeButton=viewer.querySelector('.close');
-let lastFrame=null;
-document.querySelectorAll('.hanging-frame').forEach(frame=>{
- const photo=frame.querySelector('img');
- const showMissing=()=>{
-  frame.classList.add('missing');
-  frame.querySelector('.missing-label').textContent='Picture not found: '+photo.getAttribute('src');
-  window.location.href='mailto:qcchallenger67@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(message);
 });
 const viewer=document.querySelector('.viewer');
 const enlargedImage=viewer.querySelector('img');
@@ -285,8 +283,6 @@ viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(las
     body {
       min-height: 100vh;
       margin: 0;
-      display: grid;
-      place-content: center;
       text-align: center;
       font-family: system-ui, sans-serif;
       background: #101827;
@@ -347,3 +343,4 @@ viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(las
     
 </html>
     
+

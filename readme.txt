@@ -1,0 +1,1 @@
+Upload index.html, bonus.html, qc-marquee.html and qc-name-tag.png into the Quote_challenge repository root, replacing the two HTML pages. Keep existing photos, scripts, quotes and other assets. The name tag sits above james1973.png. The marquee uses existing gallery poster files. The bonus room has a green-on-black Quote Challenge / By: QC Challenger sign.
