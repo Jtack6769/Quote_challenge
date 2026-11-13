@@ -1,1 +1,4 @@
+<script>
+'use strict';function updateClock(){const now=new Date();document.getElementById('time-display').textContent=new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(now).replace(/\s?(AM|PM)$/i,'');document.getElementById('ampm-display').textContent=new Intl.DateTimeFormat(undefined,{hour:'numeric',hour12:true}).format(now).replace(/^.*\s/,'')}updateClock();window.setInterval(updateClock,1000);
+</script>
 
