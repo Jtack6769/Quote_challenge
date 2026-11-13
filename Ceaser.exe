@@ -1,0 +1,40 @@
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from openai import OpenAI
+
+# Get an OpenAI client for the agent
+token = get_bearer_token_provider(
+    DefaultAzureCredential(), 
+    "https://ai.azure.com/.default")
+
+client = OpenAI(
+    api_key=token,
+    base_url="https://ai-resrce.services.ai.azure.com/api/projects/ai-project/agents/computinghistorycode/endpoint/protocols/openai",
+    default_query={"api-version": "v1"}) 
+
+# Submit a prompt to the agent and print the response
+response = client.responses.create(
+    input="Who was Grace Hopper?")
+
+print(response.output_text)
+https://ai-resrce.services.ai.azure.com/api/projects/ai-project/agents/computinghistorycode/endpoint/protocols/openai
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
+
+# Create client to call Foundry API
+project = AIProjectClient(
+    endpoint="https://ai-resrce.services.ai.azure.com/api/projects/ai-project", # Project endpoint
+    credential=DefaultAzureCredential())
+
+# Create an agent with a web search tool
+agent = project.agents.create_version(
+    agent_name="computinghistorycode",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful expert on computing history",
+        tools=[WebSearchTool()]))
+
+# Test the agent with a prompt
+openai_client = project.get_openai_client(agent_name="computinghistorycode")
+response = openai_client.responses.create(input="Who was Ada Lovelace?")
+print(response.output_text)
