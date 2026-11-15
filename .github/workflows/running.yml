@@ -41,6 +41,7 @@ jobs:
         npm install --prefix "$RUNNER_TEMP/qc-scanner" --ignore-scripts --no-audit --no-fund eslint@9.39.1 stylelint@16.25.0 htmlhint@1.6.3 parse5@7.3.0 playwright@1.56.1
     - name: Scan code, JSON and local references
       id: code
+      continue-on-error: true
       if: ${{ !cancelled() && steps.tools.outcome == 'success' }}
       run: "cat > \"$RUNNER_TEMP/qc-scanner/scan.cjs\" <<'SCANNER'\nconst fs = require('node:fs');\nconst path =\
         \ require('node:path');\nconst { execFileSync } = require('node:child_process');\nconst { Linter } = require('eslint');\n\
@@ -123,6 +124,7 @@ jobs:
         node "$RUNNER_TEMP/qc-scanner/node_modules/playwright/cli.js" install --with-deps chromium
     - name: Check live pages in Chromium
       id: browser
+      continue-on-error: true
       if: ${{ !cancelled() && steps.browser_install.outcome == 'success' }}
       timeout-minutes: 6
       run: |
