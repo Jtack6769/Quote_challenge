@@ -1,0 +1,137 @@
+# Upload this file to .github/workflows/running.yml.
+# Manual scanner only: use Actions > Quote Challenge Code Scanner > Run workflow.
+name: Quote Challenge Code Scanner
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install scanner tools separately from website
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/qc-scanner"
+          npm install --prefix "$RUNNER_TEMP/qc-scanner" --ignore-scripts --no-audit --no-fund eslint@9.39.5 stylelint@16.26.1 htmlhint@1.9.2 parse5@7.3.0
+
+      - name: Scan HTML, JavaScript, and CSS
+        shell: bash
+        run: |
+          cat > "$RUNNER_TEMP/qc-scanner/scan.cjs" <<'SCANNER'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const { execFileSync } = require('node:child_process');
+          const { Linter } = require('eslint');
+          const { HTMLHint } = require('htmlhint');
+          const parse5 = require('parse5');
+          
+          async function main() {
+            const stylelint = (await import('stylelint')).default;
+            const root = process.env.GITHUB_WORKSPACE;
+            if (!root) throw new Error('GITHUB_WORKSPACE is required');
+            const files = execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' })
+              .split('\0').filter(Boolean).filter(file =>
+                /\.(?:html?|[cm]?js|css)$/i.test(file) &&
+                !/(^|\/)(?:node_modules|vendor|\.git|_site)\//.test(file) &&
+                !/\.min\.(?:js|css)$/i.test(file));
+            const findings = [];
+            const counts = { html: 0, javascript: 0, css: 0 };
+            const linter = new Linter();
+            function add(file, line, column, message) {
+              findings.push({ file, line: Math.max(1, line || 1), column: Math.max(1, column || 1), message });
+            }
+            function js(code, file, sourceType = 'module', offset = 0) {
+              counts.javascript++;
+              for (const item of linter.verify(code, {
+                languageOptions: { ecmaVersion: 'latest', sourceType },
+                linterOptions: { noInlineConfig: true },
+                rules: { 'no-dupe-args': 'error', 'no-dupe-keys': 'error', 'valid-typeof': 'error' }
+              })) add(file, offset + (item.line || 1), item.column, item.message);
+            }
+            async function css(code, file, offset = 0) {
+              counts.css++;
+              const result = await stylelint.lint({
+                code, codeFilename: path.join(root, 'qc-inline.css'),
+                config: { rules: { 'block-no-empty': true, 'color-no-invalid-hex': true } }
+              });
+              for (const item of result.results) {
+                for (const warning of item.warnings || [])
+                  add(file, offset + (warning.line || 1), warning.column, warning.text);
+                for (const error of item.parseErrors || [])
+                  add(file, offset + (error.line || 1), error.column, error.text);
+              }
+            }
+            async function html(code, file) {
+              counts.html++;
+              for (const item of HTMLHint.verify(code, {
+                'attr-no-duplication': true, 'id-unique': true,
+                'tag-pair': true, 'attr-value-double-quotes': false
+              })) add(file, item.line, item.col, item.message);
+              const document = parse5.parse(code, { sourceCodeLocationInfo: true });
+              async function visit(node) {
+                const location = node.sourceCodeLocation;
+                if (location && location.startTag && /^(script|style)$/.test(node.tagName)) {
+                  const attrs = Object.fromEntries((node.attrs || []).map(a => [a.name, a.value]));
+                  const start = location.startTag.endOffset;
+                  const end = location.endTag ? location.endTag.startOffset : location.endOffset;
+                  // Preserve columns on the opening-tag line and original file line numbers.
+                  const body = ' '.repeat(location.startTag.endCol - 1) + code.slice(start, end);
+                  const offset = location.startTag.endLine - 1;
+                  const type = (attrs.type || '').trim().toLowerCase().split(';')[0];
+                  if (node.tagName === 'style' && (!type || type === 'text/css')) await css(body, file, offset);
+                  if (node.tagName === 'script' && !('src' in attrs) &&
+                      ['', 'module', 'text/javascript', 'application/javascript', 'text/ecmascript', 'application/ecmascript'].includes(type))
+                    js(body, file, type === 'module' ? 'module' : 'script', offset);
+                }
+                for (const child of node.childNodes || []) await visit(child);
+                if (node.content) await visit(node.content);
+              }
+              await visit(document);
+            }
+            for (const file of files) {
+              const absolute = path.join(root, file);
+              // Never follow repository symlinks to files outside the checkout.
+              if (!fs.lstatSync(absolute).isFile()) continue;
+              const code = fs.readFileSync(absolute, 'utf8');
+              if (/\.html?$/i.test(file)) await html(code, file);
+              else if (/\.css$/i.test(file)) await css(code, file);
+              else js(code, file, /\.cjs$/i.test(file) ? 'commonjs' : 'module');
+            }
+            const escapeData = value => String(value).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
+            const escapeProperty = value => escapeData(value).replace(/:/g, '%3A').replace(/,/g, '%2C');
+            findings.forEach((item, index) => {
+              if (index < 50) console.log(`::error file=${escapeProperty(item.file)},line=${item.line},col=${item.column}::${escapeData(item.message)}`);
+              else console.log(JSON.stringify(item));
+            });
+            const summary = [
+              '# Quote Challenge code scan', '',
+              `Checked ${counts.html} HTML files, ${counts.javascript} JavaScript files/blocks, and ${counts.css} CSS files/blocks.`, '',
+              `Found ${findings.length} issue(s).`, '',
+              'Checks tracked HTML, JavaScript, and CSS, including script/style blocks inside HTML. Skips vendor folders, node_modules, _site, symlinks, and *.min.js/*.min.css.', '',
+              'This is a basic code check. It does not test buttons, external links, inline event attributes, or browser behavior. It does not change files or deploy the website.', ''
+            ];
+            for (const item of findings.slice(0, 100)) summary.push(`- ${JSON.stringify(item.file)}:${item.line}:${item.column} — ${item.message.replace(/[\r\n]/g, ' ')}`);
+            if (findings.length > 100) summary.push('', 'Additional issues are listed in the scan log.');
+            console.log(`Checked ${files.length} candidate files; found ${findings.length} issue(s).`);
+            if (!files.length) { summary.push('', 'ERROR: No supported tracked files found.'); process.exitCode = 1; }
+            if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n') + '\n');
+            if (findings.length) process.exitCode = 1;
+          }
+          main().catch(error => { console.error(error); process.exitCode = 1; });
+          SCANNER
+          node "$RUNNER_TEMP/qc-scanner/scan.cjs"
