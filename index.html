@@ -215,6 +215,7 @@ async function start(){
     waveMessage.classList.remove('hide');
     await sleep(1150);
     await sleep(slide.hold);
+        await sleep(slide.hold);
     index=(index+1)%slides.length;
   }
 }
@@ -231,4 +232,72 @@ function chooseType(type){
   document.getElementById('typeComplaint').setAttribute('aria-pressed',String(type==='Complaint'));
 }
 document.getElementById('typeComplaint').addEventListener('click',()=>chooseType('Complaint'));
-typeBug.addEventListener('click',()=>cho
+typeBug.addEventListener('click',()=>chooseType('Bug Report'));
+typeSuggestion.addEventListener('click',()=>chooseType('Suggestions'));
+let formOpener=openBtn;
+function closeDialog(){backdrop.classList.remove('open');formOpener.focus()}
+openBtn.addEventListener('click',()=>{formOpener=openBtn;document.getElementById('dialogTitle').textContent='Quote Challenge Suggestions';chooseType('Suggestions');backdrop.classList.add('open');typeSuggestion.focus()});
+document.getElementById('suggestionsLink').addEventListener('click',()=>{openBtn.click();formOpener=document.getElementById('suggestionsLink')});
+document.getElementById('closeSuggestions').addEventListener('click',closeDialog);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeDialog()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))closeDialog()});
+document.getElementById('suggestionForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const subject='Quote Challenge - '+document.getElementById('subject').value;
+ const message=document.getElementById('message').value;
+ window.location.href='mailto:qcchallenger67@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(message);
+});
+const viewer=document.querySelector('.viewer');
+const enlargedImage=viewer.querySelector('img');
+const closeButton=viewer.querySelector('.close');
+let lastFrame=null;
+document.querySelectorAll('.hanging-frame').forEach(frame=>{
+ const photo=frame.querySelector('img');
+ const showMissing=()=>{
+  frame.classList.add('missing');
+  frame.querySelector('.missing-label').textContent='Picture not found: '+photo.getAttribute('src');
+  frame.removeAttribute('role');frame.removeAttribute('tabindex');frame.removeAttribute('aria-label');
+ };
+ photo.addEventListener('error',showMissing);
+ // Lazy pictures may be complete with no pixels before a request starts.
+ photo.addEventListener('load',()=>frame.classList.remove('missing'));
+ const open=()=>{
+  if(frame.classList.contains('missing'))return;
+  lastFrame=frame;enlargedImage.src=photo.src;enlargedImage.alt=photo.alt;
+  viewer.showModal();closeButton.focus();
+ };
+ frame.addEventListener('click',open);
+ frame.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+});
+closeButton.addEventListener('click',()=>viewer.close());
+viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close()});
+viewer.addEventListener('close',()=>{enlargedImage.removeAttribute('src');if(lastFrame)lastFrame.focus()});
+</script>
+
+<button class="portrait-entry" id="portraitEntry" type="button" aria-haspopup="dialog" aria-controls="entranceMenu">
+  <img src="Screenshot_20261103-143516_Messages~2.jpg" alt="Captain Jtack freaking out" loading="lazy">
+  <span>Feeling a little crazy?<br>Tap for Lunatic Fringe or the complaint form</span>
+</button>
+<dialog class="entrance-menu" id="entranceMenu" aria-labelledby="entranceTitle">
+  <h2 id="entranceTitle">Where would you like to go?</h2>
+  <div class="entrance-options">
+    <a href="lunatic_fringe.html">Enter the Lunatic Fringe</a>
+    <button type="button" id="openComplaint">Open the complaint form</button>
+    <button type="button" id="closeEntrance">Go back</button>
+  </div>
+</dialog>
+<script>
+const portraitEntry=document.getElementById('portraitEntry');
+const entranceMenu=document.getElementById('entranceMenu');
+portraitEntry.addEventListener('click',()=>entranceMenu.showModal());
+document.getElementById('closeEntrance').addEventListener('click',()=>entranceMenu.close());
+entranceMenu.addEventListener('click',e=>{if(e.target===entranceMenu){const r=entranceMenu.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)entranceMenu.close()}});
+entranceMenu.addEventListener('close',()=>{if(!backdrop.classList.contains('open'))portraitEntry.focus()});
+document.getElementById('openComplaint').addEventListener('click',()=>{
+ entranceMenu.close();formOpener=portraitEntry;chooseType('Complaint');
+ document.getElementById('dialogTitle').textContent='Quote Challenge Complaint Form';
+ backdrop.classList.add('open');document.getElementById('message').focus();
+});
+</script>
+</body>
+</html>
