@@ -1,5 +1,590 @@
 [
   {
+    "q": "They're not killers, they're just hungry!",
+    "s": "Critters",
+    "sp": "Charlie McFadden",
+    "b": "The local sheriff points his flashlight down into the dark, blood-splattered barn.",
+    "a": "A tiny, rolling ball of fur and razor-sharp teeth darts across the wooden floorboards.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "Greetings, Starfighter! You have been recruited by the Star League to defend the Frontier against Xur and the Ko-Dan Armada.",
+    "s": "The Last Starfighter",
+    "sp": "Centauri",
+    "b": "Alex Rogan steps back from the arcade cabinet as the glowing screen begins to morph.",
+    "a": "The sleek, futuristic sports car doors slide upward, revealing an alien cockpit.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "Bidi-bidi-bidi! What's cooking, Buck?",
+    "s": "Buck Rogers in the 25th Century",
+    "sp": "Twiki",
+    "b": "Captain Rogers walks into the futuristic starship kitchen, looking for breakfast.",
+    "a": "The tiny silver robot waddles over with a high-tech metal tray of glowing cubes.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "Mega-damage! This is going to leave a mark!",
+    "s": "Exosquad",
+    "sp": "Jace Fletcher",
+    "b": "The Neosapien frontline heavy tanks fire a plasma volley across the city ruins.",
+    "a": "His robotic e-frame stumbles backward, venting gray steam from the hydraulic legs.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "Prepare the lava cannons! We bury the surface world tonight!",
+    "s": "Inhumanoids",
+    "sp": "Metlar",
+    "b": "The giant rock monster slams his fists together, causing an earthquake in the canyon.",
+    "a": "The Earth Corps squad locks their heavy cybernetic armor suits to seal the breach.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "Hey, toxic waste is good for you! It builds character!",
+    "s": "The Toxic Avenger",
+    "sp": "Toxie",
+    "b": "The neighborhood bullies laugh as they push the mop boy out the window.",
+    "a": "He lands directly in the glowing green vat behind the health club facility.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "I'm a dynamic, super-charged, crime-fighting machine!",
+    "s": "The Tick: The Animated Series",
+    "sp": "The Tick",
+    "b": "Arthur: Tick, we can't just break through the bank wall without a search warrant!",
+    "a": "He leaps headfirst into the bricks, leaving a massive superhero-shaped hole.",
+    "c": "Animation",
+    "d": "Medium"
+  },
+  {
+    "q": "If you don't eat your meat, you can't have any pudding! How can you have any pudding if you don't eat your meat?!",
+    "s": "Pink Floyd – The Wall",
+    "sp": "The Schoolmaster",
+    "b": "The faceless school children slide down the conveyor belt directly into the meat grinder.",
+    "a": "A massive hammer emblem flashes across the dark stadium screen in a red glare.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "I can do anything! I'm the wizard!",
+    "s": "The Wizard",
+    "sp": "Lucas",
+    "b": "He unzips the long gray travel case, pulling out a brand-new Nintendo Power Glove.",
+    "a": "The kids gather around the arcade monitor in absolute awe as he inputs the cheat codes.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "The ultimate battle between good and evil is about to take place in your backyard.",
+    "s": "The Monster Squad",
+    "sp": "Narrator",
+    "b": "Sean checks his diary, verifying that Dracula has successfully summoned the Mummy.",
+    "a": "The kids load their silver bullet slingshots and prepare to defend the treehouse.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "Let the simulation begin.",
+    "s": "Tron",
+    "sp": "Sark",
+    "b": "The blue glowing grid lines light up the dark electronic landscape for miles.",
+    "a": "Two light cycles materialize out of thin air, speeding down the digital highway.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "We're going to turn your planet into an intergalactic theme park!",
+    "s": "Killer Klowns from Outer Space",
+    "sp": "Klown (Klownzilla)",
+    "b": "The massive, building-sized puppet shadow steps over the amusement park gates.",
+    "a": "The ice cream truck tries to swerve out of the way, crashing into a hot dog stand.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "I see you shiver with anticip... ation.",
+    "s": "The Rocky Horror Picture Show",
+    "sp": "Dr. Frank-N-Furter",
+    "b": "He steps out of the castle elevator wearing his signature fishnet stockings.",
+    "a": "He drops his velvet cape to the floor, strutting toward the lab tables.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "I've got a bad feeling about this, space rat.",
+    "s": "Biker Mice from Mars",
+    "sp": "Throttle",
+    "b": "The mechanical garage doors open, revealing a squad of robotic exterminators.",
+    "a": "He revs his custom chopper engine, pulling a laser pistol from his leather vest.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "Meet me at the cemetery gates at midnight. Bring the shovel.",
+    "s": "Dead Alive (Braindead)",
+    "sp": "Lionel Cosgrove",
+    "b": "His zombie mother scratches aggressively at the wooden basement door planks.",
+    "a": "He grabs a fresh bottle of tranquilizers and runs out into the rainy street.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "He's gonna eat me! Oh my Gooooooooood!",
+    "s": "Troll 2",
+    "sp": "Arnold",
+    "b": "The mysterious forest witch sprinkles magic green powder over his shoulders.",
+    "a": "The camera zooms in frantically on his face as a tiny green sapling sprouts from his head.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "Gordon's alive?!",
+    "s": "Flash Gordon",
+    "sp": "Prince Vultan",
+    "b": "The communication screen flashes static inside the sky city control chamber.",
+    "a": "The heavy synthesizer music explodes as the Hawkmen prepare their flying fleet for war.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "It's all in the reflexes.",
+    "s": "Big Trouble in Little China",
+    "sp": "Jack Burton",
+    "b": "Wang Chi: How did you catch that flying dagger without looking, Jack?",
+    "a": "He puts on his aviator sunglasses and takes another massive drag from his cigarette.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "Garbage day!",
+    "s": "Silent Night, Deadly Night Part 2",
+    "sp": "Ricky Caldwell",
+    "b": "A neighborhood man casually walks down his driveway carrying a large metal trash can.",
+    "a": "Ricky pulls a revolver from his coat pocket and points it across the suburban street.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "I'm a little wired right now.",
+    "s": "The Adventures of Buckaroo Banzai Across the 8th Dimension",
+    "sp": "Lord John Whorfin",
+    "b": "The alien commander hooks up massive electrical cables directly to his own head.",
+    "a": "The entire room fills with bright red smoke as he commands his troops to attack.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "Chop 'em up, bag 'em up!",
+    "s": "Blood Diner",
+    "sp": "Sheetar",
+    "b": "The ancient goddess commands the two kitchen brothers to prepare the massive royal buffet.",
+    "a": "They crank up the heavy industrial meat grinder in the back of the restaurant.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "We've got to find that ancient artifact before the solar eclipse!",
+    "s": "Inhumanoids",
+    "sp": "Liquidator",
+    "b": "The subterranean lava monster cracks open the valley floor, revealing a glowing cave.",
+    "a": "The science squad activates their chemical freeze guns to build a temporary wall.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "You can't stop the futuristic metal army!",
+    "s": "SilverHawks",
+    "sp": "Hardware",
+    "b": "The cybernetic space pirate deploys a swarm of mechanical attack drones into orbit.",
+    "a": "Quicksilver flashes his metallic wings and launches directly from the mothership bay.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "Eat recycled food. It's good for the environment and okay for you.",
+    "s": "Judge Dredd",
+    "sp": "Automated City Voice",
+    "b": "The massive floating transport bus glides smoothly through the neon-lit neon rain.",
+    "a": "A group of scrap scavengers ducks into a dark alleyway to dodge the patrol craft.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "Welcome to prime time, bitch!",
+    "s": "A Nightmare on Elm Street 3: Dream Warriors",
+    "sp": "Freddy Krueger",
+    "b": "Jennifer stares at the television screen as two mechanical arms sprout from the chassis.",
+    "a": "He lifts her directly toward the static display tube while laughing maniacally.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "I kick ass for the Lord!",
+    "s": "Dead Alive (Braindead)",
+    "sp": "Father McGruder",
+    "b": "The zombie pack breaks through the cemetery gates, cornering the local priest.",
+    "a": "He executes a flawless martial arts leap over the tombstones to clear the path.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "Sleep all day. Party all night. Never grow old. Never die.",
+    "s": "The Lost Boys",
+    "sp": "Movie Tagline",
+    "b": "Michael rides his motorcycle down the foggy California boardwalk after midnight.",
+    "a": "The mysterious pack of leather-clad teenagers disappears into the dark sea cave.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "They're eating her... and then they're going to eat me!",
+    "s": "Troll 2",
+    "sp": "Arnold",
+    "b": "The goblin horde wraps the screaming teenager in layers of thick green foliage.",
+    "a": "A fat green fly lands squarely on his forehead while he stands frozen in terror.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "Fasten your seatbelts, we're entering the warp zone!",
+    "s": "Captain N: The Game Master",
+    "sp": "Kevin Keene",
+    "b": "The glowing gray television screen begins pulling the teenager out of his bedroom.",
+    "a": "His dog Duke leaps directly into the portal behind him to start the digital trip.",
+    "c": "Animation",
+    "d": "Medium"
+  },
+  {
+    "q": "I'm a mechanical man, and I'm doing the best I can!",
+    "s": "The Phantom Tollbooth",
+    "sp": "Tock the Watchdog",
+    "b": "Milo steps into his tiny plastic toy car, driving through the mysterious gateway.",
+    "a": "The giant grandfather clock ticking sound echoes across the strange colorful landscape.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "Fasten your seatbelts, goons! The midnight cruise is about to begin!",
+    "s": "The Monster Squad",
+    "sp": "Dracula",
+    "b": "The ancient vampire opens his velvet cape, releasing a massive swarm of dark bats.",
+    "a": "The kids barricade the heavy wooden treehouse doors using steel padlocks.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "You have a beautiful face, but your mind is a complete swamp!",
+    "s": "The Red Green Show",
+    "sp": "Red Green",
+    "b": "Harold tries to explain why he duct-taped an old lawnmower motor to a bicycle frame.",
+    "a": "Red: If the women don't find you handsome, they should at least find you handy.",
+    "c": "Sitcom",
+    "d": "Medium"
+  },
+  {
+    "q": "I am the rhinestone on the modern costume of justice!",
+    "s": "Darkwing Duck",
+    "sp": "Darkwing Duck",
+    "b": "The supervillain laughs loudly while holding the bank vault doors open.",
+    "a": "Darkwing snaps his fingers, dropping a massive smoke bomb onto the floor tiles.",
+    "c": "Animation",
+    "d": "Medium"
+  },
+  {
+    "q": "The choice is yours, and yours alone. Choose wisely, or face the consequences.",
+    "s": "The Prisoner",
+    "sp": "Number Two",
+    "b": "Number Six stands inside the metallic spherical chamber, refusing to answer.",
+    "a": "The automatic doors slide shut, locking him back inside the mysterious village.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "Drink hot liquid death, space scum!",
+    "s": "Biker Mice from Mars",
+    "sp": "Modo",
+    "b": "The corporate villain orders his giant mechanical drills to flatten the block.",
+    "a": "The three mice rev their custom choppers and fly over the construction barriers.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "I have come here to chew bubblegum and kick ass... and I'm all out of bubblegum.",
+    "s": "They Live",
+    "sp": "Nada",
+    "b": "He pushes open the double glass doors of the bank while racking his shotgun.",
+    "a": "The hidden alien crowd looks up in pure panic as he pulls his dark sunglasses down.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "Spoon!",
+    "s": "The Tick: The Animated Series",
+    "sp": "The Tick",
+    "b": "Chairface Chippendale points his giant laser cannon directly at the moon's face.",
+    "a": "Arthur flies over the warehouse roof, trying to stabilize his plastic wings.",
+    "c": "Animation",
+    "d": "Medium"
+  },
+  {
+    "q": "Don't dream it, be it.",
+    "s": "The Rocky Horror Picture Show",
+    "sp": "Dr. Frank-N-Furter",
+    "b": "The golden stage curtain rises, revealing the eccentric castle assembly.",
+    "a": "The entire ballroom erupts into a synchronized, high-energy musical number.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "You locked me in a dungeon with a bunch of weirdos!",
+    "s": "Dungeons & Dragons",
+    "sp": "Hank the Ranger",
+    "b": "The dark wizard commands his shadow gargoyles to steel the magical energy bows.",
+    "a": "The mysterious old Dungeon Master appears in a puff of purple smoke.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "I'm a mog: half man, half dog. I'm my own best friend!",
+    "s": "Spaceballs",
+    "sp": "Barf",
+    "b": "Lone Starr: Barf! Check the radar! What's our current trajectory?",
+    "a": "He wags his ears excitedly and pulls a giant silver lever on the dashboard.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "Do, or do not. There is no try.",
+    "s": "Star Wars: The Empire Strikes Back",
+    "sp": "Yoda",
+    "b": "Luke: All right, I'll give it a try.",
+    "a": "Luke sighs and closes his eyes, trying to focus his mind on the sunken X-wing.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "I'm having a friend for dinner.",
+    "s": "The Silence of the Lambs",
+    "sp": "Hannibal Lecter",
+    "b": "Clarice: Dr. Lecter? Dr. Lecter?",
+    "a": "He hangs up the payphone and blends smoothly into the crowded tropical street.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "I will find you, and I will kill you.",
+    "s": "Taken",
+    "sp": "Bryan Mills",
+    "b": "Marko: Good luck.",
+    "a": "The line goes dead, leaving Bryan staring coldly at the static receiver.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "Just keep swimming.",
+    "s": "Finding Nemo",
+    "sp": "Dory",
+    "b": "Marlin: Disconsolate, I'm lost! I don't even know where I am!",
+    "a": "Marlin: Dory, please, I don't want to swim anymore.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "Fasten your seatbelts. It's going to be a bumpy night.",
+    "s": "All About Eve",
+    "sp": "Margo Channing",
+    "b": "Margo downs her drink and looks around the crowded room with a sharp glare.",
+    "a": "She struts over to the piano to confront her guests.",
+    "c": "Movies",
+    "d": "Hard"
+  },
+  {
+    "q": "By the power of Ra!",
+    "s": "Mummies Alive!",
+    "sp": "Ja-Kal",
+    "b": "Scarab summons a giant stone scorpion to crush the modern city streets.",
+    "a": "The ancient armor materializes, transforming the mummies into super-powered protectors.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "I am the terror that flaps in the night!",
+    "s": "Darkwing Duck",
+    "sp": "Darkwing Duck",
+    "b": "Megavolt laughs maniacally as he hooks up the city's power grid to his battery.",
+    "a": "Darkwing: I am the rhinestone on the modern costume of justice!",
+    "c": "Animation",
+    "d": "Easy"
+  },
+  {
+    "q": "Go, Gadget, Go!",
+    "s": "Inspector Gadget",
+    "sp": "Penny",
+    "b": "Dr. Claw: Next time, Gadget! Next time!",
+    "a": "The Gadgetmobile transforms into a high-speed jet boat to cross the river.",
+    "c": "Animation",
+    "d": "Easy"
+  },
+  {
+    "q": "You modern teams lack discipline!",
+    "s": "C.O.P.S.",
+    "sp": "Bulletproof",
+    "b": "Big Boss unleashes his cybernetic henchmen to rob the central bank.",
+    "a": "The federal squad deploys their advanced tactical interceptors to block the highway.",
+    "c": "Animation",
+    "d": "Hard"
+  },
+  {
+    "q": "Yo Joe!",
+    "s": "G.I. Joe: A Real American Hero",
+    "sp": "The Joe Team",
+    "b": "Cobra Commander orders a fleet of Rattler jets to bomb the research facility.",
+    "a": "Duke leads the frontline charge over the sandy ridge to clash with Cobra.",
+    "c": "Animation",
+    "d": "Easy"
+  },
+  {
+    "q": "Sufferin' succotash!",
+    "s": "Looney Tunes",
+    "sp": "Sylvester the Cat",
+    "b": "A massive bulldog snaps its jaws shut just inches from Sylvester's tail.",
+    "a": "He leaps onto the top of the refrigerator, shaking with absolute panic.",
+    "c": "Animation",
+    "d": "Easy"
+  },
+  {
+    "q": "Yabba-Dabba-Doo!",
+    "s": "The Flintstones",
+    "sp": "Fred Flintstone",
+    "b": "The heavy stone whistle blows, signaling the official end of the workday.",
+    "a": "Fred slides down the tail of his brontosaurus crane right into his canopy car.",
+    "c": "Animation",
+    "d": "Easy"
+  },
+  {
+    "q": "Pivot! Pivot! Pivot!",
+    "s": "Friends",
+    "sp": "Ross Geller",
+    "b": "Chandler: I don't think it's gonna turn anymore, man.",
+    "a": "Chandler: Shut up! Shut up! Shut up!",
+    "c": "Sitcom",
+    "d": "Easy"
+  },
+  {
+    "q": "Homey don't play that!",
+    "s": "In Living Color",
+    "sp": "Homey D. Clown",
+    "b": "A neighborhood kid runs up, asking for a silly balloon animal.",
+    "a": "He swings his giant rolled-up sock, bopping the kid cleanly on top of the head.",
+    "c": "Sitcom",
+    "d": "Medium"
+  },
+  {
+    "q": "Whatchoutnow!",
+    "s": "Martin",
+    "sp": "Martin Payne",
+    "b": "Gina walks through the front door wearing a stunning new evening dress.",
+    "a": "Martin does a chaotic dance across the living room rug to celebrate.",
+    "c": "Sitcom",
+    "d": "Medium"
+  },
+  {
+    "q": "You got it, dude!",
+    "s": "Full House",
+    "sp": "Michelle Tanner",
+    "b": "Danny: Michelle, promise me you won't give any more cookies to the dog.",
+    "a": "She flashes a huge smile and gives a double thumbs-up to the camera.",
+    "c": "Sitcom",
+    "d": "Easy"
+  },
+  {
+    "q": "Bears, beets, Battlestar Galactica.",
+    "s": "The Office",
+    "sp": "Jim Halpert",
+    "b": "Jim: Question. What kind of bear is best?",
+    "a": "Dwight: Identity theft is not a joke, Jim! Millions of families suffer every year!",
+    "c": "Sitcom",
+    "d": "Easy"
+  },
+  {
+    "q": "Life moves pretty fast. If you don't stop and look around once in a while, you could miss it.",
+    "s": "Ferris Bueller's Day Off",
+    "sp": "Ferris Bueller",
+    "b": "Ferris crosses his arms behind his head, relaxing comfortably on his bed.",
+    "a": "The upbeat synthesizer music kicks in as he outlines his plan for the day.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "You're gonna need a bigger flashlight.",
+    "s": "The Conjuring",
+    "sp": "Ed Warren",
+    "b": "Lorraine stares down into the pitch-black crawlspace under the old house.",
+    "a": "A sudden, violent slamming noise echoes from deep within the basement walls.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "Do you like scary movies?",
+    "s": "Scream",
+    "sp": "Ghostface",
+    "b": "Casey: Who is this?",
+    "a": "Casey: Uh, yeah, I guess so. Why do you ask?",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "I'm your number one fan.",
+    "s": "Misery",
+    "sp": "Annie Wilkes",
+    "b": "Paul opens his eyes groggily, realizing he's trapped in a strange bed.",
+    "a": "Annie smiles warmly while adjusting the heavy blankets around his broken legs.",
+    "c": "Movies",
+    "d": "Medium"
+  },
+  {
+    "q": "One, two, Freddy's coming for you...",
+    "s": "A Nightmare on Elm Street",
+    "sp": "Children's Choir",
+    "b": "Nancy splashes freezing cold water on her face, desperate to stay awake.",
+    "a": "The jump rope hits the pavement in a slow, rhythmic, terrifying beat.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "Clever girl.",
+    "s": "Jurassic Park",
+    "sp": "Robert Muldoon",
+    "b": "Muldoon aims his shotgun at the raptor in the bushes ahead of him.",
+    "a": "A second raptor ambushes him directly from the foliage on his left flank.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
+    "q": "Hulk... smash!",
+    "s": "The Avengers: Earth's Mightiest Heroes",
+    "sp": "Hulk",
+    "b": "Iron Man: Cap, we've got a swarm of alien leviathans closing in fast!",
+    "a": "The giant green Avenger leaps high into the air, bringing both fists down hard.",
+    "c": "Animation",
+    "d": "Easy"
+  },
+  {
+    "q": "I am Iron Man.",
+    "s": "Iron Man",
+    "sp": "Tony Stark",
+    "b": "Reporter: Mr. Stark, you don't really expect us to believe that, do you?",
+    "a": "The flashbulbs explode frantically as the press room erupts into absolute chaos.",
+    "c": "Movies",
+    "d": "Easy"
+  },
+  {
     "q": "I'm going to make him an offer he can't refuse.",
     "s": "The Godfather",
     "sp": "Vito Corleone",
@@ -52,9 +637,7 @@
     "a": "Tweety: I did! I did taw a puddy tat!",
     "c": "Animation",
     "d": "Easy"
-  }
-]
-[
+  },
   {
     "q": "You find your lack of faith disturbing.",
     "s": "Star Wars: Episode IV - A New Hope",
@@ -482,8 +1065,6 @@
     "c": "Movies",
     "d": "Hard"
   },
-  {
-    [
   {
     "q": "The right man in the wrong place can make all the difference in the world.",
     "s": "Half-Life 2",
@@ -925,8 +1506,6 @@
     "c": "Drama",
     "d": "Medium"
   },
-  {
-    [
   {
     "q": "You're a wizard, Harry.",
     "s": "Harry Potter and the Sorcerer's Stone",
@@ -1402,12 +1981,5 @@
     "sp": "John Hammond",
     "c": "Movies",
     "d": "Easy"
-  },
-  {
-    "q": "Life, uh, finds a way.",
-    "s": "Jurassic Park",
-    "sp": "Dr. Ian Malcolm",
-    "c": "Movies",
-    "d": "Easy"
-    
-    
+  }
+]

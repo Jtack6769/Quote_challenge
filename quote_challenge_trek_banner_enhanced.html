@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quote Challenge 6.5 | Star Trek Edition</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; min-height:100vh; background:radial-gradient(ellipse at 50% 0%,#18371c,#070a0a 75%); color:#fff; font-family:Georgia,serif; }
+.wrap { width:min(1000px,calc(100% - 24px)); margin:28px auto 34px; }
+.label { text-align:center; color:#b9ff70; letter-spacing:.19em; font:700 clamp(12px,2vw,19px) system-ui; margin-bottom:18px; text-shadow:0 0 10px #8aff2c,0 0 24px #55ff30; }
+.stage { position:relative; height:clamp(250px,43vw,430px); overflow:hidden; border:10px ridge #c9b25b; border-radius:10px; background:#030a08; box-shadow:0 0 0 3px #eaff9b,0 0 25px #a7ff00,0 0 70px #39ff14,inset 0 0 55px #000; isolation:isolate; }
+.stage::before { content:""; position:absolute; inset:0; z-index:3; pointer-events:none; border:12px dotted #e6ff8c; filter:drop-shadow(0 0 7px #aaff00); }
+.stage::after { content:""; position:absolute; inset:0; z-index:2; pointer-events:none; background:repeating-linear-gradient(0deg,transparent 0 5px,#a5ff1310 6px 7px); }
+.track { display:flex; width:300%; height:100%; transform:translateX(-33.333333%); animation:trek-panels 21s ease-in-out infinite; }
+.panel { flex:0 0 33.333333%; width:33.333333%; height:100%; display:grid; place-items:center; overflow:hidden; position:relative; }
+.title { background:radial-gradient(ellipse,#154d20 0%,#071b17 65%,#010604 100%); text-align:center; padding:25px; }
+.title::before { content:""; position:absolute; inset:-35%; background:conic-gradient(from 30deg,transparent,#79ff2a33,transparent,#c9ff2733,transparent); animation:energy 8s linear infinite; }
+.title-content { position:relative; z-index:1; }
+.title h1 { margin:0; font-size:clamp(40px,9vw,110px); line-height:.95; letter-spacing:.025em; color:#e6ff92; -webkit-text-stroke:1px #edff8b; text-shadow:0 0 8px #c7ff1c,0 0 22px #5fff0a,0 0 52px #2fff17,0 4px 3px #001c08; animation:title-pulse 2.2s ease-in-out infinite alternate; }
+.title .edition { display:block; margin-top:15px; color:#f4ffbf; font:700 clamp(13px,2.5vw,27px) system-ui; letter-spacing:.25em; text-shadow:0 0 10px #aaff22,0 0 22px #6bff16; }
+.title .subtitle { display:block; margin-top:10px; color:#d4ffe2; font:clamp(11px,1.7vw,18px) system-ui; letter-spacing:.18em; }
+.picture { background:radial-gradient(ellipse,#113a2a,#030908); }
+.picture img { width:100%; height:100%; display:block; object-fit:contain; }
+.picture .placeholder { position:absolute; inset:0; display:grid; place-items:center; padding:25px; text-align:center; color:#c8ff8c; font:700 clamp(18px,3vw,32px) system-ui; letter-spacing:.12em; text-shadow:0 0 15px #4dff16; }
+.picture img:not([src]), .picture img[src=""] { display:none; }
+.picture img[src]:not([src=""]) + .placeholder { display:none; }
+.enhanced-credit { margin-top:10px; text-align:right; padding-right:12px; color:#c9f9a4; font-family:"Brush Script MT","Segoe Script",cursive; font-size:clamp(15px,2vw,22px); font-style:italic; text-shadow:0 0 8px #61ff20; opacity:.85; }
+@keyframes trek-panels {
+  0%,28.571% { transform:translateX(-33.333333%); } /* title: 6 seconds */
+  33.333%,61.904% { transform:translateX(-66.666667%); } /* picture 1: 6 seconds */
+  66.666%,95.238% { transform:translateX(0); } /* picture 2: 6 seconds */
+  100% { transform:translateX(-33.333333%); }
+}
+@keyframes energy { to { transform:rotate(360deg); } }
+@keyframes title-pulse { to { filter:brightness(1.35); text-shadow:0 0 15px #f2ff6a,0 0 34px #91ff00,0 0 75px #28ff16; } }
+@media(prefers-reduced-motion:reduce) { .track,.title::before,.title h1 { animation:none; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="label">QUOTE CHALLENGE 6.5 · STAR TREK: THE ORIGINAL SERIES</div>
+  <div class="stage" aria-label="Animated Star Trek Edition marquee">
+    <div class="track">
+      <!-- LEFT: picture 2. Change ONLY the filename in src. -->
+      <section class="panel picture"><img src="picture-two.jpg" alt="Second featured Star Trek picture"><div class="placeholder">SECOND FEATURED PICTURE</div></section>
+      <!-- CENTER: title -->
+      <section class="panel title"><div class="title-content"><h1>QUOTE<br>CHALLENGE</h1><span class="edition">STAR TREK EDITION</span><span class="subtitle">THE MOVIE QUOTE GAME</span></div></section>
+      <!-- RIGHT: picture 1. Change ONLY the filename in src. -->
+      <section class="panel picture"><img src="picture-one.jpg" alt="First featured Star Trek picture"><div class="placeholder">FIRST FEATURED PICTURE</div></section>
+    </div>
+  </div>
+  <div class="enhanced-credit">ChatGPT Enhanced</div>
+</main>
+
+<style>
+.gallery-area {
+    margin: 0;
+    padding: 40px 20px;
+    min-height: 100vh;
+    color: #eee;
+    font-family: Georgia, serif;
+    background-color: #1a1512;
+    /* Limited Fringe Alternate Universe: shattered-glass wallpaper */
+    background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.42)), url("fringe-glass.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 200px rgba(0,0,0,.85);
+  }
+  .wall-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hanging-frame {
+    position: relative;
+    padding: 12px 12px 14px;
+    background: #111;
+    border: 8px ridge #4a3b2c;
+    border-radius: 4px;
+    box-shadow: 0 25px 35px rgba(0,0,0,.9), 0 5px 15px rgba(0,0,0,.7);
+    transform: rotate(var(--angle, 0deg));
+    transition: transform .3s ease;
+    max-width: 100%;
+    cursor: zoom-in;
+  }
+  .hanging-frame:nth-child(odd) { --angle: -1.5deg; }
+  .hanging-frame:nth-child(even) { --angle: 1.8deg; }
+  .hanging-frame:nth-child(3n) { --angle: -.7deg; }
+  .hanging-frame:hover, .hanging-frame:focus-visible {
+    transform: rotate(0) scale(1.03);
+    z-index: 10;
+  }
+  .hanging-frame:focus-visible { outline: 3px solid #f5c76c; outline-offset: 7px; }
+  .hanging-frame img {
+    display: block;
+    width: 260px;
+    max-width: 100%;
+    height: auto;
+    min-height: 180px;
+    object-fit: contain;
+    border: 1px solid #050505;
+    background: #000;
+  }
+  .missing-label { display: none; padding: 15px; max-width: 260px; font: 14px/1.5 system-ui,sans-serif; overflow-wrap: anywhere; }
+  .hanging-frame.missing { cursor: default; }
+  .hanging-frame.missing .missing-label { display: block; }
+  .hanging-frame.missing img { display: none; }
+  dialog.viewer {
+    border: 8px ridge #4a3b2c;
+    border-radius: 5px;
+    background: #101010;
+    color: white;
+    padding: 15px;
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+    box-shadow: 0 20px 50px #000;
+  }
+  dialog.viewer::backdrop { background: rgba(0,0,0,.9); }
+  .viewer img { display: block; max-width: min(88vw, 1100px); max-height: 76vh; object-fit: contain; }
+  .viewer .close {
+    display: block;
+    margin: 0 0 12px auto;
+    padding: 7px 12px;
+    background: #292019;
+    border: 1px solid #9f8868;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  @media (max-width: 600px) {
+    .gallery-area { padding: 28px 16px; }
+    .wall-gallery { gap: 28px; }
+    .hanging-frame img { width: min(260px, 72vw); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hanging-frame { transition: none; }
+  }
+</style>
+
+<section class="gallery-area">
+<main class="wall-gallery" aria-label="Framed picture gallery">
+  <!-- Keep these seven JPG files beside this HTML file, with matching lowercase names. -->
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="image_f769ad30.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 2"><img src="squire-of-gothos.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 3"><img src="trek-crew.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label"></span></div><div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="anniversary.png" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
+  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="uhura.jpg" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
+   <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 7"><img src="harry-mudd.png" alt="Gallery picture 7" loading="lazy"><span class="missing-label"></span></div>
+</main>
+<dialog class="viewer" aria-label="Enlarged gallery picture">
+  <button class="close" type="button" aria-label="Close enlarged picture">Close ×</button>
+  <img alt="Enlarged gallery picture">
+</dialog>
+<script>
+  const viewer = document.querySelector('.viewer');
+  const enlargedImage = viewer.querySelector('img');
+  const closeButton = viewer.querySelector('.close');
+  let lastFrame = null;
+  document.querySelectorAll('.hanging-frame').forEach(frame => {
+    const photo = frame.querySelector('img');
+    const showMissing = () => {
+      frame.classList.add('missing');
+      frame.querySelector('.missing-label').textContent = 'Picture not found: ' + photo.getAttribute('src');
+      frame.removeAttribute('role');
+      frame.removeAttribute('tabindex');
+      frame.removeAttribute('aria-label');
+    };
+    photo.addEventListener('error', showMissing);
+    if (photo.complete && photo.naturalWidth === 0) showMissing();
+    const open = () => { 
+      if (frame.classList.contains('missing')) return;
+      lastFrame = frame;
+      enlargedImage.src = photo.src;
+      enlargedImage.alt = photo.alt;
+      viewer.showModal();
+      closeButton.focus();
+    };
+    frame.addEventListener('click', open);
+    frame.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+  closeButton.addEventListener('click', () => viewer.close());
+  viewer.addEventListener('click', e => { if (e.target === viewer) viewer.close(); });
+  viewer.addEventListener('close', () => { enlargedImage.removeAttribute('src'); if (lastFrame) lastFrame.focus(); });
+</script>
+</section>
+ 
+ <style>
+  <style>
+    .image-container {
+        display: inline-block;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none; /* For Safari */
+        transition: transform 0.05s ease-out; 
+    }
+
+    /* This forces the browser to make the light/square background transparent */
+    .image-container img {
+    display: block;
+    border-radius: 50%;
+    mix-blend-mode: normal;
+    }
+
+    /* The push-down animation */
+    .flipped {
+        transform: scale(0.95) translate(-4px, 4px) rotate(-4deg);
+    }
+</style>
+<style>
+    .image-container {
+        display: inline-block;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none; /* For Safari */
+        transition: transform 0.05s ease-out; 
+    }
+    /* This cleanly cuts the image into a perfect circle, cutting off the square edges */
+    .image-container img {
+        display: block;
+        border-radius: 75%;
+     mix-blend-mode: normal;
+    }
+
+    /* The push-down animation */
+    .flipped {
+        transform: scale(0.95) translate(-4px, 4px) rotate(-4deg);
+    }
+</style>
+
+<!-- Your hidden easter egg vintage switch -->
+<div class="image-container" id="flipImageContainer">
+    <!-- Replace 'your-image.png' with your actual switch filename -->
+    <img id="myImage" src="image_486ebf86.jpg" alt="" width="70">
+</div>
+
+<script>
+    let clickCount = 0;
+    const imageContainer = document.getElementById('flipImageContainer');
+
+    imageContainer.addEventListener('mousedown', () => {
+        imageContainer.classList.add('flipped');
+    });
+
+    imageContainer.addEventListener('mouseup', () => {
+        imageContainer.classList.remove('flipped');
+        
+        clickCount++;
+
+        if (clickCount === 3) {
+            // Opens in the same tab smoothly
+            window.location.href = 'https://jtack6769.github.io/Quote_challenge/'; 
+            clickCount = 0; 
+        }
+    });
+
+    imageContainer.addEventListener('mouseleave', () => {
+        imageContainer.classList.remove('flipped'); }); </script>
+           </section>
+           </body>
+           </html>

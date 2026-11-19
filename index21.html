@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Complaint Form</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* Replace the URL below with your actual background image link */
+            background-image: url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white to show background */
+            backdrop-filter: blur(5px); /* Adds a premium blur effect behind the form */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #111;
+            font-size: 24px;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Submit a Game Complaint</h2>
+    <form action="#" method="POST">
+        
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="email">Your Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="name@example.com">
+        </div>
+
+        <!-- Date Field -->
+        <div class="form-group">
+            <label for="incident-date">Date of Incident</label>
+            <input type="date" id="incident-date" name="incident_date" required>
+        </div>
+
+        <!-- 1 Player or 2 Player Question -->
+        <div class="form-group">
+            <label>Was this a 1-player or 2-player game?</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="player_mode" value="1-player" required> 1-Player
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="player_mode" value="2-player"> 2-Player
+                </label>
+            </div>
+        </div>
+
+        <!-- Answer Given -->
+        <div class="form-group">
+            <label for="answer-given">What answer or response did the game give?</label>
+            <textarea id="answer-given" name="answer_given" required placeholder="Describe what the game displayed or how it responded..."></textarea>
+        </div>
+
+        <!-- User's Opinion / Diagnosis -->
+        <div class="form-group">
+            <label for="user-opinion">What do you think the issue actually is?</label>
+            <textarea id="user-opinion" name="user_opinion" required placeholder="Tell us your theory on what went wrong..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Complaint</button>
+    </form>
+</div>
+
+</body>
+</html>
