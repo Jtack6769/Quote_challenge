@@ -1,4 +1,4 @@
-name: qcevent Daily Scanner
+name: quote challenge Daily Scanner
 
 'on':
   workflow_dispatch:
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  QC_SITE_URL: ${{ vars.wc_SITE_URL || 'https://jtack6769.github.io/qcevent/' }}
+  QC_SITE_URL: ${{ vars.wc_SITE_URL || 'https://jtack6769.github.io/Quote_challenge/' }}
 
 jobs:
   scan:
@@ -151,7 +151,7 @@ jobs:
             const base = new URL(process.env.QC_SITE_URL);
             if (!base.pathname.endsWith('/')) base.pathname += '/';
 
-            const pages = ['', 'one-player.html', 'two-player.html', 'next.html', 'bonus.html'];
+            const pages = [', 'index.html 'one-player.html', 'two-player.html', 'next.html', 'bonus.html'];
             const checks = [];
             const findings = [];
             const browser = await chromium.launch();
@@ -254,9 +254,9 @@ jobs:
           )
 
           lines = [
-              "# qcevent Daily Scanner",
+              "# quote challenge Daily Scanner",
               "",
-              f"**{'PASS' if passed else 'NEEDS ATTENTION'}**",
+              f"**{'PASS' if passed else 'THAT'S FINE CARRY ON MY WAYWARD'}**",
               "",
               f"Run: {run_url}",
               "",
