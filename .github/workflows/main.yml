@@ -1,44 +1,40 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+name: Deploy static site to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches:
+      - main
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
 
-  # Deployment job
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static site
+        run: |
+          mkdir -p _site
+          rsync -av --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
   deploy:
     environment:
       name: github-pages
@@ -48,270 +44,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
-        name: Validate 'setup-go'
-
-on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
-  pull_request:
-    paths-ignore:
-      - '**.md'
-  schedule:
-    - cron: 0 0 * * *
-
-jobs:
-  stable:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go Stable
-        uses: ./
-        with:
-          go-version: stable
-      - name: Verify Go
-        run: go version
-
-  oldstable:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go oldStable
-        uses: ./
-        with:
-          go-version: oldstable
-      - name: Verify Go
-        run: go version
-
-  go-env-outputs:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go
-        id: setup-go
-        uses: ./
-        with:
-          go-version: stable
-      - name: Show Go environment outputs
-        run: |
-          echo "GOPATH:       ${{ steps.setup-go.outputs.GOPATH }}"
-          echo "GOBIN:        ${{ steps.setup-go.outputs.GOBIN }}"
-          echo "go-bin-path:  ${{ steps.setup-go.outputs.go-bin-path }}"
-          echo "GOROOT:       ${{ steps.setup-go.outputs.GOROOT }}"
-          echo "GOCACHE:      ${{ steps.setup-go.outputs.GOCACHE }}"
-          echo "GOMODCACHE:   ${{ steps.setup-go.outputs.GOMODCACHE }}"
-          echo "GOOS:         ${{ steps.setup-go.outputs.GOOS }}"
-          echo "GOARCH:       ${{ steps.setup-go.outputs.GOARCH }}"
-          echo "GOTOOLDIR:    ${{ steps.setup-go.outputs.GOTOOLDIR }}"
-
-  aliases-arch:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-        version: [stable, oldstable]
-        architecture: [x64, x32]
-        exclude:
-          - os: macos-latest
-            architecture: x32
-          - os: macos-15-intel
-            architecture: x32
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go ${{ matrix.version }} ${{ matrix.architecture }}
-        uses: ./
-        with:
-          go-version: ${{ matrix.version }}
-          architecture: ${{ matrix.architecture }}
-      - name: Verify Go
-        run: go version
-
-  local-cache:
-    name: Setup local-cache version
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest, macos-15-intel]
-        go: [1.21.13, 1.22.8, 1.23.2]
-        include:
-          - os: windows-latest
-            go: 1.20.14
-        exclude:
-          - os: windows-latest
-            go: 1.23.2
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: setup-go ${{ matrix.go }}
-        uses: ./
-        with:
-          go-version: ${{ matrix.go }}
-
-      - name: verify go
-        run: __tests__/verify-go.sh ${{ matrix.go }}
-        shell: bash
-
-  check-latest:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-        go-version: ['1.20', '1.21', '1.22', '1.23']
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go and check latest
-        uses: ./
-        with:
-          go-version: ${{ matrix.go-version }}
-          check-latest: true
-      - name: Verify Go
-        run: go version
-
-  go-version-file:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go and check latest
-        uses: ./
-        with:
-          go-version-file: __tests__/data/go.mod
-      - name: verify go
-        run: __tests__/verify-go.sh 1.20.14
-        shell: bash
-
-  go-version-file-with-gowork:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go and check latest
-        uses: ./
-        with:
-          go-version-file: __tests__/data/go.work
-      - name: verify go
-        run: __tests__/verify-go.sh 1.21
-        shell: bash
-
-  go-version-file-with-tool-versions:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go and check latest
-        uses: ./
-        with:
-          go-version-file: __tests__/data/.tool-versions
-      - name: verify go
-        run: __tests__/verify-go.sh 1.23.2
-        shell: bash
-
-  go-version-file-with-go-version:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go from .go-version file
-        uses: ./
-        with:
-          go-version-file: __tests__/data/.go-version
-      - name: verify go
-        run: __tests__/verify-go.sh 1.22.4
-        shell: bash
-
-  setup-versions-from-manifest:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest, macos-15-intel]
-        go: [1.20.14, 1.21.10, 1.22.8, 1.23.2]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: setup-go ${{ matrix.go }}
-        uses: ./
-        with:
-          go-version: ${{ matrix.go }}
-
-      - name: verify go
-        run: __tests__/verify-go.sh ${{ matrix.go }}
-        shell: bash
-
-  setup-versions-from-dist:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-15-intel]
-        go: [1.11.12]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: setup-go ${{ matrix.go }}
-        uses: ./
-        with:
-          go-version: ${{ matrix.go }}
-
-      - name: verify go
-        run: __tests__/verify-go.sh ${{ matrix.go }}
-        shell: bash
-
-  architecture:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
-        go-version: [1.20.14, 1.21, 1.22, 1.23]
-        include:
-          - os: macos-latest
-            architecture: arm64
-          - os: ubuntu-latest
-            architecture: x64
-          - os: windows-latest
-            architecture: x64
-          - os: macos-15-intel
-            architecture: x64
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Setup Go and check latest
-        uses: ./
-        with:
-          go-version: ${{ matrix.go-version }}
-          architecture: ${{ matrix.architecture }}
-      - name: Verify Go
-        run: go version
+        uses: actions/deploy-pages@v4
