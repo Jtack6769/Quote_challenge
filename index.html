@@ -110,6 +110,32 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
   color: yellow;
   text-decoration: none;
 }
+    .theater-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.theater-screen {
+  width: 100%;
+  max-width: 900px;       /* Adjust this to set your maximum theater screen width */
+  aspect-ratio: 16 / 9;   /* Keeps a standard widescreen shape */
+  background-color: #000; /* Black bars if the video ratio differs */
+  overflow: hidden;       /* Ensures nothing spills outside the container */
+  border-radius: 12px;    /* Optional rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+#theater-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;    /* Fits the whole video inside without cropping */
+  display: block;         /* Removes extra spacing underneath the video */
+}
+    
 .coming-attractions{font-family:'Brush Script MT',cursive;text-align:center}
 .float-left{float:left;margin:0 15px 15px 0}
 /* One portrait entrance, sized to fit phones and desktops. */
