@@ -1,1 +1,292 @@
+name: Quote challenge Daily Scanner
 
+'on':
+  workflow_dispatch:
+  schedule:
+    - cron: '37 12 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quote_challenge-daily-scanner-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  QC_SITE_URL: ${{ vars.wc_SITE_URL || 'https://jtack6769.github.io/qcevent/' }}
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Prepare report folder
+        run: |
+          mkdir -p "$RUNNER_TEMP/qc-report"
+          echo "QC_REPORT_DIR=$RUNNER_TEMP/qc-report" >> "$GITHUB_ENV"
+
+      - name: Checkout website
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install browser tools
+        id: tools
+        continue-on-error: true
+        run: |
+          mkdir -p "$RUNNER_TEMP/qc-scanner"
+          npm install --prefix "$RUNNER_TEMP/qc-scanner" --no-audit --no-fund playwright@1.56.1
+
+      - name: Scan JSON and local HTML references
+        id: code
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import subprocess
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import unquote, urlsplit
+
+          root = Path.cwd()
+          report_dir = Path(os.environ["QC_REPORT_DIR"])
+          report_dir.mkdir(parents=True, exist_ok=True)
+
+          files = subprocess.check_output(["git", "ls-files", "-z"], text=True).split("\0")
+          files = [Path(name) for name in files if name]
+          findings = []
+
+          class References(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.items = []
+
+              def handle_starttag(self, tag, attrs):
+                  for key, value in attrs:
+                      if key in ("href", "src", "poster") and value:
+                          self.items.append((key, value))
+
+          for file in files:
+              if file.suffix.lower() == ".json":
+                  try:
+                      json.loads(file.read_text(encoding="utf-8"))
+                  except Exception as error:
+                      findings.append(f"{file}: invalid JSON: {error}")
+
+              if file.suffix.lower() != ".html":
+                  continue
+
+              try:
+                  parser = References()
+                  parser.feed(file.read_text(encoding="utf-8"))
+              except Exception as error:
+                  findings.append(f"{file}: could not parse HTML: {error}")
+                  continue
+
+              for key, value in parser.items:
+                  value = value.strip()
+                  if (not value
+                      or value.startswith(("#", "/", "//", "{{"))
+                      or value.startswith("{")
+                      or urlsplit(value).scheme):
+                      continue
+
+                  pathname = unquote(urlsplit(value).path)
+                  if not pathname:
+                      continue
+
+                  target = (file.parent / pathname).resolve()
+                  try:
+                      target.relative_to(root.resolve())
+                  except ValueError:
+                      continue
+
+                  if target.is_dir():
+                      target = target / "index.html"
+
+                  if not target.exists():
+                      findings.append(f"{file}: missing local {key}: {value}")
+
+          report = ["# Static scan", "", f"Found {len(findings)} issue(s).", ""]
+          report.extend(f"- {item}" for item in findings)
+          (report_dir / "code-report.md").write_text("\n".join(report) + "\n", encoding="utf-8")
+          (report_dir / "code-report.json").write_text(json.dumps({"findings": findings}, indent=2) + "\n", encoding="utf-8")
+
+          print("\n".join(report))
+          if findings:
+              raise SystemExit(1)
+          PY
+
+      - name: Install Chromium
+        id: browser_install
+        if: ${{ !cancelled() && steps.tools.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          "$RUNNER_TEMP/qc-scanner/node_modules/.bin/playwright" install --with-deps chromium
+
+      - name: Check published pages in Chromium
+        id: browser
+        if: ${{ !cancelled() && steps.browser_install.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 6
+        run: |
+          NODE_PATH="$RUNNER_TEMP/qc-scanner/node_modules" node <<'JS'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const { chromium } = require('playwright');
+
+          async function main() {
+            const out = process.env.QC_REPORT_DIR;
+            const base = new URL(process.env.QC_SITE_URL);
+            if (!base.pathname.endsWith('/')) base.pathname += '/';
+
+            const pages = ['', 'one-player.html', 'two-player.html', 'next.html', 'bonus.html'];
+            const checks = [];
+            const findings = [];
+            const browser = await chromium.launch();
+
+            try {
+              for (const file of pages) {
+                if (file && !fs.existsSync(path.join(process.env.GITHUB_WORKSPACE, file))) {
+                  checks.push({ file, status: 'SKIPPED: page absent from checkout' });
+                  continue;
+                }
+
+                const page = await browser.newPage();
+                page.on('pageerror', error => {
+                  findings.push({ file: file || 'index.html', message: error.message });
+                });
+
+                const url = new URL(file, base).href;
+
+                try {
+                  const response = await page.goto(url, {
+                    waitUntil: 'domcontentloaded',
+                    timeout: 25000
+                  });
+
+                  if (!response || !response.ok()) {
+                    findings.push({
+                      file: file || 'index.html',
+                      message: `Page unavailable: ${response?.status() || 'no response'}`
+                    });
+                  }
+
+                  checks.push({
+                    file: file || 'index.html',
+                    url,
+                    status: response?.status() || null,
+                    title: await page.title()
+                  });
+                } catch (error) {
+                  findings.push({
+                    file: file || 'index.html',
+                    message: `Browser check failed: ${error.message}`
+                  });
+                } finally {
+                  await page.close();
+                }
+              }
+            } finally {
+              await browser.close();
+            }
+
+            fs.writeFileSync(
+              path.join(out, 'browser-report.json'),
+              JSON.stringify({ checks, findings }, null, 2) + '\n'
+            );
+
+            const lines = [
+              '# Published-page browser checks',
+              '',
+              ...checks.map(item => `- ${JSON.stringify(item)}`),
+              '',
+              ...findings.map(item => `- ERROR: ${JSON.stringify(item)}`)
+            ];
+            fs.writeFileSync(path.join(out, 'browser-report.md'), lines.join('\n') + '\n');
+
+            if (findings.length) process.exitCode = 1;
+          }
+
+          main().catch(error => {
+            console.error(error);
+            process.exitCode = 1;
+          });
+          JS
+
+      - name: Write daily report
+        if: ${{ always() }}
+        env:
+          TOOLS: ${{ steps.tools.outcome }}
+          CODE: ${{ steps.code.outcome }}
+          BROWSER_INSTALL: ${{ steps.browser_install.outcome }}
+          BROWSER: ${{ steps.browser.outcome }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          out = Path(os.environ["QC_REPORT_DIR"])
+          out.mkdir(parents=True, exist_ok=True)
+
+          statuses = {
+              key: os.environ.get(key, "skipped")
+              for key in ("TOOLS", "CODE", "BROWSER_INSTALL", "BROWSER")
+          }
+          passed = all(value == "success" for value in statuses.values())
+
+          run_url = (
+              f"{os.environ['GITHUB_SERVER_URL']}/"
+              f"{os.environ['GITHUB_REPOSITORY']}/actions/runs/"
+              f"{os.environ['GITHUB_RUN_ID']}"
+          )
+
+          lines = [
+              "# qcevent Daily Scanner",
+              "",
+              f"**{'PASS' if passed else 'NEEDS ATTENTION'}**",
+              "",
+              f"Run: {run_url}",
+              "",
+              f"Commit: {os.environ['GITHUB_SHA']}",
+              "",
+              "| Stage | Result |",
+              "| --- | --- |",
+          ]
+          lines.extend(f"| {key} | {value} |" for key, value in statuses.items())
+
+          for name in ("code-report.md", "browser-report.md"):
+              report = out / name
+              lines.extend(["", report.read_text() if report.exists()
+                            else f"Report missing: {name}"])
+
+          text = "\n".join(lines) + "\n"
+          (out / "daily-report.md").write_text(text, encoding="utf-8")
+          (out / "run-status.json").write_text(
+              json.dumps({"passed": passed, "stages": statuses, "run": run_url}, indent=2) + "\n",
+              encoding="utf-8"
+          )
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write(text)
+          PY
+
+      - name: Save reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: qc-daily-report-${{ github.run_number }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/qc-report
+          retention-days: 30
+          if-no-files-found: error
