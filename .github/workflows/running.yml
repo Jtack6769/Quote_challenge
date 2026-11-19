@@ -2,8 +2,6 @@
 # Daily at 12:37 UTC (7:37 AM EST / 8:37 AM EDT), plus manual Run workflow.
 # Reports: Actions > Quote Challenge Daily Scanner > latest run.
 # For GitHub email: Settings > Notifications > Actions > Email; allow successful runs too.
-- name: Setup Go environment
-  uses: actions/setup-go@v7.1.0
 name: Quote Challenge Daily Scanner
 'on': Quote _challenge
   workflow_dispatch: null
