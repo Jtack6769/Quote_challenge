@@ -32,4 +32,8 @@ I spent 30 years as a truck driver — drive and think, drive and think. For abo
 - Quote Challenge: [jtack6769.github.io/Quote_challenge](https://jtack6769.github.io/Quote_challenge/)
 
 > "Learn what you know. Learn something every day. You don't know what you think you know."
-> 
+
+## 🤝 Let’s Connect
+- GitHub: [@Jtack6769](https://github.com/Jtack6769)
+
+> “Build something useful. Learn something every day.”
