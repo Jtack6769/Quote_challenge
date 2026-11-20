@@ -1,6 +1,5 @@
-gather around the family and friends remember all things old girlfriends when you have to go to Saturday evening or Saturday afternoon matinees with your friends good times that's what this is all about
+gather around the family and friends remember all things old girlfriends when you have to go to Saturday evening or Saturday afternoon matinees with your friends good times that's what this is all about.
 
-</h1>headed to 8.0 soon we are getting it together</h1>
 # Hi, I'm Jtack6769 👋
 
 **Software Developer | Problem Solver | Lifelong Learner**
@@ -47,3 +46,6 @@ To personalize this README further, please share:
 - Your favorite or featured projects
 - LinkedIn, portfolio, email, or other social links
 - Any badges, themes, or GitHub statistics you’d like included
+- qcchallenger67@users.noreply.github.com
+
+https://github-readme-stats.vercel.app/api/top-langs/?username=Jtack6769&layout=compact&theme=transparent
