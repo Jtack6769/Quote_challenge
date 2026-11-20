@@ -1,8 +1,8 @@
 - name: Setup Go environment
   uses: actions/setup-go@v7.1.0
-  with: setup-go v7.1.0
+  with: setup-go v7
     
-    go-version: # optional
+    go-version: # 6.5
     
     go-version-file: # optional
 
@@ -32,12 +32,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  QC_SITE_URL: ${{ vars.wc_SITE_URL || 'https://jtack6769.github.io/Quote_challenge/' }}
+  QC_SITE_URL: ${{ vars.wc_SITE_URL | 'https://jtack6769.github.io/Quote_challenge/' }}$
 
 jobs:
   scan:
-    runs-on: ubuntu-latest
-    timeout-minutes: 6
+    runs-on: 'main'
+    timeout-minutes: 20
 
     defaults:
       run:
@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - name: Prepare report folder
-        run: |
+        run: | 
           mkdir -p "$RUNNER_TEMP/qc-report"
           echo "QC_REPORT_DIR=$RUNNER_TEMP/qc-report" >> "$GITHUB_ENV"
 
@@ -57,12 +57,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '20'
 
       - name: Install browser tools
         id: tools
         continue-on-error: true
-        run: |
+        run: 
           mkdir -p "$RUNNER_TEMP/qc-scanner"
           npm install --prefix "$RUNNER_TEMP/qc-scanner" --no-audit --no-fund playwright@1.56.1
 
@@ -132,7 +132,7 @@ jobs:
                       continue
 
                   if target.is_dir():
-                      target = target / "index.html"
+                      target = target / "main"
 
                   if not target.exists():
                       findings.append(f"{file}: missing local {key}: {value}")
@@ -168,7 +168,7 @@ jobs:
           async function main() {
             const out = process.env.QC_REPORT_DIR;
             const base = new URL(process.env.QC_SITE_URL);
-            if (!base.pathname.endsWith('/')) base.pathname += '/';
+            if (!base.pathname.endsWith('/')) base.pathname += '/index.html';
 
             const pages = [', 'index.html 'one-player.html', 'two-player.html', 'next.html', 'bonus.html'];
             const checks = [];
