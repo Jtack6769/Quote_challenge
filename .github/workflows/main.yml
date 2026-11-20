@@ -7,7 +7,7 @@
     issue-message: # optional
     # Comment to post on an individual's first pull request
     pr-message: # optional
-    runs: concurrency: 
+    runs:
   using: 'node20'
   main: 'main'
   run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
