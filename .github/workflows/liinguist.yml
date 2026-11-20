@@ -1,0 +1,534 @@
+- name: Close Stale Issues
+  uses: actions/stale@v11.0.0
+  with:
+    # Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.
+    repo-token: # optional, default is ${{ github.token }}
+    # The message to post on the issue when tagging it. If none provided, will not mark issues stale.
+    stale-issue-message: # optional
+    # The message to post on the pull request when tagging it. If none provided, will not mark pull requests stale.
+    stale-pr-message: # optional
+    # The message to post on the issue when closing it. If none provided, will not comment when closing an issue.
+    close-issue-message: # optional
+    # The message to post on the pull request when closing it. If none provided, will not comment when closing a pull requests.
+    close-pr-message: # optional
+    # The number of days old an issue or a pull request can be before marking it stale. Set to -1 to never mark issues or pull requests as stale automatically.
+    days-before-stale: # optional, default is 60
+    # The number of days old an issue can be before marking it stale. Set to -1 to never mark issues as stale automatically. Override "days-before-stale" option regarding only the issues.
+    days-before-issue-stale: # optional
+    # The number of days old a pull request can be before marking it stale. Set to -1 to never mark pull requests as stale automatically. Override "days-before-stale" option regarding only the pull requests.
+    days-before-pr-stale: # optional
+    # The number of days to wait to close an issue or a pull request after it being marked stale. Set to -1 to never close stale issues or pull requests.
+    days-before-close: # optional, default is 7
+    # The number of days to wait to close an issue after it being marked stale. Set to -1 to never close stale issues. Override "days-before-close" option regarding only the issues.
+    days-before-issue-close: # optional
+    # The number of days to wait to close a pull request after it being marked stale. Set to -1 to never close stale pull requests. Override "days-before-close" option regarding only the pull requests.
+    days-before-pr-close: # optional
+    # The label to apply when an issue is stale.
+    stale-issue-label: # optional, default is Stale
+    # The label to apply when an issue is closed.
+    close-issue-label: # optional
+    # The labels that mean an issue is exempt from being marked stale. Separate multiple labels with commas (eg. "label1,label2").
+    exempt-issue-labels: # optional, default is 
+    # The reason to use when closing an issue.
+    close-issue-reason: # optional, default is not_planned
+    # The label to apply when a pull request is stale.
+    stale-pr-label: # optional, default is Stale
+    # The label to apply when a pull request is closed.
+    close-pr-label: # optional
+    # The labels that mean a pull request is exempt from being marked as stale. Separate multiple labels with commas (eg. "label1,label2").
+    exempt-pr-labels: # optional, default is 
+    # The milestones that mean an issue or a pull request is exempt from being marked as stale. Separate multiple milestones with commas (eg. "milestone1,milestone2").
+    exempt-milestones: # optional, default is 
+    # The milestones that mean an issue is exempt from being marked as stale. Separate multiple milestones with commas (eg. "milestone1,milestone2"). Override "exempt-milestones" option regarding only the issues.
+    exempt-issue-milestones: # optional, default is 
+    # The milestones that mean a pull request is exempt from being marked as stale. Separate multiple milestones with commas (eg. "milestone1,milestone2"). Override "exempt-milestones" option regarding only the pull requests.
+    exempt-pr-milestones: # optional, default is 
+    # Exempt all issues and pull requests with milestones from being marked as stale. Default to false.
+    exempt-all-milestones: # optional, default is false
+    # Exempt all issues with milestones from being marked as stale. Override "exempt-all-milestones" option regarding only the issues.
+    exempt-all-issue-milestones: # optional, default is 
+    # Exempt all pull requests with milestones from being marked as stale. Override "exempt-all-milestones" option regarding only the pull requests.
+    exempt-all-pr-milestones: # optional, default is 
+    # Only issues or pull requests with all of these labels are checked if stale. Defaults to `` (disabled) and can be a comma-separated list of labels.
+    only-labels: # optional, default is 
+    # Only issues or pull requests with at least one of these labels are checked if stale. Defaults to `` (disabled) and can be a comma-separated list of labels.
+    any-of-labels: # optional, default is 
+    # Only issues with at least one of these labels are checked if stale. Defaults to `` (disabled) and can be a comma-separated list of labels. Override "any-of-labels" option regarding only the issues.
+    any-of-issue-labels: # optional, default is 
+    # Only pull requests with at least one of these labels are checked if stale. Defaults to `` (disabled) and can be a comma-separated list of labels. Override "any-of-labels" option regarding only the pull requests.
+    any-of-pr-labels: # optional, default is 
+    # Only issues with all of these labels are checked if stale. Defaults to `[]` (disabled) and can be a comma-separated list of labels. Override "only-labels" option regarding only the issues.
+    only-issue-labels: # optional, default is 
+    # Only pull requests with all of these labels are checked if stale. Defaults to `[]` (disabled) and can be a comma-separated list of labels. Override "only-labels" option regarding only the pull requests.
+    only-pr-labels: # optional, default is 
+    # The maximum number of operations per run, used to control rate limiting (GitHub API CRUD related).
+    operations-per-run: # optional, default is 30
+    # Remove stale labels from issues and pull requests when they are updated or commented on.
+    remove-stale-when-updated: # optional, default is true
+    # Remove stale labels from issues when they are updated or commented on. Override "remove-stale-when-updated" option regarding only the issues.
+    remove-issue-stale-when-updated: # optional, default is 
+    # Remove stale labels from pull requests when they are updated or commented on. Override "remove-stale-when-updated" option regarding only the pull requests.
+    remove-pr-stale-when-updated: # optional, default is 
+    # Run the processor in debug mode without actually performing any operations on live issues.
+    debug-only: # optional, default is false
+    # The order to get issues or pull requests. Defaults to false, which is descending.
+    ascending: # optional, default is false
+    # What to sort results by. Valid options are `created`, `updated`, and `comments`. Defaults to `created`.
+    sort-by: # optional, default is created
+    # Delete the git branch after closing a stale pull request.
+    delete-branch: # optional, default is false
+    # The date used to skip the stale action on issue/pull request created before it (ISO 8601 or RFC 2822).
+    start-date: # optional, default is 
+    # The assignees which exempt an issue or a pull request from being marked as stale. Separate multiple assignees with commas (eg. "user1,user2").
+    exempt-assignees: # optional, default is 
+    # The assignees which exempt an issue from being marked as stale. Separate multiple assignees with commas (eg. "user1,user2"). Override "exempt-assignees" option regarding only the issues.
+    exempt-issue-assignees: # optional, default is 
+    # The assignees which exempt a pull request from being marked as stale. Separate multiple assignees with commas (eg. "user1,user2"). Override "exempt-assignees" option regarding only the pull requests.
+    exempt-pr-assignees: # optional, default is 
+    # Exempt all issues and pull requests with assignees from being marked as stale. Default to false.
+    exempt-all-assignees: # optional, default is false
+    # Exempt all issues with assignees from being marked as stale. Override "exempt-all-assignees" option regarding only the issues.
+    exempt-all-issue-assignees: # optional, default is 
+    # Exempt all pull requests with assignees from being marked as stale. Override "exempt-all-assignees" option regarding only the pull requests.
+    exempt-all-pr-assignees: # optional, default is 
+    # Exempt draft pull requests from being marked as stale. Default to false.
+    exempt-draft-pr: # optional, default is false
+    # Display some statistics at the end regarding the stale workflow (only when the logs are enabled).
+    enable-statistics: # optional, default is true
+    # A comma delimited list of labels to add when an issue or pull request becomes unstale.
+    labels-to-add-when-unstale: # optional, default is 
+    # A comma delimited list of labels to remove when an issue or pull request becomes stale.
+    labels-to-remove-when-stale: # optional, default is 
+    # A comma delimited list of labels to remove when an issue or pull request becomes unstale.
+    labels-to-remove-when-unstale: # optional, default is 
+    # Any update (update/comment) can reset the stale idle time on the issues and pull requests.
+    ignore-updates: # optional, default is false
+    # Any update (update/comment) can reset the stale idle time on the issues. Override "ignore-updates" option regarding only the issues.
+    ignore-issue-updates: # optional, default is 
+    # Any update (update/comment) can reset the stale idle time on the pull requests. Override "ignore-updates" option regarding only the pull requests.
+    ignore-pr-updates: # optional, default is 
+    # Only the issues or the pull requests with an assignee will be marked as stale automatically.
+    include-only-assigned: # optional, default is false
+    # Only issues with a matching type are processed as stale/closed. Defaults to `[]` (disabled) and can be a comma-separated list of issue types.
+    only-issue-types: # optional, default is 
+module Linguist
+  class Generated
+    # Public: Is the blob a generated file?
+    #
+    # name - String filename
+    # data - String blob data. A block also may be passed in for lazy
+    #        loading. This behavior is deprecated and you should always
+    #        pass in a String.
+    #
+    # Return true or false
+    def self.generated?(name, data)
+      new(name, data).generated?
+    end
+
+    # Internal: Initialize Generated instance
+    #
+    # name - String filename
+    # data - String blob data
+    def initialize(name, data)
+      @name = name
+      @extname = File.extname(name)
+      @_data = data
+    end
+
+    attr_reader :name, :extname
+
+    # Lazy load blob data if block was passed in.
+    #
+    # Awful, awful stuff happening here.
+    #
+    # Returns String data.
+    def data
+      @data ||= @_data.respond_to?(:call) ? @_data.call() : @_data
+    end
+
+    # Public: Get each line of data
+    #
+    # Returns an Array of lines
+    def lines
+      # TODO: data should be required to be a String, no nils
+      @lines ||= data ? data.split("\n", -1) : []
+    end
+
+    # Internal: Is the blob a generated file?
+    #
+    # Generated source code is suppressed in diffs and is ignored by
+    # language statistics.
+    #
+    # Please add additional test coverage to
+    # `test/test_blob.rb#test_generated` if you make any changes.
+    #
+    # Return true or false
+    def generated?
+      xcode_file? ||
+      intellij_file? ||
+      cocoapods? ||
+      carthage_build? ||
+      generated_graphql_relay? ||
+      generated_net_specflow_feature_file? ||
+      composer_lock? ||
+      cargo_lock? ||
+      cargo_orig? ||
+      deno_lock? ||
+      flake_lock? ||
+      bazel_lock? ||
+      node_modules? ||
+      go_vendor? ||
+      go_lock? ||
+      package_resolved? ||
+      poetry_lock? ||
+      pdm_lock? ||
+      uv_lock? ||
+      pixi_lock? ||
+      esy_lock? ||
+      npm_shrinkwrap_or_package_lock? ||
+      pnpm_lock? ||
+      bun_lock? ||
+      apm_lock? ||
+      terraform_lock? ||
+      generated_yarn_plugnplay? ||
+      godeps? ||
+      generated_by_zephir? ||
+      htmlcov? ||
+      minified_files? ||
+      has_source_map? ||
+      source_map? ||
+      compiled_coffeescript? ||
+      generated_parser? ||
+      generated_net_docfile? ||
+      generated_postscript? ||
+      compiled_cython_file? ||
+      pipenv_lock? ||
+      gradle_wrapper? ||
+      maven_wrapper? ||
+      mise_lock? ||
+      secrets_baseline? ||
+      julia_manifest? ||
+      generated_net_code? ||
+      generated_go? ||
+      generated_protocol_buffer_from_go? ||
+      generated_protocol_buffer? ||
+      generated_javascript_protocol_buffer? ||
+      generated_typescript_protocol_buffer? ||
+      generated_twirp_ruby? ||
+      generated_apache_thrift? ||
+      generated_jni_header? ||
+      vcr_cassette? ||
+      generated_antlr? ||
+      generated_module? ||
+      generated_unity3d_meta? ||
+      generated_racc? ||
+      generated_jflex? ||
+      generated_grammarkit? ||
+      generated_roxygen2? ||
+      generated_html? ||
+      generated_jison? ||
+      generated_grpc_cpp? ||
+      generated_grpc_python? ||
+      generated_dart? ||
+      generated_perl_ppport_header? ||
+      generated_gamemakerstudio? ||
+      generated_gimp? ||
+      generated_visualstudio6? ||
+      generated_haxe? ||
+      generated_jooq? ||
+      generated_pascal_tlb? ||
+      generated_sorbet_rbi? ||
+      generated_mysql_view_definition_format? ||
+      generated_sqlx_query?
+    end
+
+    # Internal: Is the blob an Xcode file?
+    #
+    # Generated if the file extension is an Xcode
+    # file extension.
+    #
+    # Returns true or false.
+    def xcode_file?
+      ['.nib', '.xcworkspacedata', '.xcuserstate'].include?(extname)
+    end
+
+    # Internal: Is the blob an IntelliJ IDEA project file?
+    #
+    # JetBrains IDEs generate project files under an `.idea` directory
+    # that are sometimes checked into version control.
+    #
+    # Returns true or false.
+    def intellij_file?
+      !!name.match(/(?:^|\/)\.idea\//)
+    end
+
+    # Internal: Is the blob part of Pods/, which contains dependencies not meant for humans in pull requests.
+    #
+    # Returns true or false.
+    def cocoapods?
+      !!name.match(/(^Pods|\/Pods)\//)
+    end
+
+    # Internal: Is the blob part of Carthage/Build/, which contains dependencies not meant for humans in pull requests.
+    #
+    # Returns true or false.
+    def carthage_build?
+      !!name.match(/(^|\/)Carthage\/Build\//)
+    end
+
+    # Internal: Does extname indicate a filetype which is commonly minified?
+    #
+    # Returns true or false.
+    def maybe_minified?
+      ['.js', '.css'].include? extname.downcase
+    end
+
+    # Internal: Is the blob a minified file?
+    #
+    # Consider a file minified if the average line length is
+    # greater then 110c.
+    #
+    # Currently, only JS and CSS files are detected by this method.
+    #
+    # Returns true or false.
+    def minified_files?
+      if maybe_minified? and lines.any?
+        (lines.inject(0) { |n, l| n += l.length } / lines.length) > 110
+      else
+        false
+      end
+    end
+
+    # Internal: Does the blob contain a source-map reference?
+    #
+    # We assume that if one of the last 2 lines starts with a source-map
+    # reference, then the current file was generated from other files.
+    #
+    # We use the last 2 lines because the last line might be empty.
+    #
+    # Returns true or false.
+    def has_source_map?
+      return false unless maybe_minified?
+      lines.last(2).any? { |l| l.match(/^\/[*\/][\#@] source(?:Mapping)?URL|sourceURL=/) }
+    end
+
+    # Internal: Is the blob a generated source-map?
+    #
+    # Source-maps usually have .css.map or .js.map extensions. In case they
+    # are not following the name convention, detect them based on the content.
+    #
+    # Returns true or false.
+    def source_map?
+      return false unless extname.downcase == '.map'
+
+      return true if name =~ /(\.css|\.js)\.map$/i ||  # Name convention
+      lines[0] =~ /^{"version":\d+,/ ||                # Revision 2 and later begin with the version number
+      lines[0] =~ /^\/\*\* Begin line maps\. \*\*\/{/  # Revision 1 begins with a magic comment
+
+      false
+    end
+
+    # Internal: Is the blob of JS generated by CoffeeScript?
+    #
+    # CoffeeScript is meant to output JS that would be difficult to
+    # tell if it was generated or not. Look for a number of patterns
+    # output by the CS compiler.
+    #
+    # Return true or false
+    def compiled_coffeescript?
+      return false unless extname == '.js'
+
+      # CoffeeScript generated by > 1.2 include a comment on the first line
+      if lines[0] =~ /^\/\/ Generated by /
+        return true
+      end
+
+      if lines[0] == '(function() {' &&     # First line is module closure opening
+          lines[-2] == '}).call(this);' &&  # Second to last line closes module closure
+          lines[-1] == ''                   # Last line is blank
+
+        score = 0
+
+        lines.each do |line|
+          if line =~ /var /
+            # Underscored temp vars are likely to be Coffee
+            score += 1 * line.gsub(/(_fn|_i|_len|_ref|_results)/).count
+
+            # bind and extend functions are very Coffee specific
+            score += 3 * line.gsub(/(__bind|__extends|__hasProp|__indexOf|__slice)/).count
+          end
+        end
+
+        # Require a score of 3. This is fairly arbitrary. Consider
+        # tweaking later.
+        score >= 3
+      else
+        false
+      end
+    end
+
+    # Internal: Is this a generated documentation file for a .NET assembly?
+    #
+    # .NET developers often check in the XML Intellisense file along with an
+    # assembly - however, these don't have a special extension, so we have to
+    # dig into the contents to determine if it's a docfile. Luckily, these files
+    # are extremely structured, so recognizing them is easy.
+    #
+    # Returns true or false
+    def generated_net_docfile?
+      return false unless extname.downcase == ".xml"
+      return false unless lines.count > 3
+
+      # .NET Docfiles always open with <doc> and their first tag is an
+      # <assembly> tag
+      return lines[1].include?("<doc>") &&
+        lines[2].include?("<assembly>") &&
+        lines[-2].include?("</doc>")
+    end
+
+    # Internal: Is this a generated C# or VB.NET file according to Roslyn's file analysis?
+    #
+    # Returns true or false.
+    def generated_net_code?
+      return false unless ['.cs', '.vb'].include?(extname.downcase)
+
+      filename = File.basename(name)
+      return true if filename.match?(/\ATemporaryGeneratedFile_/i) ||
+        filename.match?(/\.(designer|generated|g|g\.i)\.(cs|vb)\z/i)
+
+      content = data.to_s.b
+      offset = 0
+      trivia_pattern = if extname.downcase == '.vb'
+        /\G(?:[[:space:]]+|\xEF\xBB\xBF|('[^\r\n]*|[Rr][Ee][Mm](?=[ \t]|\r|\n|\z)[^\r\n]*)|(\#[^\r\n]*))/n
+      else
+        /\G(?:[[:space:]]+|\xEF\xBB\xBF|(\/\/[^\r\n]*|\/\*.*?(?:\*\/|\z))|(\#[^\r\n]*))/mn
+      end
+      # Only inspect leading trivia, not comments or attributes inside the code.
+      while match = trivia_pattern.match(content, offset)
+        # Without compiler symbols, do not mistake disabled text for comments.
+        return false if match[2] && match[2].match?(/\A\#[ \t]*(if|elif|else|endif|end[ \t]+if)\b/i)
+
+        comment = match[1]
+        return true if comment && (comment.include?('<autogenerated') || comment.include?('<auto-generated'))
+
+        offset = match.end(0)
+      end
+
+      false
+    end
+
+    # Internal: Is this a codegen file for Specflow feature file?
+    #
+    # Visual Studio's SpecFlow extension generates *.feature.cs files
+    # from *.feature files, they are not meant to be consumed by humans.
+    # Let's hide them.
+    #
+    # Returns true or false
+    def generated_net_specflow_feature_file?
+      !!name.match(/\.feature\.cs$/i)
+    end
+
+    # Internal: Is the blob of JS a parser generated by PEG.js?
+    #
+    # PEG.js-generated parsers are not meant to be consumed by humans.
+    #
+    # Return true or false
+    def generated_parser?
+      return false unless extname == '.js'
+
+      # PEG.js-generated parsers include a comment near the top  of the file
+      # that marks them as such.
+      if lines[0..4].join('') =~ /^(?:[^\/]|\/[^\*])*\/\*(?:[^\*]|\*[^\/])*Generated by PEG.js/
+        return true
+      end
+
+      false
+    end
+
+    # Internal: Is the blob of PostScript generated?
+    #
+    # PostScript files are often generated by other programs. If they tell us so,
+    # we can detect them.
+    #
+    # Returns true or false.
+    def generated_postscript?
+      return false unless ['.ps', '.eps', '.pfa'].include? extname
+
+      # Type 1 and Type 42 fonts converted to PostScript are stored as hex-encoded byte streams; these
+      # streams are always preceded the `eexec` operator (if Type 1), or the `/sfnts` key (if Type 42).
+      return true if data =~ /^\s*(?:currentfile eexec\s+|\/sfnts\s+\[\s<)/
+
+      # We analyze the "%%Creator:" comment, which contains the author/generator
+      # of the file. If there is one, it should be in one of the first few lines.
+      creator = lines[0..9].find {|line| line =~ /^%%Creator: /}
+      return false if creator.nil?
+
+      # Most generators write their version number, while human authors' or companies'
+      # names don't contain numbers. So look if the line contains digits. Also
+      # look for some special cases without version numbers.
+      return true if creator =~ /[0-9]|draw|mpage|ImageMagick|inkscape|MATLAB/ ||
+        creator =~ /PCBNEW|pnmtops|\(Unknown\)|Serif Affinity|Filterimage -tops/
+
+      # EAGLE doesn't include a version number when it generates PostScript.
+      # However, it does prepend its name to the document's "%%Title" field.
+      !!creator.include?("EAGLE") and lines[0..4].find {|line| line =~ /^%%Title: EAGLE Drawing /}
+    end
+
+    def generated_go?
+      return false unless extname == '.go'
+      return false unless lines.count > 1
+
+      return lines.first(40).any? { |l| l =~ %r{^// Code generated .*} }
+    end
+
+    # Internal: Is the blob a protocol buffer file generated by the
+    # go-to-protobuf tool?
+    #
+    # Returns true or false
+    def generated_protocol_buffer_from_go?
+      return false unless extname == '.proto'
+      return false unless lines.count > 1
+
+      return lines.first(20).any? { |l| l.include? "This file was autogenerated by go-to-protobuf" }
+    end
+
+    PROTOBUF_EXTENSIONS = ['.py', '.java', '.h', '.cc', '.cpp', '.m', '.rb', '.php']
+
+    # Internal: Is the blob a C++, Java or Python source file generated by the
+    # Protocol Buffer compiler?
+    #
+    # Returns true or false.
+    def generated_protocol_buffer?
+      return false unless PROTOBUF_EXTENSIONS.include?(extname)
+      return false unless lines.count > 1
+
+      return lines.first(3).any? { |l| l.include?("Generated by the protocol buffer compiler.  DO NOT EDIT!") }
+    end
+
+    # Internal: Is the blob a Javascript source file generated by the
+    # Protocol Buffer compiler?
+    #
+    # Returns true or false.
+    def generated_javascript_protocol_buffer?
+      return false unless extname == ".js"
+      return false unless lines.count > 6
+
+      return lines[5].include?("GENERATED CODE -- DO NOT EDIT!")
+    end
+
+    # Internal: Is the blob a TypeScript source file generated by the
+    # Protocol Buffer compiler?
+    #
+    # Files generated by ts-proto typically start with something like this
+    # (though the versions lines are optional):
+    #
+    #     // Code generated by protoc-gen-ts_proto. DO NOT EDIT.
+    #     // versions:
+    #     //   protoc-gen-ts_proto  v1.181.2
+    #     //   protoc               v5.28.2
+    #     // source: hello.proto
+    #
+    #     /* eslint-disable */
+    #
+    # Returns true or false.
+    def generated_typescript_protocol_buffer?

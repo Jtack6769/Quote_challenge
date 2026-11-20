@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exploding Pumpkin | Quote Challenge</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#090608;color:#fff;font-family:Georgia,serif;padding:24px 12px 55px}
+main{max-width:1000px;margin:auto;text-align:center}
+h1{font-size:clamp(30px,6vw,60px);color:#bd1820;text-shadow:0 0 16px #7a0808;margin:8px 0 18px}
+.pumpkin-stage{position:relative;width:100%;aspect-ratio:1536/838;overflow:hidden;border:5px ridge #ad7930;background:#080508;box-shadow:0 0 28px #6e1318;cursor:pointer;touch-action:manipulation}
+.pumpkin-stage>img,.pumpkin-stage>canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pumpkin-stage>img{object-fit:fill}
+.pumpkin-stage>canvas{pointer-events:none}
+.pumpkin-stage:focus-visible{outline:3px solid #ffcc66;outline-offset:4px}
+.instructions{color:#f1c780;font:600 14px system-ui,sans-serif;letter-spacing:.08em;margin:14px 0 32px;text-transform:uppercase}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0}
+.hanging-frame{border:0;padding:0;background:#1b1316;cursor:pointer;aspect-ratio:4/3;overflow:hidden;position:relative}
+.hanging-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.hanging-frame:focus-visible{outline:3px solid #ffcc66}
+.missing-label{display:none;position:absolute;inset:0;align-items:center;justify-content:center;padding:12px;color:#e9c680;font:13px system-ui,sans-serif}
+.hanging-frame.missing .missing-label{display:flex}
+.hanging-frame.missing img{display:none}
+.viewer{border:2px solid #b88a44;background:#080608;color:white;padding:45px 15px 15px;max-width:95vw;max-height:95vh}
+.viewer::backdrop{background:rgba(0,0,0,.85)}
+.viewer img{display:block;max-width:88vw;max-height:78vh;object-fit:contain}
+.close{position:absolute;right:8px;top:7px;background:#4b141a;color:#fff;border:1px solid #d7a15e;padding:7px 12px;cursor:pointer}
+@media(max-width:600px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
+</style>
+</head>
+<body>
+<main>
+<h1>Happy Halloween!</h1>
+<div class="pumpkin-stage" id="explosion-box" role="button" tabindex="0" aria-label="Explode the pumpkin">
+  <img id="pumpkin-img" src="gemini_remix_20261030_162706.jpg" alt="Giant terrifying Halloween pumpkin">
+  <canvas id="shatter" aria-hidden="true"></canvas>
+</div>
+<p class="instructions" id="instructions">Click the pumpkin to explode it!</p>
+<div class="gallery" aria-label="Lunatic Fringe gallery">
+  <button class="hanging-frame" type="button" aria-label="Enlarge gallery picture 1"><img src="gemini_remix_20261021_234409.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label">Picture 1 not found</span></button>
+  <button class="hanging-frame" type="button" aria-label="Enlarge gallery picture 2"><img src="gemini_remix_20261021_232243.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label">Picture 2 not found</span></button>
+  <button class="hanging-frame" type="button" aria-label="Enlarge gallery picture 3"><img src="image_eadaddeb.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label">Picture 3 not found</span></button>
+  <button class="hanging-frame" type="button" aria-label="Enlarge gallery picture 4"><img src="gemini_remix_20261021_232703.jpg" alt="Gallery picture 4" loading="lazy"><span class="missing-label">Picture 4 not found</span></button>
+  <button class="hanging-frame" type="button" aria-label="Enlarge gallery picture 5"><img src="image_7e6db39.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label">Picture 5 not found</span></button>
+  <button class="hanging-frame" type="button" aria-label="Enlarge gallery picture 6"><img src="image_7e6db39.jpg" alt="Gallery picture 6" loading="lazy"><span class="missing-label">Picture 6 not found</span></button>
+</div>
+</main>
+<dialog class="viewer" aria-label="Enlarged gallery picture"><button class="close" type="button" aria-label="Close enlarged picture">Close ×</button><img alt="Enlarged gallery picture"></dialog>
+<script>
+(() => {
+  const stage = document.getElementById('explosion-box');
+  const img = document.getElementById('pumpkin-img');
+  const canvas = document.getElementById('shatter');
+  const ctx = canvas.getContext('2d');
+  const instructions = document.getElementById('instructions');
+  let busy = false;
+  let frameId = 0;
+  let resetTimer = 0;
+
+  function explode() {
+    if (busy || !img.complete || !img.naturalWidth) return;
+    busy = true;
+    const w = stage.clientWidth, h = stage.clientHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const cols = 9, rows = 6;
+    const sw = img.naturalWidth / cols, sh = img.naturalHeight / rows;
+    const pw = w / cols, ph = h / rows;
+    const pieces = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const cx = (c + .5) * pw, cy = (r + .5) * ph;
+        const angle = Math.atan2(cy - h * .5, cx - w * .5);
+        const speed = 180 + Math.random() * 260;
+        pieces.push({sx:c*sw,sy:r*sh,x:cx,y:cy,vx:Math.cos(angle)*speed+(Math.random()-.5)*140,vy:Math.sin(angle)*speed-100-Math.random()*160,rot:0,vr:(Math.random()-.5)*7,landed:false});
+      }
+    }
+    img.style.visibility = 'hidden';
+    instructions.textContent = 'Pumpkin wreckage! Rebuilding in 12 seconds...';
+    const start = performance.now();
+    let last = start;
+    function animate(now) {
+      const dt = Math.min((now-last)/1000,.035); last=now;
+      ctx.clearRect(0,0,w,h);
+      for (const p of pieces) {
+        if (!p.landed) {
+          p.vy += 680*dt;
+          p.x += p.vx*dt;
+          p.y += p.vy*dt;
+          p.rot += p.vr*dt;
+          if (p.y + ph*.45 >= h) {p.y=h-ph*.45;p.landed=true;}
+          p.x=Math.max(-pw*.1,Math.min(w+pw*.1,p.x));
+        }
+        ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);
+        ctx.drawImage(img,p.sx,p.sy,sw+.2,sh+.2,-pw/2,-ph/2,pw+1,ph+1);
+        ctx.restore();
+      }
+      if (now-start < 12000) frameId=requestAnimationFrame(animate);
+    }
+    frameId=requestAnimationFrame(animate);
+    resetTimer=setTimeout(() => {
+      cancelAnimationFrame(frameId);
+      ctx.clearRect(0,0,w,h);
+      img.style.visibility='visible';
+      instructions.textContent='Click the pumpkin to explode it!';
+      busy=false;
+    },12000);
+  }
+  stage.addEventListener('click',explode);
+  stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();explode();}});
+  const viewer=document.querySelector('.viewer');
+  const enlarged=viewer.querySelector('img');
+  document.querySelectorAll('.hanging-frame').forEach(button=>{
+    const photo=button.querySelector('img');
+    photo.addEventListener('error',()=>button.classList.add('missing'));
+    button.addEventListener('click',()=>{
+      if (!photo.complete || !photo.naturalWidth) return;
+      enlarged.src=photo.src;enlarged.alt=photo.alt;
+      viewer.showModal();
+    });
+  });
+  viewer.querySelector('.close').addEventListener('click',()=>viewer.close());
+  viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.close();});
+})();
+</script>
+</body>
+</html>
