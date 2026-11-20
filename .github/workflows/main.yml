@@ -1,7 +1,3 @@
-runs: default
-using: 'node20'
-main: 'main'
-  
 name: Deploy static site to GitHub Pages
 
 on:
@@ -9,6 +5,10 @@ on:
     branches:
       - main
   workflow_dispatch:
+
+  runs:
+  using: 'node20'
+  main: 'main'branch_protection_rule:
 
 permissions:
   contents: read
