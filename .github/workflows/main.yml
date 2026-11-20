@@ -6,7 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-  runs:
   using: 'node20'
   main: 'main'
 
