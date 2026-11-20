@@ -1,8 +1,8 @@
 - name: Setup Go environment
   uses: actions/setup-go@v7.1.0
-  with: setup-go v7
+  with: setup-go v7.1.0
     
-    go-version: # optional 
+    go-version: # v7.1.0
     
     go-version-file: # optional
 
