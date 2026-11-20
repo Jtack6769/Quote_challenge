@@ -1,20 +1,33 @@
 gather around the family and friends remember all things old girlfriends when you have to go to Saturday evening or Saturday afternoon matinees with your friends good times that's what this is all about.
-# Hi, I'm Jtack6769 👋
 
-**Software Developer | Problem Solver | Lifelong Learner**
+##- # Hi, I'm Jtack6769 👋
 
-I’m passionate about building practical, reliable projects and continuously improving my craft.
+**Creator of Quote Challenge | Lifelong Learner | Problem Solver**
 
-## 🚀 What I’m Working On
-- Developing thoughtful software solutions
-- Exploring new technologies and tools
-- Turning ideas into useful, maintainable projects
+I spent 30 years as a truck driver — drive and think, drive and think. For about 30–40 of those years I was scribbling down an idea on paper: a board game where players quote movies back and forth and try to make each other laugh. That game is Quote Challenge now.
+
+## 🚀 What I'm Working On
+- **Quote Challenge** — a movie-quote theater game. Guess the movie or show, and who said it. One Player, Two Player, Bonus Round, and a Christmas Special.
+- **qcevent** — the grand event page, Theater 8.0
+- **Reimagine Games** — my testing area, where new ideas land first
+- **Out of This World** — the third theater. Coming 2027.
+
+## 🎬 Quote Challenge
+- Guess the movie, sitcom, or cartoon — and who said it
+- Old Rules: 1 point for the show, 1 for who said it. New Rules: 10 points for both together
+- Over 400 quotes and growing, from movies, sitcoms, and cartoons
 
 ## 🛠️ Skills
 - Software development
 - Problem solving
 - Debugging and troubleshooting
 - Git and GitHub
+- 
+## extra skills 🛠️ Skills
+- Building websites with HTML, CSS, and JavaScript
+- Problem solving and debugging
+- Git and GitHub
+- Turning a 40-year-old idea into something people can actually play
 
 ## 🌱 Currently Learning
 - Expanding my technical knowledge
@@ -46,29 +59,6 @@ To personalize this README further, please share:
 - LinkedIn, portfolio, email, or other social links
 - Any badges, themes, or GitHub statistics you’d like included
 
-- # Hi, I'm Jtack6769 👋
-
-**Creator of Quote Challenge | Lifelong Learner | Problem Solver**
-
-I spent 30 years as a truck driver — drive and think, drive and think. For about 30–40 of those years I was scribbling down an idea on paper: a board game where players quote movies back and forth and try to make each other laugh. That game is Quote Challenge now.
-
-## 🚀 What I'm Working On
-- **Quote Challenge** — a movie-quote theater game. Guess the movie or show, and who said it. One Player, Two Player, Bonus Round, and a Christmas Special.
-- **qcevent** — the grand event page, Theater 8.0
-- **Reimagine Games** — my testing area, where new ideas land first
-- **Out of This World** — the third theater. Coming 2027.
-
-## 🎬 Quote Challenge
-- Guess the movie, sitcom, or cartoon — and who said it
-- Old Rules: 1 point for the show, 1 for who said it. New Rules: 10 points for both together
-- Over 400 quotes and growing, from movies, sitcoms, and cartoons
-
-## 🛠️ Skills
-- Building websites with HTML, CSS, and JavaScript
-- Problem solving and debugging
-- Git and GitHub
-- Turning a 40-year-old idea into something people can actually play
-- ◀️ ◀️ ◀️ ◀️ ◀️ ▶️ ▶️ ▶️ ▶️ ▶️ ▶️ ▶️ ▶️ ▶️ ▶️ ▶️ 
 
 > "Learn what you know. Learn something every day. You don't know what you think you know."
 > 
