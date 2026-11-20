@@ -1,6 +1,7 @@
 runs:
-  using: 'node20'
-  main: 'main'
+using: 'node20'
+main: 'main'
+  
 name: Deploy static site to GitHub Pages
 
 on:
