@@ -2,7 +2,7 @@
   uses: actions/setup-go@v7.1.0
   with: setup-go v7
     
-    go-version: # 
+    go-version: # optional 
     
     go-version-file: # optional
 
