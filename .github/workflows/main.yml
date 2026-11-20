@@ -8,7 +8,7 @@ on:
 
   runs:
   using: 'node20'
-  main: 'main'branch_protection_rule:
+  main: 'main'
 
 permissions:
   contents: read
