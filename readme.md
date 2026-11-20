@@ -46,19 +46,7 @@ I spent 30 years as a truck driver — drive and think, drive and think. For abo
 ## 🤝 Let’s Connect
 - GitHub: [@Jtack6769](https://github.com/Jtack6769)
 
-> “Build something useful. Learn something every day.”
+> “Build something useful. Learn what you know, Learn something everyday, You don't know what you know!.”
 
 ---
 
-To personalize this README further, please share:
-
-- Your profession or role
-- Your top 5–10 skills or technologies
-- A short professional bio
-- Your favorite or featured projects
-- LinkedIn, portfolio, email, or other social links
-- Any badges, themes, or GitHub statistics you’d like included
-
-
-> "Learn what you know. Learn something every day. You don't know what you think you know."
-> 
