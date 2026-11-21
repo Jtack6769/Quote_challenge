@@ -1,33 +1,38 @@
 # Quote Challenge
 
-Quote Challenge is a movie, television, and cartoon quote game presented as a theater experience. Players try to identify the title and speaker from memorable quotes.
+Quote Challenge is a theater-themed web game about identifying movies, television shows, cartoons, and speakers from memorable quotes.
 
-**Play online:** [Quote Challenge](https://jtack6769.github.io/Quote_challenge/)
+**[Play Quote Challenge](https://jtack6769.github.io/Quote_challenge/)**
 
-## Game modes
+## Start here
 
 - [One-player game](one-player.html)
 - [Two-player game](two-player.html)
 - [Bonus room](bonus.html)
+- [Lunatic Fringe](lunatic_fringe.html)
 
-The site is built with HTML, CSS, JavaScript, and static media files, and is published with GitHub Pages. No build step is required to browse it locally: open `index.html` in a browser, or serve the repository directory with any static web server.
+The site is a static website built with HTML, CSS, JavaScript, and media files. There is no package installation or build step for the published site.
 
-## Project structure
+## Previewing changes
 
-The project is a static website. The root currently contains the theater landing page, game pages, quote data, and media used by the experience. Some files are experiments or alternate versions; check links before moving or removing files because the site references assets by relative path.
+The published site is the simplest way to try the game. For local development, serve the repository root with a static web server, for example:
 
-## Local preview
+```sh
+python -m http.server 8000
+```
 
-1. Clone the repository.
-2. Open `index.html` in a browser, or start a local static server from the repository root.
-3. Keep the local server running while testing navigation and media; this avoids browser restrictions that can affect local files.
+Then visit `http://localhost:8000/`. **Note:** the current landing page has a `<base>` URL pointing at the published GitHub Pages site, so relative links and assets from that page may resolve to the live site during local testing. Check any changed page's asset and navigation paths before merging.
+
+## Repository notes
+
+The repository contains multiple experiments and older page versions alongside the live experience. The published landing page is `index.html`; game and media files are referenced by relative paths. Before renaming or removing files, search for references across the site and confirm the intended page still works.
 
 ## Contributing
 
-When changing a page, check its links and referenced media, and test it at both desktop and mobile widths. Please avoid deleting or renaming assets until all references have been checked.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for a small pre-merge checklist and guidance on handling the existing prototypes and media.
 
-## About the creator
+## About
 
-Quote Challenge began as a board-game idea and grew into a playable web project. The goal is to bring people together over familiar movie and TV quotes.
+Quote Challenge began as a board-game idea and grew into a playable web project. Its goal is to bring people together over familiar movie and TV quotes.
 
 [GitHub profile](https://github.com/Jtack6769) · [Live site](https://jtack6769.github.io/Quote_challenge/)
