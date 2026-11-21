@@ -1,52 +1,38 @@
-gather around the family and friends remember all things old girlfriends when you have to go to Saturday evening or Saturday afternoon matinees with your friends good times that's what this is all about.
+# Quote Challenge
 
-##- # Hi, I'm Jtack6769 👋
+Quote Challenge is a theater-themed web game about identifying movies, television shows, cartoons, and speakers from memorable quotes.
 
-**Creator of Quote Challenge | Lifelong Learner | Problem Solver**
+**[Play Quote Challenge](https://jtack6769.github.io/Quote_challenge/)**
 
-I spent 30 years as a truck driver — drive and think, drive and think. For about 30–40 of those years I was scribbling down an idea on paper: a board game where players quote movies back and forth and try to make each other laugh. That game is Quote Challenge now.
+## Start here
 
-## 🚀 What I'm Working On
-- **Quote Challenge** — a movie-quote theater game. Guess the movie or show, and who said it. One Player, Two Player, Bonus Round, and a Christmas Special.
-- **qcevent** — the grand event page, Theater 8.0
-- **Reimagine Games** — my testing area, where new ideas land first
-- **Out of This World** — the third theater. Coming 2027.
+- [One-player game](one-player.html)
+- [Two-player game](two-player.html)
+- [Bonus room](bonus.html)
+- [Lunatic Fringe](lunatic_fringe.html)
 
-## 🎬 Quote Challenge
-- Guess the movie, sitcom, or cartoon — and who said it
-- Old Rules: 1 point for the show, 1 for who said it. New Rules: 10 points for both together
-- Over 400 quotes and growing, from movies, sitcoms, and cartoons
+The site is a static website built with HTML, CSS, JavaScript, and media files. There is no package installation or build step for the published site.
 
-## 🛠️ Skills
-- Software development
-- Problem solving
-- Debugging and troubleshooting
-- Git and GitHub
-- 
-## extra skills 🛠️ Skills
-- Building websites with HTML, CSS, and JavaScript
-- Problem solving and debugging
-- Git and GitHub
-- Turning a 40-year-old idea into something people can actually play
+## Previewing changes
 
-## 🌱 Currently Learning
-- Expanding my technical knowledge
-- Improving code quality
-- Building better user experiences
+The published site is the simplest way to try the game. For local development, serve the repository root with a static web server, for example:
 
-## 📊 GitHub Activity
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Jtack6769&show_icons=true&theme=transparent" alt="Jtack6769's GitHub stats" />
-</p>
+```sh
+python -m http.server 8000
+```
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Jtack6769&layout=compact&theme=transparent" alt="Top languages" />
-</p>
+Then visit `http://localhost:8000/`. **Note:** the current landing page has a `<base>` URL pointing at the published GitHub Pages site, so relative links and assets from that page may resolve to the live site during local testing. Check any changed page's asset and navigation paths before merging.
 
-## 🤝 Let’s Connect
-- GitHub: [@Jtack6769](https://github.com/Jtack6769)
+## Repository notes
 
-> “Build something useful. Learn what you know, Learn something everyday, You don't know what you know!.”
+The repository contains multiple experiments and older page versions alongside the live experience. The published landing page is `index.html`; game and media files are referenced by relative paths. Before renaming or removing files, search for references across the site and confirm the intended page still works.
 
----
+## Contributing
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for a small pre-merge checklist and guidance on handling the existing prototypes and media.
+
+## About
+
+Quote Challenge began as a board-game idea and grew into a playable web project. Its goal is to bring people together over familiar movie and TV quotes.
+
+[GitHub profile](https://github.com/Jtack6769) · [Live site](https://jtack6769.github.io/Quote_challenge/)
