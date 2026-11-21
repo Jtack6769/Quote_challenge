@@ -1,13 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<base href="https://jtack6769.github.io/Quote_challenge/">
-<title>Quote Challenge | Theater 7.0</title>
-<style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#03050b;color:#fff;font-family:system-ui,Arial,sans-serif}
-.theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('file_00000000ef1c81f5822c514fb25c6b2f.png') center/100% 100% no-repeat;overflow:hidden}
+.theater{position:relative;width:100%;max-width:1648px;aspect-ratio:1648/928;margin:auto;background:url('file_00000000080881f5935369e260ae0f5e.png') center/100% 100% no-repeat;overflow:hidden}
 /* Overlay precisely on the artwork's existing illuminated marquee */
 .marquee{position:absolute;left:24.2%;top:24.4%;width:51.8%;height:9.2%;overflow:hidden;background:linear-gradient(#090d17,#080b12);border-top:2px solid #d89524;border-bottom:2px solid #d89524;display:flex;align-items:center;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent)}
 .suggestions{z-index:4;position:absolute;left:47.3%;top:64.5%;width:5.5%;height:12.5%;border:0;background:transparent;cursor:pointer;border-radius:8px}
@@ -115,7 +107,7 @@ dialog.viewer{border:0!important;border-radius:0!important;box-shadow:none!impor
 /* One portrait entrance, sized to fit phones and desktops. */
 .portrait-entry{display:block;position:relative;width:min(420px,calc(100% - 32px));margin:28px auto 40px;padding:0;border:2px solid #cda455;border-radius:12px;overflow:hidden;background:#101b30;color:#fff;cursor:pointer;font:700 18px/1.4 system-ui,sans-serif}
 .portrait-entry img{display:block;width:100%;height:auto}
-.portrait-entry span{display:block;position:absolute;bottom:0;left:0;right:0;padding:14px;background:rgba(5,10,22,.88);font-size:clamp(14px,4vw,18px)}
+.portrait-entry span{display:block;position:relative;padding:14px;background:rgba(5,10,22,.88);font-size:clamp(14px,4vw,18px)}
 .portrait-entry:focus-visible{outline:3px solid #fff08a;outline-offset:4px}
 .entrance-menu{width:min(420px,calc(100% - 32px));padding:24px;border:2px solid #cda455;border-radius:12px;background:#101b30;color:#fff}
 .entrance-menu::backdrop{background:#000c}
@@ -129,154 +121,16 @@ body{overflow-wrap:break-word}
 .hanging-frame:focus-visible{outline:3px solid #fff08a!important;outline-offset:5px}
 .theater-controls{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;padding:14px}
 .theater-controls a,.theater-controls button{padding:10px 16px;border:1px solid #cda455;border-radius:6px;background:#101b30;color:#ffdf84;font:700 16px system-ui;text-decoration:none;cursor:pointer}
-</style>
-</head>
-<body>
-<main class="theater" aria-label="Quote Challenge theater entrance">
-  <div class="marquee" aria-label="Animated Quote Challenge welcome messages"><div class="wave-message" id="waveMessage">WELCOME TO QUOTE CHALLENGE</div><div class="wave" id="wave" aria-hidden="true"></div></div>
-  <a class="door-link door-one" href="one-player.html" aria-label="Enter one-player game" title="ADMIT ONE"></a>
-<a class="door-link door-two" href="two-player.html" aria-label="Enter two-player game" title="ADMIT TWO"></a>
-  <a class="secret-portrait" href="bonus.html" aria-label="Secret bonus room"><img src="secret-portrait.png" alt=""></a>
-  <button class="freddy" type="button" aria-label="Freddy the dog, hover to see him stand" title="Freddy"><img class="sitting" src="freddy-sitting.png" alt=""><img class="standing" src="freddy-standing.png" alt=""></button>
-  <span class="robot-glow" tabindex="0" role="img" aria-label="Robot with glowing eyes on hover"></span>
-  <button class="suggestions" id="openSuggestions" aria-label="Open suggestions and bug report form" title="Suggestions and bug reports"></button>
-</main>
-<nav class="theater-controls" aria-label="Theater controls">
-<a href="one-player.html">One player</a><a href="two-player.html">Two players</a>
-<button type="button" id="suggestionsLink">Suggestions / report a bug</button>
-</nav>
-<div class="dialog-backdrop" id="backdrop">
-  <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
-    <h2 id="dialogTitle">Quote Challenge Suggestions</h2>
-    <form id="suggestionForm">
-      <label>What would you like to send?</label>
-      <div class="message-types" role="group" aria-label="Message type">
-        <button type="button" id="typeBug" aria-pressed="false">Bug Report</button>
-        <button type="button" id="typeSuggestion" aria-pressed="true">Suggestions</button>
-        <button type="button" id="typeComplaint" aria-pressed="false">Complaint</button>
-      </div>
-      <input type="hidden" id="subject" value="Suggestions">
-      <label for="message">Your message</label>
-      <textarea id="message" required placeholder="Tell us what you found or what you'd like to see..."></textarea>
-      <div class="buttons"><button class="send" type="submit">Send</button><button type="button" id="closeSuggestions">Close</button></div>
-    </form>
-    <p class="help">Opens your email app with the subject and message filled in. No message is sent until you send it from your email app.</p>
-  </section>
-</div>
-<div class="qc-banner"><div class="qc-banner-text"> 📽️ QUOTE CHALLENGE 7.0 WE ARE READY TO SET NEW RECORDS! 🎦 • 📽️ PLEASE EXCUSE THE MESS AS WE ARE UPGRADING!• ALWAYS WORKING HARD TO BRING YOU EXCITING NEW ADVENTURES! 🎦 </div></div>
-<div class="coming-attractions">
-<h1> <a class="coming-link" href="next/next.html">GET YOUR TICKET NOW TO JOIN THE SHOW! THE ADVENTURE BEGINS IN A THEATER NEAR YOU!!
-12-1-2026</a></h1>
-</div>
 
-<section class="gallery-area">
-<main class="wall-gallery" aria-label="Framed picture gallery">
-    One of these days you'll be escaping from me!
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 1"><img src="ElvisDead_EscapeNY_gic_web_3_1080x.jpg" alt="Gallery picture 1" loading="lazy"><span class="missing-label"></span></div>
-    <h3><a class="link" 
-            href="https://github.com/users/Jtack6769/achievements/quickdraw">Launch Achievements</a></h3>
-    Just so you all know it's a lot of fun describing posters to the AI to get these fantastic posters!
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 2"><img src="CL85106.jpg" alt="Gallery picture 2" loading="lazy"><span class="missing-label"></span></div>
-    Now i really like this Pic, he is a sad character really.
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 3"><img src="IMG_20260909_203401795_HDR.jpg" alt="Gallery picture 3" loading="lazy"><span class="missing-label"></span></div>
-    Harry my man, wasn't he a character.
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 4"><img src="harry-mudd.png" alt="Gallery picture 4" loading="lazy"><span class="missing-label"></span></div>
-    The Captain that started it all simply (Kirk)
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 5"><img src="IMG_20260913_064817432~2.jpg" alt="Gallery picture 5" loading="lazy"><span class="missing-label"></span></div>
-    But this guy! you know!✌️
-  <div class="hanging-frame" tabindex="0" role="button" aria-label="Enlarge gallery picture 6"><img src="secret-portrait.png" alt="Gallery picture 6" loading="lazy"><span class="missing-label"></span></div>
-</main>
-</section>
-<dialog class="viewer" aria-label="Enlarged gallery picture">
-  <button class="close" type="button" aria-label="Close enlarged picture">Beam me up ×</button>
-  <img alt="Enlarged gallery picture">
-</dialog>
-<script>
-// EDIT THESE THREE TEXT VALUES to change the top marquee messages.
-const slides=[
-  {text:"WELCOME TO QUOTE CHALLENGE 7.0 IT'S A NEW DAY!",direction:'right',hold:3000},
-  {text:'THE QUOTES ARE OVERFLOWING AND WE WISH YOU A HAPPY HOLIDAY SEASON',direction:'left',hold:2500},
-  {text:'QC IS ALWAYS DREAMING UP FUN FOR YOU SO TUNE UP YOUR MIND AND ENJOY THE TRIP DOWN MEMORY LANE!',direction:'right',hold:4000}
-];
-const waveMessage=document.getElementById('waveMessage');
-const wave=document.getElementById('wave');
-const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-async function start(){
-  let index=0;
-  while(true){
-    const slide=slides[index];
-    wave.className='wave';
-    void wave.offsetWidth;
-    wave.classList.add(slide.direction==='right'?'run-right':'run-left');
-    await sleep(900);
-    waveMessage.classList.add('hide');
-    await sleep(150);
-    waveMessage.textContent=slide.text;
-    waveMessage.classList.remove('hide');
-    await sleep(1150);
-    await sleep(slide.hold);
-    index=(index+1)%slides.length;
-  }
-}
-start();
-const backdrop=document.getElementById('backdrop');
-const openBtn=document.getElementById('openSuggestions');
-const typeBug=document.getElementById('typeBug');
-const typeSuggestion=document.getElementById('typeSuggestion');
-function chooseType(type){
-  const bug=type==='Bug Report';
-  document.getElementById('subject').value=type;
-  typeBug.setAttribute('aria-pressed',String(bug));
-  typeSuggestion.setAttribute('aria-pressed',String(type==='Suggestions'));
-  document.getElementById('typeComplaint').setAttribute('aria-pressed',String(type==='Complaint'));
-}
-document.getElementById('typeComplaint').addEventListener('click',()=>chooseType('Complaint'));
-typeBug.addEventListener('click',()=>chooseType('Bug Report'));
-typeSuggestion.addEventListener('click',()=>chooseType('Suggestions'));
-function openSuggestions(){backdrop.classList.add('open');document.getElementById('message').focus();}
-function closeSuggestions(){backdrop.classList.remove('open');}
-openBtn.addEventListener('click',openSuggestions);
-document.getElementById('suggestionsLink').addEventListener('click',openSuggestions);
-document.getElementById('closeSuggestions').addEventListener('click',closeSuggestions);
-backdrop.addEventListener('click',event=>{if(event.target===backdrop)closeSuggestions();});
-document.addEventListener('keydown',event=>{if(event.key==='Escape')closeSuggestions();});
-document.getElementById('suggestionForm').addEventListener('submit',event=>{
- event.preventDefault();
- const subject=document.getElementById('subject').value;
- const message=document.getElementById('message').value;
- window.location.href='mailto:qcchallenger67@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(message);
-});
-const viewer=document.querySelector('dialog.viewer');
-const enlarged=viewer.querySelector('img');
-function enlarge(frame){
- const picture=frame.querySelector('img');
- enlarged.src=picture.currentSrc||picture.src;
- enlarged.alt=picture.alt;
- if(!viewer.open)viewer.showModal();
-}
-document.querySelectorAll('.hanging-frame').forEach(frame=>{
- frame.addEventListener('click',()=>enlarge(frame));
- frame.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();enlarge(frame);}});
-});
-viewer.querySelector('.close').addEventListener('click',()=>viewer.close());
-viewer.addEventListener('click',event=>{if(event.target===viewer)viewer.close();});
-</script>
-<button class="portrait-entry" id="portraitEntry" type="button" aria-label="Choose Lunatic Fringe or complaint form">
-<img src="gemini_remix_20261030_162736.jpg" alt=""><span>CHALLENGE MY QUOTE</span>
-</button>
-<dialog class="entrance-menu" id="entranceMenu" aria-labelledby="entranceTitle">
-<h2 id="entranceTitle">Choose your adventure</h2>
-<div class="entrance-options">
-<a href="lunatic_fringe.html">Enter the Lunatic Fringe</a>
-<button type="button" id="complaintEntry">Complaint form</button>
-<button type="button" id="closeEntrance">Close</button>
-</div></dialog>
-<script>
-const entranceMenu=document.getElementById('entranceMenu');
-document.getElementById('portraitEntry').addEventListener('click',()=>entranceMenu.showModal());
-document.getElementById('closeEntrance').addEventListener('click',()=>entranceMenu.close());
-document.getElementById('complaintEntry').addEventListener('click',()=>{entranceMenu.close();chooseType('Complaint');openSuggestions();});
-entranceMenu.addEventListener('click',event=>{if(event.target===entranceMenu)entranceMenu.close();});
-</script>
-</body>
-</html>
+/* Continuous wallpaper replaces the black middle block. */
+.theater-wall{display:flow-root;width:100%;margin:0;padding:0 0 12px;background:#38404a url('gemini_remix_20261022_233612.jpg') top left/400px auto repeat;border:0;box-shadow:none}
+.theater-wall .theater-controls{padding:12px;gap:10px}
+.theater-wall .qc-banner{margin:0;padding:8px 0;background:transparent;color:#fff6db;text-shadow:0 2px 3px #000;font-size:clamp(16px,2.6vw,24px);border:0;border-radius:0}
+.theater-wall .coming-attractions{width:min(760px,calc(100% - 28px));margin:8px auto 0;padding:10px 14px;background:#17233b;border:2px solid #cda455;border-radius:6px}
+.theater-wall .coming-attractions h1{margin:0;font-size:inherit}
+.theater-wall .coming-link{margin:0 auto;color:#ffe09a;font:italic 700 clamp(15px,2.5vw,23px)/1.35 Georgia,serif;text-shadow:0 2px 2px #000}
+
+/* Restored Quote Challenge nameplate; fill in href when ready. */
+.qc-nameplate{display:block;width:min(900px,94%);margin:8px auto 12px;text-align:center}
+.qc-nameplate img{display:block;width:100%;height:auto}
+.qc-nameplate:focus-visible{outline:3px solid #ffe09a;outline-offset:4px}
